@@ -1,8 +1,5 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Accordion from "react-bootstrap/Accordion";
-import ListGroup from "react-bootstrap/ListGroup";
-import Table from "react-bootstrap/Table";
+import { Button, Accordion, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {

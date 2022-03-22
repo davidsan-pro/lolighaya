@@ -1,5 +1,6 @@
+import React from "react";
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import BarangList from "./components/BarangList";
 import UserList from "./components/UserList";
 import Dashboard from "./components/Dashboard";

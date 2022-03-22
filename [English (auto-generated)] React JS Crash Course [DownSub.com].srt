@@ -1,0 +1,11480 @@
+1
+00:00:00,500 --> 00:00:07,200
+[Music]
+
+2
+00:00:07,200 --> 00:00:09,760
+hey guys welcome to my 2021 react crash
+
+3
+00:00:09,760 --> 00:00:10,240
+course
+
+4
+00:00:10,240 --> 00:00:12,080
+so it's been about two years or so since
+
+5
+00:00:12,080 --> 00:00:14,080
+my last one and i wanted to create an
+
+6
+00:00:14,080 --> 00:00:16,720
+updated version and this course is meant
+
+7
+00:00:16,720 --> 00:00:18,720
+for beginners i'll be explaining some of
+
+8
+00:00:18,720 --> 00:00:20,640
+the core concepts and fundamentals of
+
+9
+00:00:20,640 --> 00:00:21,279
+react
+
+10
+00:00:21,279 --> 00:00:22,800
+we're going to be building a task
+
+11
+00:00:22,800 --> 00:00:24,320
+tracker application
+
+12
+00:00:24,320 --> 00:00:27,119
+looking at components props state we're
+
+13
+00:00:27,119 --> 00:00:27,519
+going to
+
+14
+00:00:27,519 --> 00:00:30,480
+use react hooks and we're also going to
+
+15
+00:00:30,480 --> 00:00:30,800
+be
+
+16
+00:00:30,800 --> 00:00:32,479
+dealing with something called json
+
+17
+00:00:32,479 --> 00:00:35,280
+server which is a mock rest api or
+
+18
+00:00:35,280 --> 00:00:37,280
+kind of like a fake back end that we can
+
+19
+00:00:37,280 --> 00:00:39,280
+use so i can show you how we would use
+
+20
+00:00:39,280 --> 00:00:41,520
+react in a full stack application
+
+21
+00:00:41,520 --> 00:00:44,399
+where we're making requests to an api
+
+22
+00:00:44,399 --> 00:00:45,600
+we're going to look at routing
+
+23
+00:00:45,600 --> 00:00:47,840
+and a whole bunch of other stuff so the
+
+24
+00:00:47,840 --> 00:00:49,200
+first thing i want to do is just go
+
+25
+00:00:49,200 --> 00:00:50,879
+through some slides and then we'll go
+
+26
+00:00:50,879 --> 00:00:52,320
+ahead and jump into
+
+27
+00:00:52,320 --> 00:00:54,960
+writing code so first off what is react
+
+28
+00:00:54,960 --> 00:00:56,559
+the standard definition is it's a
+
+29
+00:00:56,559 --> 00:00:58,559
+javascript library for building user
+
+30
+00:00:58,559 --> 00:00:59,440
+interfaces
+
+31
+00:00:59,440 --> 00:01:01,120
+and you may have heard of it referred to
+
+32
+00:01:01,120 --> 00:01:02,719
+as a framework i refer to it as a
+
+33
+00:01:02,719 --> 00:01:04,479
+framework most people do and i'll talk
+
+34
+00:01:04,479 --> 00:01:04,879
+about
+
+35
+00:01:04,879 --> 00:01:07,840
+why in a second now react is uh it was
+
+36
+00:01:07,840 --> 00:01:10,240
+created and it's maintained by facebook
+
+37
+00:01:10,240 --> 00:01:12,159
+it's strictly front end meaning it runs
+
+38
+00:01:12,159 --> 00:01:14,240
+in the browser when you have a web app
+
+39
+00:01:14,240 --> 00:01:16,560
+that's built with let's say php
+
+40
+00:01:16,560 --> 00:01:19,119
+you're you're running php on the server
+
+41
+00:01:19,119 --> 00:01:21,200
+your app is hosted on the server and
+
+42
+00:01:21,200 --> 00:01:21,600
+then
+
+43
+00:01:21,600 --> 00:01:24,560
+it serves html templates or html pages
+
+44
+00:01:24,560 --> 00:01:25,600
+to the client
+
+45
+00:01:25,600 --> 00:01:27,360
+with react you build what's called a
+
+46
+00:01:27,360 --> 00:01:28,880
+single page application
+
+47
+00:01:28,880 --> 00:01:31,280
+or a spa where you have a single html
+
+48
+00:01:31,280 --> 00:01:32,960
+page and then all of your routing
+
+49
+00:01:32,960 --> 00:01:35,439
+all that stuff is done through react
+
+50
+00:01:35,439 --> 00:01:37,680
+which then compiles to a javascript
+
+51
+00:01:37,680 --> 00:01:39,600
+bundle that's loaded by the browser
+
+52
+00:01:39,600 --> 00:01:41,680
+so it makes for really fast and
+
+53
+00:01:41,680 --> 00:01:43,600
+interactive interfaces
+
+54
+00:01:43,600 --> 00:01:45,360
+now even though react is a front-end
+
+55
+00:01:45,360 --> 00:01:47,439
+framework so if you can't directly
+
+56
+00:01:47,439 --> 00:01:49,680
+for instance communicate with your
+
+57
+00:01:49,680 --> 00:01:50,640
+database
+
+58
+00:01:50,640 --> 00:01:52,640
+it's often used in combination with
+
+59
+00:01:52,640 --> 00:01:54,479
+other technologies to create a full
+
+60
+00:01:54,479 --> 00:01:55,920
+stack application
+
+61
+00:01:55,920 --> 00:01:57,439
+for instance the mern stack which is
+
+62
+00:01:57,439 --> 00:01:59,920
+really popular it's mongodb which is a
+
+63
+00:01:59,920 --> 00:02:01,200
+type of database
+
+64
+00:02:01,200 --> 00:02:03,360
+express which is a back-end framework
+
+65
+00:02:03,360 --> 00:02:05,680
+react and then node.js which is a
+
+66
+00:02:05,680 --> 00:02:07,119
+javascript runtime
+
+67
+00:02:07,119 --> 00:02:08,720
+you could also use react on the front
+
+68
+00:02:08,720 --> 00:02:11,680
+end and use php laravel on the back end
+
+69
+00:02:11,680 --> 00:02:13,360
+or python django
+
+70
+00:02:13,360 --> 00:02:14,720
+and what you would do is you would you
+
+71
+00:02:14,720 --> 00:02:17,680
+would serve json data from your server
+
+72
+00:02:17,680 --> 00:02:19,760
+and you would make requests from react
+
+73
+00:02:19,760 --> 00:02:20,720
+to the server
+
+74
+00:02:20,720 --> 00:02:24,080
+to get data to to add data update delete
+
+75
+00:02:24,080 --> 00:02:25,200
+and so on
+
+76
+00:02:25,200 --> 00:02:27,520
+now as far as being a library versus a
+
+77
+00:02:27,520 --> 00:02:28,400
+framework
+
+78
+00:02:28,400 --> 00:02:30,319
+most people call it a framework and
+
+79
+00:02:30,319 --> 00:02:32,160
+that's because it's directly comparable
+
+80
+00:02:32,160 --> 00:02:32,640
+to
+
+81
+00:02:32,640 --> 00:02:35,680
+something like angular or vue.js now it
+
+82
+00:02:35,680 --> 00:02:36,000
+doesn't
+
+83
+00:02:36,000 --> 00:02:38,720
+have as much included as angular does
+
+84
+00:02:38,720 --> 00:02:40,480
+like angular has a built-in routing
+
+85
+00:02:40,480 --> 00:02:41,200
+system
+
+86
+00:02:41,200 --> 00:02:43,040
+react doesn't you just have to install
+
+87
+00:02:43,040 --> 00:02:45,360
+an extra package called react router dom
+
+88
+00:02:45,360 --> 00:02:47,599
+so it has an entire ecosystem of
+
+89
+00:02:47,599 --> 00:02:49,440
+packages that you can install to make it
+
+90
+00:02:49,440 --> 00:02:52,000
+function as a full-fledged framework
+
+91
+00:02:52,000 --> 00:02:54,720
+now as far as a library goes when i
+
+92
+00:02:54,720 --> 00:02:56,080
+think of a library i think of like
+
+93
+00:02:56,080 --> 00:02:57,200
+jquery
+
+94
+00:02:57,200 --> 00:02:59,440
+low dash something where you you pull
+
+95
+00:02:59,440 --> 00:03:01,200
+utilities in and you use them in your
+
+96
+00:03:01,200 --> 00:03:02,159
+application
+
+97
+00:03:02,159 --> 00:03:03,920
+react doesn't work like that it works
+
+98
+00:03:03,920 --> 00:03:05,360
+more like like
+
+99
+00:03:05,360 --> 00:03:08,000
+angular or view and those three are
+
+100
+00:03:08,000 --> 00:03:09,680
+actually the top frameworks in the
+
+101
+00:03:09,680 --> 00:03:10,800
+industry right now
+
+102
+00:03:10,800 --> 00:03:12,800
+uh i would go as far as to say react is
+
+103
+00:03:12,800 --> 00:03:14,080
+the most popular
+
+104
+00:03:14,080 --> 00:03:16,640
+but the other two are great as well i
+
+105
+00:03:16,640 --> 00:03:18,000
+have crash courses on those
+
+106
+00:03:18,000 --> 00:03:21,120
+i'll be updating soon so when you're
+
+107
+00:03:21,120 --> 00:03:23,200
+choosing one of these three frameworks
+
+108
+00:03:23,200 --> 00:03:24,239
+if you're you know if you're going to be
+
+109
+00:03:24,239 --> 00:03:25,840
+a front-end developer or full stack
+
+110
+00:03:25,840 --> 00:03:26,720
+developer
+
+111
+00:03:26,720 --> 00:03:29,200
+you just want to compare them use each
+
+112
+00:03:29,200 --> 00:03:30,799
+one test them out see what
+
+113
+00:03:30,799 --> 00:03:33,519
+what you really click with and also look
+
+114
+00:03:33,519 --> 00:03:35,440
+at jobs in your area if that's what if
+
+115
+00:03:35,440 --> 00:03:37,120
+that's what your goal is
+
+116
+00:03:37,120 --> 00:03:38,879
+all right so we know that react is a
+
+117
+00:03:38,879 --> 00:03:41,200
+front end library slash framework
+
+118
+00:03:41,200 --> 00:03:43,200
+now why would you want to use it there's
+
+119
+00:03:43,200 --> 00:03:44,799
+actually a bunch of reasons but one of
+
+120
+00:03:44,799 --> 00:03:45,280
+the biggest
+
+121
+00:03:45,280 --> 00:03:47,440
+is it gives you a way to structure the
+
+122
+00:03:47,440 --> 00:03:49,519
+view layer of your application
+
+123
+00:03:49,519 --> 00:03:52,080
+so mvc or model view controller is a
+
+124
+00:03:52,080 --> 00:03:54,319
+popular design pattern for software
+
+125
+00:03:54,319 --> 00:03:55,840
+the model deals with the data the
+
+126
+00:03:55,840 --> 00:03:57,519
+controller deals with the requests and
+
+127
+00:03:57,519 --> 00:03:58,239
+routing
+
+128
+00:03:58,239 --> 00:04:00,720
+and then the view is the ui the user
+
+129
+00:04:00,720 --> 00:04:02,159
+interface the part of the app that the
+
+130
+00:04:02,159 --> 00:04:03,280
+user sees
+
+131
+00:04:03,280 --> 00:04:06,400
+react is basically the v in mvc
+
+132
+00:04:06,400 --> 00:04:08,640
+now if you've tried to build a large
+
+133
+00:04:08,640 --> 00:04:11,680
+dynamic interface using javascript
+
+134
+00:04:11,680 --> 00:04:13,439
+vanilla javascript it can get really
+
+135
+00:04:13,439 --> 00:04:15,040
+messy your html
+
+136
+00:04:15,040 --> 00:04:17,120
+your styling and your javascript logic
+
+137
+00:04:17,120 --> 00:04:18,798
+are just all over the place
+
+138
+00:04:18,798 --> 00:04:21,120
+and everyone writes vanilla javascript
+
+139
+00:04:21,120 --> 00:04:22,320
+differently
+
+140
+00:04:22,320 --> 00:04:24,639
+react allows you to build your ui using
+
+141
+00:04:24,639 --> 00:04:26,800
+what are called reusable components
+
+142
+00:04:26,800 --> 00:04:28,800
+so every part of your user interface is
+
+143
+00:04:28,800 --> 00:04:30,800
+looked at as a dynamic component
+
+144
+00:04:30,800 --> 00:04:34,639
+that can hold its own state and data
+
+145
+00:04:34,639 --> 00:04:37,520
+we also don't have to separate our
+
+146
+00:04:37,520 --> 00:04:40,240
+markup from our logic because react uses
+
+147
+00:04:40,240 --> 00:04:42,800
+something called jsx or javascript
+
+148
+00:04:42,800 --> 00:04:44,320
+syntax extension
+
+149
+00:04:44,320 --> 00:04:46,720
+and this allows us to to basically write
+
+150
+00:04:46,720 --> 00:04:48,479
+dynamic html
+
+151
+00:04:48,479 --> 00:04:50,080
+it's actually javascript but it's
+
+152
+00:04:50,080 --> 00:04:51,759
+formatted like html
+
+153
+00:04:51,759 --> 00:04:54,080
+we can even embed javascript expressions
+
+154
+00:04:54,080 --> 00:04:56,080
+variables etc now
+
+155
+00:04:56,080 --> 00:04:58,240
+the apps that you build with react are
+
+156
+00:04:58,240 --> 00:04:59,919
+very interactive because it uses
+
+157
+00:04:59,919 --> 00:05:01,919
+something called the virtual dom
+
+158
+00:05:01,919 --> 00:05:04,800
+which is the document object model so it
+
+159
+00:05:04,800 --> 00:05:06,400
+what this does it allows you to update
+
+160
+00:05:06,400 --> 00:05:08,000
+parts of the page that need to be
+
+161
+00:05:08,000 --> 00:05:08,720
+updated
+
+162
+00:05:08,720 --> 00:05:10,479
+without reloading it so if you have a
+
+163
+00:05:10,479 --> 00:05:12,400
+list of users or in our case a list of
+
+164
+00:05:12,400 --> 00:05:13,199
+tasks
+
+165
+00:05:13,199 --> 00:05:14,800
+and you want to delete one of them it
+
+166
+00:05:14,800 --> 00:05:17,199
+doesn't have to reload the page it does
+
+167
+00:05:17,199 --> 00:05:18,800
+everything behind the scenes
+
+168
+00:05:18,800 --> 00:05:20,160
+if you were to build let's say a
+
+169
+00:05:20,160 --> 00:05:22,240
+traditional php application where you're
+
+170
+00:05:22,240 --> 00:05:22,880
+just serving
+
+171
+00:05:22,880 --> 00:05:25,360
+html templates every delete you make it
+
+172
+00:05:25,360 --> 00:05:27,120
+most likely is going to have to refresh
+
+173
+00:05:27,120 --> 00:05:27,919
+the page
+
+174
+00:05:27,919 --> 00:05:30,080
+so this makes things much more faster
+
+175
+00:05:30,080 --> 00:05:32,320
+more dynamic and interactive
+
+176
+00:05:32,320 --> 00:05:34,240
+react also has performance and testing
+
+177
+00:05:34,240 --> 00:05:35,360
+benefits
+
+178
+00:05:35,360 --> 00:05:37,280
+another huge reason to learn react is
+
+179
+00:05:37,280 --> 00:05:38,960
+it's it's very big in the industry right
+
+180
+00:05:38,960 --> 00:05:39,520
+now
+
+181
+00:05:39,520 --> 00:05:41,280
+just by the way it structures everything
+
+182
+00:05:41,280 --> 00:05:43,199
+it makes it much easier to work on
+
+183
+00:05:43,199 --> 00:05:44,560
+projects with teams
+
+184
+00:05:44,560 --> 00:05:46,479
+rather than just having you know a bunch
+
+185
+00:05:46,479 --> 00:05:48,320
+of jumbled javascript
+
+186
+00:05:48,320 --> 00:05:50,639
+so managing data is also really easy
+
+187
+00:05:50,639 --> 00:05:52,560
+with one-way data binding
+
+188
+00:05:52,560 --> 00:05:54,479
+all the data in your state is immutable
+
+189
+00:05:54,479 --> 00:05:56,400
+meaning you can't mutate it directly
+
+190
+00:05:56,400 --> 00:05:59,360
+and react provides ways to to basically
+
+191
+00:05:59,360 --> 00:06:01,520
+recreate your state every time that it
+
+192
+00:06:01,520 --> 00:06:02,880
+needs to be changed
+
+193
+00:06:02,880 --> 00:06:05,120
+so this this helps with debugging and
+
+194
+00:06:05,120 --> 00:06:06,560
+also offers better
+
+195
+00:06:06,560 --> 00:06:08,720
+performance so what should you know
+
+196
+00:06:08,720 --> 00:06:10,639
+before learning react
+
+197
+00:06:10,639 --> 00:06:12,960
+this this can vary depending on on
+
+198
+00:06:12,960 --> 00:06:14,479
+person to person but
+
+199
+00:06:14,479 --> 00:06:16,160
+generally you want to have a good handle
+
+200
+00:06:16,160 --> 00:06:17,840
+on javascript you don't want to go from
+
+201
+00:06:17,840 --> 00:06:19,919
+learning html and css and then jump
+
+202
+00:06:19,919 --> 00:06:20,960
+right into react
+
+203
+00:06:20,960 --> 00:06:22,400
+you should know all the fundamentals of
+
+204
+00:06:22,400 --> 00:06:24,319
+javascript including things like data
+
+205
+00:06:24,319 --> 00:06:25,520
+types variables
+
+206
+00:06:25,520 --> 00:06:28,240
+functions loops etc in react and
+
+207
+00:06:28,240 --> 00:06:30,000
+javascript in general you work with a
+
+208
+00:06:30,000 --> 00:06:31,600
+lot of asynchronous code
+
+209
+00:06:31,600 --> 00:06:32,960
+so you should be familiar with things
+
+210
+00:06:32,960 --> 00:06:35,759
+like promises array methods such as
+
+211
+00:06:35,759 --> 00:06:38,639
+for each map filter reduce these are all
+
+212
+00:06:38,639 --> 00:06:41,199
+commonly used in react applications
+
+213
+00:06:41,199 --> 00:06:43,360
+so get familiar with those doing
+
+214
+00:06:43,360 --> 00:06:44,319
+algorithms
+
+215
+00:06:44,319 --> 00:06:45,919
+that's a really good way to practice
+
+216
+00:06:45,919 --> 00:06:47,440
+these array methods
+
+217
+00:06:47,440 --> 00:06:49,840
+and then the fetch api is used to make
+
+218
+00:06:49,840 --> 00:06:51,280
+http requests
+
+219
+00:06:51,280 --> 00:06:53,520
+to either your own back-end server or to
+
+220
+00:06:53,520 --> 00:06:55,039
+a third-party api
+
+221
+00:06:55,039 --> 00:06:57,680
+for example the github or youtube api so
+
+222
+00:06:57,680 --> 00:06:59,199
+get familiar with fetch
+
+223
+00:06:59,199 --> 00:07:01,120
+again i have crash courses on most of
+
+224
+00:07:01,120 --> 00:07:03,039
+the stuff that you can check out if you
+
+225
+00:07:03,039 --> 00:07:04,000
+want
+
+226
+00:07:04,000 --> 00:07:06,319
+so as i said with react in pretty much
+
+227
+00:07:06,319 --> 00:07:07,840
+any front-end framework you're going to
+
+228
+00:07:07,840 --> 00:07:09,599
+be looking at your user interface as a
+
+229
+00:07:09,599 --> 00:07:11,039
+bunch of components
+
+230
+00:07:11,039 --> 00:07:12,720
+so here's the app we'll be building it's
+
+231
+00:07:12,720 --> 00:07:14,400
+called just called task tracker it's
+
+232
+00:07:14,400 --> 00:07:16,000
+pretty simple you just add a task
+
+233
+00:07:16,000 --> 00:07:17,440
+with a day and a time you can set a
+
+234
+00:07:17,440 --> 00:07:19,599
+reminder and you'll be able to double
+
+235
+00:07:19,599 --> 00:07:20,240
+click and
+
+236
+00:07:20,240 --> 00:07:22,000
+and set the reminder to either true or
+
+237
+00:07:22,000 --> 00:07:23,759
+false which will show this border
+
+238
+00:07:23,759 --> 00:07:26,000
+and we can delete and so on now over
+
+239
+00:07:26,000 --> 00:07:28,319
+here i just have outlined or created a
+
+240
+00:07:28,319 --> 00:07:29,280
+border around
+
+241
+00:07:29,280 --> 00:07:31,599
+each of the components so we have the
+
+242
+00:07:31,599 --> 00:07:33,440
+green around the header component
+
+243
+00:07:33,440 --> 00:07:35,280
+and inside the header we have a button
+
+244
+00:07:35,280 --> 00:07:37,039
+component we have the
+
+245
+00:07:37,039 --> 00:07:39,759
+add task component here which we could
+
+246
+00:07:39,759 --> 00:07:41,440
+actually break down even further and
+
+247
+00:07:41,440 --> 00:07:42,160
+create
+
+248
+00:07:42,160 --> 00:07:44,639
+input components as well if we wanted to
+
+249
+00:07:44,639 --> 00:07:46,479
+down here we have the tasks
+
+250
+00:07:46,479 --> 00:07:48,400
+component the purple which wraps around
+
+251
+00:07:48,400 --> 00:07:49,759
+all of these and then
+
+252
+00:07:49,759 --> 00:07:52,240
+each individual task is also its own
+
+253
+00:07:52,240 --> 00:07:53,120
+component
+
+254
+00:07:53,120 --> 00:07:54,479
+all right then we have down here the
+
+255
+00:07:54,479 --> 00:07:56,800
+footer component we're also going to
+
+256
+00:07:56,800 --> 00:07:58,319
+look at routing a little bit so we'll
+
+257
+00:07:58,319 --> 00:07:59,840
+have we have this about link
+
+258
+00:07:59,840 --> 00:08:01,599
+and that's going to go to a separate
+
+259
+00:08:01,599 --> 00:08:03,919
+route that will show the about component
+
+260
+00:08:03,919 --> 00:08:05,599
+all right so you can go to any website
+
+261
+00:08:05,599 --> 00:08:06,960
+or any ui
+
+262
+00:08:06,960 --> 00:08:08,800
+you go to twitter and and look at the
+
+263
+00:08:08,800 --> 00:08:11,039
+different components the list of tweets
+
+264
+00:08:11,039 --> 00:08:14,479
+each tweet itself the the box to post a
+
+265
+00:08:14,479 --> 00:08:15,039
+tweet
+
+266
+00:08:15,039 --> 00:08:16,960
+your all your followers everything can
+
+267
+00:08:16,960 --> 00:08:18,879
+be looked at as a component
+
+268
+00:08:18,879 --> 00:08:20,400
+so that's kind of the mind frame that
+
+269
+00:08:20,400 --> 00:08:21,919
+you want to be in when you're working
+
+270
+00:08:21,919 --> 00:08:22,720
+with react
+
+271
+00:08:22,720 --> 00:08:25,680
+or even angular view now as far as how
+
+272
+00:08:25,680 --> 00:08:27,840
+we create components in react
+
+273
+00:08:27,840 --> 00:08:30,000
+they can be created with both classes
+
+274
+00:08:30,000 --> 00:08:32,640
+and functions or functions i should say
+
+275
+00:08:32,640 --> 00:08:34,799
+now we'll be focusing mostly on function
+
+276
+00:08:34,799 --> 00:08:36,799
+components with hooks which seems to be
+
+277
+00:08:36,799 --> 00:08:37,519
+kind of
+
+278
+00:08:37,519 --> 00:08:39,360
+the more common way to do things these
+
+279
+00:08:39,360 --> 00:08:41,360
+days in my 2019
+
+280
+00:08:41,360 --> 00:08:44,000
+react crash course we focused on classes
+
+281
+00:08:44,000 --> 00:08:44,480
+so
+
+282
+00:08:44,480 --> 00:08:46,160
+if you really want to dive into into
+
+283
+00:08:46,160 --> 00:08:48,160
+class-based components you can check
+
+284
+00:08:48,160 --> 00:08:51,040
+that the older crash course out so on
+
+285
+00:08:51,040 --> 00:08:52,959
+the left we have a component called
+
+286
+00:08:52,959 --> 00:08:54,880
+header this is formatted as an arrow
+
+287
+00:08:54,880 --> 00:08:55,760
+function but
+
+288
+00:08:55,760 --> 00:08:57,040
+of course it could be a traditional
+
+289
+00:08:57,040 --> 00:08:59,440
+function as well it simply returns a div
+
+290
+00:08:59,440 --> 00:08:59,839
+with an
+
+291
+00:08:59,839 --> 00:09:02,080
+h1 now on the right is the same
+
+292
+00:09:02,080 --> 00:09:03,760
+component as a class
+
+293
+00:09:03,760 --> 00:09:05,920
+and you can see it's defined as a class
+
+294
+00:09:05,920 --> 00:09:08,320
+and it extends react.com
+
+295
+00:09:08,320 --> 00:09:10,000
+which is going to give us everything in
+
+296
+00:09:10,000 --> 00:09:12,560
+the in the the root component class to
+
+297
+00:09:12,560 --> 00:09:13,440
+work with
+
+298
+00:09:13,440 --> 00:09:15,519
+including the render method which takes
+
+299
+00:09:15,519 --> 00:09:17,600
+care of rendering it out on the screen
+
+300
+00:09:17,600 --> 00:09:19,440
+and in render we're just returning the
+
+301
+00:09:19,440 --> 00:09:21,279
+same thing we're returning here
+
+302
+00:09:21,279 --> 00:09:22,800
+now what's being returned looks like
+
+303
+00:09:22,800 --> 00:09:25,120
+html but it's actually just syntactic
+
+304
+00:09:25,120 --> 00:09:25,680
+sugar
+
+305
+00:09:25,680 --> 00:09:27,279
+for javascript which is called
+
+306
+00:09:27,279 --> 00:09:30,240
+javascript syntax extension or jsx
+
+307
+00:09:30,240 --> 00:09:32,080
+and it's similar to the html syntax
+
+308
+00:09:32,080 --> 00:09:34,000
+aside from a few things like instead of
+
+309
+00:09:34,000 --> 00:09:35,600
+the class attribute you have to use
+
+310
+00:09:35,600 --> 00:09:36,080
+class
+
+311
+00:09:36,080 --> 00:09:38,160
+name but in addition to that you can
+
+312
+00:09:38,160 --> 00:09:39,760
+also put any kind of javascript
+
+313
+00:09:39,760 --> 00:09:40,720
+expression
+
+314
+00:09:40,720 --> 00:09:43,040
+into your jsx to make it dynamic and
+
+315
+00:09:43,040 --> 00:09:44,720
+then once you have your component
+
+316
+00:09:44,720 --> 00:09:46,880
+created you can embed it into other
+
+317
+00:09:46,880 --> 00:09:48,800
+components with this type of syntax
+
+318
+00:09:48,800 --> 00:09:50,720
+which is similar to like xml
+
+319
+00:09:50,720 --> 00:09:52,880
+so we would just have header we can also
+
+320
+00:09:52,880 --> 00:09:54,800
+pass in props which are
+
+321
+00:09:54,800 --> 00:09:56,880
+basically attributes so we could pass in
+
+322
+00:09:56,880 --> 00:09:58,959
+a title of whatever we want
+
+323
+00:09:58,959 --> 00:10:01,440
+into the component and then work with it
+
+324
+00:10:01,440 --> 00:10:02,480
+inside of the
+
+325
+00:10:02,480 --> 00:10:03,920
+either the function or the class
+
+326
+00:10:03,920 --> 00:10:06,320
+whatever we're using
+
+327
+00:10:06,320 --> 00:10:08,240
+all right so components are not just
+
+328
+00:10:08,240 --> 00:10:10,320
+static markup they're dynamic and they
+
+329
+00:10:10,320 --> 00:10:10,720
+can
+
+330
+00:10:10,720 --> 00:10:13,200
+contain something called state so state
+
+331
+00:10:13,200 --> 00:10:15,040
+is basically just an object that
+
+332
+00:10:15,040 --> 00:10:17,279
+determines how a component renders and
+
+333
+00:10:17,279 --> 00:10:18,000
+behave
+
+334
+00:10:18,000 --> 00:10:19,600
+so an example would be if you have let's
+
+335
+00:10:19,600 --> 00:10:21,440
+say a collapsible menu
+
+336
+00:10:21,440 --> 00:10:23,440
+that would have an open and closed state
+
+337
+00:10:23,440 --> 00:10:24,560
+so you might have a state
+
+338
+00:10:24,560 --> 00:10:26,320
+object in your component that has a
+
+339
+00:10:26,320 --> 00:10:28,240
+value of open that could be either true
+
+340
+00:10:28,240 --> 00:10:29,279
+or false
+
+341
+00:10:29,279 --> 00:10:32,399
+now if you have a list of users or
+
+342
+00:10:32,399 --> 00:10:35,680
+tasks or whatever it might be that's
+
+343
+00:10:35,680 --> 00:10:37,600
+also part of the state so any data that
+
+344
+00:10:37,600 --> 00:10:39,279
+you bring into your components that's
+
+345
+00:10:39,279 --> 00:10:40,720
+going to be part of the state and a lot
+
+346
+00:10:40,720 --> 00:10:42,240
+of times you want to share that data
+
+347
+00:10:42,240 --> 00:10:42,800
+across
+
+348
+00:10:42,800 --> 00:10:45,040
+multiple components so in that case you
+
+349
+00:10:45,040 --> 00:10:46,000
+would use what's called
+
+350
+00:10:46,000 --> 00:10:48,399
+either app state or global state now
+
+351
+00:10:48,399 --> 00:10:50,480
+sometimes you end up having just a ton
+
+352
+00:10:50,480 --> 00:10:52,079
+of app level state that gets really
+
+353
+00:10:52,079 --> 00:10:53,839
+difficult to manage
+
+354
+00:10:53,839 --> 00:10:55,680
+so in that case you have a few options
+
+355
+00:10:55,680 --> 00:10:57,760
+you could use the context api which is
+
+356
+00:10:57,760 --> 00:10:58,959
+built into react
+
+357
+00:10:58,959 --> 00:11:00,800
+or you could use a third-party state
+
+358
+00:11:00,800 --> 00:11:02,240
+manager like redux
+
+359
+00:11:02,240 --> 00:11:03,760
+which is way beyond the scope of this
+
+360
+00:11:03,760 --> 00:11:05,839
+crash course but i did want to mention
+
+361
+00:11:05,839 --> 00:11:08,160
+it and i do have other videos on those
+
+362
+00:11:08,160 --> 00:11:11,040
+now prior to react version 16.8 we had
+
+363
+00:11:11,040 --> 00:11:12,640
+to use class components
+
+364
+00:11:12,640 --> 00:11:15,360
+if we wanted if we wanted to hold state
+
+365
+00:11:15,360 --> 00:11:15,680
+so
+
+366
+00:11:15,680 --> 00:11:17,360
+function components were actually called
+
+367
+00:11:17,360 --> 00:11:18,880
+dumb components because
+
+368
+00:11:18,880 --> 00:11:20,720
+they couldn't hold state however in
+
+369
+00:11:20,720 --> 00:11:22,480
+version 16.8
+
+370
+00:11:22,480 --> 00:11:24,959
+react introduced something called hooks
+
+371
+00:11:24,959 --> 00:11:26,079
+which allow us to
+
+372
+00:11:26,079 --> 00:11:28,399
+use state and other lifecycle functions
+
+373
+00:11:28,399 --> 00:11:30,160
+within function components
+
+374
+00:11:30,160 --> 00:11:31,760
+and that's what we'll be focusing on in
+
+375
+00:11:31,760 --> 00:11:33,440
+this crash course
+
+376
+00:11:33,440 --> 00:11:35,519
+specifically the use state hook which
+
+377
+00:11:35,519 --> 00:11:37,920
+allows us to return a stateful value
+
+378
+00:11:37,920 --> 00:11:40,240
+along with a function to update it
+
+379
+00:11:40,240 --> 00:11:41,440
+there's other hooks as well
+
+380
+00:11:41,440 --> 00:11:43,440
+use effect is used to perform side
+
+381
+00:11:43,440 --> 00:11:45,360
+effects in function components
+
+382
+00:11:45,360 --> 00:11:47,839
+we'll be using that towards the end um
+
+383
+00:11:47,839 --> 00:11:49,440
+one of the biggest uses for
+
+384
+00:11:49,440 --> 00:11:51,920
+use effect is to make http requests when
+
+385
+00:11:51,920 --> 00:11:52,959
+the page loads
+
+386
+00:11:52,959 --> 00:11:55,600
+so if you're fetching data from an api
+
+387
+00:11:55,600 --> 00:11:57,600
+on page load you'll want to use use
+
+388
+00:11:57,600 --> 00:11:58,480
+effect
+
+389
+00:11:58,480 --> 00:11:59,920
+there's a bunch of others as well
+
+390
+00:11:59,920 --> 00:12:02,480
+there's use context user reducer
+
+391
+00:12:02,480 --> 00:12:04,000
+but those are beyond the scope of this
+
+392
+00:12:04,000 --> 00:12:06,240
+crash course all right so if those last
+
+393
+00:12:06,240 --> 00:12:08,079
+few slides didn't really make much sense
+
+394
+00:12:08,079 --> 00:12:09,519
+at all don't worry about it because
+
+395
+00:12:09,519 --> 00:12:10,079
+we're going to
+
+396
+00:12:10,079 --> 00:12:11,279
+do we're going to have plenty of
+
+397
+00:12:11,279 --> 00:12:12,959
+examples throughout the course and
+
+398
+00:12:12,959 --> 00:12:13,760
+throughout this
+
+399
+00:12:13,760 --> 00:12:15,680
+application that we're going to build so
+
+400
+00:12:15,680 --> 00:12:16,720
+we're going to build out our user
+
+401
+00:12:16,720 --> 00:12:19,279
+interface first and then also implement
+
+402
+00:12:19,279 --> 00:12:21,040
+towards the end something called json
+
+403
+00:12:21,040 --> 00:12:21,680
+server
+
+404
+00:12:21,680 --> 00:12:23,040
+which we're going to use is kind of a
+
+405
+00:12:23,040 --> 00:12:25,120
+fake back end so you can see
+
+406
+00:12:25,120 --> 00:12:28,079
+how react would work if you were
+
+407
+00:12:28,079 --> 00:12:29,839
+building a full stack application and
+
+408
+00:12:29,839 --> 00:12:32,560
+making requests to a back end or an api
+
+409
+00:12:32,560 --> 00:12:34,240
+all right so enough with the slides
+
+410
+00:12:34,240 --> 00:12:36,000
+let's go ahead and jump in and let's get
+
+411
+00:12:36,000 --> 00:12:37,440
+started with react
+
+412
+00:12:37,440 --> 00:12:38,720
+all right so we're going to get started
+
+413
+00:12:38,720 --> 00:12:41,200
+now there's a bunch of ways to
+
+414
+00:12:41,200 --> 00:12:43,519
+basically start a react application one
+
+415
+00:12:43,519 --> 00:12:44,480
+of the most common
+
+416
+00:12:44,480 --> 00:12:47,600
+and easiest ways is using a program
+
+417
+00:12:47,600 --> 00:12:49,920
+called create react app which is a cli
+
+418
+00:12:49,920 --> 00:12:52,320
+it's a command line interface tool
+
+419
+00:12:52,320 --> 00:12:54,079
+to just easily get up and running and
+
+420
+00:12:54,079 --> 00:12:56,000
+set up a boilerplate with all the files
+
+421
+00:12:56,000 --> 00:12:58,079
+and folders and packages that you need
+
+422
+00:12:58,079 --> 00:13:00,399
+it also has a development server it has
+
+423
+00:13:00,399 --> 00:13:02,560
+a way to build out your static assets to
+
+424
+00:13:02,560 --> 00:13:03,519
+deploy
+
+425
+00:13:03,519 --> 00:13:06,160
+so to install this we need to use npm
+
+426
+00:13:06,160 --> 00:13:08,320
+which is the node package manager
+
+427
+00:13:08,320 --> 00:13:10,240
+and in order to use that you have to
+
+428
+00:13:10,240 --> 00:13:12,399
+have node.js installed on your system
+
+429
+00:13:12,399 --> 00:13:14,399
+i'm sure that a lot of you already do if
+
+430
+00:13:14,399 --> 00:13:16,720
+you don't just go to nodejs.org
+
+431
+00:13:16,720 --> 00:13:18,560
+download it install it doesn't matter if
+
+432
+00:13:18,560 --> 00:13:20,000
+you're on you know windows
+
+433
+00:13:20,000 --> 00:13:22,240
+mac or linux another thing i would
+
+434
+00:13:22,240 --> 00:13:24,079
+suggest installing is the react dev
+
+435
+00:13:24,079 --> 00:13:25,519
+tools if you're on chrome there's a
+
+436
+00:13:25,519 --> 00:13:27,279
+chrome extension there's a
+
+437
+00:13:27,279 --> 00:13:29,440
+firefox extension as well and it just
+
+438
+00:13:29,440 --> 00:13:31,200
+allows you to kind of see all the
+
+439
+00:13:31,200 --> 00:13:33,680
+components and props and state
+
+440
+00:13:33,680 --> 00:13:36,560
+of your react application so we're going
+
+441
+00:13:36,560 --> 00:13:37,680
+to install this
+
+442
+00:13:37,680 --> 00:13:39,279
+we're actually going to use the npx
+
+443
+00:13:39,279 --> 00:13:41,199
+command instead of installing it
+
+444
+00:13:41,199 --> 00:13:42,639
+globally with npm
+
+445
+00:13:42,639 --> 00:13:44,720
+what this does is it just runs create
+
+446
+00:13:44,720 --> 00:13:45,920
+react app and
+
+447
+00:13:45,920 --> 00:13:47,760
+creates the the folder for us rather
+
+448
+00:13:47,760 --> 00:13:49,680
+than installing create react app
+
+449
+00:13:49,680 --> 00:13:52,000
+on your system so first of all make sure
+
+450
+00:13:52,000 --> 00:13:52,959
+you have npm
+
+451
+00:13:52,959 --> 00:13:55,839
+you can do npm-version make sure it's
+
+452
+00:13:55,839 --> 00:13:58,160
+above 5.2 where you won't be able to use
+
+453
+00:13:58,160 --> 00:13:59,360
+npx
+
+454
+00:13:59,360 --> 00:14:03,360
+and then let's do npx create dash
+
+455
+00:14:03,360 --> 00:14:06,399
+react app and i'm going to call this
+
+456
+00:14:06,399 --> 00:14:09,440
+task dash actually let's call it
+
+457
+00:14:09,440 --> 00:14:12,480
+react dash task dash
+
+458
+00:14:12,480 --> 00:14:16,639
+tracker because i will be doing a vue.js
+
+459
+00:14:16,639 --> 00:14:18,320
+in angular course and we'll be doing the
+
+460
+00:14:18,320 --> 00:14:18,880
+same
+
+461
+00:14:18,880 --> 00:14:21,440
+application and this is just going to
+
+462
+00:14:21,440 --> 00:14:22,800
+set up
+
+463
+00:14:22,800 --> 00:14:24,959
+all of the files and folders that we
+
+464
+00:14:24,959 --> 00:14:26,240
+need it's going to install all the
+
+465
+00:14:26,240 --> 00:14:28,480
+packages that we need and so on
+
+466
+00:14:28,480 --> 00:14:30,399
+okay so that's all set now you just want
+
+467
+00:14:30,399 --> 00:14:32,079
+to open that folder up in your text
+
+468
+00:14:32,079 --> 00:14:34,160
+editor i'm using vs code so i'm going to
+
+469
+00:14:34,160 --> 00:14:34,800
+cd
+
+470
+00:14:34,800 --> 00:14:38,720
+into what i call it react dash
+
+471
+00:14:38,720 --> 00:14:41,760
+task tracker and i'm going to run code
+
+472
+00:14:41,760 --> 00:14:42,240
+and then
+
+473
+00:14:42,240 --> 00:14:44,160
+dot which just means i want to open vs
+
+474
+00:14:44,160 --> 00:14:46,560
+code in the current folder
+
+475
+00:14:46,560 --> 00:14:48,480
+all right so now over here you can see
+
+476
+00:14:48,480 --> 00:14:50,240
+all the files and folders i'm just going
+
+477
+00:14:50,240 --> 00:14:52,160
+to make this bigger for now
+
+478
+00:14:52,160 --> 00:14:53,519
+and i just want to go over some of this
+
+479
+00:14:53,519 --> 00:14:55,440
+so package.json
+
+480
+00:14:55,440 --> 00:14:57,120
+if we look at the dependencies that are
+
+481
+00:14:57,120 --> 00:14:58,720
+included of course we have the react
+
+482
+00:14:58,720 --> 00:14:59,680
+library
+
+483
+00:14:59,680 --> 00:15:01,760
+we have react dom which is responsible
+
+484
+00:15:01,760 --> 00:15:04,240
+for rendering our react application out
+
+485
+00:15:04,240 --> 00:15:05,839
+to the document object model
+
+486
+00:15:05,839 --> 00:15:08,160
+to the browser if you were to use let's
+
+487
+00:15:08,160 --> 00:15:09,279
+say react native
+
+488
+00:15:09,279 --> 00:15:11,600
+you'd have the same react library but
+
+489
+00:15:11,600 --> 00:15:13,760
+you would also have react native instead
+
+490
+00:15:13,760 --> 00:15:15,199
+of react dom
+
+491
+00:15:15,199 --> 00:15:18,240
+okay react scripts comes with you know
+
+492
+00:15:18,240 --> 00:15:20,959
+the development server the build tool
+
+493
+00:15:20,959 --> 00:15:23,120
+and so on everything that create react
+
+494
+00:15:23,120 --> 00:15:24,240
+app offers
+
+495
+00:15:24,240 --> 00:15:25,920
+and then you have some testing libraries
+
+496
+00:15:25,920 --> 00:15:27,199
+which we're not going to get into in
+
+497
+00:15:27,199 --> 00:15:29,040
+this crash course
+
+498
+00:15:29,040 --> 00:15:32,079
+down here we have our start script so
+
+499
+00:15:32,079 --> 00:15:33,920
+npm start will run the development
+
+500
+00:15:33,920 --> 00:15:36,240
+server on local host 3000
+
+501
+00:15:36,240 --> 00:15:39,120
+npm run build will build out our static
+
+502
+00:15:39,120 --> 00:15:40,720
+assets for deployment
+
+503
+00:15:40,720 --> 00:15:42,959
+and we have tests for testing and then
+
+504
+00:15:42,959 --> 00:15:44,000
+eject
+
+505
+00:15:44,000 --> 00:15:47,279
+will basically allow you to if you want
+
+506
+00:15:47,279 --> 00:15:49,040
+to like change something in the webpack
+
+507
+00:15:49,040 --> 00:15:50,959
+config if you want to expose
+
+508
+00:15:50,959 --> 00:15:52,800
+other libraries and packages that are
+
+509
+00:15:52,800 --> 00:15:54,399
+kind of hidden
+
+510
+00:15:54,399 --> 00:15:56,800
+that run behind the scenes you can eject
+
+511
+00:15:56,800 --> 00:15:58,320
+but there's there's really not a lot of
+
+512
+00:15:58,320 --> 00:15:59,680
+cases in where you would
+
+513
+00:15:59,680 --> 00:16:01,920
+have to do that all right so let's go
+
+514
+00:16:01,920 --> 00:16:03,759
+ahead and run the dev server i could run
+
+515
+00:16:03,759 --> 00:16:05,440
+it just in my terminal here but i'm
+
+516
+00:16:05,440 --> 00:16:07,120
+going to go ahead and command tilde and
+
+517
+00:16:07,120 --> 00:16:09,040
+open up my integrated terminal
+
+518
+00:16:09,040 --> 00:16:12,160
+envious code so from here we can run npm
+
+519
+00:16:12,160 --> 00:16:14,320
+start and that's going to start up the
+
+520
+00:16:14,320 --> 00:16:17,040
+dev server
+
+521
+00:16:17,040 --> 00:16:19,519
+so this when this starts up on localhost
+
+522
+00:16:19,519 --> 00:16:21,519
+3000 this is the development build if
+
+523
+00:16:21,519 --> 00:16:23,279
+you look at the react dev tools if you
+
+524
+00:16:23,279 --> 00:16:24,720
+installed them it says this page is
+
+525
+00:16:24,720 --> 00:16:25,839
+using the development
+
+526
+00:16:25,839 --> 00:16:28,560
+build of react if you deploy i'm sorry
+
+527
+00:16:28,560 --> 00:16:29,199
+if you
+
+528
+00:16:29,199 --> 00:16:31,279
+build you'll have all your static assets
+
+529
+00:16:31,279 --> 00:16:32,880
+in the build folder if you run it from
+
+530
+00:16:32,880 --> 00:16:34,560
+there it'll say it's the production
+
+531
+00:16:34,560 --> 00:16:35,440
+build
+
+532
+00:16:35,440 --> 00:16:37,519
+all right so let's close this stuff up
+
+533
+00:16:37,519 --> 00:16:38,800
+we don't need that
+
+534
+00:16:38,800 --> 00:16:42,800
+and i'm just going to we'll make this
+
+535
+00:16:42,800 --> 00:16:44,800
+smaller so we can see both of these at
+
+536
+00:16:44,800 --> 00:16:46,000
+the same time
+
+537
+00:16:46,000 --> 00:16:47,519
+and i just want to go over some of the
+
+538
+00:16:47,519 --> 00:16:48,959
+other stuff we have here so in the
+
+539
+00:16:48,959 --> 00:16:51,759
+public folder we have an index.html
+
+540
+00:16:51,759 --> 00:16:53,600
+so this is essentially the the single
+
+541
+00:16:53,600 --> 00:16:54,959
+page of the single page
+
+542
+00:16:54,959 --> 00:16:57,279
+application that's being loaded and it's
+
+543
+00:16:57,279 --> 00:16:58,800
+actually really simple there's a bunch
+
+544
+00:16:58,800 --> 00:17:00,160
+of comments here
+
+545
+00:17:00,160 --> 00:17:02,000
+that make it look more complicated than
+
+546
+00:17:02,000 --> 00:17:03,360
+it actually is
+
+547
+00:17:03,360 --> 00:17:06,079
+so we'll just get rid of these but it's
+
+548
+00:17:06,079 --> 00:17:08,400
+just a simple html file
+
+549
+00:17:08,400 --> 00:17:11,039
+and we have some meta tags and some
+
+550
+00:17:11,039 --> 00:17:12,319
+stuff in the head but
+
+551
+00:17:12,319 --> 00:17:14,079
+if you look in the body all there really
+
+552
+00:17:14,079 --> 00:17:16,400
+is is a div with the id of root
+
+553
+00:17:16,400 --> 00:17:19,280
+so this is kind of the gateway to our ui
+
+554
+00:17:19,280 --> 00:17:21,199
+to our react application
+
+555
+00:17:21,199 --> 00:17:22,959
+and the way this works if we look in the
+
+556
+00:17:22,959 --> 00:17:24,640
+source folder which is where we put all
+
+557
+00:17:24,640 --> 00:17:26,720
+of our components and state and
+
+558
+00:17:26,720 --> 00:17:27,439
+everything
+
+559
+00:17:27,439 --> 00:17:29,760
+that has to do with our app that we're
+
+560
+00:17:29,760 --> 00:17:30,480
+building
+
+561
+00:17:30,480 --> 00:17:33,679
+if we look in the index.js here which is
+
+562
+00:17:33,679 --> 00:17:35,840
+kind of the entry point for react
+
+563
+00:17:35,840 --> 00:17:38,080
+we're importing react or importing react
+
+564
+00:17:38,080 --> 00:17:39,120
+dom and then
+
+565
+00:17:39,120 --> 00:17:41,679
+there's a method on reactdom called
+
+566
+00:17:41,679 --> 00:17:42,559
+render
+
+567
+00:17:42,559 --> 00:17:44,320
+and what we're doing is we're grabbing
+
+568
+00:17:44,320 --> 00:17:46,240
+that div that i just showed you with the
+
+569
+00:17:46,240 --> 00:17:47,600
+id of root
+
+570
+00:17:47,600 --> 00:17:50,720
+with document.getelementbyd root
+
+571
+00:17:50,720 --> 00:17:53,039
+and we're inserting our app into that
+
+572
+00:17:53,039 --> 00:17:54,000
+div
+
+573
+00:17:54,000 --> 00:17:57,039
+now this app comes from app.js which
+
+574
+00:17:57,039 --> 00:17:58,640
+we're importing right here
+
+575
+00:17:58,640 --> 00:18:01,280
+and app.js contains the root app
+
+576
+00:18:01,280 --> 00:18:02,320
+component
+
+577
+00:18:02,320 --> 00:18:03,760
+so remember i said to think of
+
+578
+00:18:03,760 --> 00:18:05,600
+everything in components well
+
+579
+00:18:05,600 --> 00:18:08,080
+app is the root app i'm sorry the root
+
+580
+00:18:08,080 --> 00:18:08,880
+component
+
+581
+00:18:08,880 --> 00:18:10,720
+so every component that we create like
+
+582
+00:18:10,720 --> 00:18:13,200
+our header our events
+
+583
+00:18:13,200 --> 00:18:15,360
+footer the ad form although all that
+
+584
+00:18:15,360 --> 00:18:16,320
+stuff is going to be
+
+585
+00:18:16,320 --> 00:18:19,679
+in this main root app component okay and
+
+586
+00:18:19,679 --> 00:18:21,440
+then that is what's being put
+
+587
+00:18:21,440 --> 00:18:24,559
+into that div right here okay
+
+588
+00:18:24,559 --> 00:18:27,280
+so i just wanted to kind of explain that
+
+589
+00:18:27,280 --> 00:18:28,720
+now uh
+
+590
+00:18:28,720 --> 00:18:30,559
+let's actually just want to change the
+
+591
+00:18:30,559 --> 00:18:32,320
+title here we'll
+
+592
+00:18:32,320 --> 00:18:36,080
+change it to task tracker
+
+593
+00:18:36,080 --> 00:18:37,760
+and you could put like a if you want to
+
+594
+00:18:37,760 --> 00:18:40,000
+use the bootstrap cdn or something like
+
+595
+00:18:40,000 --> 00:18:41,760
+that you could use this file for that
+
+596
+00:18:41,760 --> 00:18:42,960
+kind of thing
+
+597
+00:18:42,960 --> 00:18:44,480
+but we'll go ahead and save that and
+
+598
+00:18:44,480 --> 00:18:46,080
+this updates right away
+
+599
+00:18:46,080 --> 00:18:48,720
+or it should i don't know why it didn't
+
+600
+00:18:48,720 --> 00:18:49,840
+that time
+
+601
+00:18:49,840 --> 00:18:52,960
+but this will auto reload so i want to
+
+602
+00:18:52,960 --> 00:18:53,919
+go into
+
+603
+00:18:53,919 --> 00:18:57,360
+now app.js and this is the root app
+
+604
+00:18:57,360 --> 00:18:59,120
+component and everything that you see
+
+605
+00:18:59,120 --> 00:18:59,919
+here
+
+606
+00:18:59,919 --> 00:19:03,039
+is coming from this component here
+
+607
+00:19:03,039 --> 00:19:06,080
+so we're importing logo which is uh this
+
+608
+00:19:06,080 --> 00:19:07,760
+logo svg it's this
+
+609
+00:19:07,760 --> 00:19:10,080
+spinning react logo we're also importing
+
+610
+00:19:10,080 --> 00:19:12,559
+an app css file which is just some basic
+
+611
+00:19:12,559 --> 00:19:13,520
+styling
+
+612
+00:19:13,520 --> 00:19:16,320
+and then we have a function now remember
+
+613
+00:19:16,320 --> 00:19:17,360
+components can be
+
+614
+00:19:17,360 --> 00:19:20,640
+functions or classes most people
+
+615
+00:19:20,640 --> 00:19:23,200
+these days seem to use functions with
+
+616
+00:19:23,200 --> 00:19:25,039
+hooks which is what we'll be focusing on
+
+617
+00:19:25,039 --> 00:19:25,840
+but this could
+
+618
+00:19:25,840 --> 00:19:29,039
+this could be a class i might give you
+
+619
+00:19:29,039 --> 00:19:30,400
+an example of that
+
+620
+00:19:30,400 --> 00:19:32,160
+but if we look in the return of this
+
+621
+00:19:32,160 --> 00:19:33,440
+function it looks like
+
+622
+00:19:33,440 --> 00:19:36,400
+html but this is actually jsx javascript
+
+623
+00:19:36,400 --> 00:19:38,080
+syntax extension
+
+624
+00:19:38,080 --> 00:19:39,760
+and there's a few differences for
+
+625
+00:19:39,760 --> 00:19:41,840
+instance you might notice class name
+
+626
+00:19:41,840 --> 00:19:43,760
+we can't use the class attribute to
+
+627
+00:19:43,760 --> 00:19:46,080
+assign a class we use classname
+
+628
+00:19:46,080 --> 00:19:48,240
+same with four if you have a label with
+
+629
+00:19:48,240 --> 00:19:49,840
+a four attribute you don't want to use
+
+630
+00:19:49,840 --> 00:19:51,640
+four in react you would use
+
+631
+00:19:51,640 --> 00:19:54,960
+html4 like that all right so just keep
+
+632
+00:19:54,960 --> 00:19:56,240
+that in mind
+
+633
+00:19:56,240 --> 00:19:59,120
+um you cannot this is also dynamic we
+
+634
+00:19:59,120 --> 00:20:00,960
+can have javascript expressions and
+
+635
+00:20:00,960 --> 00:20:01,760
+variables
+
+636
+00:20:01,760 --> 00:20:03,840
+here we're bringing in logo adding it to
+
+637
+00:20:03,840 --> 00:20:06,159
+the source of the image
+
+638
+00:20:06,159 --> 00:20:07,679
+what i'm going to do though is just get
+
+639
+00:20:07,679 --> 00:20:09,679
+rid of everything that's inside of this
+
+640
+00:20:09,679 --> 00:20:11,039
+div
+
+641
+00:20:11,039 --> 00:20:14,240
+and for now let's just put if you want
+
+642
+00:20:14,240 --> 00:20:15,840
+emmett to work in here you can see it's
+
+643
+00:20:15,840 --> 00:20:17,360
+not working right now
+
+644
+00:20:17,360 --> 00:20:19,440
+it might for you if it doesn't click
+
+645
+00:20:19,440 --> 00:20:20,720
+where it says javascript
+
+646
+00:20:20,720 --> 00:20:24,720
+you can change that to javascript react
+
+647
+00:20:24,720 --> 00:20:26,559
+and then it should work so let's just
+
+648
+00:20:26,559 --> 00:20:27,919
+say hello
+
+649
+00:20:27,919 --> 00:20:30,960
+from react for now i'm going to save
+
+650
+00:20:30,960 --> 00:20:32,000
+that
+
+651
+00:20:32,000 --> 00:20:35,200
+and this will auto reload and we don't
+
+652
+00:20:35,200 --> 00:20:35,919
+need to
+
+653
+00:20:35,919 --> 00:20:39,679
+bring in the logo and app css
+
+654
+00:20:39,679 --> 00:20:42,559
+and we also don't need some of these
+
+655
+00:20:42,559 --> 00:20:44,480
+files anymore so logo i'm going to get
+
+656
+00:20:44,480 --> 00:20:46,240
+rid of app css
+
+657
+00:20:46,240 --> 00:20:48,799
+i also don't want app test and setup
+
+658
+00:20:48,799 --> 00:20:51,280
+test since we're not dealing with that
+
+659
+00:20:51,280 --> 00:20:52,880
+so we'll go ahead and delete those four
+
+660
+00:20:52,880 --> 00:20:54,720
+files just to clean things up a little
+
+661
+00:20:54,720 --> 00:20:55,600
+bit
+
+662
+00:20:55,600 --> 00:20:58,880
+now when we're returning this this jsx
+
+663
+00:20:58,880 --> 00:20:59,520
+here
+
+664
+00:20:59,520 --> 00:21:01,360
+you can only return a single parent
+
+665
+00:21:01,360 --> 00:21:03,440
+element so you can put whatever you want
+
+666
+00:21:03,440 --> 00:21:05,120
+in this div and it doesn't have to be a
+
+667
+00:21:05,120 --> 00:21:05,840
+div
+
+668
+00:21:05,840 --> 00:21:08,320
+it can be a paragraph it could be a
+
+669
+00:21:08,320 --> 00:21:09,919
+heading it could be just a fragment
+
+670
+00:21:09,919 --> 00:21:11,360
+which i'll show you in a second
+
+671
+00:21:11,360 --> 00:21:13,520
+but if i go under here and i try to put
+
+672
+00:21:13,520 --> 00:21:16,559
+like let's say an h2
+
+673
+00:21:16,559 --> 00:21:18,080
+and i say hello you'll see i'm already
+
+674
+00:21:18,080 --> 00:21:20,000
+getting an error here and it won't
+
+675
+00:21:20,000 --> 00:21:20,720
+compile
+
+676
+00:21:20,720 --> 00:21:23,520
+so it says jsx expressions must have one
+
+677
+00:21:23,520 --> 00:21:24,640
+parent element
+
+678
+00:21:24,640 --> 00:21:26,320
+so whatever you return it has to be a
+
+679
+00:21:26,320 --> 00:21:28,720
+single element and then anything else
+
+680
+00:21:28,720 --> 00:21:29,520
+any other
+
+681
+00:21:29,520 --> 00:21:31,120
+other components or whatever you want
+
+682
+00:21:31,120 --> 00:21:33,280
+can go inside of it so i'm going to move
+
+683
+00:21:33,280 --> 00:21:34,240
+this h2
+
+684
+00:21:34,240 --> 00:21:37,039
+up into the div and that should fix it
+
+685
+00:21:37,039 --> 00:21:38,480
+okay
+
+686
+00:21:38,480 --> 00:21:42,000
+now let's go ahead and open up the
+
+687
+00:21:42,000 --> 00:21:43,600
+dev tools here i'm going to go to the
+
+688
+00:21:43,600 --> 00:21:46,000
+elements tab just to show you what
+
+689
+00:21:46,000 --> 00:21:48,159
+what this compiles to so we have a div
+
+690
+00:21:48,159 --> 00:21:50,080
+with the id of root that wraps around
+
+691
+00:21:50,080 --> 00:21:51,679
+our entire ui
+
+692
+00:21:51,679 --> 00:21:53,360
+and we have this div with the class of
+
+693
+00:21:53,360 --> 00:21:55,120
+app and then our headings so we're
+
+694
+00:21:55,120 --> 00:21:55,840
+seeing
+
+695
+00:21:55,840 --> 00:21:58,720
+this right here now obviously class name
+
+696
+00:21:58,720 --> 00:22:00,400
+is going to compile out to just a
+
+697
+00:22:00,400 --> 00:22:03,039
+regular html class
+
+698
+00:22:03,039 --> 00:22:05,360
+if you don't want to have a div or any
+
+699
+00:22:05,360 --> 00:22:06,960
+element around like these
+
+700
+00:22:06,960 --> 00:22:08,480
+these headings or whatever we have in
+
+701
+00:22:08,480 --> 00:22:10,159
+here we could just use
+
+702
+00:22:10,159 --> 00:22:12,880
+a fragment or just an empty angle
+
+703
+00:22:12,880 --> 00:22:13,679
+bracket
+
+704
+00:22:13,679 --> 00:22:15,919
+if i save that and we check it check
+
+705
+00:22:15,919 --> 00:22:18,720
+this out it's just the h1 and h2
+
+706
+00:22:18,720 --> 00:22:20,240
+of course we still have the root div
+
+707
+00:22:20,240 --> 00:22:21,919
+which wraps around everything but
+
+708
+00:22:21,919 --> 00:22:23,919
+as far as this component goes it's not
+
+709
+00:22:23,919 --> 00:22:25,520
+going to have a div or anything wrapped
+
+710
+00:22:25,520 --> 00:22:26,559
+around these
+
+711
+00:22:26,559 --> 00:22:28,480
+but i actually do want a div and i'm
+
+712
+00:22:28,480 --> 00:22:30,400
+going to have a class name of container
+
+713
+00:22:30,400 --> 00:22:32,159
+for some styling that i'm going to add
+
+714
+00:22:32,159 --> 00:22:34,640
+later okay so you'll see that that gets
+
+715
+00:22:34,640 --> 00:22:35,520
+changed to
+
+716
+00:22:35,520 --> 00:22:38,480
+div with the class of container now we
+
+717
+00:22:38,480 --> 00:22:40,080
+can add
+
+718
+00:22:40,080 --> 00:22:42,480
+expressions in here we can use variables
+
+719
+00:22:42,480 --> 00:22:44,080
+so for instance if i were to
+
+720
+00:22:44,080 --> 00:22:47,679
+say const name and make sure you do this
+
+721
+00:22:47,679 --> 00:22:49,520
+above the return of course
+
+722
+00:22:49,520 --> 00:22:51,600
+and set a name to brad and i go down
+
+723
+00:22:51,600 --> 00:22:53,919
+here and i put in some curly braces i
+
+724
+00:22:53,919 --> 00:22:55,039
+can then put
+
+725
+00:22:55,039 --> 00:22:58,080
+name in here and i get hello brad okay
+
+726
+00:22:58,080 --> 00:23:01,200
+i can also do like we could say one plus
+
+727
+00:23:01,200 --> 00:23:02,400
+one and that's going to
+
+728
+00:23:02,400 --> 00:23:06,000
+render out to two i can do
+
+729
+00:23:06,000 --> 00:23:08,640
+conditionals as ternary operators so
+
+730
+00:23:08,640 --> 00:23:09,200
+let's say
+
+731
+00:23:09,200 --> 00:23:12,720
+const x equals true and then i could go
+
+732
+00:23:12,720 --> 00:23:14,799
+down here and i could say
+
+733
+00:23:14,799 --> 00:23:18,960
+if x then we'll show
+
+734
+00:23:18,960 --> 00:23:22,000
+yes else then we'll show no
+
+735
+00:23:22,000 --> 00:23:24,640
+and this is just a ternary operator so
+
+736
+00:23:24,640 --> 00:23:27,520
+hello yes if i change this to false
+
+737
+00:23:27,520 --> 00:23:30,159
+and save we get hello no all right so
+
+738
+00:23:30,159 --> 00:23:32,080
+you can write javascript directly in
+
+739
+00:23:32,080 --> 00:23:32,880
+here
+
+740
+00:23:32,880 --> 00:23:34,720
+which makes it really nice really it
+
+741
+00:23:34,720 --> 00:23:36,320
+really
+
+742
+00:23:36,320 --> 00:23:38,320
+dynamic all right so i'm just going to
+
+743
+00:23:38,320 --> 00:23:40,080
+get rid of that
+
+744
+00:23:40,080 --> 00:23:41,919
+and now we're going to work on just
+
+745
+00:23:41,919 --> 00:23:43,520
+creating our own components
+
+746
+00:23:43,520 --> 00:23:45,279
+okay remember i said to think of your
+
+747
+00:23:45,279 --> 00:23:47,520
+your app or your user interface as just
+
+748
+00:23:47,520 --> 00:23:48,880
+a bunch of components
+
+749
+00:23:48,880 --> 00:23:50,480
+so we're going to start with the header
+
+750
+00:23:50,480 --> 00:23:51,919
+i'm going to go over to source
+
+751
+00:23:51,919 --> 00:23:53,840
+my source folder create a folder called
+
+752
+00:23:53,840 --> 00:23:55,679
+components
+
+753
+00:23:55,679 --> 00:23:56,960
+and this is where we're going to create
+
+754
+00:23:56,960 --> 00:23:59,200
+all of our components the first one
+
+755
+00:23:59,200 --> 00:24:01,440
+we're going to call let's see we're
+
+756
+00:24:01,440 --> 00:24:03,720
+going to call this
+
+757
+00:24:03,720 --> 00:24:06,559
+header.js uppercase oops didn't mean to
+
+758
+00:24:06,559 --> 00:24:07,200
+do that
+
+759
+00:24:07,200 --> 00:24:09,440
+uppercase h that's just the convention
+
+760
+00:24:09,440 --> 00:24:11,039
+for components
+
+761
+00:24:11,039 --> 00:24:13,440
+and this could be a class or a function
+
+762
+00:24:13,440 --> 00:24:15,360
+and there's an extension for vs code
+
+763
+00:24:15,360 --> 00:24:17,120
+that i'd highly recommend if you're
+
+764
+00:24:17,120 --> 00:24:19,600
+using it if you're using vs code and
+
+765
+00:24:19,600 --> 00:24:22,720
+that's es7 react redux graphql react
+
+766
+00:24:22,720 --> 00:24:24,080
+native snippets
+
+767
+00:24:24,080 --> 00:24:26,000
+which has a bunch of snippets for things
+
+768
+00:24:26,000 --> 00:24:28,080
+like imports exports
+
+769
+00:24:28,080 --> 00:24:30,320
+even like loops and just regular
+
+770
+00:24:30,320 --> 00:24:31,440
+javascript stuff
+
+771
+00:24:31,440 --> 00:24:34,960
+but it also has these these snippets for
+
+772
+00:24:34,960 --> 00:24:35,760
+components
+
+773
+00:24:35,760 --> 00:24:38,080
+so rcc will create a class based
+
+774
+00:24:38,080 --> 00:24:39,039
+component
+
+775
+00:24:39,039 --> 00:24:41,440
+rce will create a class component but it
+
+776
+00:24:41,440 --> 00:24:42,640
+will export
+
+777
+00:24:42,640 --> 00:24:45,520
+down at the bottom here the one that i
+
+778
+00:24:45,520 --> 00:24:47,520
+like to use is the arrow function
+
+779
+00:24:47,520 --> 00:24:50,559
+it's i believe it's rafce
+
+780
+00:24:50,559 --> 00:24:53,679
+this one right here so it's nice and and
+
+781
+00:24:53,679 --> 00:24:55,679
+and clean it's just an arrow function
+
+782
+00:24:55,679 --> 00:24:57,679
+that exports down at the bottom
+
+783
+00:24:57,679 --> 00:25:00,400
+so what i'll do is just do our a with
+
+784
+00:25:00,400 --> 00:25:01,840
+that extension installed
+
+785
+00:25:01,840 --> 00:25:05,760
+r a f c e enter and that creates just a
+
+786
+00:25:05,760 --> 00:25:07,600
+boiler plate of a component
+
+787
+00:25:07,600 --> 00:25:10,240
+of an arrow function component now this
+
+788
+00:25:10,240 --> 00:25:10,960
+here
+
+789
+00:25:10,960 --> 00:25:12,799
+it's importing react because this used
+
+790
+00:25:12,799 --> 00:25:14,559
+to be required
+
+791
+00:25:14,559 --> 00:25:16,720
+for every react component however we
+
+792
+00:25:16,720 --> 00:25:18,159
+don't need this anymore so we can
+
+793
+00:25:18,159 --> 00:25:20,320
+actually get rid of it
+
+794
+00:25:20,320 --> 00:25:22,720
+now as far as what i want to output for
+
+795
+00:25:22,720 --> 00:25:24,799
+the header i'm going to use a header tag
+
+796
+00:25:24,799 --> 00:25:26,960
+as my just parent element
+
+797
+00:25:26,960 --> 00:25:29,279
+and then we'll put an h1 in here and
+
+798
+00:25:29,279 --> 00:25:30,000
+we'll say
+
+799
+00:25:30,000 --> 00:25:33,679
+task tracker
+
+800
+00:25:33,679 --> 00:25:35,200
+now if i save it nothing's going to
+
+801
+00:25:35,200 --> 00:25:37,039
+happen we because we just created the
+
+802
+00:25:37,039 --> 00:25:39,360
+component we didn't put it into
+
+803
+00:25:39,360 --> 00:25:42,880
+our application so back in our app.js
+
+804
+00:25:42,880 --> 00:25:46,000
+let's go ahead and import header
+
+805
+00:25:46,000 --> 00:25:48,799
+from and we want to go into dot slash
+
+806
+00:25:48,799 --> 00:25:49,760
+components
+
+807
+00:25:49,760 --> 00:25:53,120
+slash header and we just embed it just
+
+808
+00:25:53,120 --> 00:25:55,279
+like it was uh like an xml tag
+
+809
+00:25:55,279 --> 00:25:58,799
+so header just like that
+
+810
+00:25:58,799 --> 00:26:02,400
+save it and now we have task tracker
+
+811
+00:26:02,400 --> 00:26:04,240
+now just to show you a class based
+
+812
+00:26:04,240 --> 00:26:05,840
+component real quick i'm just going to
+
+813
+00:26:05,840 --> 00:26:07,840
+comment this out and if we use a class
+
+814
+00:26:07,840 --> 00:26:10,559
+we do need to import
+
+815
+00:26:10,559 --> 00:26:13,919
+react from react
+
+816
+00:26:13,919 --> 00:26:16,320
+i haven't i haven't done a class in
+
+817
+00:26:16,320 --> 00:26:17,360
+quite a while
+
+818
+00:26:17,360 --> 00:26:19,840
+so we could say class we'd call it same
+
+819
+00:26:19,840 --> 00:26:23,440
+thing app but we need to extends
+
+820
+00:26:23,440 --> 00:26:26,480
+react dot component because we need all
+
+821
+00:26:26,480 --> 00:26:27,120
+the
+
+822
+00:26:27,120 --> 00:26:29,360
+life cycle methods and all that and then
+
+823
+00:26:29,360 --> 00:26:30,880
+we'd have a render
+
+824
+00:26:30,880 --> 00:26:34,640
+so render takes care of the output
+
+825
+00:26:34,640 --> 00:26:37,520
+and then in this render we would return
+
+826
+00:26:37,520 --> 00:26:38,240
+whatever we
+
+827
+00:26:38,240 --> 00:26:41,360
+want as far as jsx i'll just put in h1
+
+828
+00:26:41,360 --> 00:26:42,400
+and say hello
+
+829
+00:26:42,400 --> 00:26:46,080
+from a class now if i save that i
+
+830
+00:26:46,080 --> 00:26:47,679
+believe we're gonna have to reload since
+
+831
+00:26:47,679 --> 00:26:48,080
+we
+
+832
+00:26:48,080 --> 00:26:51,120
+yeah so now we get hello from a class
+
+833
+00:26:51,120 --> 00:26:54,240
+and just make sure we have no errors
+
+834
+00:26:54,240 --> 00:26:55,120
+here
+
+835
+00:26:55,120 --> 00:26:56,880
+header is defined but never used that's
+
+836
+00:26:56,880 --> 00:26:58,960
+fine all right so i mean if you want to
+
+837
+00:26:58,960 --> 00:27:00,320
+use classes you can
+
+838
+00:27:00,320 --> 00:27:02,240
+and you can check out my older crash
+
+839
+00:27:02,240 --> 00:27:04,559
+course if you want to
+
+840
+00:27:04,559 --> 00:27:06,640
+just use classes but i'm going to go
+
+841
+00:27:06,640 --> 00:27:08,320
+ahead and delete that
+
+842
+00:27:08,320 --> 00:27:12,240
+and that and let's
+
+843
+00:27:12,240 --> 00:27:16,400
+uncomment this and there we go so now we
+
+844
+00:27:16,400 --> 00:27:17,919
+have our header back
+
+845
+00:27:17,919 --> 00:27:19,679
+now i want to talk a little bit about
+
+846
+00:27:19,679 --> 00:27:21,679
+props because you can pass
+
+847
+00:27:21,679 --> 00:27:24,000
+stuff in here like if we want to pass in
+
+848
+00:27:24,000 --> 00:27:26,240
+a title to our header and
+
+849
+00:27:26,240 --> 00:27:29,440
+for now we'll just say hello now it's
+
+850
+00:27:29,440 --> 00:27:30,880
+not going to do anything because we're
+
+851
+00:27:30,880 --> 00:27:32,640
+not handling it but we can pass
+
+852
+00:27:32,640 --> 00:27:35,840
+anything we want in to retrieve this
+
+853
+00:27:35,840 --> 00:27:39,600
+prop inside of our component here
+
+854
+00:27:39,600 --> 00:27:43,279
+we take in props as as a parameter
+
+855
+00:27:43,279 --> 00:27:45,200
+and then down here let's say we want to
+
+856
+00:27:45,200 --> 00:27:46,320
+replace this
+
+857
+00:27:46,320 --> 00:27:50,240
+static text with our props dot
+
+858
+00:27:50,240 --> 00:27:53,840
+title if i save that now we see hello
+
+859
+00:27:53,840 --> 00:27:56,320
+because that's what's being passed in
+
+860
+00:27:56,320 --> 00:27:59,120
+now we can also have default props so if
+
+861
+00:27:59,120 --> 00:28:01,600
+i don't pass anything in here
+
+862
+00:28:01,600 --> 00:28:03,200
+and i save that that's not going to show
+
+863
+00:28:03,200 --> 00:28:05,440
+anything because there's no title
+
+864
+00:28:05,440 --> 00:28:08,240
+however i could go below the the
+
+865
+00:28:08,240 --> 00:28:08,799
+function
+
+866
+00:28:08,799 --> 00:28:12,880
+the component say header dot default
+
+867
+00:28:12,880 --> 00:28:15,919
+props and set that to an object and set
+
+868
+00:28:15,919 --> 00:28:17,120
+the title
+
+869
+00:28:17,120 --> 00:28:21,840
+to task tracker
+
+870
+00:28:21,840 --> 00:28:23,679
+now if i save that that's going to show
+
+871
+00:28:23,679 --> 00:28:25,440
+up because that's the default if i were
+
+872
+00:28:25,440 --> 00:28:26,159
+to again
+
+873
+00:28:26,159 --> 00:28:27,440
+pass something in here it would
+
+874
+00:28:27,440 --> 00:28:29,440
+overwrite the default
+
+875
+00:28:29,440 --> 00:28:31,520
+now this props dot title we could we
+
+876
+00:28:31,520 --> 00:28:32,880
+could clean this up a little bit
+
+877
+00:28:32,880 --> 00:28:34,159
+props is going to it's just going to be
+
+878
+00:28:34,159 --> 00:28:36,559
+an object of whatever props you pass in
+
+879
+00:28:36,559 --> 00:28:38,159
+so we can destructure
+
+880
+00:28:38,159 --> 00:28:40,960
+so we can just add curly braces and take
+
+881
+00:28:40,960 --> 00:28:41,760
+in the
+
+882
+00:28:41,760 --> 00:28:45,120
+title and then down here we don't need
+
+883
+00:28:45,120 --> 00:28:47,279
+to do props dot title we can just go
+
+884
+00:28:47,279 --> 00:28:49,039
+like that and that's going to give us
+
+885
+00:28:49,039 --> 00:28:52,240
+the same exact result now there's also
+
+886
+00:28:52,240 --> 00:28:52,720
+prop
+
+887
+00:28:52,720 --> 00:28:55,919
+types which is kind of like a built-in
+
+888
+00:28:55,919 --> 00:28:58,960
+type system for your properties
+
+889
+00:28:58,960 --> 00:29:00,480
+it's not like it's not something you
+
+890
+00:29:00,480 --> 00:29:02,640
+have to use but it's something that
+
+891
+00:29:02,640 --> 00:29:04,720
+will will help you out and make your
+
+892
+00:29:04,720 --> 00:29:06,720
+code a little bit more robust
+
+893
+00:29:06,720 --> 00:29:09,120
+i'm not going to focus on creating prop
+
+894
+00:29:09,120 --> 00:29:09,840
+types for
+
+895
+00:29:09,840 --> 00:29:12,000
+everything but i just want to kind of
+
+896
+00:29:12,000 --> 00:29:13,440
+show you how it works
+
+897
+00:29:13,440 --> 00:29:16,080
+now with the extension the es7 react
+
+898
+00:29:16,080 --> 00:29:17,200
+extension you can do
+
+899
+00:29:17,200 --> 00:29:20,720
+impt to import prop types
+
+900
+00:29:20,720 --> 00:29:23,039
+and then what we can do is go down here
+
+901
+00:29:23,039 --> 00:29:24,640
+and say header
+
+902
+00:29:24,640 --> 00:29:27,679
+dot prop types lower case
+
+903
+00:29:27,679 --> 00:29:30,720
+set that to an object and we know we
+
+904
+00:29:30,720 --> 00:29:32,640
+have a title so
+
+905
+00:29:32,640 --> 00:29:35,840
+the title and we can create a type do we
+
+906
+00:29:35,840 --> 00:29:37,440
+want this to be a string a number a
+
+907
+00:29:37,440 --> 00:29:38,240
+boolean
+
+908
+00:29:38,240 --> 00:29:40,640
+we want this to be a string so uppercase
+
+909
+00:29:40,640 --> 00:29:42,399
+p prop types
+
+910
+00:29:42,399 --> 00:29:47,600
+dot string now if i were to
+
+911
+00:29:47,600 --> 00:29:50,960
+go back here and pass in let's say title
+
+912
+00:29:50,960 --> 00:29:52,640
+and pass in a number now if you're
+
+913
+00:29:52,640 --> 00:29:54,480
+passing in a number or a boolean or
+
+914
+00:29:54,480 --> 00:29:54,960
+something
+
+915
+00:29:54,960 --> 00:29:56,880
+you want to have it wrapped in curly
+
+916
+00:29:56,880 --> 00:29:59,440
+braces but we'll pass in a 1
+
+917
+00:29:59,440 --> 00:30:01,440
+and right away down here in the console
+
+918
+00:30:01,440 --> 00:30:02,720
+it's still going to render but you'll
+
+919
+00:30:02,720 --> 00:30:04,559
+see we get this warning
+
+920
+00:30:04,559 --> 00:30:06,960
+invalid prop title of type number
+
+921
+00:30:06,960 --> 00:30:08,000
+supplied to header
+
+922
+00:30:08,000 --> 00:30:10,640
+which expects a string okay so it's just
+
+923
+00:30:10,640 --> 00:30:12,320
+a way to kind of make your code more
+
+924
+00:30:12,320 --> 00:30:13,520
+robust and catch
+
+925
+00:30:13,520 --> 00:30:15,919
+errors before they happen and you can
+
+926
+00:30:15,919 --> 00:30:17,760
+also use something like typescript with
+
+927
+00:30:17,760 --> 00:30:19,679
+react as well
+
+928
+00:30:19,679 --> 00:30:21,679
+all right and then if it's required you
+
+929
+00:30:21,679 --> 00:30:23,919
+can do dot is
+
+930
+00:30:23,919 --> 00:30:27,679
+required as well
+
+931
+00:30:28,159 --> 00:30:29,919
+all right and we have a default prop so
+
+932
+00:30:29,919 --> 00:30:32,000
+it's not going to give us any error but
+
+933
+00:30:32,000 --> 00:30:34,080
+if i were to get rid of the default prop
+
+934
+00:30:34,080 --> 00:30:36,159
+and reload you'll see i'll get a warning
+
+935
+00:30:36,159 --> 00:30:38,559
+down here
+
+936
+00:30:38,559 --> 00:30:40,799
+all right so we'll go ahead and keep
+
+937
+00:30:40,799 --> 00:30:42,320
+keep header as is
+
+938
+00:30:42,320 --> 00:30:44,000
+and i want to talk a little bit about
+
+939
+00:30:44,000 --> 00:30:45,919
+styling because there's a few ways you
+
+940
+00:30:45,919 --> 00:30:46,720
+can do
+
+941
+00:30:46,720 --> 00:30:50,080
+you know css within react so one is to
+
+942
+00:30:50,080 --> 00:30:50,720
+just use
+
+943
+00:30:50,720 --> 00:30:52,880
+a style sheet which is what ultimately
+
+944
+00:30:52,880 --> 00:30:54,240
+we're going to do i'm going to use this
+
+945
+00:30:54,240 --> 00:30:56,880
+index css i already have some styles
+
+946
+00:30:56,880 --> 00:30:57,919
+prepared
+
+947
+00:30:57,919 --> 00:30:59,679
+but you can also use something like
+
+948
+00:30:59,679 --> 00:31:01,679
+style components which is an external
+
+949
+00:31:01,679 --> 00:31:04,240
+package that is really popular you can
+
+950
+00:31:04,240 --> 00:31:05,279
+also use
+
+951
+00:31:05,279 --> 00:31:08,640
+direct css in javascript
+
+952
+00:31:08,640 --> 00:31:10,240
+so i'm going to give you an example of
+
+953
+00:31:10,240 --> 00:31:12,559
+that so this h1 here
+
+954
+00:31:12,559 --> 00:31:15,120
+we could set style and when you use
+
+955
+00:31:15,120 --> 00:31:16,640
+style you want to use double
+
+956
+00:31:16,640 --> 00:31:18,480
+curly braces if you're doing it in line
+
+957
+00:31:18,480 --> 00:31:20,960
+like this and let's say we wanted to
+
+958
+00:31:20,960 --> 00:31:21,440
+change
+
+959
+00:31:21,440 --> 00:31:23,840
+let's say color and we would set that to
+
+960
+00:31:23,840 --> 00:31:24,559
+a string
+
+961
+00:31:24,559 --> 00:31:27,600
+of you know whatever color value so if i
+
+962
+00:31:27,600 --> 00:31:28,720
+set that to red
+
+963
+00:31:28,720 --> 00:31:30,240
+if i want to add something else i'd put
+
+964
+00:31:30,240 --> 00:31:33,279
+a comma like say background color
+
+965
+00:31:33,279 --> 00:31:36,080
+now it's not going to be background dash
+
+966
+00:31:36,080 --> 00:31:36,720
+color like
+
+967
+00:31:36,720 --> 00:31:38,799
+css it's going to be camel case like
+
+968
+00:31:38,799 --> 00:31:39,760
+this
+
+969
+00:31:39,760 --> 00:31:43,039
+and set it to a string so we'll say
+
+970
+00:31:43,039 --> 00:31:46,480
+black save that
+
+971
+00:31:46,480 --> 00:31:48,080
+okay another thing we can do if you
+
+972
+00:31:48,080 --> 00:31:50,320
+don't want to do it in line like this
+
+973
+00:31:50,320 --> 00:31:53,200
+you could create a variable down here we
+
+974
+00:31:53,200 --> 00:31:54,640
+could say
+
+975
+00:31:54,640 --> 00:32:00,080
+our heading we'll say heading style
+
+976
+00:32:00,080 --> 00:32:03,120
+and set that and then just grab
+
+977
+00:32:03,120 --> 00:32:06,960
+both of these cut that out
+
+978
+00:32:06,960 --> 00:32:10,960
+put those in here and then use single
+
+979
+00:32:10,960 --> 00:32:11,519
+curl
+
+980
+00:32:11,519 --> 00:32:15,200
+single curly braces here and pass in our
+
+981
+00:32:15,200 --> 00:32:16,880
+heading style and that's going to do the
+
+982
+00:32:16,880 --> 00:32:18,240
+same thing
+
+983
+00:32:18,240 --> 00:32:20,480
+all right i'm not going to be using this
+
+984
+00:32:20,480 --> 00:32:21,279
+except where
+
+985
+00:32:21,279 --> 00:32:23,440
+we have some dynamic styling so i'm
+
+986
+00:32:23,440 --> 00:32:25,919
+going to get rid of this
+
+987
+00:32:25,919 --> 00:32:28,640
+but i will keep this down here just to
+
+988
+00:32:28,640 --> 00:32:30,480
+kind of remind you that you can
+
+989
+00:32:30,480 --> 00:32:33,600
+do this we'll say css
+
+990
+00:32:33,600 --> 00:32:37,440
+in js all right now i'm going to add
+
+991
+00:32:37,440 --> 00:32:41,200
+some css so this index style sheet we're
+
+992
+00:32:41,200 --> 00:32:42,640
+going to get rid of that
+
+993
+00:32:42,640 --> 00:32:45,120
+and you can get this code you can get
+
+994
+00:32:45,120 --> 00:32:46,159
+this whole
+
+995
+00:32:46,159 --> 00:32:47,200
+this whole thing in the github
+
+996
+00:32:47,200 --> 00:32:49,200
+repository in the description so just
+
+997
+00:32:49,200 --> 00:32:50,720
+grab the styling
+
+998
+00:32:50,720 --> 00:32:52,080
+paste it in i'll go through it real
+
+999
+00:32:52,080 --> 00:32:53,840
+quick it's pretty simple we're using the
+
+1000
+00:32:53,840 --> 00:32:55,120
+poppins font
+
+1001
+00:32:55,120 --> 00:32:57,919
+we have a reset the container is going
+
+1002
+00:32:57,919 --> 00:33:00,960
+to be 500 pixels wide with a border
+
+1003
+00:33:00,960 --> 00:33:03,279
+header is going to be flexbox we're
+
+1004
+00:33:03,279 --> 00:33:05,200
+going to have a button on the side
+
+1005
+00:33:05,200 --> 00:33:08,720
+button classes button styles
+
+1006
+00:33:08,720 --> 00:33:10,960
+events so our list of events will be
+
+1007
+00:33:10,960 --> 00:33:12,720
+styled our form
+
+1008
+00:33:12,720 --> 00:33:15,279
+and form control and then our footer so
+
+1009
+00:33:15,279 --> 00:33:16,720
+pretty simple i'm going to go ahead and
+
+1010
+00:33:16,720 --> 00:33:17,600
+save that
+
+1011
+00:33:17,600 --> 00:33:19,679
+and it's going to look like this let me
+
+1012
+00:33:19,679 --> 00:33:22,159
+just make this a little wider
+
+1013
+00:33:22,159 --> 00:33:25,919
+like that all right
+
+1014
+00:33:25,919 --> 00:33:27,279
+so we'll close that up and we shouldn't
+
+1015
+00:33:27,279 --> 00:33:30,880
+have to touch the index css anymore
+
+1016
+00:33:30,880 --> 00:33:33,120
+now the next thing that i'd like to do
+
+1017
+00:33:33,120 --> 00:33:34,799
+here is
+
+1018
+00:33:34,799 --> 00:33:38,559
+um add a button so
+
+1019
+00:33:38,559 --> 00:33:42,720
+next to the h1 let's put a button here
+
+1020
+00:33:42,720 --> 00:33:47,120
+and this is going to say add for now
+
+1021
+00:33:47,360 --> 00:33:50,399
+so we save that yeah we
+
+1022
+00:33:50,399 --> 00:33:52,799
+also want to add a class here of header
+
+1023
+00:33:52,799 --> 00:33:54,240
+because that's what i have in the style
+
+1024
+00:33:54,240 --> 00:33:54,640
+sheet
+
+1025
+00:33:54,640 --> 00:33:56,720
+that's going to make it a flexbox and
+
+1026
+00:33:56,720 --> 00:33:57,919
+align it
+
+1027
+00:33:57,919 --> 00:34:01,200
+side by side and then i also oops that
+
+1028
+00:34:01,200 --> 00:34:03,279
+should be class name
+
+1029
+00:34:03,279 --> 00:34:06,799
+and then i also want to add a class
+
+1030
+00:34:06,799 --> 00:34:13,040
+name here of btn i'm using single quotes
+
+1031
+00:34:13,679 --> 00:34:17,199
+all right so now we have our button
+
+1032
+00:34:17,199 --> 00:34:20,560
+so as far as
+
+1033
+00:34:20,560 --> 00:34:22,800
+components go you can make whatever you
+
+1034
+00:34:22,800 --> 00:34:24,399
+want into a component
+
+1035
+00:34:24,399 --> 00:34:26,719
+so if we want this if we want to create
+
+1036
+00:34:26,719 --> 00:34:27,440
+a button
+
+1037
+00:34:27,440 --> 00:34:29,280
+button component in case we want to add
+
+1038
+00:34:29,280 --> 00:34:31,199
+more buttons with maybe different colors
+
+1039
+00:34:31,199 --> 00:34:33,119
+and different texts and events
+
+1040
+00:34:33,119 --> 00:34:36,480
+we can do that so i'm going to create a
+
+1041
+00:34:36,480 --> 00:34:42,399
+file in components called button.js
+
+1042
+00:34:42,399 --> 00:34:44,639
+and we're going to just map out a
+
+1043
+00:34:44,639 --> 00:34:45,679
+function here
+
+1044
+00:34:45,679 --> 00:34:49,839
+and we don't need this
+
+1045
+00:34:50,000 --> 00:34:53,119
+so i'm actually going to copy or not
+
+1046
+00:34:53,119 --> 00:34:54,239
+copy but cut
+
+1047
+00:34:54,239 --> 00:34:58,000
+this out of here and we're just going to
+
+1048
+00:34:58,000 --> 00:34:59,359
+return
+
+1049
+00:34:59,359 --> 00:35:03,119
+this button directly and then
+
+1050
+00:35:03,119 --> 00:35:05,119
+in our header we're going to bring that
+
+1051
+00:35:05,119 --> 00:35:08,240
+button component in
+
+1052
+00:35:09,200 --> 00:35:11,200
+so it's in the same folder so just dot
+
+1053
+00:35:11,200 --> 00:35:14,839
+slash button and then we'll put that
+
+1054
+00:35:14,839 --> 00:35:17,280
+here
+
+1055
+00:35:17,280 --> 00:35:18,880
+and we're going to see the same result
+
+1056
+00:35:18,880 --> 00:35:21,040
+now i want to be able to take in a
+
+1057
+00:35:21,040 --> 00:35:21,920
+couple props
+
+1058
+00:35:21,920 --> 00:35:25,040
+into this button so one will be color
+
+1059
+00:35:25,040 --> 00:35:27,200
+so we'll pass in a color of let's say
+
+1060
+00:35:27,200 --> 00:35:28,560
+green
+
+1061
+00:35:28,560 --> 00:35:31,839
+we'll have text let's say
+
+1062
+00:35:31,839 --> 00:35:33,920
+add actually let's change it just so we
+
+1063
+00:35:33,920 --> 00:35:35,520
+can make sure that we're actually seeing
+
+1064
+00:35:35,520 --> 00:35:36,560
+that
+
+1065
+00:35:36,560 --> 00:35:39,040
+so we're passing in a green and text
+
+1066
+00:35:39,040 --> 00:35:39,599
+prop
+
+1067
+00:35:39,599 --> 00:35:41,440
+into buttons so remember we catch props
+
+1068
+00:35:41,440 --> 00:35:43,119
+here we could just use props
+
+1069
+00:35:43,119 --> 00:35:45,040
+and use it as an object but i'm going to
+
+1070
+00:35:45,040 --> 00:35:46,560
+destructure that object
+
+1071
+00:35:46,560 --> 00:35:49,839
+and take color and text
+
+1072
+00:35:49,839 --> 00:35:52,400
+and let's add right here instead of the
+
+1073
+00:35:52,400 --> 00:35:53,359
+static
+
+1074
+00:35:53,359 --> 00:35:56,480
+add text we'll add our prop and then for
+
+1075
+00:35:56,480 --> 00:35:57,520
+the color
+
+1076
+00:35:57,520 --> 00:36:00,560
+we'll go ahead and add style and set
+
+1077
+00:36:00,560 --> 00:36:01,119
+that
+
+1078
+00:36:01,119 --> 00:36:04,560
+to let's use double
+
+1079
+00:36:04,560 --> 00:36:06,000
+curly braces here and we're going to
+
+1080
+00:36:06,000 --> 00:36:08,160
+actually set the background color
+
+1081
+00:36:08,160 --> 00:36:10,400
+so background color is going to be set
+
+1082
+00:36:10,400 --> 00:36:11,680
+to color
+
+1083
+00:36:11,680 --> 00:36:13,920
+so we'll save that and now we have a
+
+1084
+00:36:13,920 --> 00:36:15,760
+green button that says hello
+
+1085
+00:36:15,760 --> 00:36:17,839
+so if we wanted to add other buttons you
+
+1086
+00:36:17,839 --> 00:36:18,800
+know we could
+
+1087
+00:36:18,800 --> 00:36:22,000
+copy this down and this one here oops
+
+1088
+00:36:22,000 --> 00:36:23,520
+this one here we could say
+
+1089
+00:36:23,520 --> 00:36:26,240
+hello one this one hello three and we
+
+1090
+00:36:26,240 --> 00:36:27,200
+could
+
+1091
+00:36:27,200 --> 00:36:31,599
+change colors blue
+
+1092
+00:36:31,599 --> 00:36:34,240
+red so this is what what i mean by
+
+1093
+00:36:34,240 --> 00:36:36,079
+reusable components obviously that
+
+1094
+00:36:36,079 --> 00:36:37,760
+doesn't look good but
+
+1095
+00:36:37,760 --> 00:36:39,280
+you get the point we can have we can
+
+1096
+00:36:39,280 --> 00:36:41,200
+reuse this component with different
+
+1097
+00:36:41,200 --> 00:36:42,000
+props
+
+1098
+00:36:42,000 --> 00:36:43,760
+so i just want the first one and i'm
+
+1099
+00:36:43,760 --> 00:36:45,280
+going to change the text to
+
+1100
+00:36:45,280 --> 00:36:48,480
+add and save that
+
+1101
+00:36:48,480 --> 00:36:51,760
+and then in our button we can also have
+
+1102
+00:36:51,760 --> 00:36:54,000
+you know default props so we could say
+
+1103
+00:36:54,000 --> 00:36:55,680
+button dot
+
+1104
+00:36:55,680 --> 00:36:59,520
+default props and we could set the
+
+1105
+00:36:59,520 --> 00:37:03,200
+color let's set that to we'll use
+
+1106
+00:37:03,200 --> 00:37:08,000
+i don't know steel blue
+
+1107
+00:37:08,000 --> 00:37:11,599
+and we could also use our prop types
+
+1108
+00:37:11,599 --> 00:37:16,400
+so up here import our prop types
+
+1109
+00:37:16,480 --> 00:37:20,079
+and button dot
+
+1110
+00:37:20,640 --> 00:37:22,720
+this actually won't this first one is
+
+1111
+00:37:22,720 --> 00:37:24,400
+going to be lower case this confused me
+
+1112
+00:37:24,400 --> 00:37:26,480
+for a long time
+
+1113
+00:37:26,480 --> 00:37:30,800
+so we have our text which is going to be
+
+1114
+00:37:32,320 --> 00:37:36,000
+prop types dot string
+
+1115
+00:37:36,000 --> 00:37:39,760
+and then we have the color
+
+1116
+00:37:39,920 --> 00:37:43,520
+prop types dot string
+
+1117
+00:37:43,520 --> 00:37:46,240
+now we're going to be we're going to get
+
+1118
+00:37:46,240 --> 00:37:46,960
+into
+
+1119
+00:37:46,960 --> 00:37:49,520
+events you know quite a bit throughout
+
+1120
+00:37:49,520 --> 00:37:51,359
+this course but let's just
+
+1121
+00:37:51,359 --> 00:37:53,200
+let's talk a little bit about that now
+
+1122
+00:37:53,200 --> 00:37:54,880
+so let's say i want to have an event on
+
+1123
+00:37:54,880 --> 00:37:55,760
+this button
+
+1124
+00:37:55,760 --> 00:37:59,280
+i could just add right here i could say
+
+1125
+00:37:59,280 --> 00:37:59,680
+on
+
+1126
+00:37:59,680 --> 00:38:03,040
+click and set that to a function
+
+1127
+00:38:03,040 --> 00:38:07,200
+called on click and i could go up here
+
+1128
+00:38:07,200 --> 00:38:10,240
+and create that function so
+
+1129
+00:38:10,240 --> 00:38:13,839
+const on click
+
+1130
+00:38:15,680 --> 00:38:17,599
+and we could do a console log and just
+
+1131
+00:38:17,599 --> 00:38:18,800
+say
+
+1132
+00:38:18,800 --> 00:38:21,839
+click so if i go over here if i click
+
+1133
+00:38:21,839 --> 00:38:23,599
+you can see it's going to log that down
+
+1134
+00:38:23,599 --> 00:38:26,400
+here you can also pass in the event
+
+1135
+00:38:26,400 --> 00:38:30,800
+object so if you want to get you know
+
+1136
+00:38:30,800 --> 00:38:32,880
+the position of the the element that's
+
+1137
+00:38:32,880 --> 00:38:34,480
+clicked or whatever there's there's a
+
+1138
+00:38:34,480 --> 00:38:36,720
+lot of things you can access with that
+
+1139
+00:38:36,720 --> 00:38:40,000
+um but since this is a component where
+
+1140
+00:38:40,000 --> 00:38:41,599
+it's not always going to have the same
+
+1141
+00:38:41,599 --> 00:38:42,480
+click
+
+1142
+00:38:42,480 --> 00:38:45,359
+so what we'll do is we'll have that
+
+1143
+00:38:45,359 --> 00:38:46,560
+click as a
+
+1144
+00:38:46,560 --> 00:38:50,800
+prop right so in here let's say on
+
+1145
+00:38:50,800 --> 00:38:55,119
+click and for now we'll just set this to
+
+1146
+00:38:55,119 --> 00:38:58,839
+a function here called on click in our
+
+1147
+00:38:58,839 --> 00:39:00,400
+header
+
+1148
+00:39:00,400 --> 00:39:02,800
+so const on click this isn't going to
+
+1149
+00:39:02,800 --> 00:39:03,839
+stay i'm just
+
+1150
+00:39:03,839 --> 00:39:06,240
+putting it here for now and we'll say
+
+1151
+00:39:06,240 --> 00:39:09,040
+console log
+
+1152
+00:39:09,119 --> 00:39:12,079
+click all right now this is getting
+
+1153
+00:39:12,079 --> 00:39:14,000
+passed in as a prop so in our button
+
+1154
+00:39:14,000 --> 00:39:16,000
+we have to catch it here just like we
+
+1155
+00:39:16,000 --> 00:39:17,760
+did with the other ones
+
+1156
+00:39:17,760 --> 00:39:20,400
+and we can get rid of this because
+
+1157
+00:39:20,400 --> 00:39:22,000
+what's going to happen is this will call
+
+1158
+00:39:22,000 --> 00:39:24,320
+this on click and it will get sent up to
+
+1159
+00:39:24,320 --> 00:39:25,520
+the header
+
+1160
+00:39:25,520 --> 00:39:28,160
+or wherever you embed this button now
+
+1161
+00:39:28,160 --> 00:39:30,800
+down here in the prop types we could add
+
+1162
+00:39:30,800 --> 00:39:34,880
+on click say we want that as a prop
+
+1163
+00:39:34,880 --> 00:39:37,280
+types dot funk because it's a function
+
+1164
+00:39:37,280 --> 00:39:39,359
+and we could say it's it is required
+
+1165
+00:39:39,359 --> 00:39:40,000
+because
+
+1166
+00:39:40,000 --> 00:39:41,280
+you're most likely going to want a
+
+1167
+00:39:41,280 --> 00:39:43,359
+button to click
+
+1168
+00:39:43,359 --> 00:39:45,359
+uh well actually no we'll get rid of we
+
+1169
+00:39:45,359 --> 00:39:47,599
+don't need that and it's required
+
+1170
+00:39:47,599 --> 00:39:51,040
+so we'll save that now if i go and
+
+1171
+00:39:51,040 --> 00:39:53,520
+let's just reload that and click add we
+
+1172
+00:39:53,520 --> 00:39:55,200
+see click
+
+1173
+00:39:55,200 --> 00:39:57,280
+okay because we embedded this button
+
+1174
+00:39:57,280 --> 00:39:58,880
+component and we
+
+1175
+00:39:58,880 --> 00:40:01,119
+had the on click prop just call this
+
+1176
+00:40:01,119 --> 00:40:02,320
+function here
+
+1177
+00:40:02,320 --> 00:40:03,920
+now we're going to later on this is
+
+1178
+00:40:03,920 --> 00:40:05,920
+going to toggle the the form but we're
+
+1179
+00:40:05,920 --> 00:40:07,440
+not going to do that just yet
+
+1180
+00:40:07,440 --> 00:40:08,960
+i just kind of wanted to give you an
+
+1181
+00:40:08,960 --> 00:40:11,440
+idea of how events work
+
+1182
+00:40:11,440 --> 00:40:12,960
+i could also i could have made it a
+
+1183
+00:40:12,960 --> 00:40:15,520
+double on double click on submit there's
+
+1184
+00:40:15,520 --> 00:40:16,960
+a whole bunch of different events that
+
+1185
+00:40:16,960 --> 00:40:18,000
+you can add
+
+1186
+00:40:18,000 --> 00:40:20,880
+now i want to start to talk about state
+
+1187
+00:40:20,880 --> 00:40:21,599
+and
+
+1188
+00:40:21,599 --> 00:40:22,880
+we're going to start dealing with our
+
+1189
+00:40:22,880 --> 00:40:25,280
+tasks so let's close up header and
+
+1190
+00:40:25,280 --> 00:40:26,400
+button
+
+1191
+00:40:26,400 --> 00:40:28,400
+and we're going to create in components
+
+1192
+00:40:28,400 --> 00:40:30,240
+i'm going to create a new file
+
+1193
+00:40:30,240 --> 00:40:33,359
+called tasks.js so this is our task
+
+1194
+00:40:33,359 --> 00:40:35,520
+component so let's sketch out a
+
+1195
+00:40:35,520 --> 00:40:37,200
+component here
+
+1196
+00:40:37,200 --> 00:40:39,760
+and we can get rid of this and for now
+
+1197
+00:40:39,760 --> 00:40:41,200
+i'm just going to create a variable
+
+1198
+00:40:41,200 --> 00:40:43,440
+called tasks up here and set that to an
+
+1199
+00:40:43,440 --> 00:40:44,240
+array
+
+1200
+00:40:44,240 --> 00:40:46,400
+and i'm just going to paste in three
+
+1201
+00:40:46,400 --> 00:40:47,760
+different tasks they're just
+
+1202
+00:40:47,760 --> 00:40:50,079
+objects with an id text day and a
+
+1203
+00:40:50,079 --> 00:40:52,720
+reminder which is just a boolean value
+
+1204
+00:40:52,720 --> 00:40:55,520
+all right now ultimately this is not the
+
+1205
+00:40:55,520 --> 00:40:57,280
+way that we want to do this we want the
+
+1206
+00:40:57,280 --> 00:40:59,760
+task to be part of our state
+
+1207
+00:40:59,760 --> 00:41:01,440
+so i'll show you how to integrate that
+
+1208
+00:41:01,440 --> 00:41:03,280
+into our component in a minute but i
+
+1209
+00:41:03,280 --> 00:41:04,800
+just want to first show you how we can
+
+1210
+00:41:04,800 --> 00:41:07,520
+map through these or loop through these
+
+1211
+00:41:07,520 --> 00:41:10,240
+tasks and output something based on you
+
+1212
+00:41:10,240 --> 00:41:12,000
+know for each one
+
+1213
+00:41:12,000 --> 00:41:14,079
+so we do that by creating what's called
+
+1214
+00:41:14,079 --> 00:41:17,119
+a list and we create a list by using the
+
+1215
+00:41:17,119 --> 00:41:19,280
+map array method which is just
+
+1216
+00:41:19,280 --> 00:41:20,880
+javascript
+
+1217
+00:41:20,880 --> 00:41:22,880
+you should be familiar with like for
+
+1218
+00:41:22,880 --> 00:41:25,119
+each map
+
+1219
+00:41:25,119 --> 00:41:27,359
+filter and so on i'm not going to really
+
+1220
+00:41:27,359 --> 00:41:29,040
+explain those too much
+
+1221
+00:41:29,040 --> 00:41:32,240
+but in this tasks let's uh
+
+1222
+00:41:32,240 --> 00:41:33,680
+we actually don't need a div so we'll
+
+1223
+00:41:33,680 --> 00:41:36,480
+just use a empty fragment here
+
+1224
+00:41:36,480 --> 00:41:38,079
+and then i'm going to open some curly
+
+1225
+00:41:38,079 --> 00:41:39,760
+braces and take
+
+1226
+00:41:39,760 --> 00:41:42,800
+my tasks and
+
+1227
+00:41:42,800 --> 00:41:45,119
+we want to do dot map to create a list
+
+1228
+00:41:45,119 --> 00:41:46,960
+now map takes in a function so i'm going
+
+1229
+00:41:46,960 --> 00:41:48,960
+to use an arrow function
+
+1230
+00:41:48,960 --> 00:41:50,400
+and i'm going to set this just to some
+
+1231
+00:41:50,400 --> 00:41:53,119
+parentheses with some jsx inside
+
+1232
+00:41:53,119 --> 00:41:56,880
+now for each task i'll call it task
+
+1233
+00:41:56,880 --> 00:41:58,880
+and then in here let's just for now
+
+1234
+00:41:58,880 --> 00:42:00,480
+we'll put an h1
+
+1235
+00:42:00,480 --> 00:42:04,240
+let's do like an h3 and let's say
+
+1236
+00:42:04,240 --> 00:42:08,560
+we want the task dot is it text
+
+1237
+00:42:08,560 --> 00:42:10,400
+yeah so we'll just get the text for each
+
+1238
+00:42:10,400 --> 00:42:12,319
+one and i'll put that
+
+1239
+00:42:12,319 --> 00:42:14,160
+all right if i save that nothing shows
+
+1240
+00:42:14,160 --> 00:42:15,920
+because we haven't brought in the task
+
+1241
+00:42:15,920 --> 00:42:18,079
+component yet so let's go up here into
+
+1242
+00:42:18,079 --> 00:42:19,599
+app.js
+
+1243
+00:42:19,599 --> 00:42:24,240
+and let's say tasks
+
+1244
+00:42:24,319 --> 00:42:27,280
+tasks and then go under the header here
+
+1245
+00:42:27,280 --> 00:42:28,240
+and say
+
+1246
+00:42:28,240 --> 00:42:32,240
+tasks all right so we'll save that
+
+1247
+00:42:32,240 --> 00:42:35,119
+and notice that it's showing an h3 of
+
+1248
+00:42:35,119 --> 00:42:36,800
+each of the task
+
+1249
+00:42:36,800 --> 00:42:40,480
+text okay so um
+
+1250
+00:42:40,480 --> 00:42:42,800
+in addition to that we have a warning
+
+1251
+00:42:42,800 --> 00:42:44,000
+that says
+
+1252
+00:42:44,000 --> 00:42:46,079
+each child in a list should have a
+
+1253
+00:42:46,079 --> 00:42:47,359
+unique key prop
+
+1254
+00:42:47,359 --> 00:42:49,839
+so when we use dot map in here and we
+
+1255
+00:42:49,839 --> 00:42:52,319
+output jsx that's called a list
+
+1256
+00:42:52,319 --> 00:42:54,319
+so the parent of the list which in this
+
+1257
+00:42:54,319 --> 00:42:55,760
+case is an h3
+
+1258
+00:42:55,760 --> 00:42:57,760
+should have a key prop and that should
+
+1259
+00:42:57,760 --> 00:42:59,640
+be something unique so we'll use the
+
+1260
+00:42:59,640 --> 00:43:00,880
+task.id
+
+1261
+00:43:00,880 --> 00:43:02,800
+because those are unique so if i save
+
+1262
+00:43:02,800 --> 00:43:04,560
+that and we reload that's going to get
+
+1263
+00:43:04,560 --> 00:43:07,040
+rid of the console warning down here
+
+1264
+00:43:07,040 --> 00:43:08,720
+now ultimately like i said that we don't
+
+1265
+00:43:08,720 --> 00:43:10,319
+want this to be separate from our
+
+1266
+00:43:10,319 --> 00:43:11,119
+component
+
+1267
+00:43:11,119 --> 00:43:13,040
+we want this to be part of our state so
+
+1268
+00:43:13,040 --> 00:43:14,720
+what i'm going to do is
+
+1269
+00:43:14,720 --> 00:43:18,640
+just cut the array itself
+
+1270
+00:43:18,640 --> 00:43:21,839
+and delete this and to use state inside
+
+1271
+00:43:21,839 --> 00:43:23,040
+of a function
+
+1272
+00:43:23,040 --> 00:43:26,640
+we use whoops we use a hook called use
+
+1273
+00:43:26,640 --> 00:43:27,599
+state
+
+1274
+00:43:27,599 --> 00:43:30,480
+so let's say imports and then in curly
+
+1275
+00:43:30,480 --> 00:43:31,920
+braces
+
+1276
+00:43:31,920 --> 00:43:34,160
+we want to take you state and that's
+
+1277
+00:43:34,160 --> 00:43:36,560
+from react directly
+
+1278
+00:43:36,560 --> 00:43:38,640
+okay now the way we do this is above the
+
+1279
+00:43:38,640 --> 00:43:41,280
+return we're going to say const
+
+1280
+00:43:41,280 --> 00:43:43,760
+brackets and then what we want to call
+
+1281
+00:43:43,760 --> 00:43:46,160
+this piece of state which is tasks
+
+1282
+00:43:46,160 --> 00:43:49,119
+and then a function to to update the
+
+1283
+00:43:49,119 --> 00:43:50,400
+state which we're going to call
+
+1284
+00:43:50,400 --> 00:43:53,200
+set tasks we want to set that to use
+
+1285
+00:43:53,200 --> 00:43:55,440
+state and then in here is the default
+
+1286
+00:43:55,440 --> 00:43:57,200
+that we want to use for this piece of
+
+1287
+00:43:57,200 --> 00:43:58,880
+state for our tasks which i'm going to
+
+1288
+00:43:58,880 --> 00:44:00,560
+go ahead and just paste in
+
+1289
+00:44:00,560 --> 00:44:05,119
+that array all right now if i save this
+
+1290
+00:44:05,119 --> 00:44:07,280
+you'll see that there's no difference
+
+1291
+00:44:07,280 --> 00:44:08,880
+here because
+
+1292
+00:44:08,880 --> 00:44:11,839
+this tasks variable is still you know
+
+1293
+00:44:11,839 --> 00:44:14,000
+it's still being used right here
+
+1294
+00:44:14,000 --> 00:44:16,079
+except instead of having it come from
+
+1295
+00:44:16,079 --> 00:44:17,680
+outside of our component
+
+1296
+00:44:17,680 --> 00:44:20,160
+it's now part of our component state if
+
+1297
+00:44:20,160 --> 00:44:21,440
+we wanted to change
+
+1298
+00:44:21,440 --> 00:44:23,280
+any part of the state we would use set
+
+1299
+00:44:23,280 --> 00:44:25,440
+tasks it's important to know that you
+
+1300
+00:44:25,440 --> 00:44:26,560
+wouldn't do
+
+1301
+00:44:26,560 --> 00:44:29,520
+something like tasks dot push if you
+
+1302
+00:44:29,520 --> 00:44:31,440
+wanted to add to it because state is
+
+1303
+00:44:31,440 --> 00:44:33,119
+immutable it's not something that you
+
+1304
+00:44:33,119 --> 00:44:34,560
+can directly change
+
+1305
+00:44:34,560 --> 00:44:36,640
+you basically recreate it and send it
+
+1306
+00:44:36,640 --> 00:44:39,520
+down it's it's it's one-way data
+
+1307
+00:44:39,520 --> 00:44:41,760
+so you would to do that you would use
+
+1308
+00:44:41,760 --> 00:44:43,599
+set tasks instead
+
+1309
+00:44:43,599 --> 00:44:45,839
+and then change it to you know whatever
+
+1310
+00:44:45,839 --> 00:44:47,920
+you want if you wanted to spread across
+
+1311
+00:44:47,920 --> 00:44:50,480
+what's already there and then add a new
+
+1312
+00:44:50,480 --> 00:44:51,359
+um
+
+1313
+00:44:51,359 --> 00:44:55,520
+a new object you could do that now
+
+1314
+00:44:55,520 --> 00:44:58,160
+we don't really want to have our tasks
+
+1315
+00:44:58,160 --> 00:44:58,720
+in
+
+1316
+00:44:58,720 --> 00:45:02,160
+the tasks component because
+
+1317
+00:45:02,160 --> 00:45:04,000
+we're going to want to access these from
+
+1318
+00:45:04,000 --> 00:45:05,440
+other components
+
+1319
+00:45:05,440 --> 00:45:06,880
+so you could use something like the
+
+1320
+00:45:06,880 --> 00:45:09,520
+context api or redux
+
+1321
+00:45:09,520 --> 00:45:11,520
+where you would have a kind of a store
+
+1322
+00:45:11,520 --> 00:45:13,119
+that that hovers over your
+
+1323
+00:45:13,119 --> 00:45:15,520
+ui where you could pull you know
+
+1324
+00:45:15,520 --> 00:45:16,240
+different
+
+1325
+00:45:16,240 --> 00:45:18,160
+pieces of state from but we're not going
+
+1326
+00:45:18,160 --> 00:45:20,000
+to get into that so
+
+1327
+00:45:20,000 --> 00:45:21,680
+what we want to do is just put it in our
+
+1328
+00:45:21,680 --> 00:45:24,000
+app.js that will make it our global
+
+1329
+00:45:24,000 --> 00:45:26,079
+state then we can pass it down into
+
+1330
+00:45:26,079 --> 00:45:28,800
+components that we want as props
+
+1331
+00:45:28,800 --> 00:45:32,240
+so what i'll do is take this
+
+1332
+00:45:32,240 --> 00:45:35,599
+we'll cut that out and we're going to
+
+1333
+00:45:35,599 --> 00:45:38,240
+instead put that in our app.js
+
+1334
+00:45:38,240 --> 00:45:40,319
+and then i'm also going to take this
+
+1335
+00:45:40,319 --> 00:45:42,079
+whole thing where we define this
+
+1336
+00:45:42,079 --> 00:45:45,599
+task and set tasks and
+
+1337
+00:45:45,599 --> 00:45:48,160
+cut that
+
+1338
+00:45:49,359 --> 00:45:50,640
+all right and then we're going to put
+
+1339
+00:45:50,640 --> 00:45:52,400
+that in our app
+
+1340
+00:45:52,400 --> 00:45:53,920
+so this is going to break for a second
+
+1341
+00:45:53,920 --> 00:45:55,680
+don't worry about that but we're going
+
+1342
+00:45:55,680 --> 00:45:57,280
+to put that in here
+
+1343
+00:45:57,280 --> 00:46:00,079
+so now this is part of our app component
+
+1344
+00:46:00,079 --> 00:46:02,079
+state or our app level state
+
+1345
+00:46:02,079 --> 00:46:04,160
+and what we can do is take our task and
+
+1346
+00:46:04,160 --> 00:46:06,880
+pass them in to our task component
+
+1347
+00:46:06,880 --> 00:46:10,160
+as a prop so we want to set tasks
+
+1348
+00:46:10,160 --> 00:46:12,319
+equals tasks it's still not going to
+
+1349
+00:46:12,319 --> 00:46:14,240
+work because
+
+1350
+00:46:14,240 --> 00:46:17,359
+tasks right here isn't defined
+
+1351
+00:46:17,359 --> 00:46:18,880
+but remember it's being passed in as a
+
+1352
+00:46:18,880 --> 00:46:20,880
+prop we could do props and then props
+
+1353
+00:46:20,880 --> 00:46:21,760
+dot tasks
+
+1354
+00:46:21,760 --> 00:46:25,119
+or we can just do structure and
+
+1355
+00:46:25,119 --> 00:46:28,800
+tasks and now it works okay if i reload
+
+1356
+00:46:28,800 --> 00:46:30,079
+console should clear
+
+1357
+00:46:30,079 --> 00:46:32,240
+so now we have our state where it should
+
+1358
+00:46:32,240 --> 00:46:33,520
+be which is at the top
+
+1359
+00:46:33,520 --> 00:46:35,440
+level because we want to be able to use
+
+1360
+00:46:35,440 --> 00:46:37,839
+these within other components
+
+1361
+00:46:37,839 --> 00:46:41,040
+or we may want to if we keep it in task
+
+1362
+00:46:41,040 --> 00:46:42,640
+we can't we can only use it
+
+1363
+00:46:42,640 --> 00:46:45,839
+in you know components we embed
+
+1364
+00:46:45,839 --> 00:46:48,880
+in here or we would have to send it up
+
+1365
+00:46:48,880 --> 00:46:52,079
+it's just it gets really messy so
+
+1366
+00:46:52,079 --> 00:46:54,160
+the next thing i want to do is instead
+
+1367
+00:46:54,160 --> 00:46:55,599
+of just rendering out
+
+1368
+00:46:55,599 --> 00:46:58,560
+an h3 for each task i want to have a
+
+1369
+00:46:58,560 --> 00:46:59,520
+separate task
+
+1370
+00:46:59,520 --> 00:47:01,520
+component so let's create a new file
+
+1371
+00:47:01,520 --> 00:47:02,640
+called just task
+
+1372
+00:47:02,640 --> 00:47:10,160
+singular js and let's create a component
+
+1373
+00:47:10,160 --> 00:47:13,680
+and what we'll do here um how do i want
+
+1374
+00:47:13,680 --> 00:47:14,240
+to
+
+1375
+00:47:14,240 --> 00:47:18,000
+style this or format this let's do
+
+1376
+00:47:18,000 --> 00:47:23,599
+a div and give this a class name
+
+1377
+00:47:23,599 --> 00:47:26,800
+uh oh you know what my css i believe is
+
+1378
+00:47:26,800 --> 00:47:29,760
+wrong i have events because i was going
+
+1379
+00:47:29,760 --> 00:47:31,680
+to use events instead of tasks let me
+
+1380
+00:47:31,680 --> 00:47:34,079
+just change this this will be different
+
+1381
+00:47:34,079 --> 00:47:36,480
+this will be correct in your version but
+
+1382
+00:47:36,480 --> 00:47:37,680
+let's say task
+
+1383
+00:47:37,680 --> 00:47:40,640
+instead of event
+
+1384
+00:47:41,599 --> 00:47:44,800
+and save that okay so now we'll set this
+
+1385
+00:47:44,800 --> 00:47:46,559
+class name
+
+1386
+00:47:46,559 --> 00:47:50,240
+equal to task and then in here we'll
+
+1387
+00:47:50,240 --> 00:47:50,839
+have an
+
+1388
+00:47:50,839 --> 00:47:53,760
+h
+
+1389
+00:47:53,760 --> 00:47:56,960
+and we're going to get passed in here
+
+1390
+00:47:56,960 --> 00:48:00,400
+actually for now let's just say
+
+1391
+00:48:00,559 --> 00:48:04,079
+my task and then what i'll do is in
+
+1392
+00:48:04,079 --> 00:48:07,839
+our tasks we'll import
+
+1393
+00:48:07,839 --> 00:48:10,160
+the singular task component so that's
+
+1394
+00:48:10,160 --> 00:48:11,200
+going to be from
+
+1395
+00:48:11,200 --> 00:48:15,440
+dot slash task and then instead of an
+
+1396
+00:48:15,440 --> 00:48:18,160
+h3 this is actually going to be a task
+
+1397
+00:48:18,160 --> 00:48:19,599
+component
+
+1398
+00:48:19,599 --> 00:48:22,640
+and instead of doing this like instead
+
+1399
+00:48:22,640 --> 00:48:26,079
+of wrapping this i'm just going to
+
+1400
+00:48:26,240 --> 00:48:29,599
+get rid of that go like that we're still
+
+1401
+00:48:29,599 --> 00:48:31,680
+going to have the id but we want to pass
+
+1402
+00:48:31,680 --> 00:48:34,800
+in each task as a prop
+
+1403
+00:48:34,800 --> 00:48:36,720
+okay so we're looping through them here
+
+1404
+00:48:36,720 --> 00:48:38,480
+and then we're outputting a component
+
+1405
+00:48:38,480 --> 00:48:41,520
+and we're passing the task in as a prop
+
+1406
+00:48:41,520 --> 00:48:43,920
+so we'll save that and now all we're
+
+1407
+00:48:43,920 --> 00:48:45,920
+seeing is my task because that's all
+
+1408
+00:48:45,920 --> 00:48:47,040
+we're putting here
+
+1409
+00:48:47,040 --> 00:48:50,160
+however we're going to catch that prop
+
+1410
+00:48:50,160 --> 00:48:53,920
+we're going to take in the
+
+1411
+00:48:53,920 --> 00:48:55,680
+actually we don't yeah we'll just say
+
+1412
+00:48:55,680 --> 00:48:57,839
+task
+
+1413
+00:48:57,839 --> 00:49:01,119
+and in the h3
+
+1414
+00:49:01,599 --> 00:49:06,720
+we'll say task dot i think it's text
+
+1415
+00:49:06,720 --> 00:49:09,440
+yep so now we're seeing our task text
+
+1416
+00:49:09,440 --> 00:49:11,040
+task text
+
+1417
+00:49:11,040 --> 00:49:12,319
+i feel like i'm saying a freaking
+
+1418
+00:49:12,319 --> 00:49:14,720
+nursery rhyme song
+
+1419
+00:49:14,720 --> 00:49:16,240
+so in addition to that we're going to
+
+1420
+00:49:16,240 --> 00:49:19,520
+want let's do a paragraph and we have
+
+1421
+00:49:19,520 --> 00:49:23,280
+the day so task dot day
+
+1422
+00:49:23,280 --> 00:49:28,160
+save that there we go looks good um
+
+1423
+00:49:28,160 --> 00:49:29,599
+see what else do we want to do we're
+
+1424
+00:49:29,599 --> 00:49:33,040
+going to want to have an a delete icon
+
+1425
+00:49:33,040 --> 00:49:36,160
+so i guess we can do that um you could
+
+1426
+00:49:36,160 --> 00:49:36,800
+include the
+
+1427
+00:49:36,800 --> 00:49:38,319
+i'm going to use font awesome you could
+
+1428
+00:49:38,319 --> 00:49:40,400
+include font awesome the cdn
+
+1429
+00:49:40,400 --> 00:49:43,280
+in your index html in your public folder
+
+1430
+00:49:43,280 --> 00:49:44,960
+however what i'm going to do is install
+
+1431
+00:49:44,960 --> 00:49:47,599
+react icons which allows you to use
+
+1432
+00:49:47,599 --> 00:49:49,440
+multiple icon libraries
+
+1433
+00:49:49,440 --> 00:49:51,119
+so i'm going to leave my dev server
+
+1434
+00:49:51,119 --> 00:49:53,040
+running open a new tab
+
+1435
+00:49:53,040 --> 00:49:56,839
+and say npm install react dash
+
+1436
+00:49:56,839 --> 00:49:59,839
+icons
+
+1437
+00:50:00,400 --> 00:50:02,720
+so that way we can just bring in an icon
+
+1438
+00:50:02,720 --> 00:50:03,760
+that we want to use
+
+1439
+00:50:03,760 --> 00:50:06,800
+and use it instead of you know using a
+
+1440
+00:50:06,800 --> 00:50:09,359
+cdn
+
+1441
+00:50:10,240 --> 00:50:12,559
+okay so react icons is installed and if
+
+1442
+00:50:12,559 --> 00:50:14,800
+you look in your package.json
+
+1443
+00:50:14,800 --> 00:50:17,359
+you should see react icons anything you
+
+1444
+00:50:17,359 --> 00:50:18,800
+install with npm
+
+1445
+00:50:18,800 --> 00:50:20,240
+as long as it's not as long as it's
+
+1446
+00:50:20,240 --> 00:50:21,920
+local and not global you're going to see
+
+1447
+00:50:21,920 --> 00:50:23,119
+in here
+
+1448
+00:50:23,119 --> 00:50:26,880
+so we want to bring in a specific icon
+
+1449
+00:50:26,880 --> 00:50:29,760
+so we're basically using icons as react
+
+1450
+00:50:29,760 --> 00:50:31,200
+components we're going to bring in
+
+1451
+00:50:31,200 --> 00:50:34,480
+fa times which is the x icon
+
+1452
+00:50:34,480 --> 00:50:38,559
+from react icons and then slash
+
+1453
+00:50:38,559 --> 00:50:40,400
+fa for font awesome because there's
+
+1454
+00:50:40,400 --> 00:50:42,160
+multiple libraries that you can use with
+
+1455
+00:50:42,160 --> 00:50:43,280
+this
+
+1456
+00:50:43,280 --> 00:50:46,400
+and then i'm going to go let's see let's
+
+1457
+00:50:46,400 --> 00:50:47,280
+go within the
+
+1458
+00:50:47,280 --> 00:50:50,720
+h3 right here so after the after the
+
+1459
+00:50:50,720 --> 00:50:51,599
+text
+
+1460
+00:50:51,599 --> 00:50:54,720
+we're going to put in f a times just
+
+1461
+00:50:54,720 --> 00:50:55,599
+like we would put in
+
+1462
+00:50:55,599 --> 00:50:58,800
+any component and save
+
+1463
+00:50:58,800 --> 00:51:00,720
+and i think we have to restart the
+
+1464
+00:51:00,720 --> 00:51:03,520
+server after we install react icons
+
+1465
+00:51:03,520 --> 00:51:05,440
+so i'm going to go back to my dev server
+
+1466
+00:51:05,440 --> 00:51:07,599
+and stop that control c
+
+1467
+00:51:07,599 --> 00:51:11,839
+command c npm start
+
+1468
+00:51:15,359 --> 00:51:17,040
+and there we go so now you can see we
+
+1469
+00:51:17,040 --> 00:51:18,800
+have the x icons
+
+1470
+00:51:18,800 --> 00:51:20,240
+i am just going to i want to make them
+
+1471
+00:51:20,240 --> 00:51:23,680
+red so i'm going to add a style
+
+1472
+00:51:23,680 --> 00:51:26,960
+to this so say
+
+1473
+00:51:26,960 --> 00:51:30,240
+we want the color to be red
+
+1474
+00:51:30,240 --> 00:51:34,319
+and let's make the cursor
+
+1475
+00:51:34,839 --> 00:51:38,319
+a pointer
+
+1476
+00:51:38,480 --> 00:51:39,839
+all right so now we have our delete
+
+1477
+00:51:39,839 --> 00:51:42,400
+icons now we want to make it so that
+
+1478
+00:51:42,400 --> 00:51:43,680
+when we click this
+
+1479
+00:51:43,680 --> 00:51:46,720
+it deletes that particular event but
+
+1480
+00:51:46,720 --> 00:51:48,240
+how do we do that when we don't have
+
+1481
+00:51:48,240 --> 00:51:50,160
+access to the events here remember the
+
+1482
+00:51:50,160 --> 00:51:53,280
+the events are stored in the
+
+1483
+00:51:53,280 --> 00:51:56,000
+app.js and the app component now if you
+
+1484
+00:51:56,000 --> 00:51:58,880
+were using like the context api or redux
+
+1485
+00:51:58,880 --> 00:52:01,440
+there's ways to to access your state
+
+1486
+00:52:01,440 --> 00:52:03,599
+from within components
+
+1487
+00:52:03,599 --> 00:52:06,720
+pretty easily but redux i mean there's a
+
+1488
+00:52:06,720 --> 00:52:08,960
+lot of boilerplate and it can be a
+
+1489
+00:52:08,960 --> 00:52:11,440
+little difficult to learn like reducers
+
+1490
+00:52:11,440 --> 00:52:12,800
+and stuff like that
+
+1491
+00:52:12,800 --> 00:52:14,960
+so in this case what we can do is just
+
+1492
+00:52:14,960 --> 00:52:16,480
+use props we can send
+
+1493
+00:52:16,480 --> 00:52:19,599
+down a function as a prop and then
+
+1494
+00:52:19,599 --> 00:52:22,319
+fire that off when we click in here so
+
+1495
+00:52:22,319 --> 00:52:24,079
+in the app.js
+
+1496
+00:52:24,079 --> 00:52:26,720
+let's create a function so whenever we
+
+1497
+00:52:26,720 --> 00:52:28,720
+want to delete a task or add or anything
+
+1498
+00:52:28,720 --> 00:52:30,720
+like that it's going to be in this file
+
+1499
+00:52:30,720 --> 00:52:34,079
+so let's say delete task and we'll
+
+1500
+00:52:34,079 --> 00:52:34,720
+create
+
+1501
+00:52:34,720 --> 00:52:38,720
+a function called delete task
+
+1502
+00:52:38,720 --> 00:52:40,480
+and that's going to take in a specific
+
+1503
+00:52:40,480 --> 00:52:42,319
+id
+
+1504
+00:52:42,319 --> 00:52:44,079
+and for now we're just going to console
+
+1505
+00:52:44,079 --> 00:52:46,400
+log the text delete and we'll
+
+1506
+00:52:46,400 --> 00:52:49,920
+also log the id all right now
+
+1507
+00:52:49,920 --> 00:52:52,960
+we're going to pass in a prop to
+
+1508
+00:52:52,960 --> 00:52:55,280
+tasks because remember a task where the
+
+1509
+00:52:55,280 --> 00:52:57,520
+where the actual button is
+
+1510
+00:52:57,520 --> 00:53:00,319
+that is in the task.js and then that's
+
+1511
+00:53:00,319 --> 00:53:01,440
+in tasks
+
+1512
+00:53:01,440 --> 00:53:03,599
+so we want to pass in let's call this
+
+1513
+00:53:03,599 --> 00:53:05,359
+prop on delete
+
+1514
+00:53:05,359 --> 00:53:07,520
+and basically when that's fired off it's
+
+1515
+00:53:07,520 --> 00:53:08,880
+going to call delete
+
+1516
+00:53:08,880 --> 00:53:12,400
+event all right now on delete is now a
+
+1517
+00:53:12,400 --> 00:53:13,599
+prop
+
+1518
+00:53:13,599 --> 00:53:16,960
+of oops delete event i'm sorry delete
+
+1519
+00:53:16,960 --> 00:53:18,960
+task i'm going to do that a few times
+
+1520
+00:53:18,960 --> 00:53:19,839
+through this
+
+1521
+00:53:19,839 --> 00:53:21,680
+because i decided to change it to tasks
+
+1522
+00:53:21,680 --> 00:53:23,359
+at the last minute
+
+1523
+00:53:23,359 --> 00:53:27,280
+so this is going to be delete task
+
+1524
+00:53:27,680 --> 00:53:30,000
+all right and then on delete is going to
+
+1525
+00:53:30,000 --> 00:53:30,800
+be
+
+1526
+00:53:30,800 --> 00:53:33,920
+a prop of tasks so just like we passed
+
+1527
+00:53:33,920 --> 00:53:35,359
+in tasks we want to pass
+
+1528
+00:53:35,359 --> 00:53:37,520
+in on delete and then that's going to
+
+1529
+00:53:37,520 --> 00:53:39,520
+get passed in here as a prop as well
+
+1530
+00:53:39,520 --> 00:53:40,880
+because that's where we want to
+
+1531
+00:53:40,880 --> 00:53:44,240
+use it so on delete equals
+
+1532
+00:53:44,240 --> 00:53:47,839
+on delete and then in task
+
+1533
+00:53:47,839 --> 00:53:50,480
+again pass in on delete as a prop
+
+1534
+00:53:50,480 --> 00:53:51,839
+however we want to call that
+
+1535
+00:53:51,839 --> 00:53:55,440
+on a click right so in this fa times
+
+1536
+00:53:55,440 --> 00:53:59,119
+let's say on click and set that to
+
+1537
+00:53:59,119 --> 00:54:02,880
+on delete which is going to
+
+1538
+00:54:02,880 --> 00:54:06,000
+basically work its way up to here
+
+1539
+00:54:06,000 --> 00:54:08,400
+and call delete task so state gets
+
+1540
+00:54:08,400 --> 00:54:09,520
+passed down
+
+1541
+00:54:09,520 --> 00:54:12,880
+actions get passed up so if i click this
+
+1542
+00:54:12,880 --> 00:54:14,960
+we do get the delete text but we also
+
+1543
+00:54:14,960 --> 00:54:16,800
+see this event stuff
+
+1544
+00:54:16,800 --> 00:54:18,800
+because that's what's being passed in
+
+1545
+00:54:18,800 --> 00:54:20,079
+here by default
+
+1546
+00:54:20,079 --> 00:54:22,240
+if i want to actually pass the id in
+
+1547
+00:54:22,240 --> 00:54:24,160
+what i have to do is in
+
+1548
+00:54:24,160 --> 00:54:26,400
+on the on click here instead of calling
+
+1549
+00:54:26,400 --> 00:54:28,319
+onto undelete directly
+
+1550
+00:54:28,319 --> 00:54:30,319
+we call a function and then call on
+
+1551
+00:54:30,319 --> 00:54:31,920
+delete and pass in
+
+1552
+00:54:31,920 --> 00:54:35,680
+the task.id so now
+
+1553
+00:54:35,680 --> 00:54:37,359
+if i click on one of these i get delete
+
+1554
+00:54:37,359 --> 00:54:39,200
+one delete two delete three
+
+1555
+00:54:39,200 --> 00:54:41,119
+so we're able to now click on these and
+
+1556
+00:54:41,119 --> 00:54:42,640
+call this function
+
+1557
+00:54:42,640 --> 00:54:44,720
+which is in the app.js where we have
+
+1558
+00:54:44,720 --> 00:54:46,640
+access to the state
+
+1559
+00:54:46,640 --> 00:54:48,160
+all right now in order to actually
+
+1560
+00:54:48,160 --> 00:54:49,760
+delete
+
+1561
+00:54:49,760 --> 00:54:51,599
+get rid of that console log so we want
+
+1562
+00:54:51,599 --> 00:54:53,119
+to call set
+
+1563
+00:54:53,119 --> 00:54:57,200
+tasks because that's how we deal with
+
+1564
+00:54:57,200 --> 00:55:00,319
+with this with our mutable state and
+
+1565
+00:55:00,319 --> 00:55:02,240
+we're going to take the tasks that are
+
+1566
+00:55:02,240 --> 00:55:03,599
+already there and just
+
+1567
+00:55:03,599 --> 00:55:05,599
+filter so dot filter is a high order
+
+1568
+00:55:05,599 --> 00:55:06,880
+array method
+
+1569
+00:55:06,880 --> 00:55:08,559
+you should really know this stuff before
+
+1570
+00:55:08,559 --> 00:55:10,640
+getting into react but
+
+1571
+00:55:10,640 --> 00:55:13,440
+basically this takes in a function so
+
+1572
+00:55:13,440 --> 00:55:14,559
+we'll say for each
+
+1573
+00:55:14,559 --> 00:55:17,920
+task i want to filter so we're going to
+
+1574
+00:55:17,920 --> 00:55:19,359
+filter where let's say
+
+1575
+00:55:19,359 --> 00:55:23,920
+task dot id if the task id is not
+
+1576
+00:55:23,920 --> 00:55:26,720
+equal to the id though that's what i
+
+1577
+00:55:26,720 --> 00:55:28,720
+want to show i don't want to show
+
+1578
+00:55:28,720 --> 00:55:31,119
+the task with the id because we're
+
+1579
+00:55:31,119 --> 00:55:32,079
+deleting it
+
+1580
+00:55:32,079 --> 00:55:35,200
+okay so this is just within the ui
+
+1581
+00:55:35,200 --> 00:55:38,319
+so if we save that and i reload and i
+
+1582
+00:55:38,319 --> 00:55:40,160
+click on the x here you'll see that it
+
+1583
+00:55:40,160 --> 00:55:40,960
+goes away
+
+1584
+00:55:40,960 --> 00:55:43,119
+because it's filtering out it's setting
+
+1585
+00:55:43,119 --> 00:55:48,160
+the tasks to the filtered tasks
+
+1586
+00:55:48,160 --> 00:55:49,839
+all right now if i wanted to make it so
+
+1587
+00:55:49,839 --> 00:55:51,599
+it shows like a message if there's no
+
+1588
+00:55:51,599 --> 00:55:52,640
+tasks
+
+1589
+00:55:52,640 --> 00:55:55,760
+i could go down to here
+
+1590
+00:55:55,760 --> 00:55:58,960
+and wrap this in
+
+1591
+00:55:58,960 --> 00:56:03,839
+curly braces and i could say
+
+1592
+00:56:03,839 --> 00:56:08,000
+if tasks dot length
+
+1593
+00:56:08,000 --> 00:56:11,359
+if it's greater than zero then
+
+1594
+00:56:11,359 --> 00:56:15,760
+show tasks else show nothing
+
+1595
+00:56:15,760 --> 00:56:19,920
+so if i save that wait what am i doing
+
+1596
+00:56:19,920 --> 00:56:22,319
+if task.length else show nothing no i
+
+1597
+00:56:22,319 --> 00:56:24,799
+want to show
+
+1598
+00:56:26,079 --> 00:56:29,200
+no tasks to
+
+1599
+00:56:29,200 --> 00:56:32,720
+show all right so there we go so if
+
+1600
+00:56:32,720 --> 00:56:34,079
+there's nothing there it's just going to
+
+1601
+00:56:34,079 --> 00:56:35,359
+give us that message
+
+1602
+00:56:35,359 --> 00:56:36,720
+if i reload they're all going to come
+
+1603
+00:56:36,720 --> 00:56:38,319
+back because remember this is just the
+
+1604
+00:56:38,319 --> 00:56:41,119
+ui that's what react does
+
+1605
+00:56:41,119 --> 00:56:43,119
+you can turn this into a full stack
+
+1606
+00:56:43,119 --> 00:56:45,440
+application by having a back end
+
+1607
+00:56:45,440 --> 00:56:47,200
+some kind of api that you can make
+
+1608
+00:56:47,200 --> 00:56:48,480
+requests to and
+
+1609
+00:56:48,480 --> 00:56:50,799
+fetch data from which we might do at the
+
+1610
+00:56:50,799 --> 00:56:53,839
+end with something called json server
+
+1611
+00:56:53,839 --> 00:56:56,319
+all right so we're able to delete these
+
+1612
+00:56:56,319 --> 00:56:57,760
+now
+
+1613
+00:56:57,760 --> 00:57:01,119
+let's do the um
+
+1614
+00:57:01,119 --> 00:57:02,960
+let's do the reminder i want to be able
+
+1615
+00:57:02,960 --> 00:57:04,480
+to double click
+
+1616
+00:57:04,480 --> 00:57:07,920
+and add a specific class and if you look
+
+1617
+00:57:07,920 --> 00:57:10,559
+in the css
+
+1618
+00:57:10,559 --> 00:57:14,559
+i have a class called reminder with a
+
+1619
+00:57:14,559 --> 00:57:17,040
+green border on the left so basically
+
+1620
+00:57:17,040 --> 00:57:18,640
+what we want to happen is when we double
+
+1621
+00:57:18,640 --> 00:57:21,520
+click we want to change
+
+1622
+00:57:21,520 --> 00:57:23,839
+whatever task we're double clicking
+
+1623
+00:57:23,839 --> 00:57:25,680
+change the reminder to the opposite of
+
+1624
+00:57:25,680 --> 00:57:26,880
+whatever it's set
+
+1625
+00:57:26,880 --> 00:57:30,079
+and if it's true have that border so
+
+1626
+00:57:30,079 --> 00:57:33,040
+i'm gonna again start in the app.js just
+
+1627
+00:57:33,040 --> 00:57:35,599
+like we just did with the delete
+
+1628
+00:57:35,599 --> 00:57:39,280
+and let's say toggle reminder
+
+1629
+00:57:39,280 --> 00:57:41,599
+and we'll create a function here let's
+
+1630
+00:57:41,599 --> 00:57:44,000
+call it
+
+1631
+00:57:44,640 --> 00:57:48,960
+toggle reminder
+
+1632
+00:57:48,960 --> 00:57:50,559
+and it's going to need the id because it
+
+1633
+00:57:50,559 --> 00:57:54,240
+needs to know which one to toggle
+
+1634
+00:57:54,240 --> 00:57:55,280
+all right actually let's call it
+
+1635
+00:57:55,280 --> 00:57:58,160
+reminder no that's that's fine
+
+1636
+00:57:58,160 --> 00:58:01,200
+so toggle reminder
+
+1637
+00:58:01,200 --> 00:58:03,359
+and for now again i'm just going to
+
+1638
+00:58:03,359 --> 00:58:04,400
+console.log
+
+1639
+00:58:04,400 --> 00:58:09,200
+the id and we need to pass this down
+
+1640
+00:58:09,200 --> 00:58:11,040
+just like we did with the delete so
+
+1641
+00:58:11,040 --> 00:58:12,319
+inside task
+
+1642
+00:58:12,319 --> 00:58:16,079
+let's say on we'll say on toggle
+
+1643
+00:58:16,079 --> 00:58:19,359
+and set that to toggle
+
+1644
+00:58:19,359 --> 00:58:23,119
+reminder and then in tasks
+
+1645
+00:58:23,119 --> 00:58:26,559
+also pass in the prop of on toggle
+
+1646
+00:58:26,559 --> 00:58:29,440
+or i should say catch the prop and then
+
+1647
+00:58:29,440 --> 00:58:31,680
+here
+
+1648
+00:58:31,680 --> 00:58:34,839
+pass into a prop of on toggle set that
+
+1649
+00:58:34,839 --> 00:58:36,079
+to
+
+1650
+00:58:36,079 --> 00:58:40,000
+on toggle and then inside task what we
+
+1651
+00:58:40,000 --> 00:58:41,599
+want to do is on the div
+
+1652
+00:58:41,599 --> 00:58:44,880
+okay not on the um not on the
+
+1653
+00:58:44,880 --> 00:58:46,400
+on the delete button obviously we want
+
+1654
+00:58:46,400 --> 00:58:48,319
+to do this on the main div
+
+1655
+00:58:48,319 --> 00:58:52,960
+so i'm going to add let's say on
+
+1656
+00:58:52,960 --> 00:58:56,240
+double click and we're going to set that
+
+1657
+00:58:56,240 --> 00:58:59,359
+to and this should get passed in on
+
+1658
+00:58:59,359 --> 00:59:01,839
+toggle
+
+1659
+00:59:02,640 --> 00:59:04,559
+so on double click we're going to call
+
+1660
+00:59:04,559 --> 00:59:06,160
+on
+
+1661
+00:59:06,160 --> 00:59:08,799
+toggle all right now again we need the
+
+1662
+00:59:08,799 --> 00:59:09,359
+id
+
+1663
+00:59:09,359 --> 00:59:11,599
+so let's just do a function and then
+
+1664
+00:59:11,599 --> 00:59:13,359
+call on toggle and pass
+
+1665
+00:59:13,359 --> 00:59:18,000
+in the id so now
+
+1666
+00:59:18,000 --> 00:59:20,240
+id is not defined that's because it
+
+1667
+00:59:20,240 --> 00:59:21,760
+should be task
+
+1668
+00:59:21,760 --> 00:59:24,319
+dot id because we're passing in the task
+
+1669
+00:59:24,319 --> 00:59:25,520
+as a prop
+
+1670
+00:59:25,520 --> 00:59:27,280
+all right so now if i double click one
+
+1671
+00:59:27,280 --> 00:59:29,359
+of these it's going to show the id
+
+1672
+00:59:29,359 --> 00:59:31,599
+so when i double click it runs this
+
+1673
+00:59:31,599 --> 00:59:32,799
+right here
+
+1674
+00:59:32,799 --> 00:59:35,440
+now what do we want this to do we want
+
+1675
+00:59:35,440 --> 00:59:36,240
+this to
+
+1676
+00:59:36,240 --> 00:59:38,319
+of course toggle the reminder either
+
+1677
+00:59:38,319 --> 00:59:40,079
+from true to false or
+
+1678
+00:59:40,079 --> 00:59:43,440
+from false to true so there's
+
+1679
+00:59:43,440 --> 00:59:45,119
+a bunch of ways you can do this i'm
+
+1680
+00:59:45,119 --> 00:59:47,440
+going to use of course we need to use
+
+1681
+00:59:47,440 --> 00:59:51,040
+set tasks and
+
+1682
+00:59:51,040 --> 00:59:52,799
+i'm going to use map so we're going to
+
+1683
+00:59:52,799 --> 00:59:55,040
+say tasks which is our state
+
+1684
+00:59:55,040 --> 00:59:57,760
+our task in our state we want to map
+
+1685
+00:59:57,760 --> 00:59:58,400
+through
+
+1686
+00:59:58,400 --> 01:00:01,520
+and for each one we'll call it task
+
+1687
+01:00:01,520 --> 01:00:05,599
+and i'm going to say where the task
+
+1688
+01:00:05,599 --> 01:00:08,880
+dot id so if the task id
+
+1689
+01:00:08,880 --> 01:00:10,559
+that were you know in the current
+
+1690
+01:00:10,559 --> 01:00:11,920
+iteration is
+
+1691
+01:00:11,920 --> 01:00:15,520
+equal to the id that's passed in
+
+1692
+01:00:15,520 --> 01:00:18,240
+then we're going to have a specific
+
+1693
+01:00:18,240 --> 01:00:18,960
+object
+
+1694
+01:00:18,960 --> 01:00:21,040
+else it's just going to be the the task
+
+1695
+01:00:21,040 --> 01:00:22,880
+is no change right because we don't we
+
+1696
+01:00:22,880 --> 01:00:24,160
+only want to change the one that we're
+
+1697
+01:00:24,160 --> 01:00:25,040
+dealing with
+
+1698
+01:00:25,040 --> 01:00:26,640
+so for the one that we're dealing with
+
+1699
+01:00:26,640 --> 01:00:28,720
+the object i want to copy or
+
+1700
+01:00:28,720 --> 01:00:32,000
+i should say spread across all of the
+
+1701
+01:00:32,000 --> 01:00:35,760
+task properties and values
+
+1702
+01:00:35,760 --> 01:00:38,480
+but i want to change the reminder so the
+
+1703
+01:00:38,480 --> 01:00:40,079
+reminder i'm going to set to the
+
+1704
+01:00:40,079 --> 01:00:42,319
+opposite of whatever that specific
+
+1705
+01:00:42,319 --> 01:00:45,599
+task reminder is if it's false it'll be
+
+1706
+01:00:45,599 --> 01:00:47,520
+true if it's true it'll be false
+
+1707
+01:00:47,520 --> 01:00:49,839
+so i'm going to go ahead and save that
+
+1708
+01:00:49,839 --> 01:00:51,920
+and i haven't even used the react dev
+
+1709
+01:00:51,920 --> 01:00:54,000
+tools yet so if we go down to components
+
+1710
+01:00:54,000 --> 01:00:55,040
+here
+
+1711
+01:00:55,040 --> 01:00:58,319
+we can see our component tree
+
+1712
+01:00:58,319 --> 01:01:01,040
+we have each task and if you hover on
+
+1713
+01:01:01,040 --> 01:01:02,880
+that you can see the different props the
+
+1714
+01:01:02,880 --> 01:01:03,920
+task itself
+
+1715
+01:01:03,920 --> 01:01:06,319
+on toggle on delete what i want to look
+
+1716
+01:01:06,319 --> 01:01:08,640
+at is
+
+1717
+01:01:08,640 --> 01:01:11,200
+we could look at this but let's look at
+
+1718
+01:01:11,200 --> 01:01:12,480
+app
+
+1719
+01:01:12,480 --> 01:01:15,119
+and you can see our state right here
+
+1720
+01:01:15,119 --> 01:01:17,200
+which is our three
+
+1721
+01:01:17,200 --> 01:01:20,000
+tasks and if i look at the first one
+
+1722
+01:01:20,000 --> 01:01:21,040
+doctor's appointment
+
+1723
+01:01:21,040 --> 01:01:23,920
+reminder is set to true now if i double
+
+1724
+01:01:23,920 --> 01:01:25,200
+click
+
+1725
+01:01:25,200 --> 01:01:28,000
+now it's set to false okay because we
+
+1726
+01:01:28,000 --> 01:01:30,160
+double clicked it called this function
+
+1727
+01:01:30,160 --> 01:01:33,359
+and we set that particular
+
+1728
+01:01:33,359 --> 01:01:36,000
+task to change the reminder to the
+
+1729
+01:01:36,000 --> 01:01:37,680
+opposite of what it was
+
+1730
+01:01:37,680 --> 01:01:39,920
+if i click it again goes to true so we
+
+1731
+01:01:39,920 --> 01:01:41,119
+know that's working
+
+1732
+01:01:41,119 --> 01:01:43,200
+but there's no there's no there's
+
+1733
+01:01:43,200 --> 01:01:45,680
+nothing in the ui that lets us know that
+
+1734
+01:01:45,680 --> 01:01:50,160
+so what we'll do is go back into task
+
+1735
+01:01:50,160 --> 01:01:52,799
+and remember we have that specific class
+
+1736
+01:01:52,799 --> 01:01:53,599
+of
+
+1737
+01:01:53,599 --> 01:01:56,400
+reminder that we'll add a border to to
+
+1738
+01:01:56,400 --> 01:01:57,680
+the edge
+
+1739
+01:01:57,680 --> 01:02:01,200
+so let's go so we have class name equals
+
+1740
+01:02:01,200 --> 01:02:02,000
+task
+
+1741
+01:02:02,000 --> 01:02:04,400
+what i'm going to do here is make this
+
+1742
+01:02:04,400 --> 01:02:06,079
+into an expression
+
+1743
+01:02:06,079 --> 01:02:09,760
+and some backticks and i still want the
+
+1744
+01:02:09,760 --> 01:02:10,400
+task
+
+1745
+01:02:10,400 --> 01:02:12,480
+class that's going to be there no matter
+
+1746
+01:02:12,480 --> 01:02:14,319
+what and then i want
+
+1747
+01:02:14,319 --> 01:02:18,319
+a condition here so in a
+
+1748
+01:02:18,319 --> 01:02:20,960
+template literal here we're going to say
+
+1749
+01:02:20,960 --> 01:02:21,920
+if the
+
+1750
+01:02:21,920 --> 01:02:25,680
+task dot reminder
+
+1751
+01:02:25,680 --> 01:02:28,960
+is true then
+
+1752
+01:02:28,960 --> 01:02:31,440
+we're going to have the class of
+
+1753
+01:02:31,440 --> 01:02:33,039
+reminder
+
+1754
+01:02:33,039 --> 01:02:37,440
+else then it's just going to be nothing
+
+1755
+01:02:37,440 --> 01:02:40,480
+so if i save that you can see the first
+
+1756
+01:02:40,480 --> 01:02:40,880
+two
+
+1757
+01:02:40,880 --> 01:02:42,640
+have the green border because those are
+
+1758
+01:02:42,640 --> 01:02:44,240
+true if i double click
+
+1759
+01:02:44,240 --> 01:02:46,559
+it goes away double click again comes
+
+1760
+01:02:46,559 --> 01:02:47,280
+back
+
+1761
+01:02:47,280 --> 01:02:49,599
+okay so it's this is coming down from
+
+1762
+01:02:49,599 --> 01:02:51,039
+our state
+
+1763
+01:02:51,039 --> 01:02:52,559
+this task and we're checking the
+
+1764
+01:02:52,559 --> 01:02:54,319
+reminder
+
+1765
+01:02:54,319 --> 01:02:56,319
+okay so we can just toggle these and we
+
+1766
+01:02:56,319 --> 01:02:57,760
+can delete them
+
+1767
+01:02:57,760 --> 01:03:00,000
+now it goes back to the default because
+
+1768
+01:03:00,000 --> 01:03:01,839
+we're just setting i mean this is just
+
+1769
+01:03:01,839 --> 01:03:03,599
+kind of like static data
+
+1770
+01:03:03,599 --> 01:03:06,880
+that we have as our default data
+
+1771
+01:03:06,880 --> 01:03:08,480
+if you're using a back end you'd be
+
+1772
+01:03:08,480 --> 01:03:11,200
+making fetch requests or http requests
+
+1773
+01:03:11,200 --> 01:03:12,240
+to your server
+
+1774
+01:03:12,240 --> 01:03:16,240
+as well so now let's start to work
+
+1775
+01:03:16,240 --> 01:03:19,280
+on the the ad form because we haven't
+
+1776
+01:03:19,280 --> 01:03:21,440
+even created that yet so in components
+
+1777
+01:03:21,440 --> 01:03:22,319
+i'm going to create
+
+1778
+01:03:22,319 --> 01:03:25,920
+add let's call this add task
+
+1779
+01:03:25,920 --> 01:03:29,680
+dot js and we'll go ahead and create a
+
+1780
+01:03:29,680 --> 01:03:32,319
+component
+
+1781
+01:03:34,000 --> 01:03:36,640
+now this is going to be a form so
+
+1782
+01:03:36,640 --> 01:03:38,480
+instead of a div this will be a form
+
+1783
+01:03:38,480 --> 01:03:39,520
+we'll give this a
+
+1784
+01:03:39,520 --> 01:03:42,880
+class name of add
+
+1785
+01:03:42,880 --> 01:03:46,559
+dash form and then each
+
+1786
+01:03:46,559 --> 01:03:49,760
+each label and input is going to be
+
+1787
+01:03:49,760 --> 01:03:52,640
+wrapped in a class of form control so
+
+1788
+01:03:52,640 --> 01:03:53,280
+let's say
+
+1789
+01:03:53,280 --> 01:03:57,520
+div class name and set that to
+
+1790
+01:03:57,520 --> 01:04:01,520
+form control and then we'll have
+
+1791
+01:04:01,520 --> 01:04:04,799
+a label so this label
+
+1792
+01:04:04,799 --> 01:04:07,359
+will just say
+
+1793
+01:04:08,240 --> 01:04:10,079
+we'll just say task for the label and
+
+1794
+01:04:10,079 --> 01:04:12,000
+then input
+
+1795
+01:04:12,000 --> 01:04:16,240
+will have a type of text
+
+1796
+01:04:16,240 --> 01:04:19,440
+and let's add a placeholder and set that
+
+1797
+01:04:19,440 --> 01:04:19,920
+to
+
+1798
+01:04:19,920 --> 01:04:22,960
+add task
+
+1799
+01:04:22,960 --> 01:04:24,319
+okay there's other stuff we're going to
+
+1800
+01:04:24,319 --> 01:04:25,920
+add to this but i just want to get the
+
+1801
+01:04:25,920 --> 01:04:26,400
+form
+
+1802
+01:04:26,400 --> 01:04:28,000
+displayed for now so i'm going to copy
+
+1803
+01:04:28,000 --> 01:04:30,240
+this form control down
+
+1804
+01:04:30,240 --> 01:04:33,200
+twice and this next one is going to be
+
+1805
+01:04:33,200 --> 01:04:33,599
+the
+
+1806
+01:04:33,599 --> 01:04:38,240
+day we'll say day and time
+
+1807
+01:04:38,240 --> 01:04:40,480
+type is text and then for this we'll
+
+1808
+01:04:40,480 --> 01:04:42,880
+just say add
+
+1809
+01:04:42,880 --> 01:04:46,559
+day and time then this one is going to
+
+1810
+01:04:46,559 --> 01:04:47,359
+be
+
+1811
+01:04:47,359 --> 01:04:52,160
+let's say reminder or set reminder
+
+1812
+01:04:52,160 --> 01:04:54,000
+and it's going to be a check box so
+
+1813
+01:04:54,000 --> 01:04:56,000
+let's change change the type to
+
+1814
+01:04:56,000 --> 01:04:58,640
+check box and get rid of the placeholder
+
+1815
+01:04:58,640 --> 01:05:01,520
+we don't need that
+
+1816
+01:05:01,920 --> 01:05:03,920
+and then i just want to have a submit so
+
+1817
+01:05:03,920 --> 01:05:06,960
+we'll do an input
+
+1818
+01:05:07,119 --> 01:05:10,160
+with the type of submit and then let's
+
+1819
+01:05:10,160 --> 01:05:12,720
+have a value
+
+1820
+01:05:12,720 --> 01:05:15,920
+the value will be save or
+
+1821
+01:05:15,920 --> 01:05:19,520
+save task all right so we'll save that
+
+1822
+01:05:19,520 --> 01:05:20,960
+and then let's just
+
+1823
+01:05:20,960 --> 01:05:23,280
+we'll embed this into our app.js so i'm
+
+1824
+01:05:23,280 --> 01:05:25,119
+going to copy this down and
+
+1825
+01:05:25,119 --> 01:05:28,720
+set that to add task set that to
+
+1826
+01:05:28,720 --> 01:05:32,000
+add task and then
+
+1827
+01:05:32,000 --> 01:05:34,839
+right below let's see right below the
+
+1828
+01:05:34,839 --> 01:05:36,079
+header
+
+1829
+01:05:36,079 --> 01:05:38,559
+add task now if i save that we should
+
+1830
+01:05:38,559 --> 01:05:41,280
+see our form
+
+1831
+01:05:41,520 --> 01:05:44,960
+uh oh one thing i forgot is some classes
+
+1832
+01:05:44,960 --> 01:05:47,920
+just the styling so this the check box
+
+1833
+01:05:47,920 --> 01:05:48,799
+form control
+
+1834
+01:05:48,799 --> 01:05:52,480
+i also have form control
+
+1835
+01:05:52,480 --> 01:05:55,760
+i think it's just form control check
+
+1836
+01:05:55,760 --> 01:05:58,400
+yeah and then for the button down here
+
+1837
+01:05:58,400 --> 01:06:00,000
+the input submit
+
+1838
+01:06:00,000 --> 01:06:03,119
+let's say class name and that's going to
+
+1839
+01:06:03,119 --> 01:06:05,119
+be set to um
+
+1840
+01:06:05,119 --> 01:06:08,400
+btn and btn
+
+1841
+01:06:08,400 --> 01:06:12,400
+block okay let's make that look a little
+
+1842
+01:06:12,400 --> 01:06:13,039
+better
+
+1843
+01:06:13,039 --> 01:06:15,039
+and let's just open up our console make
+
+1844
+01:06:15,039 --> 01:06:16,640
+sure we have no errors
+
+1845
+01:06:16,640 --> 01:06:18,319
+all right now each input is going to
+
+1846
+01:06:18,319 --> 01:06:20,240
+have its own piece of state
+
+1847
+01:06:20,240 --> 01:06:22,160
+component level state not app level
+
+1848
+01:06:22,160 --> 01:06:23,520
+state so
+
+1849
+01:06:23,520 --> 01:06:26,480
+let's bring in
+
+1850
+01:06:26,559 --> 01:06:29,760
+use state
+
+1851
+01:06:30,480 --> 01:06:34,240
+from not const what am i doing
+
+1852
+01:06:34,240 --> 01:06:35,920
+report use state from
+
+1853
+01:06:35,920 --> 01:06:37,520
+[Music]
+
+1854
+01:06:37,520 --> 01:06:40,400
+react and then right above the return
+
+1855
+01:06:40,400 --> 01:06:43,200
+we're going to have
+
+1856
+01:06:43,280 --> 01:06:46,079
+first one is text and set text is the
+
+1857
+01:06:46,079 --> 01:06:46,880
+method to
+
+1858
+01:06:46,880 --> 01:06:50,559
+update the state the default is just an
+
+1859
+01:06:50,559 --> 01:06:52,240
+empty string
+
+1860
+01:06:52,240 --> 01:06:55,599
+and then we have set day
+
+1861
+01:06:55,599 --> 01:06:58,960
+for the day input
+
+1862
+01:06:58,960 --> 01:07:03,839
+and then we have reminder
+
+1863
+01:07:04,240 --> 01:07:05,920
+set reminder and the default for
+
+1864
+01:07:05,920 --> 01:07:09,520
+reminder is going to be false
+
+1865
+01:07:09,599 --> 01:07:12,240
+all right so we have that now down in
+
+1866
+01:07:12,240 --> 01:07:15,359
+the input the first one of text let's go
+
+1867
+01:07:15,359 --> 01:07:17,440
+right here and the value of this is
+
+1868
+01:07:17,440 --> 01:07:18,480
+going to be
+
+1869
+01:07:18,480 --> 01:07:20,640
+the text from the state but we also need
+
+1870
+01:07:20,640 --> 01:07:23,520
+an on change because when you start to
+
+1871
+01:07:23,520 --> 01:07:25,760
+type in the input that's going to fire
+
+1872
+01:07:25,760 --> 01:07:27,760
+off this on change it's a controlled
+
+1873
+01:07:27,760 --> 01:07:28,640
+component
+
+1874
+01:07:28,640 --> 01:07:30,480
+so this is going to have a function
+
+1875
+01:07:30,480 --> 01:07:32,079
+we're going to pass in the event
+
+1876
+01:07:32,079 --> 01:07:35,359
+object and directly call set text from
+
+1877
+01:07:35,359 --> 01:07:36,240
+here
+
+1878
+01:07:36,240 --> 01:07:40,000
+and set it to e dot target dot
+
+1879
+01:07:40,000 --> 01:07:41,680
+value which is going to be whatever is
+
+1880
+01:07:41,680 --> 01:07:43,440
+typed in all right
+
+1881
+01:07:43,440 --> 01:07:46,160
+so i'm going to copy this value and on
+
+1882
+01:07:46,160 --> 01:07:47,280
+change
+
+1883
+01:07:47,280 --> 01:07:49,839
+and go to the next one of day except
+
+1884
+01:07:49,839 --> 01:07:52,799
+this is going to be day instead of text
+
+1885
+01:07:52,799 --> 01:07:55,280
+and the function to change that is going
+
+1886
+01:07:55,280 --> 01:07:56,000
+to be set
+
+1887
+01:07:56,000 --> 01:07:58,319
+day and again it will be set to the
+
+1888
+01:07:58,319 --> 01:08:00,400
+target value which is whatever is typed
+
+1889
+01:08:00,400 --> 01:08:01,119
+in
+
+1890
+01:08:01,119 --> 01:08:03,920
+so check box i'll paste that in this is
+
+1891
+01:08:03,920 --> 01:08:04,480
+going to be
+
+1892
+01:08:04,480 --> 01:08:08,839
+the reminder state and this will be set
+
+1893
+01:08:08,839 --> 01:08:10,640
+reminder
+
+1894
+01:08:10,640 --> 01:08:12,880
+right and then instead of target.value
+
+1895
+01:08:12,880 --> 01:08:14,400
+because this isn't an input it's a
+
+1896
+01:08:14,400 --> 01:08:15,599
+checkbox
+
+1897
+01:08:15,599 --> 01:08:18,799
+we can get current
+
+1898
+01:08:18,799 --> 01:08:21,439
+target dot checked which will give us
+
+1899
+01:08:21,439 --> 01:08:23,520
+either a true or false value
+
+1900
+01:08:23,520 --> 01:08:26,399
+if that's checked or not all right so
+
+1901
+01:08:26,399 --> 01:08:27,759
+that should clear up if i
+
+1902
+01:08:27,759 --> 01:08:31,520
+reload now to check this
+
+1903
+01:08:31,520 --> 01:08:34,080
+if we go to our react dev tools so down
+
+1904
+01:08:34,080 --> 01:08:35,839
+here where it says components
+
+1905
+01:08:35,839 --> 01:08:37,600
+we can see all of our components and if
+
+1906
+01:08:37,600 --> 01:08:40,319
+we go to add tasks
+
+1907
+01:08:40,319 --> 01:08:43,600
+we should be able to see our state
+
+1908
+01:08:43,600 --> 01:08:45,279
+so right here you can see each one of
+
+1909
+01:08:45,279 --> 01:08:47,120
+these is the three inputs
+
+1910
+01:08:47,120 --> 01:08:50,640
+if i start to type in the text
+
+1911
+01:08:50,640 --> 01:08:52,238
+and i say text because that's what we
+
+1912
+01:08:52,238 --> 01:08:54,000
+called
+
+1913
+01:08:54,000 --> 01:08:57,040
+you know that piece of state we can see
+
+1914
+01:08:57,040 --> 01:08:58,719
+it down here if i type in
+
+1915
+01:08:58,719 --> 01:09:01,839
+a day we can see that if i check set
+
+1916
+01:09:01,839 --> 01:09:03,120
+reminder
+
+1917
+01:09:03,120 --> 01:09:06,399
+you can see that that all right so we
+
+1918
+01:09:06,399 --> 01:09:08,319
+know that's working
+
+1919
+01:09:08,319 --> 01:09:12,799
+now as far as submitting this
+
+1920
+01:09:12,799 --> 01:09:14,560
+we're going to have to have a function
+
+1921
+01:09:14,560 --> 01:09:16,158
+in our app.js because we're going to be
+
+1922
+01:09:16,158 --> 01:09:18,000
+dealing with our tasks
+
+1923
+01:09:18,000 --> 01:09:21,600
+so let's put this above the delete we'll
+
+1924
+01:09:21,600 --> 01:09:23,759
+say add
+
+1925
+01:09:23,759 --> 01:09:27,679
+task and let's say const
+
+1926
+01:09:27,679 --> 01:09:30,640
+add task
+
+1927
+01:09:33,120 --> 01:09:36,719
+so for now let's just do a console log
+
+1928
+01:09:36,719 --> 01:09:37,600
+it's going to take
+
+1929
+01:09:37,600 --> 01:09:41,120
+in as far as what this takes
+
+1930
+01:09:41,120 --> 01:09:44,158
+in we'll just
+
+1931
+01:09:44,158 --> 01:09:48,000
+say task
+
+1932
+01:09:48,000 --> 01:09:52,000
+and yeah we'll just console log that
+
+1933
+01:09:52,000 --> 01:09:54,640
+now we have to pass this in or we have
+
+1934
+01:09:54,640 --> 01:09:56,080
+to pass a prop into
+
+1935
+01:09:56,080 --> 01:09:59,520
+add task let's say on add and
+
+1936
+01:09:59,520 --> 01:10:03,040
+then that's going to call add task
+
+1937
+01:10:03,040 --> 01:10:05,600
+okay now in our add task component we
+
+1938
+01:10:05,600 --> 01:10:08,719
+want to take in
+
+1939
+01:10:09,199 --> 01:10:13,120
+on add and
+
+1940
+01:10:13,120 --> 01:10:15,199
+what i'm going to do is add a submit
+
+1941
+01:10:15,199 --> 01:10:16,320
+event here so
+
+1942
+01:10:16,320 --> 01:10:20,000
+on submit and set that to
+
+1943
+01:10:20,000 --> 01:10:23,199
+on submit and then on submit is going to
+
+1944
+01:10:23,199 --> 01:10:24,719
+be defined
+
+1945
+01:10:24,719 --> 01:10:27,920
+in here const on submit because there's
+
+1946
+01:10:27,920 --> 01:10:29,360
+a few things we need to do
+
+1947
+01:10:29,360 --> 01:10:32,719
+so we're not calling on add directly
+
+1948
+01:10:32,719 --> 01:10:35,360
+so on submit that's going to take in the
+
+1949
+01:10:35,360 --> 01:10:37,840
+event object because we need to e dot
+
+1950
+01:10:37,840 --> 01:10:40,719
+prevent default so it doesn't actually
+
+1951
+01:10:40,719 --> 01:10:42,880
+submit to a page
+
+1952
+01:10:42,880 --> 01:10:45,440
+and then once we do that i just want to
+
+1953
+01:10:45,440 --> 01:10:47,280
+do a little bit of validation for the
+
+1954
+01:10:47,280 --> 01:10:48,640
+the text the task
+
+1955
+01:10:48,640 --> 01:10:53,040
+text so let's do let's say if
+
+1956
+01:10:53,040 --> 01:10:56,400
+and we'll say if not text
+
+1957
+01:10:56,400 --> 01:11:00,159
+then oops and we're talking about this
+
+1958
+01:11:00,159 --> 01:11:01,760
+piece of state which is connected to
+
+1959
+01:11:01,760 --> 01:11:04,080
+this input so if that's not there then
+
+1960
+01:11:04,080 --> 01:11:06,480
+let's do an alert
+
+1961
+01:11:06,480 --> 01:11:10,159
+and say please add a task
+
+1962
+01:11:10,159 --> 01:11:13,679
+and then return all right if that
+
+1963
+01:11:13,679 --> 01:11:19,120
+passes then we're going to call on add
+
+1964
+01:11:20,080 --> 01:11:23,120
+and we want to pass in
+
+1965
+01:11:23,120 --> 01:11:26,000
+into on add we want to pass in an object
+
+1966
+01:11:26,000 --> 01:11:27,120
+with
+
+1967
+01:11:27,120 --> 01:11:30,800
+the text the day
+
+1968
+01:11:30,800 --> 01:11:34,400
+and the reminder okay then i also want
+
+1969
+01:11:34,400 --> 01:11:36,320
+to clear the form so i'm going to
+
+1970
+01:11:36,320 --> 01:11:40,080
+call set text again and clear it
+
+1971
+01:11:40,080 --> 01:11:43,360
+and then we want to clear day
+
+1972
+01:11:43,360 --> 01:11:46,400
+set day and then set reminder
+
+1973
+01:11:46,400 --> 01:11:48,320
+which is a boolean so that's going to
+
+1974
+01:11:48,320 --> 01:11:50,960
+get set to false
+
+1975
+01:11:50,960 --> 01:11:52,719
+all right now i want i want it to be
+
+1976
+01:11:52,719 --> 01:11:54,480
+unchecked if it's false
+
+1977
+01:11:54,480 --> 01:11:58,560
+so down here we have our check
+
+1978
+01:11:59,199 --> 01:12:01,040
+check boxes can take to take in a
+
+1979
+01:12:01,040 --> 01:12:02,480
+checked value which will be true or
+
+1980
+01:12:02,480 --> 01:12:03,600
+false so i'm going to say
+
+1981
+01:12:03,600 --> 01:12:09,840
+if reminder so if that's true then
+
+1982
+01:12:10,400 --> 01:12:12,640
+actually no we can just set it to yeah
+
+1983
+01:12:12,640 --> 01:12:16,000
+set it to reminder
+
+1984
+01:12:17,040 --> 01:12:20,239
+yeah so we'll save that
+
+1985
+01:12:21,520 --> 01:12:24,239
+okay now when i submit this what should
+
+1986
+01:12:24,239 --> 01:12:25,520
+happen is it should
+
+1987
+01:12:25,520 --> 01:12:28,239
+cause it should check to see if text is
+
+1988
+01:12:28,239 --> 01:12:30,159
+there so if i don't have that
+
+1989
+01:12:30,159 --> 01:12:32,880
+filled in i'll get an alert then it
+
+1990
+01:12:32,880 --> 01:12:34,320
+should call on add
+
+1991
+01:12:34,320 --> 01:12:38,000
+which is just going to call
+
+1992
+01:12:38,000 --> 01:12:40,239
+add task which up here is going to
+
+1993
+01:12:40,239 --> 01:12:42,239
+console log the task so let's open up
+
+1994
+01:12:42,239 --> 01:12:45,040
+our console
+
+1995
+01:12:45,520 --> 01:12:47,440
+and we're just going to type whatever in
+
+1996
+01:12:47,440 --> 01:12:48,640
+here
+
+1997
+01:12:48,640 --> 01:12:51,760
+and save so the form also cleared
+
+1998
+01:12:51,760 --> 01:12:54,640
+and down here you can see that we have
+
+1999
+01:12:54,640 --> 01:12:56,080
+our data
+
+2000
+01:12:56,080 --> 01:12:58,080
+now instead of console logging we we
+
+2001
+01:12:58,080 --> 01:13:01,280
+want to add this to our state
+
+2002
+01:13:01,280 --> 01:13:03,760
+so in order to do that i mean there's
+
+2003
+01:13:03,760 --> 01:13:06,719
+there's a bunch of ways we could do that
+
+2004
+01:13:06,719 --> 01:13:09,280
+i do want to add an id since we're not
+
+2005
+01:13:09,280 --> 01:13:11,120
+dealing with a data a backend
+
+2006
+01:13:11,120 --> 01:13:14,000
+where it creates an id on on its own i'm
+
+2007
+01:13:14,000 --> 01:13:15,600
+just going to do something really simple
+
+2008
+01:13:15,600 --> 01:13:18,159
+here and use math dot
+
+2009
+01:13:18,159 --> 01:13:21,600
+floor which will round down math
+
+2010
+01:13:21,600 --> 01:13:24,640
+uh we'll say math dot
+
+2011
+01:13:24,640 --> 01:13:28,480
+random we'll make it uh up to like ten
+
+2012
+01:13:28,480 --> 01:13:30,320
+thousand
+
+2013
+01:13:30,320 --> 01:13:33,520
+and plus one so that should just give me
+
+2014
+01:13:33,520 --> 01:13:37,679
+a random number so if we console log id
+
+2015
+01:13:37,679 --> 01:13:39,280
+and i just submit this it should just
+
+2016
+01:13:39,280 --> 01:13:41,199
+log a random number good
+
+2017
+01:13:41,199 --> 01:13:43,280
+so we have an id so now i'm going to
+
+2018
+01:13:43,280 --> 01:13:44,239
+just create
+
+2019
+01:13:44,239 --> 01:13:48,080
+let's say new task and this new task is
+
+2020
+01:13:48,080 --> 01:13:50,640
+going to be an object with that id
+
+2021
+01:13:50,640 --> 01:13:52,640
+and then i'm going to copy whatever the
+
+2022
+01:13:52,640 --> 01:13:54,159
+task
+
+2023
+01:13:54,159 --> 01:13:56,880
+text day and reminder which is passed in
+
+2024
+01:13:56,880 --> 01:13:58,320
+here
+
+2025
+01:13:58,320 --> 01:14:00,719
+i'm going to add that to the object as
+
+2026
+01:14:00,719 --> 01:14:01,520
+well
+
+2027
+01:14:01,520 --> 01:14:05,120
+all right then we want to use set
+
+2028
+01:14:05,120 --> 01:14:08,320
+tasks and we're going to set it
+
+2029
+01:14:08,320 --> 01:14:10,400
+as an array we're going to copy the
+
+2030
+01:14:10,400 --> 01:14:11,520
+current
+
+2031
+01:14:11,520 --> 01:14:13,600
+tasks that are already there but then we
+
+2032
+01:14:13,600 --> 01:14:15,280
+also want to add the new
+
+2033
+01:14:15,280 --> 01:14:18,400
+task onto it all right so let's save
+
+2034
+01:14:18,400 --> 01:14:19,840
+that
+
+2035
+01:14:19,840 --> 01:14:22,400
+and now we should be able to add a new
+
+2036
+01:14:22,400 --> 01:14:24,080
+task i'll just say test
+
+2037
+01:14:24,080 --> 01:14:28,400
+one test two set reminder
+
+2038
+01:14:28,400 --> 01:14:31,520
+save task and there it is and we can
+
+2039
+01:14:31,520 --> 01:14:33,760
+change the reminder we can delete it so
+
+2040
+01:14:33,760 --> 01:14:36,080
+now we're able to add it
+
+2041
+01:14:36,080 --> 01:14:38,000
+cool so the next thing i want to do is
+
+2042
+01:14:38,000 --> 01:14:39,679
+this button here
+
+2043
+01:14:39,679 --> 01:14:42,239
+should toggle this form we want it to
+
+2044
+01:14:42,239 --> 01:14:43,199
+start off not
+
+2045
+01:14:43,199 --> 01:14:45,600
+showing but then we want to click this
+
+2046
+01:14:45,600 --> 01:14:47,040
+show it click it again
+
+2047
+01:14:47,040 --> 01:14:49,280
+to toggle it so we're going to have
+
+2048
+01:14:49,280 --> 01:14:52,159
+another piece of state in our app.js
+
+2049
+01:14:52,159 --> 01:14:54,239
+and we're going to call that let's say
+
+2050
+01:14:54,239 --> 01:14:55,760
+const
+
+2051
+01:14:55,760 --> 01:14:59,920
+let's say what do we want to call this
+
+2052
+01:14:59,920 --> 01:15:02,960
+we'll say show add
+
+2053
+01:15:02,960 --> 01:15:06,719
+task and then set show add
+
+2054
+01:15:06,719 --> 01:15:09,199
+task which is going to be a boolean so
+
+2055
+01:15:09,199 --> 01:15:10,800
+set this to use state
+
+2056
+01:15:10,800 --> 01:15:13,920
+set it to false by default and then this
+
+2057
+01:15:13,920 --> 01:15:15,840
+form is going to be dependent on that
+
+2058
+01:15:15,840 --> 01:15:17,440
+piece of state so down where we're
+
+2059
+01:15:17,440 --> 01:15:18,400
+embedding add
+
+2060
+01:15:18,400 --> 01:15:22,239
+tasks let's wrap this in curly braces
+
+2061
+01:15:22,239 --> 01:15:26,719
+and say if show add task is true
+
+2062
+01:15:26,719 --> 01:15:29,840
+then show that component
+
+2063
+01:15:29,840 --> 01:15:31,600
+now this is just a shorter way of doing
+
+2064
+01:15:31,600 --> 01:15:32,880
+a ternary without an
+
+2065
+01:15:32,880 --> 01:15:34,880
+else okay we don't need an else we just
+
+2066
+01:15:34,880 --> 01:15:36,560
+want to see if it's true if it is do
+
+2067
+01:15:36,560 --> 01:15:38,400
+this if not nothing
+
+2068
+01:15:38,400 --> 01:15:40,159
+so we'll save that and now it's not
+
+2069
+01:15:40,159 --> 01:15:43,760
+showing now if i set the default of that
+
+2070
+01:15:43,760 --> 01:15:47,040
+show add task to true
+
+2071
+01:15:47,040 --> 01:15:49,920
+then it's going to show it by default
+
+2072
+01:15:49,920 --> 01:15:50,960
+all right now
+
+2073
+01:15:50,960 --> 01:15:53,120
+we want this button to toggle that so
+
+2074
+01:15:53,120 --> 01:15:54,480
+we're going to have to do a couple
+
+2075
+01:15:54,480 --> 01:15:57,199
+things with that
+
+2076
+01:15:57,199 --> 01:15:59,760
+now that button is inside of the header
+
+2077
+01:15:59,760 --> 01:16:01,360
+so if we go down to header
+
+2078
+01:16:01,360 --> 01:16:04,239
+let's say let's have a prop called on
+
+2079
+01:16:04,239 --> 01:16:05,199
+add
+
+2080
+01:16:05,199 --> 01:16:07,120
+now when that's fired off we'll have a
+
+2081
+01:16:07,120 --> 01:16:08,880
+function
+
+2082
+01:16:08,880 --> 01:16:13,280
+and we'll call set show
+
+2083
+01:16:13,280 --> 01:16:15,600
+add task we want to set it to the
+
+2084
+01:16:15,600 --> 01:16:17,760
+opposite of whatever the value is so the
+
+2085
+01:16:17,760 --> 01:16:18,960
+opposite of
+
+2086
+01:16:18,960 --> 01:16:22,000
+show add task now on
+
+2087
+01:16:22,000 --> 01:16:24,640
+add is going to get passed into header
+
+2088
+01:16:24,640 --> 01:16:25,440
+as a prop
+
+2089
+01:16:25,440 --> 01:16:29,040
+so let's say on add
+
+2090
+01:16:29,040 --> 01:16:32,400
+and right now the button on click is
+
+2091
+01:16:32,400 --> 01:16:33,440
+just set to this
+
+2092
+01:16:33,440 --> 01:16:35,360
+right here on click we just want to get
+
+2093
+01:16:35,360 --> 01:16:37,120
+rid of that
+
+2094
+01:16:37,120 --> 01:16:41,360
+and change on click to on add
+
+2095
+01:16:41,760 --> 01:16:44,880
+so if we save that and just open up our
+
+2096
+01:16:44,880 --> 01:16:46,800
+console here as well
+
+2097
+01:16:46,800 --> 01:16:49,520
+so if we save that i click add it shows
+
+2098
+01:16:49,520 --> 01:16:50,239
+the form
+
+2099
+01:16:50,239 --> 01:16:54,000
+i click it again it goes away
+
+2100
+01:16:54,400 --> 01:16:57,040
+okay now i think we should also change
+
+2101
+01:16:57,040 --> 01:16:58,400
+the button if it's open
+
+2102
+01:16:58,400 --> 01:17:00,159
+change the text to close we could even
+
+2103
+01:17:00,159 --> 01:17:02,239
+change the color
+
+2104
+01:17:02,239 --> 01:17:05,840
+so to do that let's see we'll go back to
+
+2105
+01:17:05,840 --> 01:17:06,960
+app.js
+
+2106
+01:17:06,960 --> 01:17:10,480
+and where we have our header
+
+2107
+01:17:10,719 --> 01:17:13,199
+in addition to the on add prop let's
+
+2108
+01:17:13,199 --> 01:17:14,560
+also just pass in
+
+2109
+01:17:14,560 --> 01:17:17,920
+whatever the value of show
+
+2110
+01:17:17,920 --> 01:17:21,280
+show ad task is so we'll set
+
+2111
+01:17:21,280 --> 01:17:24,480
+show add task to whatever
+
+2112
+01:17:24,480 --> 01:17:28,560
+show add task
+
+2113
+01:17:28,560 --> 01:17:30,960
+actually we can just call this prop show
+
+2114
+01:17:30,960 --> 01:17:33,280
+add
+
+2115
+01:17:34,880 --> 01:17:38,880
+all right and then back in the header
+
+2116
+01:17:38,880 --> 01:17:41,520
+say show add and it's just going to be
+
+2117
+01:17:41,520 --> 01:17:41,920
+either
+
+2118
+01:17:41,920 --> 01:17:44,320
+true or false if it's being shown or not
+
+2119
+01:17:44,320 --> 01:17:46,800
+so if it
+
+2120
+01:17:46,800 --> 01:17:49,760
+is let's see so the text right now just
+
+2121
+01:17:49,760 --> 01:17:53,440
+says add let's change that to be dynamic
+
+2122
+01:17:53,440 --> 01:17:56,640
+and we'll say if show
+
+2123
+01:17:56,640 --> 01:17:59,760
+add so if that's true that means we want
+
+2124
+01:17:59,760 --> 01:18:02,159
+to show
+
+2125
+01:18:02,560 --> 01:18:05,280
+that means we want to show close right
+
+2126
+01:18:05,280 --> 01:18:05,840
+because it's
+
+2127
+01:18:05,840 --> 01:18:09,840
+being shown else then we'll show add
+
+2128
+01:18:09,840 --> 01:18:13,120
+so save that and now it says close if i
+
+2129
+01:18:13,120 --> 01:18:13,840
+click it
+
+2130
+01:18:13,840 --> 01:18:17,040
+now it says add now also change the
+
+2131
+01:18:17,040 --> 01:18:18,960
+color it's set to green right now so
+
+2132
+01:18:18,960 --> 01:18:20,320
+we'll change that
+
+2133
+01:18:20,320 --> 01:18:23,360
+let's say if show add then
+
+2134
+01:18:23,360 --> 01:18:26,880
+let's make it red else
+
+2135
+01:18:26,880 --> 01:18:29,920
+then we'll make it green
+
+2136
+01:18:29,920 --> 01:18:32,239
+so now it's red close it now it's green
+
+2137
+01:18:32,239 --> 01:18:33,760
+so you can see how
+
+2138
+01:18:33,760 --> 01:18:36,159
+this is where how this is where react is
+
+2139
+01:18:36,159 --> 01:18:37,760
+really valuable it allows you to make
+
+2140
+01:18:37,760 --> 01:18:38,800
+really dynamic
+
+2141
+01:18:38,800 --> 01:18:40,960
+interfaces and no pages are being
+
+2142
+01:18:40,960 --> 01:18:43,760
+reloaded or anything like that
+
+2143
+01:18:43,760 --> 01:18:46,320
+so i mean this is a really small
+
+2144
+01:18:46,320 --> 01:18:48,239
+application but you can see the value in
+
+2145
+01:18:48,239 --> 01:18:49,280
+this
+
+2146
+01:18:49,280 --> 01:18:51,360
+and i mean it might be a little
+
+2147
+01:18:51,360 --> 01:18:52,719
+intimidating at first
+
+2148
+01:18:52,719 --> 01:18:55,040
+but you can you really get the hang of
+
+2149
+01:18:55,040 --> 01:18:58,080
+it and you you see how valuable it is
+
+2150
+01:18:58,080 --> 01:18:59,520
+to do stuff like this in vanilla
+
+2151
+01:18:59,520 --> 01:19:01,600
+javascript is it's just very messy and
+
+2152
+01:19:01,600 --> 01:19:05,040
+unorganized and much more difficult
+
+2153
+01:19:05,040 --> 01:19:07,440
+so let's see what's next we can show our
+
+2154
+01:19:07,440 --> 01:19:10,080
+ad form we can add we can delete we can
+
+2155
+01:19:10,080 --> 01:19:10,400
+set
+
+2156
+01:19:10,400 --> 01:19:14,159
+toggle i think that we're pretty much
+
+2157
+01:19:14,159 --> 01:19:15,520
+done as far as like
+
+2158
+01:19:15,520 --> 01:19:18,800
+just the ui goes i would like to get
+
+2159
+01:19:18,800 --> 01:19:19,280
+into
+
+2160
+01:19:19,280 --> 01:19:22,640
+some http stuff dealing with a back end
+
+2161
+01:19:22,640 --> 01:19:24,320
+there's something called json server
+
+2162
+01:19:24,320 --> 01:19:26,320
+that we can use it's kind of a mock back
+
+2163
+01:19:26,320 --> 01:19:27,280
+end
+
+2164
+01:19:27,280 --> 01:19:29,520
+um so i think that will do that but
+
+2165
+01:19:29,520 --> 01:19:31,920
+before we get into any of that
+
+2166
+01:19:31,920 --> 01:19:34,320
+like making requests i just want to show
+
+2167
+01:19:34,320 --> 01:19:36,400
+you how you would actually build your
+
+2168
+01:19:36,400 --> 01:19:38,960
+static assets out
+
+2169
+01:19:38,960 --> 01:19:42,480
+if you're ready to deploy so
+
+2170
+01:19:42,480 --> 01:19:44,719
+and it says right here use yarn build or
+
+2171
+01:19:44,719 --> 01:19:47,120
+npm run build depends on you know if you
+
+2172
+01:19:47,120 --> 01:19:48,880
+use yarn or npm
+
+2173
+01:19:48,880 --> 01:19:51,760
+but if i go ahead and i'm going to stop
+
+2174
+01:19:51,760 --> 01:19:53,440
+the server for a second and you'll see
+
+2175
+01:19:53,440 --> 01:19:54,159
+that this
+
+2176
+01:19:54,159 --> 01:19:56,800
+by reload doesn't work and i'm going to
+
+2177
+01:19:56,800 --> 01:19:57,840
+run npm
+
+2178
+01:19:57,840 --> 01:20:02,159
+run build and it's going to create a
+
+2179
+01:20:02,159 --> 01:20:04,320
+an optimized production build in a
+
+2180
+01:20:04,320 --> 01:20:07,280
+folder called build
+
+2181
+01:20:07,280 --> 01:20:09,440
+and this is going to be your static
+
+2182
+01:20:09,440 --> 01:20:11,760
+assets this is what you would deploy
+
+2183
+01:20:11,760 --> 01:20:13,520
+and this used to confuse me when i first
+
+2184
+01:20:13,520 --> 01:20:15,760
+got into react was or any framework like
+
+2185
+01:20:15,760 --> 01:20:16,639
+this
+
+2186
+01:20:16,639 --> 01:20:19,760
+do i deploy my components folder or does
+
+2187
+01:20:19,760 --> 01:20:20,960
+the browser see that
+
+2188
+01:20:20,960 --> 01:20:23,679
+like i mean it was kind of confusing but
+
+2189
+01:20:23,679 --> 01:20:25,440
+no that's all your development stuff
+
+2190
+01:20:25,440 --> 01:20:28,080
+build is where your is is your build
+
+2191
+01:20:28,080 --> 01:20:29,040
+folder that's your
+
+2192
+01:20:29,040 --> 01:20:32,080
+where you push to production now if you
+
+2193
+01:20:32,080 --> 01:20:34,239
+want to try this locally
+
+2194
+01:20:34,239 --> 01:20:38,400
+you could install the npm serve
+
+2195
+01:20:38,400 --> 01:20:40,400
+serve package globally so we can go
+
+2196
+01:20:40,400 --> 01:20:42,320
+ahead and do that so let's say
+
+2197
+01:20:42,320 --> 01:20:46,000
+npm install dash g actually after you if
+
+2198
+01:20:46,000 --> 01:20:47,440
+you're on a mac or linux you'll have to
+
+2199
+01:20:47,440 --> 01:20:48,400
+use sudo for
+
+2200
+01:20:48,400 --> 01:20:50,239
+permissions because we're installing
+
+2201
+01:20:50,239 --> 01:20:51,520
+this globally
+
+2202
+01:20:51,520 --> 01:20:54,400
+and then serve
+
+2203
+01:20:58,239 --> 01:21:00,480
+it's just this is just a basic http
+
+2204
+01:21:00,480 --> 01:21:01,360
+server
+
+2205
+01:21:01,360 --> 01:21:03,350
+so i should now be able to
+
+2206
+01:21:03,350 --> 01:21:04,400
+[Music]
+
+2207
+01:21:04,400 --> 01:21:07,920
+serve let's say serv
+
+2208
+01:21:07,920 --> 01:21:11,520
+dash s and then the build folder
+
+2209
+01:21:11,520 --> 01:21:14,320
+and then i want to serve it on a port
+
+2210
+01:21:14,320 --> 01:21:14,880
+let's say
+
+2211
+01:21:14,880 --> 01:21:18,159
+dash p 8000
+
+2212
+01:21:18,159 --> 01:21:20,719
+all right so now if i go to and remember
+
+2213
+01:21:20,719 --> 01:21:23,040
+locals 3000 isn't working that's our dev
+
+2214
+01:21:23,040 --> 01:21:26,159
+server if i go to 8 000
+
+2215
+01:21:26,159 --> 01:21:30,000
+there it is all right so
+
+2216
+01:21:30,000 --> 01:21:32,480
+this now if you look at the react dev
+
+2217
+01:21:32,480 --> 01:21:33,040
+tools
+
+2218
+01:21:33,040 --> 01:21:35,600
+icon it's blue not orange and it says
+
+2219
+01:21:35,600 --> 01:21:38,239
+this page is using the production build
+
+2220
+01:21:38,239 --> 01:21:40,080
+so this is your production build this is
+
+2221
+01:21:40,080 --> 01:21:42,000
+what you would deploy i could delete all
+
+2222
+01:21:42,000 --> 01:21:43,600
+the rest of these folders right now and
+
+2223
+01:21:43,600 --> 01:21:44,960
+this would still work
+
+2224
+01:21:44,960 --> 01:21:47,520
+because this is our production build all
+
+2225
+01:21:47,520 --> 01:21:48,880
+right i hope that makes sense so i'm
+
+2226
+01:21:48,880 --> 01:21:50,400
+going to stop this
+
+2227
+01:21:50,400 --> 01:21:53,199
+and if you want to stop here that's fine
+
+2228
+01:21:53,199 --> 01:21:54,560
+i'm going to keep going
+
+2229
+01:21:54,560 --> 01:21:56,960
+so that you can see how to deal with
+
+2230
+01:21:56,960 --> 01:21:57,760
+kind of a mock
+
+2231
+01:21:57,760 --> 01:22:02,000
+back end now there's a
+
+2232
+01:22:02,639 --> 01:22:05,679
+there's a really cool tool called
+
+2233
+01:22:05,679 --> 01:22:08,880
+json server and it basically allows us
+
+2234
+01:22:08,880 --> 01:22:11,199
+to create a mock rest api with our own
+
+2235
+01:22:11,199 --> 01:22:12,480
+data
+
+2236
+01:22:12,480 --> 01:22:14,400
+so we install it we're not going to
+
+2237
+01:22:14,400 --> 01:22:16,080
+install it globally you will install it
+
+2238
+01:22:16,080 --> 01:22:17,120
+locally
+
+2239
+01:22:17,120 --> 01:22:19,520
+and then you can create a db.json with
+
+2240
+01:22:19,520 --> 01:22:21,199
+some resources and you can make
+
+2241
+01:22:21,199 --> 01:22:23,600
+post requests put requests patch and all
+
+2242
+01:22:23,600 --> 01:22:25,360
+that just like as if it were a real back
+
+2243
+01:22:25,360 --> 01:22:26,080
+end
+
+2244
+01:22:26,080 --> 01:22:28,480
+built with you know node.js and express
+
+2245
+01:22:28,480 --> 01:22:29,440
+or django
+
+2246
+01:22:29,440 --> 01:22:32,239
+or laravel or whatever it might be so
+
+2247
+01:22:32,239 --> 01:22:34,400
+before we start our react server backup
+
+2248
+01:22:34,400 --> 01:22:34,960
+let's say
+
+2249
+01:22:34,960 --> 01:22:40,320
+npm install json server
+
+2250
+01:22:41,760 --> 01:22:43,520
+and this will install it locally so it's
+
+2251
+01:22:43,520 --> 01:22:47,520
+going to get put in our package.json
+
+2252
+01:22:47,920 --> 01:22:49,920
+if you clone this repository it'll be
+
+2253
+01:22:49,920 --> 01:22:52,000
+included in here
+
+2254
+01:22:52,000 --> 01:22:54,719
+now we need a way to run this so i'm
+
+2255
+01:22:54,719 --> 01:22:56,400
+actually going to create another script
+
+2256
+01:22:56,400 --> 01:22:58,320
+here
+
+2257
+01:22:58,320 --> 01:23:02,639
+called server and this is going to run
+
+2258
+01:23:02,639 --> 01:23:06,000
+json dash server and dash
+
+2259
+01:23:06,000 --> 01:23:10,719
+dash watch and then the port
+
+2260
+01:23:10,719 --> 01:23:13,199
+i'm going to run this on 5000 because i
+
+2261
+01:23:13,199 --> 01:23:14,960
+believe
+
+2262
+01:23:14,960 --> 01:23:18,000
+the default port is 3000
+
+2263
+01:23:18,000 --> 01:23:19,440
+and we also have to put the name of the
+
+2264
+01:23:19,440 --> 01:23:21,760
+file db.json
+
+2265
+01:23:21,760 --> 01:23:23,440
+all right so this will run our server we
+
+2266
+01:23:23,440 --> 01:23:24,960
+can pretend that this is like a real
+
+2267
+01:23:24,960 --> 01:23:27,840
+backend that we created a rest api
+
+2268
+01:23:27,840 --> 01:23:31,040
+so let's run here npm
+
+2269
+01:23:31,040 --> 01:23:34,880
+run server
+
+2270
+01:23:34,880 --> 01:23:36,840
+and you can see it actually created a
+
+2271
+01:23:36,840 --> 01:23:38,000
+db.json
+
+2272
+01:23:38,000 --> 01:23:39,360
+with some posts we're going to delete
+
+2273
+01:23:39,360 --> 01:23:41,520
+this stuff but we also want to run our
+
+2274
+01:23:41,520 --> 01:23:43,199
+dev server as well so i'm going to open
+
+2275
+01:23:43,199 --> 01:23:44,960
+up a new tab
+
+2276
+01:23:44,960 --> 01:23:47,920
+and run npm start that's our react dev
+
+2277
+01:23:47,920 --> 01:23:50,320
+server
+
+2278
+01:23:51,920 --> 01:23:54,880
+and the idea is we want to get data from
+
+2279
+01:23:54,880 --> 01:23:56,080
+here
+
+2280
+01:23:56,080 --> 01:24:00,400
+into here so first of all let's change
+
+2281
+01:24:00,400 --> 01:24:02,719
+this data up so this is going to be
+
+2282
+01:24:02,719 --> 01:24:05,360
+tasks
+
+2283
+01:24:05,600 --> 01:24:10,239
+and we'll delete get rid of that
+
+2284
+01:24:10,239 --> 01:24:12,800
+we just want our brackets and then i
+
+2285
+01:24:12,800 --> 01:24:16,000
+guess what we can do is just copy
+
+2286
+01:24:16,000 --> 01:24:19,280
+excuse me copy the from app.js
+
+2287
+01:24:19,280 --> 01:24:22,960
+these objects oops
+
+2288
+01:24:23,280 --> 01:24:27,040
+these task objects we'll cut those
+
+2289
+01:24:27,040 --> 01:24:29,679
+out and this is the use state right here
+
+2290
+01:24:29,679 --> 01:24:31,440
+for tasks is going to be just an empty
+
+2291
+01:24:31,440 --> 01:24:33,120
+array if i save that
+
+2292
+01:24:33,120 --> 01:24:34,800
+we're going to see no tasks to show and
+
+2293
+01:24:34,800 --> 01:24:36,400
+that's that's fine
+
+2294
+01:24:36,400 --> 01:24:38,639
+so here i'll paste those objects in
+
+2295
+01:24:38,639 --> 01:24:39,760
+however we need to
+
+2296
+01:24:39,760 --> 01:24:42,880
+change these to uh json objects
+
+2297
+01:24:42,880 --> 01:24:46,400
+which means that the keys have to have
+
+2298
+01:24:46,400 --> 01:24:48,800
+double quotes and any strings have to
+
+2299
+01:24:48,800 --> 01:24:49,840
+have
+
+2300
+01:24:49,840 --> 01:24:52,960
+double quotes so just
+
+2301
+01:24:52,960 --> 01:24:55,600
+add these
+
+2302
+01:24:56,639 --> 01:25:01,040
+and no trailing commas either
+
+2303
+01:25:07,760 --> 01:25:10,960
+get rid of that now
+
+2304
+01:25:10,960 --> 01:25:13,679
+jason server actually creates ids for
+
+2305
+01:25:13,679 --> 01:25:15,679
+you just like a real database just like
+
+2306
+01:25:15,679 --> 01:25:17,440
+a real back end would
+
+2307
+01:25:17,440 --> 01:25:19,120
+so we're not going to even have to worry
+
+2308
+01:25:19,120 --> 01:25:22,480
+about creating ids
+
+2309
+01:25:24,320 --> 01:25:27,520
+all right so that looks good
+
+2310
+01:25:27,520 --> 01:25:30,880
+now let's see
+
+2311
+01:25:30,880 --> 01:25:33,520
+close that up so the first thing we'll
+
+2312
+01:25:33,520 --> 01:25:34,000
+do is
+
+2313
+01:25:34,000 --> 01:25:36,800
+fill is let's fetch our tasks from the
+
+2314
+01:25:36,800 --> 01:25:38,159
+back end from what
+
+2315
+01:25:38,159 --> 01:25:40,080
+and you can even do this right from your
+
+2316
+01:25:40,080 --> 01:25:42,440
+browser http localhost
+
+2317
+01:25:42,440 --> 01:25:45,840
+5000 slash
+
+2318
+01:25:45,840 --> 01:25:48,480
+tasks and there we go we can also make
+
+2319
+01:25:48,480 --> 01:25:50,880
+post put and delete requests
+
+2320
+01:25:50,880 --> 01:25:53,920
+so in order to load them when the page
+
+2321
+01:25:53,920 --> 01:25:55,520
+loads we're going to use a hook
+
+2322
+01:25:55,520 --> 01:25:57,520
+called use effect which is used to
+
+2323
+01:25:57,520 --> 01:25:59,280
+create side effects or deal with side
+
+2324
+01:25:59,280 --> 01:26:00,159
+effects
+
+2325
+01:26:00,159 --> 01:26:03,199
+and it's often used to if you want
+
+2326
+01:26:03,199 --> 01:26:04,719
+something to happen right when the page
+
+2327
+01:26:04,719 --> 01:26:05,520
+loads
+
+2328
+01:26:05,520 --> 01:26:08,480
+so we'll use this right below where we
+
+2329
+01:26:08,480 --> 01:26:10,400
+did our use states
+
+2330
+01:26:10,400 --> 01:26:12,320
+say use effect and this takes in an
+
+2331
+01:26:12,320 --> 01:26:14,880
+arrow function
+
+2332
+01:26:14,880 --> 01:26:16,239
+and we're going to be using the fetch
+
+2333
+01:26:16,239 --> 01:26:18,800
+api with a sync away now we can't
+
+2334
+01:26:18,800 --> 01:26:21,360
+do a sync like this on this function so
+
+2335
+01:26:21,360 --> 01:26:22,639
+we have to create one
+
+2336
+01:26:22,639 --> 01:26:25,600
+in here let's call it let's say fetch
+
+2337
+01:26:25,600 --> 01:26:26,800
+tasks
+
+2338
+01:26:26,800 --> 01:26:30,880
+and set that to a sync
+
+2339
+01:26:31,199 --> 01:26:34,639
+and then here let's say kant's response
+
+2340
+01:26:34,639 --> 01:26:35,840
+or res
+
+2341
+01:26:35,840 --> 01:26:38,320
+equals await because fetch returns a
+
+2342
+01:26:38,320 --> 01:26:40,880
+promise so we want to await that promise
+
+2343
+01:26:40,880 --> 01:26:44,639
+and http localhost
+
+2344
+01:26:44,639 --> 01:26:48,320
+port 5000 slash tasks
+
+2345
+01:26:48,320 --> 01:26:50,960
+okay then we want the data so const data
+
+2346
+01:26:50,960 --> 01:26:52,320
+equals
+
+2347
+01:26:52,320 --> 01:26:55,360
+we want to await res.json that will give
+
+2348
+01:26:55,360 --> 01:26:56,800
+us the json data
+
+2349
+01:26:56,800 --> 01:26:59,120
+we'll console log the data and then of
+
+2350
+01:26:59,120 --> 01:27:00,560
+course we have to call
+
+2351
+01:27:00,560 --> 01:27:05,520
+fetch tasks all right so we'll save that
+
+2352
+01:27:05,520 --> 01:27:08,719
+we also want to add a dependency array
+
+2353
+01:27:08,719 --> 01:27:09,840
+here
+
+2354
+01:27:09,840 --> 01:27:12,560
+if you have a value where you want this
+
+2355
+01:27:12,560 --> 01:27:14,480
+to run if that value changes you would
+
+2356
+01:27:14,480 --> 01:27:15,679
+pass it in here
+
+2357
+01:27:15,679 --> 01:27:17,520
+like user or something we don't have any
+
+2358
+01:27:17,520 --> 01:27:19,199
+dependencies but you want to pass
+
+2359
+01:27:19,199 --> 01:27:22,880
+in just an empty array
+
+2360
+01:27:23,120 --> 01:27:26,480
+alright so now you can see as soon as
+
+2361
+01:27:26,480 --> 01:27:28,960
+the page loads we're getting this data
+
+2362
+01:27:28,960 --> 01:27:31,679
+we're getting it from our json server
+
+2363
+01:27:31,679 --> 01:27:32,000
+which
+
+2364
+01:27:32,000 --> 01:27:35,600
+you could replace with any back end
+
+2365
+01:27:35,600 --> 01:27:39,600
+so in instead of
+
+2366
+01:27:39,760 --> 01:27:41,760
+just console logging we obviously we
+
+2367
+01:27:41,760 --> 01:27:42,880
+want to set this
+
+2368
+01:27:42,880 --> 01:27:46,480
+data as our state however i don't want
+
+2369
+01:27:46,480 --> 01:27:47,280
+to have fetch
+
+2370
+01:27:47,280 --> 01:27:49,920
+tasks in use effect because i might want
+
+2371
+01:27:49,920 --> 01:27:51,840
+to use this somewhere else
+
+2372
+01:27:51,840 --> 01:27:53,840
+so i'm not going to call set tasks right
+
+2373
+01:27:53,840 --> 01:27:56,320
+here what i'm going to do is return
+
+2374
+01:27:56,320 --> 01:27:59,760
+the data and then i'm going to take this
+
+2375
+01:27:59,760 --> 01:28:01,199
+out
+
+2376
+01:28:01,199 --> 01:28:03,360
+and cut that out and just put it right
+
+2377
+01:28:03,360 --> 01:28:06,080
+below a views effect
+
+2378
+01:28:06,080 --> 01:28:09,199
+fetch data from actually let's just say
+
+2379
+01:28:09,199 --> 01:28:13,600
+fetch tasks okay and then
+
+2380
+01:28:13,600 --> 01:28:17,760
+what we'll do is instead have a function
+
+2381
+01:28:17,760 --> 01:28:22,080
+called get tasks
+
+2382
+01:28:22,080 --> 01:28:23,760
+and it's going to be async because we're
+
+2383
+01:28:23,760 --> 01:28:25,840
+going to call fetchtask which returns a
+
+2384
+01:28:25,840 --> 01:28:27,440
+promise
+
+2385
+01:28:27,440 --> 01:28:30,880
+so here let's say
+
+2386
+01:28:32,880 --> 01:28:36,960
+we'll do cons we'll call this
+
+2387
+01:28:36,960 --> 01:28:40,960
+tasks from server
+
+2388
+01:28:40,960 --> 01:28:44,560
+and then we want to await fetch
+
+2389
+01:28:44,560 --> 01:28:48,080
+tasks and then from there we'll call set
+
+2390
+01:28:48,080 --> 01:28:50,560
+tasks which will add it to our state and
+
+2391
+01:28:50,560 --> 01:28:51,520
+we want to add
+
+2392
+01:28:51,520 --> 01:28:54,560
+tasks from server
+
+2393
+01:28:54,560 --> 01:28:56,800
+and then instead of calling fetchtask
+
+2394
+01:28:56,800 --> 01:28:58,560
+here we're going to call
+
+2395
+01:28:58,560 --> 01:29:03,760
+gettasks all right so if i save that
+
+2396
+01:29:03,760 --> 01:29:06,400
+what's this each list should have a
+
+2397
+01:29:06,400 --> 01:29:06,880
+unique
+
+2398
+01:29:06,880 --> 01:29:11,840
+key prop
+
+2399
+01:29:15,679 --> 01:29:18,880
+uh this should have a unique key prop
+
+2400
+01:29:18,880 --> 01:29:19,760
+should have the id
+
+2401
+01:29:19,760 --> 01:29:25,760
+let me uh let me console console.log
+
+2402
+01:29:25,840 --> 01:29:28,880
+what we're getting here
+
+2403
+01:29:31,199 --> 01:29:33,920
+yes we have the id and then in our
+
+2404
+01:29:33,920 --> 01:29:36,560
+component
+
+2405
+01:29:36,840 --> 01:29:39,760
+tasks
+
+2406
+01:29:39,760 --> 01:29:43,679
+key id i'm not sure why
+
+2407
+01:29:45,840 --> 01:29:49,280
+i'm not sure what i'm missing here
+
+2408
+01:29:50,880 --> 01:29:54,800
+i guess we could use the index if
+
+2409
+01:29:56,880 --> 01:30:00,080
+let's say index
+
+2410
+01:30:03,360 --> 01:30:07,840
+all right so that gets rid of that
+
+2411
+01:30:08,400 --> 01:30:10,480
+so we're able to fetch our tasks from
+
+2412
+01:30:10,480 --> 01:30:11,440
+the back end
+
+2413
+01:30:11,440 --> 01:30:13,840
+and display them so the next thing i
+
+2414
+01:30:13,840 --> 01:30:15,440
+want to do
+
+2415
+01:30:15,440 --> 01:30:19,040
+is be able to delete them so we already
+
+2416
+01:30:19,040 --> 01:30:20,480
+have a delete and it's going to delete
+
+2417
+01:30:20,480 --> 01:30:21,199
+from the ui
+
+2418
+01:30:21,199 --> 01:30:23,520
+just fine but if i reload they're back
+
+2419
+01:30:23,520 --> 01:30:24,560
+because
+
+2420
+01:30:24,560 --> 01:30:26,639
+they're we haven't deleted them from the
+
+2421
+01:30:26,639 --> 01:30:27,679
+server
+
+2422
+01:30:27,679 --> 01:30:30,000
+so let's go down to where we have our
+
+2423
+01:30:30,000 --> 01:30:31,120
+delete
+
+2424
+01:30:31,120 --> 01:30:33,120
+so we have delete task and this is going
+
+2425
+01:30:33,120 --> 01:30:34,159
+to be
+
+2426
+01:30:34,159 --> 01:30:35,679
+pretty simple because we just need to
+
+2427
+01:30:35,679 --> 01:30:38,800
+make a simple delete request
+
+2428
+01:30:38,800 --> 01:30:41,679
+right before we you know filter through
+
+2429
+01:30:41,679 --> 01:30:42,960
+the ui
+
+2430
+01:30:42,960 --> 01:30:47,520
+so let's go ahead and make this an async
+
+2431
+01:30:47,520 --> 01:30:50,159
+function and we're going to just await
+
+2432
+01:30:50,159 --> 01:30:52,080
+we don't need to save it in a variable
+
+2433
+01:30:52,080 --> 01:30:53,120
+because we're not
+
+2434
+01:30:53,120 --> 01:30:55,760
+getting any data back but we're going to
+
+2435
+01:30:55,760 --> 01:30:56,159
+call
+
+2436
+01:30:56,159 --> 01:30:59,679
+fetch and here we're going to use
+
+2437
+01:30:59,679 --> 01:31:01,040
+backticks
+
+2438
+01:31:01,040 --> 01:31:04,320
+http localhost
+
+2439
+01:31:04,320 --> 01:31:08,080
+5000 slash tasks
+
+2440
+01:31:08,080 --> 01:31:12,400
+slash and then the id
+
+2441
+01:31:12,400 --> 01:31:14,480
+now we want to add a second argument of
+
+2442
+01:31:14,480 --> 01:31:16,480
+an object where we specify
+
+2443
+01:31:16,480 --> 01:31:19,280
+the method of this request to be a
+
+2444
+01:31:19,280 --> 01:31:21,199
+delete
+
+2445
+01:31:21,199 --> 01:31:24,400
+all right so we'll go ahead and delete
+
+2446
+01:31:24,400 --> 01:31:26,800
+that
+
+2447
+01:31:26,880 --> 01:31:30,320
+and it will filter from the ui
+
+2448
+01:31:30,320 --> 01:31:32,560
+so let's save that and let's try let's
+
+2449
+01:31:32,560 --> 01:31:34,320
+delete food shopping
+
+2450
+01:31:34,320 --> 01:31:36,400
+so it deletes from the ui if i reload
+
+2451
+01:31:36,400 --> 01:31:37,679
+it's gone okay
+
+2452
+01:31:37,679 --> 01:31:41,280
+and we should see if we look in the
+
+2453
+01:31:41,280 --> 01:31:43,199
+where our json server is running you can
+
+2454
+01:31:43,199 --> 01:31:44,880
+see all of the different requests that
+
+2455
+01:31:44,880 --> 01:31:47,600
+are made and all of the responses
+
+2456
+01:31:47,600 --> 01:31:51,199
+so we'll just keep that open as well
+
+2457
+01:31:51,199 --> 01:31:56,239
+so next thing let's see we're able to
+
+2458
+01:31:56,639 --> 01:31:59,600
+we're able to list them delete them
+
+2459
+01:31:59,600 --> 01:32:00,480
+let's do the
+
+2460
+01:32:00,480 --> 01:32:03,040
+no we'll do the add okay so we want to
+
+2461
+01:32:03,040 --> 01:32:04,719
+be able to add a task
+
+2462
+01:32:04,719 --> 01:32:07,760
+and have it persist to our back end
+
+2463
+01:32:07,760 --> 01:32:10,080
+so let's see we have our add task right
+
+2464
+01:32:10,080 --> 01:32:10,880
+here
+
+2465
+01:32:10,880 --> 01:32:12,239
+now again we're not going to need to
+
+2466
+01:32:12,239 --> 01:32:14,239
+create an id
+
+2467
+01:32:14,239 --> 01:32:17,360
+because it assigns an id for us
+
+2468
+01:32:17,360 --> 01:32:20,239
+so we can actually just you know what
+
+2469
+01:32:20,239 --> 01:32:21,920
+i'll do is i'll comment this out just in
+
+2470
+01:32:21,920 --> 01:32:24,800
+case you guys need it
+
+2471
+01:32:24,800 --> 01:32:27,920
+and i'll go above it okay so we're gonna
+
+2472
+01:32:27,920 --> 01:32:30,000
+want to
+
+2473
+01:32:30,000 --> 01:32:34,320
+response and we want this to be a sync
+
+2474
+01:32:34,560 --> 01:32:37,840
+and then a weight fetch
+
+2475
+01:32:37,840 --> 01:32:40,080
+and we're adding a task so the route is
+
+2476
+01:32:40,080 --> 01:32:42,560
+going to be http
+
+2477
+01:32:42,560 --> 01:32:45,440
+localhost
+
+2478
+01:32:46,320 --> 01:32:48,719
+5000 slash tasks and it's going to be a
+
+2479
+01:32:48,719 --> 01:32:50,560
+post request so we want to add
+
+2480
+01:32:50,560 --> 01:32:54,880
+here a method of post
+
+2481
+01:32:54,880 --> 01:32:56,960
+since we're adding data we need to add
+
+2482
+01:32:56,960 --> 01:32:58,159
+headers
+
+2483
+01:32:58,159 --> 01:33:00,320
+because we need to specify our content
+
+2484
+01:33:00,320 --> 01:33:02,560
+type
+
+2485
+01:33:02,560 --> 01:33:06,320
+and that's going to be application
+
+2486
+01:33:06,320 --> 01:33:09,679
+slash jason and then we also want to set
+
+2487
+01:33:09,679 --> 01:33:11,440
+outside of headers we want to set the
+
+2488
+01:33:11,440 --> 01:33:13,679
+body that we're sending the data we're
+
+2489
+01:33:13,679 --> 01:33:14,400
+sending
+
+2490
+01:33:14,400 --> 01:33:16,040
+which we're going to wrap in
+
+2491
+01:33:16,040 --> 01:33:17,840
+json.stringify which is just going to
+
+2492
+01:33:17,840 --> 01:33:18,719
+turn it from
+
+2493
+01:33:18,719 --> 01:33:21,040
+you know a javascript object into a json
+
+2494
+01:33:21,040 --> 01:33:22,239
+string
+
+2495
+01:33:22,239 --> 01:33:25,760
+and what we're sending is the task
+
+2496
+01:33:25,760 --> 01:33:28,880
+and that's getting passed in here all
+
+2497
+01:33:28,880 --> 01:33:30,320
+right so that's the
+
+2498
+01:33:30,320 --> 01:33:34,480
+request response then we want to
+
+2499
+01:33:34,480 --> 01:33:38,800
+let's get the data here say res.json
+
+2500
+01:33:38,800 --> 01:33:40,639
+now the data that's returned is just the
+
+2501
+01:33:40,639 --> 01:33:42,480
+new task that's added
+
+2502
+01:33:42,480 --> 01:33:44,800
+so then once that once we do that we
+
+2503
+01:33:44,800 --> 01:33:45,760
+want to call set
+
+2504
+01:33:45,760 --> 01:33:48,719
+tasks again we want to set it remember
+
+2505
+01:33:48,719 --> 01:33:50,719
+tasks is the entire array
+
+2506
+01:33:50,719 --> 01:33:52,800
+we're going to take the existing tasks
+
+2507
+01:33:52,800 --> 01:33:54,960
+and then we're going to add on to it
+
+2508
+01:33:54,960 --> 01:33:56,960
+data which is the new task that was just
+
+2509
+01:33:56,960 --> 01:33:58,880
+created
+
+2510
+01:33:58,880 --> 01:34:01,280
+so let's save that and let's go over
+
+2511
+01:34:01,280 --> 01:34:04,719
+here and we'll say um
+
+2512
+01:34:04,719 --> 01:34:09,440
+i don't know we'll say take test
+
+2513
+01:34:09,440 --> 01:34:12,639
+monday and set reminder so we'll save
+
+2514
+01:34:12,639 --> 01:34:16,800
+task all right so that
+
+2515
+01:34:16,880 --> 01:34:21,040
+didn't seem to work okay so it did work
+
+2516
+01:34:21,040 --> 01:34:24,080
+on the server side
+
+2517
+01:34:25,840 --> 01:34:30,840
+but this part didn't work
+
+2518
+01:34:30,840 --> 01:34:33,360
+um
+
+2519
+01:34:33,360 --> 01:34:35,760
+oh we didn't await so this this is a
+
+2520
+01:34:35,760 --> 01:34:37,560
+promise we have to make sure we await
+
+2521
+01:34:37,560 --> 01:34:38,960
+res.json
+
+2522
+01:34:38,960 --> 01:34:40,560
+all right so let's delete take tests
+
+2523
+01:34:40,560 --> 01:34:42,639
+that should that should persist
+
+2524
+01:34:42,639 --> 01:34:46,400
+and then we'll say take test
+
+2525
+01:34:46,400 --> 01:34:49,679
+i'll say friday this time and
+
+2526
+01:34:49,679 --> 01:34:51,440
+there we go so now it gets added to the
+
+2527
+01:34:51,440 --> 01:34:53,840
+ui or added to the server and then added
+
+2528
+01:34:53,840 --> 01:34:55,199
+to the ui
+
+2529
+01:34:55,199 --> 01:34:57,199
+okay so that's all set now one thing i
+
+2530
+01:34:57,199 --> 01:34:58,560
+note i i noticed
+
+2531
+01:34:58,560 --> 01:35:02,080
+was in my db.json the second one here
+
+2532
+01:35:02,080 --> 01:35:05,280
+just had a d and not an id and i think
+
+2533
+01:35:05,280 --> 01:35:06,400
+that was the reason
+
+2534
+01:35:06,400 --> 01:35:10,320
+why i was getting that key error earlier
+
+2535
+01:35:10,320 --> 01:35:12,560
+so just make sure that each one has an
+
+2536
+01:35:12,560 --> 01:35:13,679
+id
+
+2537
+01:35:13,679 --> 01:35:16,320
+all right now the last thing we want to
+
+2538
+01:35:16,320 --> 01:35:17,520
+do here
+
+2539
+01:35:17,520 --> 01:35:20,480
+in terms of working with the server is
+
+2540
+01:35:20,480 --> 01:35:21,840
+updating the uh
+
+2541
+01:35:21,840 --> 01:35:24,639
+the reminder so if i double click that
+
+2542
+01:35:24,639 --> 01:35:26,080
+it works in the ui but
+
+2543
+01:35:26,080 --> 01:35:28,080
+it doesn't we haven't made a request to
+
+2544
+01:35:28,080 --> 01:35:29,119
+the server
+
+2545
+01:35:29,119 --> 01:35:30,719
+so that's going to happen in toggle
+
+2546
+01:35:30,719 --> 01:35:32,159
+reminder but
+
+2547
+01:35:32,159 --> 01:35:34,639
+first i want to be able to get a single
+
+2548
+01:35:34,639 --> 01:35:35,760
+task
+
+2549
+01:35:35,760 --> 01:35:37,840
+from the server so i'm going to go up
+
+2550
+01:35:37,840 --> 01:35:38,960
+here where i have fetch
+
+2551
+01:35:38,960 --> 01:35:42,080
+tasks and just copy that it's going to
+
+2552
+01:35:42,080 --> 01:35:43,600
+be very very similar
+
+2553
+01:35:43,600 --> 01:35:46,560
+just called fetch task singular and it's
+
+2554
+01:35:46,560 --> 01:35:47,280
+going to take
+
+2555
+01:35:47,280 --> 01:35:51,199
+in an id and we want to change these to
+
+2556
+01:35:51,199 --> 01:35:53,119
+backticks
+
+2557
+01:35:53,119 --> 01:35:56,320
+and do slash
+
+2558
+01:35:56,320 --> 01:35:59,440
+id okay so we have fetch task
+
+2559
+01:35:59,440 --> 01:36:00,960
+and then we're going to go down to
+
+2560
+01:36:00,960 --> 01:36:02,480
+toggle reminder
+
+2561
+01:36:02,480 --> 01:36:04,639
+and it's basically just an update we're
+
+2562
+01:36:04,639 --> 01:36:06,719
+not able to update like the name you can
+
+2563
+01:36:06,719 --> 01:36:08,239
+add that on if you want we're just
+
+2564
+01:36:08,239 --> 01:36:09,920
+updating a single field but it's done
+
+2565
+01:36:09,920 --> 01:36:12,639
+the same way really
+
+2566
+01:36:12,639 --> 01:36:16,480
+so let's let's first
+
+2567
+01:36:16,480 --> 01:36:20,000
+go ahead and create we'll say task
+
+2568
+01:36:20,000 --> 01:36:22,840
+to toggle so which one do we want to
+
+2569
+01:36:22,840 --> 01:36:24,000
+grab
+
+2570
+01:36:24,000 --> 01:36:25,920
+so that's going to come from let's say a
+
+2571
+01:36:25,920 --> 01:36:27,360
+weight
+
+2572
+01:36:27,360 --> 01:36:31,520
+fetch task singular and pass in the id
+
+2573
+01:36:31,520 --> 01:36:34,880
+now this has to be a sync
+
+2574
+01:36:35,520 --> 01:36:37,119
+so we're going to get the task to toggle
+
+2575
+01:36:37,119 --> 01:36:38,320
+then we're going to put it into a
+
+2576
+01:36:38,320 --> 01:36:40,000
+variable the updated
+
+2577
+01:36:40,000 --> 01:36:43,119
+task which is going to be an event
+
+2578
+01:36:43,119 --> 01:36:44,560
+it's going to have all the same
+
+2579
+01:36:44,560 --> 01:36:47,119
+properties of tasks to toggle so we're
+
+2580
+01:36:47,119 --> 01:36:49,280
+just spreading those across here
+
+2581
+01:36:49,280 --> 01:36:50,960
+in addition to that we want to change
+
+2582
+01:36:50,960 --> 01:36:52,320
+reminder
+
+2583
+01:36:52,320 --> 01:36:56,159
+to whatever the opposite of task
+
+2584
+01:36:56,159 --> 01:37:00,719
+to toggle dot reminder is
+
+2585
+01:37:00,719 --> 01:37:03,840
+we want reminder
+
+2586
+01:37:04,719 --> 01:37:06,880
+okay so we haven't made any requests or
+
+2587
+01:37:06,880 --> 01:37:08,400
+anything we're just
+
+2588
+01:37:08,400 --> 01:37:10,400
+getting the task and then creating the
+
+2589
+01:37:10,400 --> 01:37:12,320
+new task and putting it in a variable
+
+2590
+01:37:12,320 --> 01:37:15,920
+now let's say const res equals
+
+2591
+01:37:15,920 --> 01:37:20,320
+await fetch and
+
+2592
+01:37:20,320 --> 01:37:22,000
+let's see we're doing an update so we're
+
+2593
+01:37:22,000 --> 01:37:25,119
+going to want the id so http
+
+2594
+01:37:25,119 --> 01:37:28,880
+localhost port 5000 slash
+
+2595
+01:37:28,880 --> 01:37:34,080
+task slash id
+
+2596
+01:37:34,080 --> 01:37:37,360
+then we want to add a method of put
+
+2597
+01:37:37,360 --> 01:37:39,840
+since this is an update we want to add
+
+2598
+01:37:39,840 --> 01:37:42,320
+headers since we're sending data
+
+2599
+01:37:42,320 --> 01:37:45,360
+we want the content type
+
+2600
+01:37:45,360 --> 01:37:49,119
+of the data we're sending application
+
+2601
+01:37:49,119 --> 01:37:49,679
+slash
+
+2602
+01:37:49,679 --> 01:37:53,360
+json and whoops not here but under
+
+2603
+01:37:53,360 --> 01:37:54,159
+headers
+
+2604
+01:37:54,159 --> 01:37:56,159
+we want the body which is the data we're
+
+2605
+01:37:56,159 --> 01:37:59,679
+sending wrapped in json.stringify to
+
+2606
+01:37:59,679 --> 01:38:01,440
+turn it into a string
+
+2607
+01:38:01,440 --> 01:38:05,199
+and it's going to be the task
+
+2608
+01:38:05,520 --> 01:38:09,440
+i'm sorry the updated task
+
+2609
+01:38:10,800 --> 01:38:14,840
+all right then we want to just
+
+2610
+01:38:14,840 --> 01:38:17,679
+data awaits
+
+2611
+01:38:17,679 --> 01:38:22,080
+on the response jason
+
+2612
+01:38:22,080 --> 01:38:23,119
+and then the only thing we want to
+
+2613
+01:38:23,119 --> 01:38:25,199
+change right here is the reminder we're
+
+2614
+01:38:25,199 --> 01:38:27,280
+setting it to whatever the data
+
+2615
+01:38:27,280 --> 01:38:28,719
+reminded because the data that we get
+
+2616
+01:38:28,719 --> 01:38:31,040
+back is just the updated task
+
+2617
+01:38:31,040 --> 01:38:32,880
+so whatever that is true or false we're
+
+2618
+01:38:32,880 --> 01:38:34,159
+going to have here
+
+2619
+01:38:34,159 --> 01:38:38,800
+if it matches that id so let's save that
+
+2620
+01:38:38,800 --> 01:38:41,920
+and let's open that up
+
+2621
+01:38:41,920 --> 01:38:43,440
+so i'm going to double click meeting at
+
+2622
+01:38:43,440 --> 01:38:45,600
+school you can see down here put request
+
+2623
+01:38:45,600 --> 01:38:46,320
+to task
+
+2624
+01:38:46,320 --> 01:38:51,119
+2 200 response so if i reload it stays
+
+2625
+01:38:51,119 --> 01:38:54,400
+off or it stays false if i make them all
+
+2626
+01:38:54,400 --> 01:38:54,880
+true
+
+2627
+01:38:54,880 --> 01:38:57,760
+and reload that stays all right so we're
+
+2628
+01:38:57,760 --> 01:38:58,080
+now
+
+2629
+01:38:58,080 --> 01:39:00,960
+able to interact with our server in all
+
+2630
+01:39:00,960 --> 01:39:03,360
+ways we can delete we can add
+
+2631
+01:39:03,360 --> 01:39:05,360
+we're fetching our data so this is what
+
+2632
+01:39:05,360 --> 01:39:07,440
+you would do in a full stack app except
+
+2633
+01:39:07,440 --> 01:39:09,440
+instead of using json server you would
+
+2634
+01:39:09,440 --> 01:39:11,360
+build your own rest api
+
+2635
+01:39:11,360 --> 01:39:13,600
+with whatever language and framework you
+
+2636
+01:39:13,600 --> 01:39:14,639
+choose
+
+2637
+01:39:14,639 --> 01:39:16,000
+all right now one thing we haven't
+
+2638
+01:39:16,000 --> 01:39:17,840
+gotten into is routing and that's the
+
+2639
+01:39:17,840 --> 01:39:19,040
+last thing i want to cover
+
+2640
+01:39:19,040 --> 01:39:21,119
+so we've done everything just within
+
+2641
+01:39:21,119 --> 01:39:23,520
+this single this one page right here
+
+2642
+01:39:23,520 --> 01:39:24,320
+this one
+
+2643
+01:39:24,320 --> 01:39:27,360
+view really so to
+
+2644
+01:39:27,360 --> 01:39:29,760
+use routing there's no routing included
+
+2645
+01:39:29,760 --> 01:39:31,920
+with the core library
+
+2646
+01:39:31,920 --> 01:39:34,239
+i'm just gonna let's see i'll just open
+
+2647
+01:39:34,239 --> 01:39:35,440
+a new tab here
+
+2648
+01:39:35,440 --> 01:39:37,760
+so we use a package called react router
+
+2649
+01:39:37,760 --> 01:39:38,960
+dom so let's
+
+2650
+01:39:38,960 --> 01:39:42,239
+npm install react dash
+
+2651
+01:39:42,239 --> 01:39:45,679
+router dash dom
+
+2652
+01:39:47,360 --> 01:39:50,560
+and that's going to show up in our
+
+2653
+01:39:52,840 --> 01:39:54,239
+package.json
+
+2654
+01:39:54,239 --> 01:39:57,440
+okay so there it is now
+
+2655
+01:39:57,440 --> 01:40:00,800
+in our app.js
+
+2656
+01:40:00,880 --> 01:40:02,880
+if we look at you know what we're
+
+2657
+01:40:02,880 --> 01:40:04,880
+returning let's go back down here look
+
+2658
+01:40:04,880 --> 01:40:06,639
+at what we're returning
+
+2659
+01:40:06,639 --> 01:40:09,360
+we have a container with our header our
+
+2660
+01:40:09,360 --> 01:40:09,840
+add
+
+2661
+01:40:09,840 --> 01:40:13,119
+task which is dependent on this value
+
+2662
+01:40:13,119 --> 01:40:16,320
+our tasks component you know which will
+
+2663
+01:40:16,320 --> 01:40:17,119
+show if there's
+
+2664
+01:40:17,119 --> 01:40:20,560
+if there actually is any tasks and then
+
+2665
+01:40:20,560 --> 01:40:23,280
+that's pretty much it so i want to first
+
+2666
+01:40:23,280 --> 01:40:24,560
+of all add a footer
+
+2667
+01:40:24,560 --> 01:40:26,480
+and i want to have in that footer a link
+
+2668
+01:40:26,480 --> 01:40:28,320
+to an about page that has an about
+
+2669
+01:40:28,320 --> 01:40:29,360
+component
+
+2670
+01:40:29,360 --> 01:40:32,480
+so in components let's create a new
+
+2671
+01:40:32,480 --> 01:40:37,199
+file called footer.js
+
+2672
+01:40:37,199 --> 01:40:39,040
+and we'll go ahead and create a
+
+2673
+01:40:39,040 --> 01:40:41,920
+component here
+
+2674
+01:40:42,239 --> 01:40:45,360
+uh we'll get rid of this
+
+2675
+01:40:46,080 --> 01:40:47,600
+so this footer is going to be pretty
+
+2676
+01:40:47,600 --> 01:40:49,920
+simple i'm just going to change this to
+
+2677
+01:40:49,920 --> 01:40:51,360
+footer
+
+2678
+01:40:51,360 --> 01:40:54,639
+and then let's let's put a
+
+2679
+01:40:54,639 --> 01:40:58,800
+paragraph and we'll just say copyright
+
+2680
+01:40:58,800 --> 01:41:03,920
+ampersand copy semicolon 2021 and then
+
+2681
+01:41:03,920 --> 01:41:06,960
+under that i'm going to have a link
+
+2682
+01:41:06,960 --> 01:41:11,040
+to this is going to go to slash about
+
+2683
+01:41:11,040 --> 01:41:13,360
+i'm going to change this after but just
+
+2684
+01:41:13,360 --> 01:41:14,639
+have that for now
+
+2685
+01:41:14,639 --> 01:41:16,000
+and then we're going to bring this into
+
+2686
+01:41:16,000 --> 01:41:18,800
+our app.js up at the top
+
+2687
+01:41:18,800 --> 01:41:22,159
+so import actually i'll just
+
+2688
+01:41:22,159 --> 01:41:25,679
+copy header down and
+
+2689
+01:41:26,239 --> 01:41:29,520
+change that to footer
+
+2690
+01:41:29,679 --> 01:41:32,239
+and we're just gonna embed this down
+
+2691
+01:41:32,239 --> 01:41:35,360
+here in our return
+
+2692
+01:41:40,080 --> 01:41:42,560
+all right so there's our footer now for
+
+2693
+01:41:42,560 --> 01:41:44,560
+routes let's say let's create our
+
+2694
+01:41:44,560 --> 01:41:50,800
+about first about component so about.js
+
+2695
+01:41:54,960 --> 01:41:56,719
+so this is going to be really simple i'm
+
+2696
+01:41:56,719 --> 01:41:58,159
+just going to put
+
+2697
+01:41:58,159 --> 01:42:02,679
+an h4 and say this say the version
+
+2698
+01:42:02,679 --> 01:42:07,199
+1.0.0 and then we'll put uh
+
+2699
+01:42:07,199 --> 01:42:10,639
+let's put a link to go back
+
+2700
+01:42:10,719 --> 01:42:14,320
+that'll go to slash go back
+
+2701
+01:42:14,320 --> 01:42:17,440
+all right now this about
+
+2702
+01:42:17,440 --> 01:42:21,760
+component i'm going to bring into app.js
+
+2703
+01:42:27,440 --> 01:42:29,360
+and of course i could just embed it like
+
+2704
+01:42:29,360 --> 01:42:30,960
+we've been doing but i want to use the
+
+2705
+01:42:30,960 --> 01:42:32,000
+router
+
+2706
+01:42:32,000 --> 01:42:35,440
+so we need to bring in
+
+2707
+01:42:35,440 --> 01:42:38,960
+let's say import from
+
+2708
+01:42:38,960 --> 01:42:42,080
+react router dom and what we want to
+
+2709
+01:42:42,080 --> 01:42:42,639
+bring in
+
+2710
+01:42:42,639 --> 01:42:44,159
+are two things we want to bring in
+
+2711
+01:42:44,159 --> 01:42:46,719
+browser router
+
+2712
+01:42:46,719 --> 01:42:49,520
+which will use the html5 push state i'm
+
+2713
+01:42:49,520 --> 01:42:50,080
+going to
+
+2714
+01:42:50,080 --> 01:42:52,080
+give it an alias of router though and
+
+2715
+01:42:52,080 --> 01:42:54,800
+then we also want to bring in route
+
+2716
+01:42:54,800 --> 01:42:56,880
+so to use the router we have to wrap
+
+2717
+01:42:56,880 --> 01:43:00,159
+everything in our output
+
+2718
+01:43:00,400 --> 01:43:01,840
+so in our return right here we're going
+
+2719
+01:43:01,840 --> 01:43:03,600
+to wrap everything in
+
+2720
+01:43:03,600 --> 01:43:06,320
+router all right so i'm going to grab
+
+2721
+01:43:06,320 --> 01:43:07,280
+that
+
+2722
+01:43:07,280 --> 01:43:10,719
+and put that down here
+
+2723
+01:43:10,719 --> 01:43:12,639
+so now since we wrap that in router we
+
+2724
+01:43:12,639 --> 01:43:14,320
+can use routes
+
+2725
+01:43:14,320 --> 01:43:16,639
+so right above the footer i'm going to
+
+2726
+01:43:16,639 --> 01:43:17,440
+say
+
+2727
+01:43:17,440 --> 01:43:21,760
+route and pass in a path
+
+2728
+01:43:21,760 --> 01:43:25,840
+of slash about and then pass in
+
+2729
+01:43:25,840 --> 01:43:29,840
+a component and that component is going
+
+2730
+01:43:29,840 --> 01:43:30,239
+to be
+
+2731
+01:43:30,239 --> 01:43:33,760
+about now if i save that if i click on
+
+2732
+01:43:33,760 --> 01:43:34,960
+about
+
+2733
+01:43:34,960 --> 01:43:36,960
+i can see the about component i can see
+
+2734
+01:43:36,960 --> 01:43:38,159
+the other ones as well
+
+2735
+01:43:38,159 --> 01:43:40,480
+because they're just embedded up here so
+
+2736
+01:43:40,480 --> 01:43:42,080
+any route we create we're always going
+
+2737
+01:43:42,080 --> 01:43:44,320
+to see those which i want to change
+
+2738
+01:43:44,320 --> 01:43:46,880
+now it's not going to be as easy as just
+
+2739
+01:43:46,880 --> 01:43:48,560
+labeling a component because we
+
+2740
+01:43:48,560 --> 01:43:51,840
+i want to put the add task component and
+
+2741
+01:43:51,840 --> 01:43:53,280
+the tasks
+
+2742
+01:43:53,280 --> 01:43:55,440
+component all in one route all in the
+
+2743
+01:43:55,440 --> 01:43:56,960
+index route
+
+2744
+01:43:56,960 --> 01:44:01,119
+so to do that we can say route
+
+2745
+01:44:01,119 --> 01:44:05,040
+and path set to slash
+
+2746
+01:44:05,040 --> 01:44:07,679
+we also want to add exact or else if we
+
+2747
+01:44:07,679 --> 01:44:09,280
+go the about it's going to do the same
+
+2748
+01:44:09,280 --> 01:44:11,040
+thing and show this
+
+2749
+01:44:11,040 --> 01:44:12,639
+just because it's going to first match
+
+2750
+01:44:12,639 --> 01:44:14,560
+the slash so we want to
+
+2751
+01:44:14,560 --> 01:44:17,040
+match this exactly and then instead of
+
+2752
+01:44:17,040 --> 01:44:18,840
+component we can use
+
+2753
+01:44:18,840 --> 01:44:22,400
+render and inside render it just takes
+
+2754
+01:44:22,400 --> 01:44:22,639
+an
+
+2755
+01:44:22,639 --> 01:44:26,400
+arrow function with props
+
+2756
+01:44:26,400 --> 01:44:28,480
+and we'll point this function to a set
+
+2757
+01:44:28,480 --> 01:44:30,480
+of parentheses and in here we're just
+
+2758
+01:44:30,480 --> 01:44:31,920
+going to have
+
+2759
+01:44:31,920 --> 01:44:34,639
+a fragment and then we can take whatever
+
+2760
+01:44:34,639 --> 01:44:36,639
+we want which is going to be the add
+
+2761
+01:44:36,639 --> 01:44:40,080
+task and the tasks
+
+2762
+01:44:40,080 --> 01:44:42,320
+so we'll cut those and we're going to
+
+2763
+01:44:42,320 --> 01:44:44,960
+put that put that right in here in this
+
+2764
+01:44:44,960 --> 01:44:48,719
+route render
+
+2765
+01:44:48,719 --> 01:44:51,119
+now if i save that you can see we're on
+
+2766
+01:44:51,119 --> 01:44:52,080
+slash about
+
+2767
+01:44:52,080 --> 01:44:54,000
+right and we don't see the other stuff
+
+2768
+01:44:54,000 --> 01:44:55,280
+if we go back
+
+2769
+01:44:55,280 --> 01:44:59,920
+now we see the add and the
+
+2770
+01:44:59,920 --> 01:45:03,280
+the tasks all right
+
+2771
+01:45:03,280 --> 01:45:06,320
+so let's see next thing
+
+2772
+01:45:06,320 --> 01:45:09,840
+notice when i click on about or go back
+
+2773
+01:45:09,840 --> 01:45:11,760
+see how the reload and up here see how
+
+2774
+01:45:11,760 --> 01:45:13,760
+the page reloads we don't want that
+
+2775
+01:45:13,760 --> 01:45:15,920
+so to stop that from happening instead
+
+2776
+01:45:15,920 --> 01:45:17,440
+of using an a tag
+
+2777
+01:45:17,440 --> 01:45:19,040
+for instance let's go to the about page
+
+2778
+01:45:19,040 --> 01:45:20,719
+instead of using an a tag we're
+
+2779
+01:45:20,719 --> 01:45:23,679
+going to use link from react router dom
+
+2780
+01:45:23,679 --> 01:45:27,040
+so let's say import
+
+2781
+01:45:27,119 --> 01:45:31,440
+link from
+
+2782
+01:45:31,440 --> 01:45:34,080
+uh react router dom and then we just
+
+2783
+01:45:34,080 --> 01:45:34,639
+replace
+
+2784
+01:45:34,639 --> 01:45:37,760
+an eight the a tag with link
+
+2785
+01:45:37,760 --> 01:45:41,520
+and replace href with two
+
+2786
+01:45:41,520 --> 01:45:45,360
+all right we're gonna do the same thing
+
+2787
+01:45:45,360 --> 01:45:47,040
+where else do we have this in the footer
+
+2788
+01:45:47,040 --> 01:45:48,719
+where we're linking to the about page
+
+2789
+01:45:48,719 --> 01:45:50,880
+we're going to do the same thing
+
+2790
+01:45:50,880 --> 01:45:53,199
+and change that to link and change that
+
+2791
+01:45:53,199 --> 01:45:55,760
+to 2.
+
+2792
+01:45:56,080 --> 01:45:58,480
+and now you'll notice if i click about
+
+2793
+01:45:58,480 --> 01:45:59,360
+or go back
+
+2794
+01:45:59,360 --> 01:46:02,159
+it doesn't reload it's just instant so
+
+2795
+01:46:02,159 --> 01:46:03,600
+you want to make sure if you're using
+
+2796
+01:46:03,600 --> 01:46:04,560
+routes that you use
+
+2797
+01:46:04,560 --> 01:46:07,119
+link as opposed to just regular link a
+
+2798
+01:46:07,119 --> 01:46:09,360
+tags
+
+2799
+01:46:09,360 --> 01:46:10,960
+all right and you can obviously create
+
+2800
+01:46:10,960 --> 01:46:12,880
+as many components as you want and
+
+2801
+01:46:12,880 --> 01:46:15,440
+as many routes you can also put multiple
+
+2802
+01:46:15,440 --> 01:46:18,320
+components with props like we did here
+
+2803
+01:46:18,320 --> 01:46:20,320
+the last thing if we go to about we
+
+2804
+01:46:20,320 --> 01:46:22,159
+still see this ad which doesn't make
+
+2805
+01:46:22,159 --> 01:46:23,119
+sense
+
+2806
+01:46:23,119 --> 01:46:25,360
+so to get rid of that we could go to our
+
+2807
+01:46:25,360 --> 01:46:27,119
+header
+
+2808
+01:46:27,119 --> 01:46:29,760
+so in our header there's something
+
+2809
+01:46:29,760 --> 01:46:31,920
+called use location it's actually a hook
+
+2810
+01:46:31,920 --> 01:46:34,719
+that we can use from react router dom
+
+2811
+01:46:34,719 --> 01:46:37,760
+so i'm gonna
+
+2812
+01:46:38,840 --> 01:46:43,199
+import use location
+
+2813
+01:46:43,199 --> 01:46:46,639
+from oops
+
+2814
+01:46:47,040 --> 01:46:50,320
+from react router dom
+
+2815
+01:46:50,320 --> 01:46:52,080
+and this allows us to basically look at
+
+2816
+01:46:52,080 --> 01:46:54,320
+the route that we're currently on
+
+2817
+01:46:54,320 --> 01:46:56,480
+so above the return here let's just
+
+2818
+01:46:56,480 --> 01:46:58,639
+create a variable
+
+2819
+01:46:58,639 --> 01:47:01,360
+called location and we'll set that to
+
+2820
+01:47:01,360 --> 01:47:02,000
+use
+
+2821
+01:47:02,000 --> 01:47:05,760
+location and then we should have access
+
+2822
+01:47:05,760 --> 01:47:08,480
+to location.path name so where we have
+
+2823
+01:47:08,480 --> 01:47:10,639
+this button let's wrap it in
+
+2824
+01:47:10,639 --> 01:47:13,440
+curly braces so we can add a condition
+
+2825
+01:47:13,440 --> 01:47:15,040
+and we'll say if location
+
+2826
+01:47:15,040 --> 01:47:19,119
+dot path name is equal to
+
+2827
+01:47:19,119 --> 01:47:22,960
+slash then
+
+2828
+01:47:22,960 --> 01:47:25,840
+we'll go ahead and show the button all
+
+2829
+01:47:25,840 --> 01:47:27,600
+right so save that
+
+2830
+01:47:27,600 --> 01:47:30,080
+and now notice on the about page the
+
+2831
+01:47:30,080 --> 01:47:32,560
+button's gone if i go back to the index
+
+2832
+01:47:32,560 --> 01:47:36,080
+there it is
+
+2833
+01:47:36,080 --> 01:47:38,080
+all right so you can you can check out
+
+2834
+01:47:38,080 --> 01:47:40,000
+the whatever the path name is or the
+
+2835
+01:47:40,000 --> 01:47:40,560
+route is
+
+2836
+01:47:40,560 --> 01:47:43,040
+and you can do certain things based on
+
+2837
+01:47:43,040 --> 01:47:44,880
+that route
+
+2838
+01:47:44,880 --> 01:47:46,800
+all right so that's routing uh and i
+
+2839
+01:47:46,800 --> 01:47:48,880
+think that's it guys i mean we covered a
+
+2840
+01:47:48,880 --> 01:47:51,119
+lot this was a long video
+
+2841
+01:47:51,119 --> 01:47:53,199
+longer than i expected and i actually
+
+2842
+01:47:53,199 --> 01:47:54,960
+wanted to do routing before we did all
+
+2843
+01:47:54,960 --> 01:47:56,000
+the http
+
+2844
+01:47:56,000 --> 01:47:58,239
+stuff with jason server so i apologize
+
+2845
+01:47:58,239 --> 01:47:59,040
+for that
+
+2846
+01:47:59,040 --> 01:48:01,840
+i kind of forgot about it so uh that's
+
+2847
+01:48:01,840 --> 01:48:04,080
+it hopefully this taught you
+
+2848
+01:48:04,080 --> 01:48:05,920
+uh something even if you didn't catch
+
+2849
+01:48:05,920 --> 01:48:07,360
+everything if this is your first time
+
+2850
+01:48:07,360 --> 01:48:09,199
+dealing with react and this just
+
+2851
+01:48:09,199 --> 01:48:11,280
+looks like a horror show to you don't
+
+2852
+01:48:11,280 --> 01:48:13,040
+worry about it
+
+2853
+01:48:13,040 --> 01:48:15,520
+you're gonna get more familiar with it
+
+2854
+01:48:15,520 --> 01:48:17,920
+as you learn it as you watch more videos
+
+2855
+01:48:17,920 --> 01:48:19,679
+i have an entire playlist of different
+
+2856
+01:48:19,679 --> 01:48:22,239
+projects i have three udemy courses
+
+2857
+01:48:22,239 --> 01:48:24,800
+uh if you're interested uh myrn stat
+
+2858
+01:48:24,800 --> 01:48:25,440
+courses
+
+2859
+01:48:25,440 --> 01:48:27,199
+and so on and there's just tons of
+
+2860
+01:48:27,199 --> 01:48:30,000
+content out there the documentation
+
+2861
+01:48:30,000 --> 01:48:32,239
+look at other people's code you know to
+
+2862
+01:48:32,239 --> 01:48:33,280
+get examples
+
+2863
+01:48:33,280 --> 01:48:36,159
+um uh to kind of learn what's going on
+
+2864
+01:48:36,159 --> 01:48:37,600
+so there's there's a lot of things you
+
+2865
+01:48:37,600 --> 01:48:39,600
+can do so don't get overwhelmed if this
+
+2866
+01:48:39,600 --> 01:48:40,960
+looks really hard
+
+2867
+01:48:40,960 --> 01:48:42,639
+but um that's it thanks for watching
+
+2868
+01:48:42,639 --> 01:48:44,080
+guys i really appreciate it if you
+
+2869
+01:48:44,080 --> 01:48:45,360
+lasted this long
+
+2870
+01:48:45,360 --> 01:48:49,040
+and i will see you next time
+

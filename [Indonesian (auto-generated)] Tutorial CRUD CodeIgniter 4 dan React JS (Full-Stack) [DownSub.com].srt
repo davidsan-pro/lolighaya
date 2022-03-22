@@ -1,0 +1,3972 @@
+1
+00:00:00,000 --> 00:00:02,340
+halo pada video ini anda akan belajar
+
+2
+00:00:02,340 --> 00:00:04,589
+bagaimana membuat fullstack aplikasi
+
+3
+00:00:04,589 --> 00:00:07,410
+menggunakan kode yang tempat di sisi
+
+4
+00:00:07,410 --> 00:00:11,370
+beken dan ridges di sisi front-end mulai
+
+5
+00:00:11,370 --> 00:00:14,240
+dari create data
+
+6
+00:00:15,020 --> 00:00:21,020
+read data kemudian edit data
+
+7
+00:00:21,260 --> 00:00:26,449
+dan delete data mari kita mulai
+
+8
+00:00:28,720 --> 00:00:30,010
+adalah
+
+9
+00:00:30,010 --> 00:00:32,308
+[Musik]
+
+10
+00:00:32,308 --> 00:00:34,809
+disini Saya telah membuat sebuah folder
+
+11
+00:00:34,809 --> 00:00:37,270
+kosong bernama full start Polri ini
+
+12
+00:00:37,270 --> 00:00:40,390
+berada di direktori shamhat Edo pertama
+
+13
+00:00:40,390 --> 00:00:41,890
+saya akan membuat Project coordinator
+
+14
+00:00:41,890 --> 00:00:44,530
+untuk been dan saya akan membuat Project
+
+15
+00:00:44,530 --> 00:00:47,230
+coordinator menggunakan composer jika
+
+16
+00:00:47,230 --> 00:00:48,579
+Anda belum menginstall komputer di
+
+17
+00:00:48,579 --> 00:00:51,129
+komputer anda silahkan pergi ke situs
+
+18
+00:00:51,129 --> 00:00:52,379
+resminya yaitu
+
+19
+00:00:52,379 --> 00:00:54,159
+getcomposer.org kemudian download
+
+20
+00:00:54,159 --> 00:00:56,530
+composer sesuai dengan fatwa Manda
+
+21
+00:00:56,530 --> 00:00:59,260
+kemudian instal dikomputer Anda setelah
+
+22
+00:00:59,260 --> 00:01:00,640
+composer terinstall di komputer anda
+
+23
+00:01:00,640 --> 00:01:02,860
+anda dapat membuat Project coordinator
+
+24
+00:01:02,860 --> 00:01:05,530
+menggunakan composer untuk membuat
+
+25
+00:01:05,530 --> 00:01:07,479
+Project coordinator menggunakan composer
+
+26
+00:01:07,479 --> 00:01:09,689
+kita hanya perlu mengetikan perintah
+
+27
+00:01:09,689 --> 00:01:12,150
+composer Kemudian
+
+28
+00:01:12,150 --> 00:01:15,549
+create-project Kemudian kode ini tempat
+
+29
+00:01:15,549 --> 00:01:18,790
+kemudian F starters kemudian nama
+
+30
+00:01:18,790 --> 00:01:21,150
+projectnya disini Saya beri nama
+
+31
+00:01:21,150 --> 00:01:24,720
+beken enter
+
+32
+00:01:24,750 --> 00:01:27,610
+setelah instalasi selesai masuk ke
+
+33
+00:01:27,610 --> 00:01:31,630
+folder bike VCD been
+
+34
+00:01:31,630 --> 00:01:34,100
+Nah sekarang setelah masuk ke dalam
+
+35
+00:01:34,100 --> 00:01:36,830
+folder BKN kemudian jalankan Project
+
+36
+00:01:36,830 --> 00:01:39,430
+kita dengan perintah PHP
+
+37
+00:01:39,430 --> 00:01:43,670
+sport terb MP3 kita berjalan di
+
+38
+00:01:43,670 --> 00:01:46,700
+localhost port 8080 pergi ke browser
+
+39
+00:01:46,700 --> 00:01:50,500
+kemudian ketikkan localhost port
+
+40
+00:01:50,500 --> 00:01:54,080
+8080 nah jika tampil pesan Welcome to
+
+41
+00:01:54,080 --> 00:01:56,150
+koordinator seperti ini itu artinya kita
+
+42
+00:01:56,150 --> 00:01:59,050
+telah berhasil menginstal koordinator
+
+43
+00:01:59,050 --> 00:02:01,490
+selanjutnya buat database baru pada
+
+44
+00:02:01,490 --> 00:02:03,680
+meski l disini saya menggunakan xampp
+
+45
+00:02:03,680 --> 00:02:06,610
+jalankan Apache dan MySQL ya
+
+46
+00:02:06,610 --> 00:02:10,009
+kemudian pergi ke browser dan kunjungi
+
+47
+00:02:10,009 --> 00:02:12,970
+localhost flash PHP
+
+48
+00:02:12,970 --> 00:02:14,650
+myadmin
+
+49
+00:02:14,650 --> 00:02:17,780
+pergi ke database kemudian saya membuat
+
+50
+00:02:17,780 --> 00:02:19,460
+database baru disini saya bernama
+
+51
+00:02:19,460 --> 00:02:23,440
+fullstack DB Grid kembali ke vs chord
+
+52
+00:02:23,440 --> 00:02:27,920
+dan disini terdapat file in B dan seakan
+
+53
+00:02:27,920 --> 00:02:31,640
+Rindu Hai menjadi dot yay
+
+54
+00:02:31,640 --> 00:02:35,780
+kemudian Disini saya akan ganti menjadi
+
+55
+00:02:35,780 --> 00:02:37,520
+development
+
+56
+00:02:37,520 --> 00:02:41,870
+dan disini pada database default
+
+57
+00:02:41,870 --> 00:02:44,900
+databasenya saya akan ganti menjadi
+
+58
+00:02:44,900 --> 00:02:48,180
+fullstack TB dan passwordnya seakan
+
+59
+00:02:48,180 --> 00:02:51,120
+hilangkan kembali ke Terminal seakan
+
+60
+00:02:51,120 --> 00:02:52,860
+hentikan dulu terminalnya dengan menekan
+
+61
+00:02:52,860 --> 00:02:55,470
+control C kemudian saya akan membuat
+
+62
+00:02:55,470 --> 00:02:57,750
+table pada meski l dan saya akan gunakan
+
+63
+00:02:57,750 --> 00:03:01,530
+fitur migration dari kodenya tempat saya
+
+64
+00:03:01,530 --> 00:03:03,030
+akan membuat file migration disini
+
+65
+00:03:03,030 --> 00:03:07,490
+dengan mengetikkan perintah PHP sport
+
+66
+00:03:07,490 --> 00:03:11,520
+make migration kemudian nama migration
+
+67
+00:03:11,520 --> 00:03:14,450
+nya di sini Saya beri nama produk
+
+68
+00:03:14,450 --> 00:03:18,000
+kemudian pergi ke folder RF database
+
+69
+00:03:18,000 --> 00:03:20,490
+migration dan disini terdapat sebuah
+
+70
+00:03:20,490 --> 00:03:21,470
+file
+
+71
+00:03:21,470 --> 00:03:24,270
+dan pada function up seakan buat
+
+72
+00:03:24,270 --> 00:03:28,720
+migration disini this word
+
+73
+00:03:28,720 --> 00:03:30,030
+ini sini
+
+74
+00:03:30,030 --> 00:03:34,440
+enfield dan saya akan duplikat kode ini
+
+75
+00:03:34,440 --> 00:03:39,420
+kemudian disini Edge kemudian disini
+
+76
+00:03:39,420 --> 00:03:42,760
+create table dan pada file-nya saya akan
+
+77
+00:03:42,760 --> 00:03:44,830
+memasukkan filenya disini pertama yaitu
+
+78
+00:03:44,830 --> 00:03:46,290
+id
+
+79
+00:03:46,290 --> 00:03:49,830
+dan seakan duplikat lagi dan pada ID
+
+80
+00:03:49,830 --> 00:03:52,290
+tipe datanya yaitu
+
+81
+00:03:52,290 --> 00:03:53,850
+integer
+
+82
+00:03:53,850 --> 00:03:56,820
+kemudian constraint
+
+83
+00:03:56,820 --> 00:03:59,910
+dan saya akan berikan konsernya itu lima
+
+84
+00:03:59,910 --> 00:04:04,890
+dan disini cara menambahkan oton Clement
+
+85
+00:04:05,220 --> 00:04:08,980
+Jalan Kopi ini dan pastekan di sini file
+
+86
+00:04:08,980 --> 00:04:10,800
+yang kedua yaitu
+
+87
+00:04:10,800 --> 00:04:14,250
+taito dan saya akan berikan tipe datanya
+
+88
+00:04:14,250 --> 00:04:17,230
+varchar dan saya akan berikan konsernya
+
+89
+00:04:17,230 --> 00:04:21,399
+200 kemudian paste-kan lagi sini dan Fit
+
+90
+00:04:21,399 --> 00:04:24,370
+berikutnya yaitu Price tipe datanya
+
+91
+00:04:24,370 --> 00:04:26,860
+Indah jeruk kemudian konsernya seakan
+
+92
+00:04:26,860 --> 00:04:29,270
+berikan 11 selanjutnya ia menambahkan
+
+93
+00:04:29,270 --> 00:04:32,659
+primary key-nya disini yaitu id sesuai
+
+94
+00:04:32,659 --> 00:04:36,199
+dengan fitnya disini kemudian seakan set
+
+95
+00:04:36,199 --> 00:04:38,900
+menjadi true kemudian disini nama table
+
+96
+00:04:38,900 --> 00:04:41,960
+ya dan saya akan berikan nama tebalnya
+
+97
+00:04:41,960 --> 00:04:44,479
+itu produk simpan kembali ke Terminal
+
+98
+00:04:44,479 --> 00:04:46,749
+dan ketikkan perintah PHP
+
+99
+00:04:46,749 --> 00:04:51,139
+sport migrate kembali ke browser seri
+
+100
+00:04:51,139 --> 00:04:53,870
+long nah disini pada fullstack GB
+
+101
+00:04:53,870 --> 00:04:56,960
+terdapat sebuah table yaitu produk kita
+
+102
+00:04:56,960 --> 00:04:59,059
+bisa lihat strukturnya disini dengan
+
+103
+00:04:59,059 --> 00:05:01,610
+file-nya ID title place dengan primer
+
+104
+00:05:01,610 --> 00:05:05,180
+isinya yaitu id selanjutnya Disini saya
+
+105
+00:05:05,180 --> 00:05:07,399
+akan membuat sebuah file model dengan
+
+106
+00:05:07,399 --> 00:05:09,430
+cara PHP
+
+107
+00:05:09,430 --> 00:05:14,240
+sport make model kemudian nama modelnya
+
+108
+00:05:14,240 --> 00:05:18,770
+disini Saya beri nama produk model Maka
+
+109
+00:05:18,770 --> 00:05:21,289
+terdapat sebuah file model disini yaitu
+
+110
+00:05:21,289 --> 00:05:23,419
+produk model kemudian saya juga akan
+
+111
+00:05:23,419 --> 00:05:24,669
+membuat sebuah
+
+112
+00:05:24,669 --> 00:05:28,669
+controller.php sport
+
+113
+00:05:28,740 --> 00:05:32,039
+next controller kemudian seluruh namanya
+
+114
+00:05:32,039 --> 00:05:35,160
+yaitu produk dan saya akan memberikan
+
+115
+00:05:35,160 --> 00:05:39,319
+opsi disini strip dua kali kemudian
+
+116
+00:05:39,319 --> 00:05:42,660
+result agar nanti controller ini memang
+
+117
+00:05:42,660 --> 00:05:46,130
+extend risoles controller
+
+118
+00:05:46,520 --> 00:05:49,590
+kemudian buka file modelnya produk model
+
+119
+00:05:49,590 --> 00:05:52,319
+dan disini terdapat table dan tebalnya
+
+120
+00:05:52,319 --> 00:05:54,750
+itu produk kemudian primer akhirnya
+
+121
+00:05:54,750 --> 00:05:58,710
+yaitu id dan disini pada logfile seakan
+
+122
+00:05:58,710 --> 00:06:00,110
+tambahkan di sini
+
+123
+00:06:00,110 --> 00:06:05,970
+title kemudian price simpan pergi ke
+
+124
+00:06:05,970 --> 00:06:08,639
+controller kemudian produk controller
+
+125
+00:06:08,639 --> 00:06:11,280
+dan Disini saya akan menggunakan Epi
+
+126
+00:06:11,280 --> 00:06:14,690
+respon trade Yus
+
+127
+00:06:14,690 --> 00:06:19,740
+CodeIgniter kemudian Epi kemudian respon
+
+128
+00:06:19,740 --> 00:06:20,630
+trade
+
+129
+00:06:20,630 --> 00:06:23,099
+dan saya akan gunakan respon triknya
+
+130
+00:06:23,099 --> 00:06:27,419
+disini Yus respon trade dan saya juga
+
+131
+00:06:27,419 --> 00:06:28,720
+akan memanggil
+
+132
+00:06:28,720 --> 00:06:33,940
+sandalnya Yus F Kemudian modals Kemudian
+
+133
+00:06:33,940 --> 00:06:38,350
+nama modelnya yaitu produk model dan
+
+134
+00:06:38,350 --> 00:06:40,780
+disini terdapat beberapa function yang
+
+135
+00:06:40,780 --> 00:06:43,570
+pertama yaitu fungsi index show kemudian
+
+136
+00:06:43,570 --> 00:06:47,800
+menu kemudian create edit update dan
+
+137
+00:06:47,800 --> 00:06:50,410
+delete dan disini Saya tidak membutuhkan
+
+138
+00:06:50,410 --> 00:06:54,970
+function edit seakan hapus kemudian saya
+
+139
+00:06:54,970 --> 00:06:57,300
+juga tidak membutuhkan function new
+
+140
+00:06:57,300 --> 00:06:59,650
+dan saya hanya menyisakan function
+
+141
+00:06:59,650 --> 00:07:02,590
+indeks show create update dan delete
+
+142
+00:07:02,590 --> 00:07:05,260
+Kemudian pada function indeks yaitu
+
+143
+00:07:05,260 --> 00:07:09,490
+modal kemudian new product model
+
+144
+00:07:09,490 --> 00:07:12,070
+kemudian saya membuat sebuah variabel
+
+145
+00:07:12,070 --> 00:07:13,650
+bernama data
+
+146
+00:07:13,650 --> 00:07:17,200
+kemudian modal dan seakan menggunakan
+
+147
+00:07:17,200 --> 00:07:19,950
+fungsi disini find old
+
+148
+00:07:19,950 --> 00:07:24,510
+dan seakan riten responnya this
+
+149
+00:07:24,510 --> 00:07:27,730
+respon kemudian second parsing disini
+
+150
+00:07:27,730 --> 00:07:30,499
+datanya ke cuman kemudian saya akan
+
+151
+00:07:30,499 --> 00:07:33,319
+konfigurasi rautnya agar kita dapat
+
+152
+00:07:33,319 --> 00:07:35,599
+melakukan pengujian terhadap Epic kita
+
+153
+00:07:35,599 --> 00:07:39,430
+pergi ke config kemudian raut
+
+154
+00:07:39,430 --> 00:07:42,669
+dan Disini saya akan duplikat kode ini
+
+155
+00:07:42,669 --> 00:07:45,919
+kemudian seakan ganti ini menjadi
+
+156
+00:07:45,919 --> 00:07:47,259
+resource
+
+157
+00:07:47,259 --> 00:07:49,909
+kemudian Disini saya akan masukkan
+
+158
+00:07:49,909 --> 00:07:53,059
+controllernya yaitu produk kemudian saya
+
+159
+00:07:53,059 --> 00:07:56,360
+akan hapus ini dan simpan Nah untuk
+
+160
+00:07:56,360 --> 00:07:58,219
+melakukan pengujian Disini saya akan
+
+161
+00:07:58,219 --> 00:08:00,199
+menggunakan Postman jika Anda belum
+
+162
+00:08:00,199 --> 00:08:02,180
+memiliki Postman silahkan download di
+
+163
+00:08:02,180 --> 00:08:04,399
+situs resminya dan install di komputer
+
+164
+00:08:04,399 --> 00:08:06,229
+anda pertama ASEAN jalan melulu
+
+165
+00:08:06,229 --> 00:08:09,699
+servernya dengan perintah PHP
+
+166
+00:08:09,699 --> 00:08:11,649
+parts er
+
+167
+00:08:11,649 --> 00:08:14,960
+kemudian buka Postman dan disini
+
+168
+00:08:14,960 --> 00:08:16,999
+methodnya get kemudian disini
+
+169
+00:08:16,999 --> 00:08:21,069
+handphonenya yaitu http kemudian
+
+170
+00:08:21,069 --> 00:08:25,749
+localhost port 8080 kemudian flash
+
+171
+00:08:25,749 --> 00:08:28,740
+produk sendok
+
+172
+00:08:28,740 --> 00:08:31,319
+Hai maka disini saya mendapatkan respon
+
+173
+00:08:31,319 --> 00:08:34,649
+dengan 100-200 dan disini saya
+
+174
+00:08:34,649 --> 00:08:37,349
+mendapatkan MTR itu artinya handphone
+
+175
+00:08:37,349 --> 00:08:39,719
+kita berjalan dengan baik hanya saja
+
+176
+00:08:39,719 --> 00:08:42,020
+kita belum memiliki datanya
+
+177
+00:08:42,020 --> 00:08:44,820
+kembali ke controller produk seakan
+
+178
+00:08:44,820 --> 00:08:46,370
+tutup ini
+
+179
+00:08:46,370 --> 00:08:49,230
+dan selanjutnya seakan membuat function
+
+180
+00:08:49,230 --> 00:08:52,350
+untuk get single data sekarang copy ini
+
+181
+00:08:52,350 --> 00:08:55,980
+kemudian Jalan pastikan disini nah
+
+182
+00:08:55,980 --> 00:08:58,230
+Disini saya akan menggunakan fine dan
+
+183
+00:08:58,230 --> 00:09:00,839
+second fine datanya by ID seakan
+
+184
+00:09:00,839 --> 00:09:02,510
+tambahkan Disney ID
+
+185
+00:09:02,510 --> 00:09:05,760
+kemudian disini dollar Id dolor Id ini
+
+186
+00:09:05,760 --> 00:09:07,500
+ngambil dari parameternya di sini
+
+187
+00:09:07,500 --> 00:09:10,399
+kemudian di sini saya akan menambahkan
+
+188
+00:09:10,399 --> 00:09:12,360
+indexnya saya akan menambahkan isi
+
+189
+00:09:12,360 --> 00:09:15,930
+index0 karena ini single data kemudian
+
+190
+00:09:15,930 --> 00:09:17,490
+Disini saya akan melakukan sedikit
+
+191
+00:09:17,490 --> 00:09:21,630
+validasi if jika datanya tidak ditemukan
+
+192
+00:09:21,630 --> 00:09:26,930
+maka seakan meritan this file
+
+193
+00:09:26,930 --> 00:09:30,100
+not found me Hai kemudian Disini saya
+
+194
+00:09:30,100 --> 00:09:33,899
+akan memberikan pesan no data found
+
+195
+00:09:33,899 --> 00:09:36,129
+selanjutnya saya akan membuat sebuah
+
+196
+00:09:36,129 --> 00:09:38,889
+function untuk great data di sini saya
+
+197
+00:09:38,889 --> 00:09:40,660
+akan membuat sebuah variabel bernama
+
+198
+00:09:40,660 --> 00:09:43,019
+data kemudian
+
+199
+00:09:43,019 --> 00:09:46,290
+disini terdapat itu
+
+200
+00:09:46,290 --> 00:09:49,019
+kemudian disini this
+
+201
+00:09:49,019 --> 00:09:53,970
+reques Kemudian getvar Kemudian disini
+
+202
+00:09:53,970 --> 00:09:58,269
+title dan seakan duplikat ini dan disini
+
+203
+00:09:58,269 --> 00:10:02,040
+yaitu Price kemudian disini juga
+
+204
+00:10:02,040 --> 00:10:05,319
+price dan seakan memanggil instan dari
+
+205
+00:10:05,319 --> 00:10:10,209
+modelnya model kemudian new product
+
+206
+00:10:10,209 --> 00:10:13,860
+model kemudian disini model
+
+207
+00:10:13,860 --> 00:10:17,579
+save dan seakan parsing datanya disini
+
+208
+00:10:17,579 --> 00:10:20,790
+kemudian saya akan memberikan respon
+
+209
+00:10:20,790 --> 00:10:25,110
+right then this respon
+
+210
+00:10:25,110 --> 00:10:28,730
+kredit dan saya akan membuat customer
+
+211
+00:10:28,730 --> 00:10:30,160
+bonnya disini
+
+212
+00:10:30,160 --> 00:10:32,050
+respon
+
+213
+00:10:32,050 --> 00:10:36,500
+dan disini terdapat status statusnya
+
+214
+00:10:36,500 --> 00:10:39,040
+yaitu
+
+215
+00:10:39,910 --> 00:10:44,000
+2019 disini terdapat error dan errornya
+
+216
+00:10:44,000 --> 00:10:45,610
+seset Nul
+
+217
+00:10:45,610 --> 00:10:49,839
+kemudian disini terdapat message
+
+218
+00:10:51,190 --> 00:10:53,529
+kemudian bisnis sukses
+
+219
+00:10:53,529 --> 00:10:58,040
+dan messagenya yaitu data Insert
+
+220
+00:10:58,040 --> 00:11:02,380
+kemudian seakan parsing responnya disini
+
+221
+00:11:02,380 --> 00:11:06,170
+simpan kembali ke Postman dan Disini
+
+222
+00:11:06,170 --> 00:11:08,510
+saya akan ganti methodnya menjadi pos
+
+223
+00:11:08,510 --> 00:11:11,959
+dan seakan pergi ke bodi disini kemudian
+
+224
+00:11:11,959 --> 00:11:15,170
+second pergi ke roh dan ini sudah
+
+225
+00:11:15,170 --> 00:11:18,320
+menjadi Jason dan seakan ketikan datanya
+
+226
+00:11:18,320 --> 00:11:21,769
+disini dalam format Jason yang pertama
+
+227
+00:11:21,769 --> 00:11:24,070
+kynya yaitu title
+
+228
+00:11:24,070 --> 00:11:27,829
+kemudian disini walinya saran masukan
+
+229
+00:11:27,829 --> 00:11:31,320
+disini produk 21 misalnya kemudian Ki
+
+230
+00:11:31,320 --> 00:11:33,290
+yang kedua yaitu prize
+
+231
+00:11:33,290 --> 00:11:36,649
+wahyunya seakan masukkan
+
+232
+00:11:36,649 --> 00:11:40,140
+999 seperti ini kemudian klik center
+
+233
+00:11:40,140 --> 00:11:43,110
+Quest maka disini saya mendapatkan pesan
+
+234
+00:11:43,110 --> 00:11:47,130
+statusnya 2011 Ai dengan disini 2001
+
+235
+00:11:47,130 --> 00:11:49,830
+kreatif errornya nol kemudian messagenya
+
+236
+00:11:49,830 --> 00:11:52,920
+data instead segan ganti methodnya
+
+237
+00:11:52,920 --> 00:11:55,560
+menjadi get lagi get dengan handphone
+
+238
+00:11:55,560 --> 00:11:59,399
+yang sama sendok wes maka sekarang kita
+
+239
+00:11:59,399 --> 00:12:01,709
+telah memiliki satu data di sini
+
+240
+00:12:01,709 --> 00:12:04,410
+kemudian kita juga bisa menguji end
+
+241
+00:12:04,410 --> 00:12:06,810
+Point untuk get single datanya secara
+
+242
+00:12:06,810 --> 00:12:09,300
+tambahkan di sini idenya yaitu satu
+
+243
+00:12:09,300 --> 00:12:11,940
+karena kita punya data dengan ed1 disini
+
+244
+00:12:11,940 --> 00:12:14,880
+sendok wes Nah maka kita sekarang
+
+245
+00:12:14,880 --> 00:12:17,399
+memiliki data dengan AIDS satu jika
+
+246
+00:12:17,399 --> 00:12:20,790
+seganti ini menjadi dua maka kita
+
+247
+00:12:20,790 --> 00:12:23,430
+mendapatkan status error 404 dengan
+
+248
+00:12:23,430 --> 00:12:26,190
+pesan no data found sesuai dengan yang
+
+249
+00:12:26,190 --> 00:12:29,139
+kita set sebelumnya kemudian di bisa
+
+250
+00:12:29,139 --> 00:12:31,860
+juga akan menambahkan sedikit validasi
+
+251
+00:12:31,860 --> 00:12:34,300
+Disini saya akan menggunakan hell
+
+252
+00:12:34,300 --> 00:12:38,279
+perform dari koordinator
+
+253
+00:12:38,879 --> 00:12:40,560
+form
+
+254
+00:12:40,560 --> 00:12:45,060
+dan Disini saya akan menambahkan arusnya
+
+255
+00:12:45,060 --> 00:12:49,269
+yang pertama harusnya untuk title dan
+
+256
+00:12:49,269 --> 00:12:51,610
+disini Saya hanya menambahkan basic
+
+257
+00:12:51,610 --> 00:12:53,589
+rules Anda bisa menambahkannya menjadi
+
+258
+00:12:53,589 --> 00:12:55,540
+lebih kompleks lagi disini Saya hanya
+
+259
+00:12:55,540 --> 00:12:58,860
+akan menggunakan required
+
+260
+00:12:58,860 --> 00:13:01,810
+dan seakan duplikat ini kemudian disini
+
+261
+00:13:01,810 --> 00:13:03,000
+untuk pricenya
+
+262
+00:13:03,000 --> 00:13:06,939
+juga adikku air kemudian disini sebelum
+
+263
+00:13:06,939 --> 00:13:11,220
+simpan seakan memvoli dasi If
+
+264
+00:13:11,220 --> 00:13:12,899
+This
+
+265
+00:13:12,899 --> 00:13:15,269
+validated
+
+266
+00:13:15,269 --> 00:13:18,370
+Rose jika tidak sesuai dengan arus yang
+
+267
+00:13:18,370 --> 00:13:21,839
+kita tetapkan ini maka saya akan berikan
+
+268
+00:13:21,839 --> 00:13:25,930
+this file kemudian disini seakan
+
+269
+00:13:25,930 --> 00:13:29,500
+mempersing errornya this is Hai
+
+270
+00:13:29,500 --> 00:13:35,139
+validator kemudian get error Sutini
+
+271
+00:13:35,139 --> 00:13:39,110
+simpan kembali kembali ke Postman dan
+
+272
+00:13:39,110 --> 00:13:41,480
+sayuran ganti methodnya kembali ke pos
+
+273
+00:13:41,480 --> 00:13:44,389
+dan n poinnya slash produk dan jika
+
+274
+00:13:44,389 --> 00:13:47,440
+titelnya disini misalnya saya kosongkan
+
+275
+00:13:47,440 --> 00:13:50,870
+Saint reques Makasih mendapatkan pesan
+
+276
+00:13:50,870 --> 00:13:54,740
+disini dengan 100-400 the title field is
+
+277
+00:13:54,740 --> 00:13:57,199
+required selanjutnya saya akan membuat
+
+278
+00:13:57,199 --> 00:14:00,260
+function untuk update-nya sayang copy
+
+279
+00:14:00,260 --> 00:14:03,769
+semua kode dari create ini copy kemudian
+
+280
+00:14:03,769 --> 00:14:06,800
+Seakan pastekan Di function update
+
+281
+00:14:06,800 --> 00:14:08,990
+disini nah disini Statusnya sekarang
+
+282
+00:14:08,990 --> 00:14:10,180
+ganti menjadi
+
+283
+00:14:10,180 --> 00:14:13,839
+200 dan pesannya seakan ganti menjadi
+
+284
+00:14:13,839 --> 00:14:16,660
+data update dan saya akan gunakan
+
+285
+00:14:16,660 --> 00:14:19,540
+generic respon seperti ini kemudian
+
+286
+00:14:19,540 --> 00:14:22,420
+Disini saya akan ganti menjadi
+
+287
+00:14:22,420 --> 00:14:25,190
+update dan kita update-nya berdasarkan
+
+288
+00:14:25,190 --> 00:14:28,740
+ID serat tambahkan di sini id-nya nah id
+
+289
+00:14:28,740 --> 00:14:31,940
+ini berasal dari parameternya disini
+
+290
+00:14:31,940 --> 00:14:35,130
+simpan kembali ke Postman kemudian
+
+291
+00:14:35,130 --> 00:14:38,279
+seakan ganti methodnya menjadi page Anda
+
+292
+00:14:38,279 --> 00:14:39,990
+juga bisa menggunakan pot akan tetapi
+
+293
+00:14:39,990 --> 00:14:42,060
+saya di sini menggunakan PC dan
+
+294
+00:14:42,060 --> 00:14:43,980
+handphone nya seakan tambahkan di sini
+
+295
+00:14:43,980 --> 00:14:46,410
+idenya yaitu satu karena kita punya data
+
+296
+00:14:46,410 --> 00:14:49,320
+dengan AIDS satu dan disini pada datanya
+
+297
+00:14:49,320 --> 00:14:53,070
+siaran masukkan di sini misalnya produk
+
+298
+00:14:53,070 --> 00:14:57,020
+update dan pricenya seakan ganti menjadi
+
+299
+00:14:57,020 --> 00:15:01,410
+123 misalnya kemudian Centre quest Nah
+
+300
+00:15:01,410 --> 00:15:03,930
+maka disini kita mendapatkan status 200
+
+301
+00:15:03,930 --> 00:15:06,180
+dan besarnya data update itu artinya
+
+302
+00:15:06,180 --> 00:15:08,310
+kita berhasil mengupdate datanya
+
+303
+00:15:08,310 --> 00:15:10,589
+kemudian ganti methodnya menjadi get
+
+304
+00:15:10,589 --> 00:15:12,330
+untuk memastikan perubahan pada ratanya
+
+305
+00:15:12,330 --> 00:15:15,930
+sendok es Nah maka sekarang data dengan
+
+306
+00:15:15,930 --> 00:15:18,029
+AIDS satu liternya berubah menjadi
+
+307
+00:15:18,029 --> 00:15:20,250
+produk update dan pricenya berubah
+
+308
+00:15:20,250 --> 00:15:22,100
+menjadi 123
+
+309
+00:15:22,100 --> 00:15:24,839
+kemudian Disney juga akan melakukan
+
+310
+00:15:24,839 --> 00:15:27,149
+sedikit validasi untuk function
+
+311
+00:15:27,149 --> 00:15:30,490
+update-nya ini siaran copy beberapa kode
+
+312
+00:15:30,490 --> 00:15:33,389
+pada fashion show sedang copy kode ini
+
+313
+00:15:33,389 --> 00:15:37,360
+kemudian Seakan pastekan Di sini sebelum
+
+314
+00:15:37,360 --> 00:15:39,879
+update nah disini saya ganti variabel
+
+315
+00:15:39,879 --> 00:15:44,560
+data ini menjadi find by ID kemudian
+
+316
+00:15:44,560 --> 00:15:47,589
+cairan kopi ini dan pastekan di sini Nah
+
+317
+00:15:47,589 --> 00:15:49,420
+di sini kita melakukan sedikit validasi
+
+318
+00:15:49,420 --> 00:15:52,209
+Jika data yang ingin kita update id-nya
+
+319
+00:15:52,209 --> 00:15:54,759
+tidak ditemukan maka kita berikan respon
+
+320
+00:15:54,759 --> 00:15:57,819
+dengan pesan no data found kembali ke
+
+321
+00:15:57,819 --> 00:16:00,040
+Postman sekarang ganti methodnya menjadi
+
+322
+00:16:00,040 --> 00:16:03,189
+pecel lagi Kemudian jika seeing in
+
+323
+00:16:03,189 --> 00:16:05,889
+update dengan id2 misalnya sendok es
+
+324
+00:16:05,889 --> 00:16:08,500
+maka sekarang kita mendapatkan pesan no
+
+325
+00:16:08,500 --> 00:16:11,790
+data found dengan statusnya 404
+
+326
+00:16:11,790 --> 00:16:13,990
+selanjutnya saya akan membuat function
+
+327
+00:16:13,990 --> 00:16:16,889
+untuk dilihatnya seakan copy dari sini
+
+328
+00:16:16,889 --> 00:16:20,620
+sedang copy kode ini dan saya pastekan
+
+329
+00:16:20,620 --> 00:16:22,839
+di function dilihatnya nah Disini saya
+
+330
+00:16:22,839 --> 00:16:24,480
+akan ganti menjadi
+
+331
+00:16:24,480 --> 00:16:27,279
+delete dan dilihatnya berdasarkan ID
+
+332
+00:16:27,279 --> 00:16:30,260
+seakan hilangkan data Hai dan pesannya
+
+333
+00:16:30,260 --> 00:16:34,550
+seakan ganti menjadi data delete Sutini
+
+334
+00:16:34,550 --> 00:16:38,120
+simpan kembali kembali ke Postman seakan
+
+335
+00:16:38,120 --> 00:16:39,920
+ganti method yang menjadi delete dan
+
+336
+00:16:39,920 --> 00:16:43,579
+jika saya delete dengan ID 2 sendok es
+
+337
+00:16:43,579 --> 00:16:46,880
+maka no data found dan jika saya dilihat
+
+338
+00:16:46,880 --> 00:16:50,480
+dengan AIDS satu sendok es maka kita
+
+339
+00:16:50,480 --> 00:16:52,399
+mendapatkan pesan data delete Ted dengan
+
+340
+00:16:52,399 --> 00:16:54,800
+100-200 itu artinya kita berhasil
+
+341
+00:16:54,800 --> 00:16:57,440
+menghapus data dengan AIDS satu ini Nah
+
+342
+00:16:57,440 --> 00:17:00,529
+untuk memastikannya segment yang menjadi
+
+343
+00:17:00,529 --> 00:17:03,380
+get lagi sendok es Nah sekarang kita
+
+344
+00:17:03,380 --> 00:17:06,799
+tidak menemukan data dengan id1 kemudian
+
+345
+00:17:06,799 --> 00:17:08,990
+seakan Insert beberapa data untuk
+
+346
+00:17:08,990 --> 00:17:11,109
+mempermudah kita melakukan pengujian
+
+347
+00:17:11,109 --> 00:17:12,669
+different
+
+348
+00:17:12,669 --> 00:17:15,859
+second ngerti metode menjadi pos dan n
+
+349
+00:17:15,859 --> 00:17:18,829
+poinnya slash produk yang pertama seakan
+
+350
+00:17:18,829 --> 00:17:21,169
+Insert produknya di sini yang pertama
+
+351
+00:17:21,169 --> 00:17:24,919
+produk satu sendok wes kemudian ini
+
+352
+00:17:24,919 --> 00:17:27,470
+seakan ganti menjadi produk2 pricenya
+
+353
+00:17:27,470 --> 00:17:29,940
+second ngerti menjadi suatu nih sendok
+
+354
+00:17:29,940 --> 00:17:33,030
+wes kemudian produk tiga resinya saya
+
+355
+00:17:33,030 --> 00:17:35,030
+ganti menjadi seperti ini
+
+356
+00:17:35,030 --> 00:17:38,850
+sendok Es sekarang kita kembalikan ke
+
+357
+00:17:38,850 --> 00:17:42,630
+method get Sanex wes sekarang kita punya
+
+358
+00:17:42,630 --> 00:17:45,320
+3data disini
+
+359
+00:17:45,320 --> 00:17:47,460
+selanjutnya saya akan membuat sebuah
+
+360
+00:17:47,460 --> 00:17:50,010
+filter untuk chord atau cross-origin
+
+361
+00:17:50,010 --> 00:17:53,010
+resseuring agar nanti Epic kita dapat
+
+362
+00:17:53,010 --> 00:17:55,440
+diakses dari luar domain kembali ke
+
+363
+00:17:55,440 --> 00:17:58,050
+Terminal saya akan hentikan dulu
+
+364
+00:17:58,050 --> 00:17:59,880
+terminalnya dengan menekan control C
+
+365
+00:17:59,880 --> 00:18:02,160
+kemudian saya akan membuat sebuah filter
+
+366
+00:18:02,160 --> 00:18:08,460
+ke HP Bolt Max filter kemudian nama
+
+367
+00:18:08,460 --> 00:18:11,360
+filternya disini saya bernama chord
+
+368
+00:18:11,360 --> 00:18:13,260
+kemudian saya akan jalankan lagi
+
+369
+00:18:13,260 --> 00:18:15,200
+servernya
+
+370
+00:18:15,200 --> 00:18:19,980
+pergi ke filter kemudian kode nah disini
+
+371
+00:18:19,980 --> 00:18:22,110
+Saya hanya perlu menambahkan kode pada
+
+372
+00:18:22,110 --> 00:18:25,050
+function before seakan copy dari catatan
+
+373
+00:18:25,050 --> 00:18:28,260
+saya kemudian saves di sini kemudian di
+
+374
+00:18:28,260 --> 00:18:30,450
+sini header
+
+375
+00:18:30,450 --> 00:18:32,590
+access-control-allow-origin ini adalah
+
+376
+00:18:32,590 --> 00:18:35,020
+domain yang diizinkan disini saya
+
+377
+00:18:35,020 --> 00:18:37,059
+menggunakan tanda bintang artinya dapat
+
+378
+00:18:37,059 --> 00:18:39,370
+diakses oleh semua domain kemudian
+
+379
+00:18:39,370 --> 00:18:43,110
+terdapat headernya yaitu terdapat IP ipx
+
+380
+00:18:43,110 --> 00:18:46,000
+kemudian Origin Kemudian
+
+381
+00:18:46,000 --> 00:18:49,020
+x-requested-with Kemudian content-type
+
+382
+00:18:49,020 --> 00:18:52,990
+Kemudian except kemudian access control
+
+383
+00:18:52,990 --> 00:18:57,400
+requested method kemudian autorizhed dan
+
+384
+00:18:57,400 --> 00:19:00,250
+selanjutnya ada methodnya disini m yang
+
+385
+00:19:00,250 --> 00:19:05,460
+gede izinkan itu get pos option pet food
+
+386
+00:19:05,460 --> 00:19:08,620
+kemudian Delete nah jika methodnya absen
+
+387
+00:19:08,620 --> 00:19:11,049
+maka kita tidak diizinkan simpan
+
+388
+00:19:11,049 --> 00:19:14,320
+kemudian pergi ke konflik kemudian
+
+389
+00:19:14,320 --> 00:19:15,900
+filter
+
+390
+00:19:15,900 --> 00:19:18,520
+nah Disini saya akan tambahkan filternya
+
+391
+00:19:18,520 --> 00:19:21,400
+seakan duplikat kode ini kemudian disini
+
+392
+00:19:21,400 --> 00:19:25,710
+segan ganti menjadi kelasnya yaitu chord
+
+393
+00:19:25,710 --> 00:19:27,640
+kemudian disini kita harus menambahkan
+
+394
+00:19:27,640 --> 00:19:31,840
+feat Nah itu F kemudian
+
+395
+00:19:31,840 --> 00:19:33,640
+filter
+
+396
+00:19:33,640 --> 00:19:36,490
+kemudian disini second ganti menjadi
+
+397
+00:19:36,490 --> 00:19:39,250
+chord Sutini
+
+398
+00:19:39,250 --> 00:19:42,710
+kemudian disini pada publik Global
+
+399
+00:19:42,710 --> 00:19:46,990
+before saya tambahkan chord-nya disini
+
+400
+00:19:46,990 --> 00:19:50,390
+segini simpan nah sampai di sini
+
+401
+00:19:50,390 --> 00:19:52,330
+pembuatan be'en telah selesai
+
+402
+00:19:52,330 --> 00:19:54,679
+selanjutnya kita akan berfokus pada
+
+403
+00:19:54,679 --> 00:19:58,309
+front-end untuk front end Disini saya
+
+404
+00:19:58,309 --> 00:20:01,010
+akan menggunakan riak Jazz untuk dapat
+
+405
+00:20:01,010 --> 00:20:03,049
+membuat Project menggunakan riak Jazz
+
+406
+00:20:03,049 --> 00:20:05,240
+pertama Anda harus menginstall terlebih
+
+407
+00:20:05,240 --> 00:20:08,210
+dahulu di komputer anda yaitu nojs
+
+408
+00:20:08,210 --> 00:20:10,520
+silahkan download nojs sesuai dengan
+
+409
+00:20:10,520 --> 00:20:12,620
+platform Anda kemudian install di
+
+410
+00:20:12,620 --> 00:20:15,110
+komputer anda jika nojs telah terinstall
+
+411
+00:20:15,110 --> 00:20:16,299
+di komputer anda
+
+412
+00:20:16,299 --> 00:20:19,100
+qualifies chord Disini saya akan kembali
+
+413
+00:20:19,100 --> 00:20:22,299
+ke Terminal kemudian new Terminal
+
+414
+00:20:22,299 --> 00:20:24,710
+nah disini saya berada didalam folder
+
+415
+00:20:24,710 --> 00:20:27,200
+fullstack bukan di dalam folder beken
+
+416
+00:20:27,200 --> 00:20:28,740
+Nah untuk
+
+417
+00:20:28,740 --> 00:20:30,600
+Hai nojs terinstall dengan baik di
+
+418
+00:20:30,600 --> 00:20:32,220
+komputer anda anda tinggal mengetikkan
+
+419
+00:20:32,220 --> 00:20:35,040
+perintah not kemudian strip V seperti
+
+420
+00:20:35,040 --> 00:20:37,950
+ini nah disini saya menggunakan node.js
+
+421
+00:20:37,950 --> 00:20:41,700
+versi 16 titik tiga kemudian ujjuu Ga
+
+422
+00:20:41,700 --> 00:20:44,340
+inget dengan NPM Dan untuk memastikan
+
+423
+00:20:44,340 --> 00:20:46,440
+MBM terinstall dengan baik di komputer
+
+424
+00:20:46,440 --> 00:20:49,740
+anda ketikkan perintah NPM tripfez
+
+425
+00:20:49,740 --> 00:20:52,410
+seperti ini nah disini saya menggunakan
+
+426
+00:20:52,410 --> 00:20:54,350
+m bersih
+
+427
+00:20:54,350 --> 00:20:58,530
+7.22 Setelah nojs dan NPM terinstall di
+
+428
+00:20:58,530 --> 00:21:00,809
+komputer anda barulah Anda dapat membuat
+
+429
+00:21:00,809 --> 00:21:03,840
+Project react.js nah seakan kolaps ini
+
+430
+00:21:03,840 --> 00:21:07,230
+seakan tutup semuanya karena kita telah
+
+431
+00:21:07,230 --> 00:21:10,010
+selesai membuat bbm-nya
+
+432
+00:21:10,010 --> 00:21:13,380
+kemudian seakan pir terlebih dahulu nah
+
+433
+00:21:13,380 --> 00:21:15,030
+disini saya berada dalam folder
+
+434
+00:21:15,030 --> 00:21:16,800
+fullstack bukan di dalam folder been
+
+435
+00:21:16,800 --> 00:21:19,320
+untuk membuat Project menggunakan rejes
+
+436
+00:21:19,320 --> 00:21:22,110
+kita bisa mengetikkan perintah npx
+
+437
+00:21:22,110 --> 00:21:24,679
+kemudian Crit
+
+438
+00:21:24,679 --> 00:21:28,230
+reaep kemudian nama projectnya disini
+
+439
+00:21:28,230 --> 00:21:29,309
+Sabrina Hai
+
+440
+00:21:29,309 --> 00:21:33,120
+kronen enter
+
+441
+00:21:35,250 --> 00:21:37,929
+setelah instalasi selesai disini
+
+442
+00:21:37,929 --> 00:21:40,059
+terdapat dua folder di dalam folder
+
+443
+00:21:40,059 --> 00:21:42,610
+fullstack yaitu beken dan friend
+
+444
+00:21:42,610 --> 00:21:45,220
+bikinnya adalah Project yang kita bangun
+
+445
+00:21:45,220 --> 00:21:46,950
+sebelumnya menggunakan CodeIgniter
+
+446
+00:21:46,950 --> 00:21:49,390
+sedangkan front-end nya adalah Project
+
+447
+00:21:49,390 --> 00:21:52,150
+yang kita bangun menggunakan reacts Nah
+
+448
+00:21:52,150 --> 00:21:54,039
+sekarang pada Terminal seakan masuk ke
+
+449
+00:21:54,039 --> 00:21:56,679
+dalam folder front-end dengan cara CD
+
+450
+00:21:56,679 --> 00:22:00,220
+kemudian front-end Nah sekarang setelah
+
+451
+00:22:00,220 --> 00:22:02,070
+masuk ke dalam folder front-end
+
+452
+00:22:02,070 --> 00:22:03,700
+selanjutnya saya akan meng-install
+
+453
+00:22:03,700 --> 00:22:05,830
+beberapa dependensi yang kita butuhkan
+
+454
+00:22:05,830 --> 00:22:08,799
+saya akan clear terlebih dahulu untuk
+
+455
+00:22:08,799 --> 00:22:10,360
+menginstal dependensi kita bisa
+
+456
+00:22:10,360 --> 00:22:13,840
+menggunakan pita NPM install kemudian
+
+457
+00:22:13,840 --> 00:22:15,730
+Disini saya akan meng-install yang
+
+458
+00:22:15,730 --> 00:22:18,630
+pertama yaitu riak
+
+459
+00:22:18,630 --> 00:22:21,700
+Rotterdam karena kita membutuhkan router
+
+460
+00:22:21,700 --> 00:22:24,210
+nantinya kemudian saya akan meng-install
+
+461
+00:22:24,210 --> 00:22:26,950
+axios axios ini akan memudahkan kita
+
+462
+00:22:26,950 --> 00:22:29,650
+untuk berkomunikasi dengan Kyai
+
+463
+00:22:29,650 --> 00:22:33,190
+selanjutnya saya akan meng-install
+
+464
+00:22:33,190 --> 00:22:35,690
+fullmatches.net style user interface-nya
+
+465
+00:22:35,690 --> 00:22:38,410
+enter
+
+466
+00:22:38,410 --> 00:22:41,120
+untuk memastikan Project from kita
+
+467
+00:22:41,120 --> 00:22:43,370
+berjalan dengan baik jalankan Project
+
+468
+00:22:43,370 --> 00:22:48,700
+kita dengan perintah NPM start
+
+469
+00:22:48,700 --> 00:22:51,200
+Nah sekarang Project kita berjalan di
+
+470
+00:22:51,200 --> 00:22:53,049
+localhost port
+
+471
+00:22:53,049 --> 00:22:56,940
+3013 share dan kunjungi localhost port
+
+472
+00:22:56,940 --> 00:22:58,690
+[Musik]
+
+473
+00:22:58,690 --> 00:23:01,730
+3069 seperti ini itu artinya Project Ria
+
+474
+00:23:01,730 --> 00:23:03,580
+kita berjalan dengan baik
+
+475
+00:23:03,580 --> 00:23:05,870
+selanjutnya saya akan melakukan sedikit
+
+476
+00:23:05,870 --> 00:23:08,350
+cleanapp pergi ke folder front-end
+
+477
+00:23:08,350 --> 00:23:11,480
+kemudian source nah Disini saya akan
+
+478
+00:23:11,480 --> 00:23:13,880
+menghapus beberapa file saya akan
+
+479
+00:23:13,880 --> 00:23:16,960
+menghapus file fdc sini
+
+480
+00:23:16,960 --> 00:23:20,500
+kemudian FT JS
+
+481
+00:23:20,500 --> 00:23:24,669
+kemudian index.co SS kemudian logonya
+
+482
+00:23:24,669 --> 00:23:27,679
+seakan hapus kemudian saya juga akan
+
+483
+00:23:27,679 --> 00:23:30,559
+menghapus report 10 ini
+
+484
+00:23:30,559 --> 00:23:34,040
+kemudian set-up.exe dojes
+
+485
+00:23:34,040 --> 00:23:37,170
+nah saya hanya menyisakan file at DBS
+
+486
+00:23:37,170 --> 00:23:40,850
+dengan index.js pertama saya pergi ke
+
+487
+00:23:40,850 --> 00:23:42,980
+idjs
+
+488
+00:23:42,980 --> 00:23:46,290
+dan saya akan hapus impor index.co SS
+
+489
+00:23:46,290 --> 00:23:50,670
+nya kemudian repot WiFi tal kemudian
+
+490
+00:23:50,670 --> 00:23:53,510
+report With All functions ini
+
+491
+00:23:53,510 --> 00:23:58,170
+simpan pergi ke fggs nah Disini saya
+
+492
+00:23:58,170 --> 00:24:00,440
+akan menghapus impor logonya
+
+493
+00:24:00,440 --> 00:24:03,390
+kemudian saya juga akan menghapus tag
+
+494
+00:24:03,390 --> 00:24:04,970
+header ini
+
+495
+00:24:04,970 --> 00:24:08,450
+kemudian saya ganti menjadi
+
+496
+00:24:09,830 --> 00:24:12,270
+hello-world seperti ini dan saya juga
+
+497
+00:24:12,270 --> 00:24:14,120
+akan menghapus kelasnya
+
+498
+00:24:14,120 --> 00:24:16,970
+Saya hanya menyisakan satu Div disini
+
+499
+00:24:16,970 --> 00:24:21,120
+simpan kembali ke browser seri Lord nah
+
+500
+00:24:21,120 --> 00:24:25,380
+disini terdapat pesan lo word kemudian
+
+501
+00:24:25,380 --> 00:24:28,720
+saya akan import Burma cesnya agar kita
+
+502
+00:24:28,720 --> 00:24:31,150
+menggunakan style bulma pergi ke
+
+503
+00:24:31,150 --> 00:24:34,120
+index.js kemudian Disini saya akan impor
+
+504
+00:24:34,120 --> 00:24:38,860
+rumahnya impor kemudian gulma kemudian
+
+505
+00:24:38,860 --> 00:24:41,250
+CSS kemudian
+
+506
+00:24:41,250 --> 00:24:47,020
+bulma.io SS simpan nah pergi ke FBS nah
+
+507
+00:24:47,020 --> 00:24:50,460
+Disini saya akan tambahkan klasnem nya
+
+508
+00:24:50,460 --> 00:24:52,020
+itu
+
+509
+00:24:52,020 --> 00:24:54,789
+kontainer simpan kembali ke browser
+
+510
+00:24:54,789 --> 00:24:57,760
+kemudian seri Lord nah disini teknik
+
+511
+00:24:57,760 --> 00:25:00,070
+berupa dan Tenyata terdapat didalam
+
+512
+00:25:00,070 --> 00:25:02,500
+kelas kontainer nah disini saya salah
+
+513
+00:25:02,500 --> 00:25:04,470
+menghentikan hello-world nya
+
+514
+00:25:04,470 --> 00:25:07,390
+selanjutnya buat sebuah folder komponen
+
+515
+00:25:07,390 --> 00:25:10,750
+didalam folder source new folder
+
+516
+00:25:10,750 --> 00:25:12,809
+kemudian disini sendiri nama
+
+517
+00:25:12,809 --> 00:25:16,150
+komponen nah disinilah semua file
+
+518
+00:25:16,150 --> 00:25:18,640
+komponen kita akan saya tempatkan yang
+
+519
+00:25:18,640 --> 00:25:20,320
+pertama saya akan membuat sebuah file
+
+520
+00:25:20,320 --> 00:25:22,720
+komponen new file di dalam folder
+
+521
+00:25:22,720 --> 00:25:25,470
+komponen dan Sabri nama
+
+522
+00:25:25,470 --> 00:25:30,200
+produk please Dodge Hai untuk
+
+523
+00:25:30,200 --> 00:25:32,570
+mempermudah Anda membuat komponen pada
+
+524
+00:25:32,570 --> 00:25:34,400
+riak Saya menyarankan anda untuk
+
+525
+00:25:34,400 --> 00:25:36,970
+menginstal ekstensi
+
+526
+00:25:36,970 --> 00:25:39,850
+ia Seven Riyad
+
+527
+00:25:39,850 --> 00:25:43,010
+graviella react-native-maps jika Anda
+
+528
+00:25:43,010 --> 00:25:44,630
+belum menginstal ekstensi ini silahkan
+
+529
+00:25:44,630 --> 00:25:46,669
+instal terlebih dahulu dan jika anda
+
+530
+00:25:46,669 --> 00:25:48,679
+telah menginstal ekstensi ini kembali ke
+
+531
+00:25:48,679 --> 00:25:52,510
+project kita saya tinggal mengetikkan
+
+532
+00:25:56,320 --> 00:25:59,809
+rafaelhernandez17 matis basic kode dari
+
+533
+00:25:59,809 --> 00:26:02,480
+komponen riak seperti ini nah kemudian
+
+534
+00:26:02,480 --> 00:26:05,080
+Disini saya akan membuat sebuah table
+
+535
+00:26:05,080 --> 00:26:07,419
+dan hilang table terdapat
+
+536
+00:26:07,419 --> 00:26:10,309
+headingnya nah di dalam heading terdapat
+
+537
+00:26:10,309 --> 00:26:13,070
+arrow dan di dalam rohnya terdapat
+
+538
+00:26:13,070 --> 00:26:16,970
+kolomnya dan kolomnya saran Berikan 4
+
+539
+00:26:16,970 --> 00:26:20,740
+enter nah disini number
+
+540
+00:26:20,740 --> 00:26:25,100
+kemudian sini atau kemudian disini price
+
+541
+00:26:25,100 --> 00:26:28,740
+kemudian disini action
+
+542
+00:26:28,740 --> 00:26:30,420
+nya di sini saya akan menambahkan body
+
+543
+00:26:30,420 --> 00:26:31,760
+untuk tebalnya
+
+544
+00:26:31,760 --> 00:26:35,550
+dan di dalam bodi terdapat rohnya dan di
+
+545
+00:26:35,550 --> 00:26:38,190
+dalam roh terdapat kolom dan saran buat
+
+546
+00:26:38,190 --> 00:26:42,540
+kolomnya 4 di sini nomornya kemudian
+
+547
+00:26:42,540 --> 00:26:46,040
+disini tethool kemudian disini price
+
+548
+00:26:46,040 --> 00:26:48,750
+kemudian disini Action Nah di dalam
+
+549
+00:26:48,750 --> 00:26:50,610
+action seakan menambahkan dua beton
+
+550
+00:26:50,610 --> 00:26:53,550
+untuk edit dan delete seakan buat sini
+
+551
+00:26:53,550 --> 00:26:56,400
+beton yang pertama buatannya itu edit
+
+552
+00:26:56,400 --> 00:27:00,120
+sekarang berikan plus nya classname dan
+
+553
+00:27:00,120 --> 00:27:03,110
+saya akan gunakan kelas bulma itu paten
+
+554
+00:27:03,110 --> 00:27:10,260
+kemudian is small kemudian is info dan
+
+555
+00:27:10,260 --> 00:27:12,929
+saran duplikat kode ini kemudian Disini
+
+556
+00:27:12,929 --> 00:27:15,780
+saya akan ganti menjadi kelasnya is
+
+557
+00:27:15,780 --> 00:27:18,710
+Danger dan batinnya serengeti menjadi
+
+558
+00:27:18,710 --> 00:27:22,559
+gile simpan Kemudian pada tebalnya saya
+
+559
+00:27:22,559 --> 00:27:24,740
+juga akan menggunakan class bulma
+
+560
+00:27:24,740 --> 00:27:27,960
+sekarang gunakan Ismi klasnem kemudian
+
+561
+00:27:27,960 --> 00:27:31,260
+kelasnya YouTube m dan is
+
+562
+00:27:31,260 --> 00:27:37,650
+tripod kemudian is full with simpan
+
+563
+00:27:37,650 --> 00:27:40,630
+kemudian seakan impor komponen ini di
+
+564
+00:27:40,630 --> 00:27:44,650
+dalam fggs pergi ke FBS kemudian bisa
+
+565
+00:27:44,650 --> 00:27:46,110
+kan impor di sini
+
+566
+00:27:46,110 --> 00:27:49,720
+impor undian product list dan saya akan
+
+567
+00:27:49,720 --> 00:27:51,880
+gunakan product listnya disini seakan
+
+568
+00:27:51,880 --> 00:27:53,010
+ganti ini
+
+569
+00:27:53,010 --> 00:27:56,470
+jadi product list jangan lupa
+
+570
+00:27:56,470 --> 00:27:58,169
+menambahkan tanda savefro seperti ini
+
+571
+00:27:58,169 --> 00:28:01,570
+simpan kembali ke browser Nah sekarang
+
+572
+00:28:01,570 --> 00:28:03,549
+kita punya table seperti ini dengan dua
+
+573
+00:28:03,549 --> 00:28:05,520
+Baton edit dan delete
+
+574
+00:28:05,520 --> 00:28:07,960
+selanjutnya seakan V datanya langsung
+
+575
+00:28:07,960 --> 00:28:11,770
+dari Epi pada product list dan Disini
+
+576
+00:28:11,770 --> 00:28:13,809
+saya akan menggunakan Ustad hop dengan
+
+577
+00:28:13,809 --> 00:28:16,299
+Yus efek serangan impor di sini
+
+578
+00:28:16,299 --> 00:28:19,799
+tambahkan koma kemudian Disini saya akan
+
+579
+00:28:19,799 --> 00:28:23,370
+Panggil yusufnya
+
+580
+00:28:23,370 --> 00:28:26,250
+dan juga Ustad
+
+581
+00:28:26,250 --> 00:28:28,730
+kemudian Disini saya akan membuat sebuah
+
+582
+00:28:28,730 --> 00:28:31,000
+baru-baru
+
+583
+00:28:31,000 --> 00:28:35,150
+const-string Febri nama produk kemudian
+
+584
+00:28:35,150 --> 00:28:37,760
+di parameter kedua yaitu function untuk
+
+585
+00:28:37,760 --> 00:28:40,419
+mengupdate stepnya set
+
+586
+00:28:40,419 --> 00:28:42,640
+produk
+
+587
+00:28:42,640 --> 00:28:47,030
+Ustad dan disini inisial barunya seakan
+
+588
+00:28:47,030 --> 00:28:50,419
+masukkan MTR kemudian saya juga akan
+
+589
+00:28:50,419 --> 00:28:52,460
+menggunakan axios karena kita akan
+
+590
+00:28:52,460 --> 00:28:54,890
+berinteraksi dengan FPI second import
+
+591
+00:28:54,890 --> 00:28:56,380
+action sini
+
+592
+00:28:56,380 --> 00:28:57,910
+axios
+
+593
+00:28:57,910 --> 00:28:59,740
+ROM
+
+594
+00:28:59,740 --> 00:29:01,270
+axios
+
+595
+00:29:01,270 --> 00:29:06,130
+dan disini saya menggunakan USB
+
+596
+00:29:07,000 --> 00:29:10,370
+dan isi Eropa mission kemudian di
+
+597
+00:29:10,370 --> 00:29:12,190
+permeter kedua asalkan tambahkan di sini
+
+598
+00:29:12,190 --> 00:29:15,679
+mtri agarius efeknya running ketika
+
+599
+00:29:15,679 --> 00:29:19,309
+ontet nah saya tidak mau mempressing
+
+600
+00:29:19,309 --> 00:29:21,679
+datanya langsung diyos efek saya akan
+
+601
+00:29:21,679 --> 00:29:23,120
+membuat sebuah method untuk fetching
+
+602
+00:29:23,120 --> 00:29:25,520
+datanya agar nanti method tersebut dapat
+
+603
+00:29:25,520 --> 00:29:27,470
+digunakan kembali disini saya akan
+
+604
+00:29:27,470 --> 00:29:29,790
+membuat sebuah method Hai methodnya
+
+605
+00:29:29,790 --> 00:29:35,090
+zamri nama get produk
+
+606
+00:29:35,090 --> 00:29:37,860
+kemudian saya akan gunakan Eropa mission
+
+607
+00:29:37,860 --> 00:29:40,320
+nah Disini saya akan menggunakan axios
+
+608
+00:29:40,320 --> 00:29:42,480
+sedang buat variabel terlebih dahulu
+
+609
+00:29:42,480 --> 00:29:43,820
+konsep
+
+610
+00:29:43,820 --> 00:29:46,940
+produk kemudian
+
+611
+00:29:46,940 --> 00:29:48,830
+axios.get
+
+612
+00:29:48,830 --> 00:29:51,110
+dan disini saya juga akan menggunakan
+
+613
+00:29:51,110 --> 00:29:53,640
+asyncronus function sedang tambahkan di
+
+614
+00:29:53,640 --> 00:29:56,520
+sini asing dan disini saya menambahkan
+
+615
+00:29:56,520 --> 00:29:59,690
+keyboardnya itu awet
+
+616
+00:29:59,690 --> 00:30:04,340
+kemudian disini handphonenya itu http
+
+617
+00:30:04,340 --> 00:30:08,400
+localhost kemudian potnya yaitu 8060
+
+618
+00:30:08,400 --> 00:30:12,350
+inilah pot dari Epic kita kemudian slash
+
+619
+00:30:12,350 --> 00:30:15,059
+produk seperti ini kemudian saya akan
+
+620
+00:30:15,059 --> 00:30:17,330
+lock responnya di konsol
+
+621
+00:30:17,330 --> 00:30:23,850
+konsol download kemudian produk nah saya
+
+622
+00:30:23,850 --> 00:30:26,130
+akan Panggil function ini di USA efeknya
+
+623
+00:30:26,130 --> 00:30:28,720
+disini si
+
+624
+00:30:28,720 --> 00:30:31,090
+Hai kembali ke browser kemudian saya
+
+625
+00:30:31,090 --> 00:30:32,460
+akan inspect Element
+
+626
+00:30:32,460 --> 00:30:36,940
+pergi ke konsol kemudian seri lot nah
+
+627
+00:30:36,940 --> 00:30:40,390
+disini kita dapat datanya dengan 100-200
+
+628
+00:30:40,390 --> 00:30:42,340
+nah jika saya control of datanya
+
+629
+00:30:42,340 --> 00:30:46,270
+sekeliling sini produk data save kembali
+
+630
+00:30:46,270 --> 00:30:49,450
+browser seri lot Nah maka sekarang kita
+
+631
+00:30:49,450 --> 00:30:52,240
+dapat datanya disini kemudian kita
+
+632
+00:30:52,240 --> 00:30:55,260
+tinggal fetching datanya ke table
+
+633
+00:30:55,260 --> 00:30:59,490
+seakan masukkan datanya ke sdnya disini
+
+634
+00:30:59,490 --> 00:31:02,830
+set produk kemudian produk data seperti
+
+635
+00:31:02,830 --> 00:31:04,980
+ini
+
+636
+00:31:05,309 --> 00:31:09,690
+kemudian saya akan lux datanya disini
+
+637
+00:31:10,230 --> 00:31:13,990
+produk.nu map nah disini setiap item
+
+638
+00:31:13,990 --> 00:31:17,070
+dari produknya seri nama produk
+
+639
+00:31:17,070 --> 00:31:20,200
+kemudian disini Eropa mission dan Disini
+
+640
+00:31:20,200 --> 00:31:22,659
+saya akan gunakan kurung biasa Karena
+
+641
+00:31:22,659 --> 00:31:24,760
+kita akan mereka NJ seksi tak di dalam
+
+642
+00:31:24,760 --> 00:31:26,970
+doping ini kemudian saya juga akan
+
+643
+00:31:26,970 --> 00:31:30,020
+memanggil indeksnya Indonesia tambahkan
+
+644
+00:31:30,020 --> 00:31:34,220
+kurung di sini koma kemudian indeks nah
+
+645
+00:31:34,220 --> 00:31:35,770
+seakan Kartini
+
+646
+00:31:35,770 --> 00:31:39,559
+Cut kemudian saya flash di sini saya
+
+647
+00:31:39,559 --> 00:31:42,559
+karena pikalu kodenya self nah disini
+
+648
+00:31:42,559 --> 00:31:44,900
+setiap lu pinknya memiliki unik yg
+
+649
+00:31:44,900 --> 00:31:48,080
+sedang tambahkan kiye disini kemudian
+
+650
+00:31:48,080 --> 00:31:50,380
+kynya berasal dari produk
+
+651
+00:31:50,380 --> 00:31:54,830
+dan ide kemudian disini indexnya seakan
+
+652
+00:31:54,830 --> 00:31:56,320
+output indek langsung Disini
+
+653
+00:31:56,320 --> 00:31:59,059
+indeks-indeks yang dimulai dari nol Oleh
+
+654
+00:31:59,059 --> 00:32:01,460
+sebab itu seakan tambahkan di sini plus
+
+655
+00:32:01,460 --> 00:32:04,610
+one seperti ini kemudian disini terdapat
+
+656
+00:32:04,610 --> 00:32:06,490
+detail
+
+657
+00:32:06,490 --> 00:32:08,320
+produk
+
+658
+00:32:08,320 --> 00:32:10,510
+detail
+
+659
+00:32:10,510 --> 00:32:13,630
+kemudian disini
+
+660
+00:32:13,630 --> 00:32:17,240
+produk.pt is self memiliki browser
+
+661
+00:32:17,240 --> 00:32:20,929
+serlot Nah sekarang kita punya 3data
+
+662
+00:32:20,929 --> 00:32:23,770
+disini inilah data dari FPI kita
+
+663
+00:32:23,770 --> 00:32:25,850
+selanjutnya saya akan membuat sebuah
+
+664
+00:32:25,850 --> 00:32:30,140
+komponen baru lagi new file m&c bernama
+
+665
+00:32:30,140 --> 00:32:31,790
+Ed
+
+666
+00:32:31,790 --> 00:32:38,130
+produk dojes seperti biasa er AFC dan
+
+667
+00:32:38,130 --> 00:32:39,920
+Disini saya akan membuat sebuah
+
+668
+00:32:39,920 --> 00:32:43,860
+form-form seakan hilangkan actionnya dan
+
+669
+00:32:43,860 --> 00:32:46,140
+Disini saya akan menggunakan form dengan
+
+670
+00:32:46,140 --> 00:32:49,620
+style bulma disini terdapat sebuah divx
+
+671
+00:32:49,620 --> 00:32:53,070
+dengan classname file kemudian di dalam
+
+672
+00:32:53,070 --> 00:32:57,510
+file-nya terdapat label dengan + label
+
+673
+00:32:57,510 --> 00:32:59,910
+saya akan hilangkan html for nya
+
+674
+00:32:59,910 --> 00:33:03,600
+kemudian disini terdapat input teks dan
+
+675
+00:33:03,600 --> 00:33:05,900
+klasemennya yaitu
+
+676
+00:33:05,900 --> 00:33:09,230
+input kemudian disini terdapat
+
+677
+00:33:09,230 --> 00:33:11,030
+placeholder
+
+678
+00:33:11,030 --> 00:33:14,970
+kemudian Disney title nah labelnya sejuk
+
+679
+00:33:14,970 --> 00:33:17,010
+akan berikan title disini kemudian
+
+680
+00:33:17,010 --> 00:33:19,860
+second copy ini kemudian flash disini
+
+681
+00:33:19,860 --> 00:33:25,230
+dan disini untuk price kemudian disini
+
+682
+00:33:25,230 --> 00:33:26,240
+juga
+
+683
+00:33:26,240 --> 00:33:30,010
+nice Salonpas ni lagi kita tidak
+
+684
+00:33:30,010 --> 00:33:32,169
+butuhkan label dan juga inputnya
+
+685
+00:33:32,169 --> 00:33:35,429
+sekarang nanti dengan Matan dan matannya
+
+686
+00:33:35,429 --> 00:33:38,620
+itu chef seakan berikan klasis MI kelas
+
+687
+00:33:38,620 --> 00:33:43,679
+6 kelas 6 yaitu Button kemudian is
+
+688
+00:33:43,679 --> 00:33:46,480
+memory kemudian Disini saya akan
+
+689
+00:33:46,480 --> 00:33:50,200
+menggunakan Ustad hub seakan Panggil
+
+690
+00:33:50,200 --> 00:33:54,490
+statement sini us state dan saran buat
+
+691
+00:33:54,490 --> 00:33:57,460
+step baru disini count yang pertama
+
+692
+00:33:57,460 --> 00:33:59,250
+stepnya untuk title
+
+693
+00:33:59,250 --> 00:34:03,419
+menset it'll
+
+694
+00:34:03,419 --> 00:34:06,490
+Ustad dan inisial malunya seakan
+
+695
+00:34:06,490 --> 00:34:08,770
+masukkan empty string jangan duplikat
+
+696
+00:34:08,770 --> 00:34:10,719
+kode ini kemudian selanjutnya yaitu
+
+697
+00:34:10,719 --> 00:34:14,460
+untuk plays kemudian disini
+
+698
+00:34:14,460 --> 00:34:18,639
+set price nah kemudian pada formnya pada
+
+699
+00:34:18,639 --> 00:34:20,379
+input teks saya akan tambahkan di sini
+
+700
+00:34:20,379 --> 00:34:21,899
+Wahyu
+
+701
+00:34:21,899 --> 00:34:26,260
+bajunya yaitu tdnya yaitu title sequence
+
+702
+00:34:26,260 --> 00:34:28,730
+ini ke bawah
+
+703
+00:34:28,730 --> 00:34:30,699
+Hai
+
+704
+00:34:30,699 --> 00:34:33,590
+segini kemudian saya akan tambahkan di
+
+705
+00:34:33,590 --> 00:34:37,690
+sini eventnya yaitu onchange
+
+706
+00:34:38,290 --> 00:34:40,879
+kemudian disini Saya akan mengambil
+
+707
+00:34:40,879 --> 00:34:44,389
+eventnya kemudian di Eropa mission dan
+
+708
+00:34:44,389 --> 00:34:46,580
+disini function untuk mengupdate step
+
+709
+00:34:46,580 --> 00:34:48,520
+nya yaitu set title
+
+710
+00:34:48,520 --> 00:34:51,730
+kemudian disini eventnya dot target
+
+711
+00:34:51,730 --> 00:34:56,889
+jadwal you ini nah seakan copy ini
+
+712
+00:34:56,889 --> 00:34:59,690
+kemudian seakan pasti sini saya akan
+
+713
+00:34:59,690 --> 00:35:02,830
+enter ini dulu ke bawah
+
+714
+00:35:02,830 --> 00:35:05,869
+kemudian saya post disini kemudian ini
+
+715
+00:35:05,869 --> 00:35:07,119
+saya ganti menjadi
+
+716
+00:35:07,119 --> 00:35:13,220
+price dan disini set price simpan
+
+717
+00:35:13,220 --> 00:35:16,340
+Kemudian saya ke impor komponen ini di
+
+718
+00:35:16,340 --> 00:35:20,180
+FBS segan impor di sini impor Kemudian
+
+719
+00:35:20,180 --> 00:35:22,369
+eproda Kemudian saya akan menggunakan
+
+720
+00:35:22,369 --> 00:35:25,520
+reaktor untuk menampilkan komponen
+
+721
+00:35:25,520 --> 00:35:28,040
+berdasarkan url tertentu seakan
+
+722
+00:35:28,040 --> 00:35:31,770
+impotensi Hai impor yang pertama second
+
+723
+00:35:31,770 --> 00:35:33,380
+mengimpor
+
+724
+00:35:33,380 --> 00:35:39,330
+browser router from pria karakter Dome
+
+725
+00:35:39,330 --> 00:35:41,840
+nah saya akan memberikan nama alias dari
+
+726
+00:35:41,840 --> 00:35:45,810
+browserrouter ini itu sebri router
+
+727
+00:35:45,810 --> 00:35:48,300
+dengan er Capital kemudian saya juga
+
+728
+00:35:48,300 --> 00:35:51,410
+akan mengimpor RAW dengan er Capital
+
+729
+00:35:51,410 --> 00:35:53,730
+kemudian saya juga akan mengimpor switch
+
+730
+00:35:53,730 --> 00:35:56,790
+nah disini pada jsx sintaknya saya akan
+
+731
+00:35:56,790 --> 00:36:01,130
+bungkus kode ini menggunakan teks router
+
+732
+00:36:01,130 --> 00:36:04,880
+second card ini kemudian flash di sini
+
+733
+00:36:04,880 --> 00:36:07,860
+kemudian di sini di dalam kontainer nya
+
+734
+00:36:07,860 --> 00:36:09,990
+seekor menambahkan disini switchnya
+
+735
+00:36:09,990 --> 00:36:12,869
+komunis ini tutup suitnya nah di dalam
+
+736
+00:36:12,869 --> 00:36:15,980
+switch terdapat raut
+
+737
+00:36:15,980 --> 00:36:18,990
+nah di dalam raut terdapat komponen yang
+
+738
+00:36:18,990 --> 00:36:21,510
+akan dirender Nachrowi ini memiliki
+
+739
+00:36:21,510 --> 00:36:25,350
+atribut yaitu PES saya berikan persnya
+
+740
+00:36:25,350 --> 00:36:28,230
+di sini slash itu artinya home dan pada
+
+741
+00:36:28,230 --> 00:36:31,050
+homes kalender komponen produk list ini
+
+742
+00:36:31,050 --> 00:36:33,730
+seperti ini kemudian seakan duplikat
+
+743
+00:36:33,730 --> 00:36:37,060
+road ini copy menempel di sini sekarep
+
+744
+00:36:37,060 --> 00:36:39,460
+ikan lagi kodenya dan disini Arabnya
+
+745
+00:36:39,460 --> 00:36:42,270
+saya akan berikan slash at seperti ini
+
+746
+00:36:42,270 --> 00:36:45,750
+kemudian Disini saya akan merender
+
+747
+00:36:45,750 --> 00:36:49,000
+komponen at produk seperti ini Kemudian
+
+748
+00:36:49,000 --> 00:36:51,580
+pada home seakan menambahkan atribut
+
+749
+00:36:51,580 --> 00:36:54,550
+lainnya yaitu ekstrak kemudian simpan
+
+750
+00:36:54,550 --> 00:36:57,190
+kembali ke browser nah jika saya akses
+
+751
+00:36:57,190 --> 00:36:59,290
+hop seperti ini maka tampil product
+
+752
+00:36:59,290 --> 00:37:02,140
+listnya dan jika saya berkunjung ke
+
+753
+00:37:02,140 --> 00:37:06,370
+flash head maka akan tampil form at
+
+754
+00:37:06,370 --> 00:37:07,860
+produk seperti ini
+
+755
+00:37:07,860 --> 00:37:10,180
+selanjutnya kita tinggal jalankan fungsi
+
+756
+00:37:10,180 --> 00:37:14,550
+untuk n produknya pergi ke n produk
+
+757
+00:37:14,550 --> 00:37:17,670
+kemudian Disini saya akan menambahkan
+
+758
+00:37:17,670 --> 00:37:19,770
+onsubmit
+
+759
+00:37:19,770 --> 00:37:23,680
+kemudian disini m untuk pos datanya seri
+
+760
+00:37:23,680 --> 00:37:25,950
+nama save
+
+761
+00:37:25,950 --> 00:37:29,360
+produk kemudian Disini saya akan n******
+
+762
+00:37:29,360 --> 00:37:32,380
+save rodanya
+
+763
+00:37:32,380 --> 00:37:35,920
+cone saya produk
+
+764
+00:37:35,920 --> 00:37:39,440
+kemudian disini Eropa mission nah Disini
+
+765
+00:37:39,440 --> 00:37:42,430
+saya akan gunakan asing construction
+
+766
+00:37:42,430 --> 00:37:45,620
+saya tambahkan di sini asing kemudian
+
+767
+00:37:45,620 --> 00:37:49,730
+saya juga masukkan event sini dan seakan
+
+768
+00:37:49,730 --> 00:37:51,920
+preventif old agar nanti ketika kita
+
+769
+00:37:51,920 --> 00:37:55,150
+Samid baiknya tidak reload eh
+
+770
+00:37:55,150 --> 00:37:57,610
+detik prevent
+
+771
+00:37:57,610 --> 00:37:59,470
+default
+
+772
+00:37:59,470 --> 00:38:01,580
+nah disini saya juga akan menggunakan
+
+773
+00:38:01,580 --> 00:38:03,680
+axios karena kita akan berinteraksi
+
+774
+00:38:03,680 --> 00:38:05,680
+dengan Epi
+
+775
+00:38:05,680 --> 00:38:11,500
+seakan impor axios dan sini axios from
+
+776
+00:38:11,500 --> 00:38:13,060
+axios
+
+777
+00:38:13,060 --> 00:38:15,440
+nah kemudian disini saya menggunakan
+
+778
+00:38:15,440 --> 00:38:20,000
+keyboard awet kemudian axios methodnya
+
+779
+00:38:20,000 --> 00:38:21,730
+itu pos
+
+780
+00:38:21,730 --> 00:38:25,370
+kemudian disini handphonenya yaitu http
+
+781
+00:38:25,370 --> 00:38:28,370
+localhost
+
+782
+00:38:28,740 --> 00:38:32,150
+chordnya 8080 kemudian flash
+
+783
+00:38:32,150 --> 00:38:35,070
+produk kemudian Disini di parameter
+
+784
+00:38:35,070 --> 00:38:36,170
+kedua
+
+785
+00:38:36,170 --> 00:38:39,780
+terdapat data yang ingin kita Samid yang
+
+786
+00:38:39,780 --> 00:38:41,660
+pertama yaitu title
+
+787
+00:38:41,660 --> 00:38:44,310
+letternya ngambil dari stafnya yaitu
+
+788
+00:38:44,310 --> 00:38:45,560
+title
+
+789
+00:38:45,560 --> 00:38:48,020
+kemudian price
+
+790
+00:38:48,020 --> 00:38:51,750
+Nabil dari steknya yaitu Price kemudian
+
+791
+00:38:51,750 --> 00:38:54,450
+setelah Desa meet seeing in diri dari ke
+
+792
+00:38:54,450 --> 00:38:56,420
+home saya bisa menggunakan
+
+793
+00:38:56,420 --> 00:38:59,610
+fungsi usus isteri dari reaktor Dome
+
+794
+00:38:59,610 --> 00:39:04,740
+second import disini impor Melius istri
+
+795
+00:39:04,740 --> 00:39:08,670
+dari riak router dog nah kemudian disini
+
+796
+00:39:08,670 --> 00:39:11,330
+saya membuat sebuah variabel
+
+797
+00:39:11,330 --> 00:39:12,950
+const-string
+
+798
+00:39:12,950 --> 00:39:17,850
+kemudian use istri Nah untuk redirect
+
+799
+00:39:17,850 --> 00:39:20,070
+saya bisa menggunakan perintah Sutini
+
+800
+00:39:20,070 --> 00:39:24,869
+istri kemudian debus kemudian flash
+
+801
+00:39:24,869 --> 00:39:27,360
+seperti ini simpan nah kembali ke
+
+802
+00:39:27,360 --> 00:39:30,910
+browser search bos Nih seri Lord nah
+
+803
+00:39:30,910 --> 00:39:32,710
+disini saya ketambahan data baru
+
+804
+00:39:32,710 --> 00:39:36,580
+misalnya produk New kemudian prosesnya
+
+805
+00:39:36,580 --> 00:39:40,150
+seperti ini 123 klik save Nah maka
+
+806
+00:39:40,150 --> 00:39:41,619
+disini terdapat penambahan data baru
+
+807
+00:39:41,619 --> 00:39:44,770
+produk New dengan price 123 dan langsung
+
+808
+00:39:44,770 --> 00:39:46,650
+direct ke home
+
+809
+00:39:46,650 --> 00:39:49,359
+kemudian saya akan Silet semua kode dari
+
+810
+00:39:49,359 --> 00:39:52,119
+head produk ini seakan copy kemudian
+
+811
+00:39:52,119 --> 00:39:53,680
+saya akan membuat sebuah komponen baru
+
+812
+00:39:53,680 --> 00:39:58,230
+new file Febri nama edit
+
+813
+00:39:58,230 --> 00:40:02,349
+product.com dan service di sini nah
+
+814
+00:40:02,349 --> 00:40:04,480
+kemudian pada ekspor default-nya
+
+815
+00:40:04,480 --> 00:40:07,480
+sekarang ngetiknya diedit produk dan
+
+816
+00:40:07,480 --> 00:40:11,050
+pada functionnya disini saya juga akan
+
+817
+00:40:11,050 --> 00:40:14,050
+ganti menjadi edit produk sedini simpan
+
+818
+00:40:14,050 --> 00:40:16,780
+nah kemudian saya akan Panggil komponen
+
+819
+00:40:16,780 --> 00:40:21,060
+ini di FBS seakan impor lagi di sini
+
+820
+00:40:21,060 --> 00:40:25,780
+impor kemudian edit produk nah saya akan
+
+821
+00:40:25,780 --> 00:40:30,320
+copy ini kemudian saya disini second
+
+822
+00:40:30,320 --> 00:40:33,170
+tambahkan road baru disini kemudian
+
+823
+00:40:33,170 --> 00:40:36,860
+pes-nya yaitu selesai edit kemudian saya
+
+824
+00:40:36,860 --> 00:40:38,630
+juga akan menggunakan parameter disini
+
+825
+00:40:38,630 --> 00:40:40,640
+Oleh sebab itu sebisa menggunakan titik
+
+826
+00:40:40,640 --> 00:40:43,100
+dua segini kemudian parameternya Sabri
+
+827
+00:40:43,100 --> 00:40:45,920
+nama Id dan komponen yang di render
+
+828
+00:40:45,920 --> 00:40:47,320
+yaitu
+
+829
+00:40:47,320 --> 00:40:51,650
+edit roda sedini simpan kembali ke
+
+830
+00:40:51,650 --> 00:40:53,950
+browser nah jika saya berkunjung ke
+
+831
+00:40:53,950 --> 00:40:56,960
+selesai edit kemudian slash satu
+
+832
+00:40:56,960 --> 00:40:59,990
+misalnya nah maka akan tampil form edit
+
+833
+00:40:59,990 --> 00:41:02,390
+produk di sini nah seakan ganti tombol
+
+834
+00:41:02,390 --> 00:41:05,830
+yang menjadi update pergi ke edit produk
+
+835
+00:41:05,830 --> 00:41:08,680
+kemudian save ini sekali ngetiknya
+
+836
+00:41:08,680 --> 00:41:12,680
+di-update simpan beli crusher Nah
+
+837
+00:41:12,680 --> 00:41:14,750
+sekarang kita memiliki tombol update dan
+
+838
+00:41:14,750 --> 00:41:17,810
+saya Tampilkan datanya disini Pada saat
+
+839
+00:41:17,810 --> 00:41:20,360
+on mounted Oleh sebab itu seakan
+
+840
+00:41:20,360 --> 00:41:25,220
+menggunakan disini Yusuf ex us efek dan
+
+841
+00:41:25,220 --> 00:41:26,660
+saya juga akan menggunakan disini
+
+842
+00:41:26,660 --> 00:41:28,740
+parameter use
+
+843
+00:41:28,740 --> 00:41:29,360
+Hai
+
+844
+00:41:29,360 --> 00:41:31,710
+kemudian sekelompok variabel sini untuk
+
+845
+00:41:31,710 --> 00:41:33,530
+melangkah parameternya
+
+846
+00:41:33,530 --> 00:41:36,140
+yaitu id
+
+847
+00:41:36,140 --> 00:41:39,030
+Yes garam Nah sekarang kita dapat
+
+848
+00:41:39,030 --> 00:41:41,040
+parameternya kemudian saya akan membuat
+
+849
+00:41:41,040 --> 00:41:42,930
+sebuah metode untuk menampilkan data
+
+850
+00:41:42,930 --> 00:41:44,960
+berdasarkan ID
+
+851
+00:41:44,960 --> 00:41:47,510
+seakan buat metode sini
+
+852
+00:41:47,510 --> 00:41:49,280
+kons3p
+
+853
+00:41:49,280 --> 00:41:52,730
+product by ID
+
+854
+00:41:52,730 --> 00:41:55,980
+kemudian disini Eropa mission dan disini
+
+855
+00:41:55,980 --> 00:41:57,780
+juga asyncronus sedang tambahkan is
+
+856
+00:41:57,780 --> 00:42:00,030
+missing' kemudian disini saya membuat
+
+857
+00:42:00,030 --> 00:42:02,240
+sebuah variabel
+
+858
+00:42:02,240 --> 00:42:05,540
+country Sponge kemudian Disney awaited
+
+859
+00:42:05,540 --> 00:42:08,960
+kemudian disini axios.get
+
+860
+00:42:08,960 --> 00:42:11,430
+seakan gunakan template string di sini
+
+861
+00:42:11,430 --> 00:42:15,380
+kemudian di sini handphonenya yaitu http
+
+862
+00:42:15,380 --> 00:42:21,090
+localhost port 8080 slash produk
+
+863
+00:42:21,090 --> 00:42:24,180
+kemudian disini id-nya seakan memberikan
+
+864
+00:42:24,180 --> 00:42:26,040
+tanda Dollar sini kemudian kurung
+
+865
+00:42:26,040 --> 00:42:28,720
+seperti ini kemudian ini id-nya id-nya
+
+866
+00:42:28,720 --> 00:42:31,150
+ambil dari parameter kemudian responnya
+
+867
+00:42:31,150 --> 00:42:33,490
+seakan masukkan kedalam stepnya title
+
+868
+00:42:33,490 --> 00:42:36,820
+dan Price set title kemudian Disney
+
+869
+00:42:36,820 --> 00:42:39,210
+respon untuk
+
+870
+00:42:39,210 --> 00:42:42,040
+data.doc title saya akan diberikan ini
+
+871
+00:42:42,040 --> 00:42:46,020
+kemudian disini price kemudian disini
+
+872
+00:42:46,020 --> 00:42:50,080
+set prize seperti ini kemudian saya akan
+
+873
+00:42:50,080 --> 00:42:52,300
+Panggil metode ini di dalam Yusuf exhub
+
+874
+00:42:52,300 --> 00:42:56,130
+sangat tambahkan di sini efek
+
+875
+00:42:56,130 --> 00:43:01,470
+kemudian disini get product by ID Sutini
+
+876
+00:43:01,470 --> 00:43:04,060
+nah di parameter kedua asalkan tambahkan
+
+877
+00:43:04,060 --> 00:43:07,060
+mtri disini Agan nanti efeknya running
+
+878
+00:43:07,060 --> 00:43:10,270
+ketika on mounted simpan kembali ga
+
+879
+00:43:10,270 --> 00:43:13,360
+Browser dan jika seri lot Saya akan cek
+
+880
+00:43:13,360 --> 00:43:16,000
+di konsol Apakah terdapat error pergi ke
+
+881
+00:43:16,000 --> 00:43:17,980
+konsol Nah di sini kita mendapatkan
+
+882
+00:43:17,980 --> 00:43:19,170
+respon dengan
+
+883
+00:43:19,170 --> 00:43:21,940
+1404 artinya id-nya ini tidak temukan
+
+884
+00:43:21,940 --> 00:43:24,340
+saran coba dengan ide yang lebih tinggi
+
+885
+00:43:24,340 --> 00:43:26,800
+tiga misalnya nah sekarang kita
+
+886
+00:43:26,800 --> 00:43:29,960
+mendapatkan produk 1 kemudian presnya
+
+887
+00:43:29,960 --> 00:43:33,620
+123 Ini nah disini terdapat warning ini
+
+888
+00:43:33,620 --> 00:43:36,200
+adalah kesalahan dari Yeslin sebenarnya
+
+889
+00:43:36,200 --> 00:43:37,910
+kita menuliskan Yusuf efeknya sudah
+
+890
+00:43:37,910 --> 00:43:39,710
+benar Nah untuk menghilangkan pesan
+
+891
+00:43:39,710 --> 00:43:42,590
+warning ini pergi ke Edi produk kemudian
+
+892
+00:43:42,590 --> 00:43:43,810
+saya akan
+
+893
+00:43:43,810 --> 00:43:46,340
+menonaktifkan Yes lainnya disini sedih
+
+894
+00:43:46,340 --> 00:43:48,260
+sedang paste kode ini kemudian simpan
+
+895
+00:43:48,260 --> 00:43:51,170
+kembali kembali ke browser dan seri lot
+
+896
+00:43:51,170 --> 00:43:53,240
+maka kita tidak mendapatkan pesan
+
+897
+00:43:53,240 --> 00:43:55,970
+warning lagi saya juga akan lakukan pada
+
+898
+00:43:55,970 --> 00:43:57,520
+produk list
+
+899
+00:43:57,520 --> 00:44:01,150
+simpan kembali ke Edo produk
+
+900
+00:44:01,150 --> 00:44:03,380
+Nah sekarang kita tinggal jalankan
+
+901
+00:44:03,380 --> 00:44:06,020
+fungsi submitnya Disini saya akan ganti
+
+902
+00:44:06,020 --> 00:44:09,920
+menjadi update produk kemudian disini
+
+903
+00:44:09,920 --> 00:44:12,260
+saya juga akan ganti menjadi update
+
+904
+00:44:12,260 --> 00:44:14,690
+produk nah Disini methodnya Sayang
+
+905
+00:44:14,690 --> 00:44:18,050
+nganti menjadi PES kemudian ini saya
+
+906
+00:44:18,050 --> 00:44:19,640
+akan ganti menjadi backticks syntax
+
+907
+00:44:19,640 --> 00:44:21,260
+seperti ini agar saya dapat menggunakan
+
+908
+00:44:21,260 --> 00:44:23,080
+template sering
+
+909
+00:44:23,080 --> 00:44:25,490
+kemudian disini kita perlu menyertakan
+
+910
+00:44:25,490 --> 00:44:27,860
+id-nya setan tambahkan tanda Dollar
+
+911
+00:44:27,860 --> 00:44:29,850
+seperti ini Indian kurung seperti ini
+
+912
+00:44:29,850 --> 00:44:33,000
+kemudian disini id-nya id-nya ngambil
+
+913
+00:44:33,000 --> 00:44:36,270
+dari parameter simpan kembali ke browser
+
+914
+00:44:36,270 --> 00:44:38,940
+seri Lord tidak terdapat teror kemudian
+
+915
+00:44:38,940 --> 00:44:40,920
+disini produk satunya seakan ngerti
+
+916
+00:44:40,920 --> 00:44:43,619
+menjadi produk update misalnya kemudian
+
+917
+00:44:43,619 --> 00:44:46,170
+prosesnya seakan ganti menjadi 456
+
+918
+00:44:46,170 --> 00:44:49,140
+misalnya update Nah maka produk satunya
+
+919
+00:44:49,140 --> 00:44:51,240
+berubah menjadi produk update dan
+
+920
+00:44:51,240 --> 00:44:54,150
+prosesnya berubah menjadi 456 seperti
+
+921
+00:44:54,150 --> 00:44:56,910
+ini seakan plus lagi konsolnya nah
+
+922
+00:44:56,910 --> 00:44:59,160
+kemudian saya ingin ketika kita Klik
+
+923
+00:44:59,160 --> 00:45:01,560
+tombol edit ini maka akan diarahkan ke
+
+924
+00:45:01,560 --> 00:45:03,780
+form edit dan saya juga ingin
+
+925
+00:45:03,780 --> 00:45:06,200
+menambahkan sebuah tombol di atas ini
+
+926
+00:45:06,200 --> 00:45:08,910
+dimana ketika kita Klik tombol tersebut
+
+927
+00:45:08,910 --> 00:45:12,050
+maka akan diarahkan ke adfly produk
+
+928
+00:45:12,050 --> 00:45:15,480
+kembali ke product list nah Disini saya
+
+929
+00:45:15,480 --> 00:45:19,910
+akan mengimpor link dari reaktor Dome
+
+930
+00:45:19,910 --> 00:45:24,980
+impor kemudian smiling from
+
+931
+00:45:24,980 --> 00:45:27,869
+react-router-dom nah Disini di atas
+
+932
+00:45:27,869 --> 00:45:31,260
+tablenya Anda bisa gunakan link-nya Ling
+
+933
+00:45:31,260 --> 00:45:35,220
+Soo ini kemudian link-nya seri label add
+
+934
+00:45:35,220 --> 00:45:38,109
+new kemudian saya juga bisa berikan
+
+935
+00:45:38,109 --> 00:45:39,180
+classname
+
+936
+00:45:39,180 --> 00:45:41,670
+seakan menggunakan class bully mod sini
+
+937
+00:45:41,670 --> 00:45:45,630
+jelasnya itu Button kemudian is
+
+938
+00:45:45,630 --> 00:45:48,700
+remarry link ini memiliki atribut yaitu
+
+939
+00:45:48,700 --> 00:45:52,599
+two dan Disini saya akan Arahkan dia ke
+
+940
+00:45:52,599 --> 00:45:56,349
+flash wetsuit ini kemudian disini saya
+
+941
+00:45:56,349 --> 00:45:58,960
+juga akan memberikan margin-top saya
+
+942
+00:45:58,960 --> 00:46:02,859
+berikan Misalnya lima simpan kembali ke
+
+943
+00:46:02,859 --> 00:46:06,340
+browser nah disini kita punya tombol new
+
+944
+00:46:06,340 --> 00:46:09,369
+dimana ketika kita Klik tombol new maka
+
+945
+00:46:09,369 --> 00:46:13,260
+akan diarahkan ke Pocket sedini
+
+946
+00:46:13,260 --> 00:46:16,960
+nah kemudian pada edit saya juga akan
+
+947
+00:46:16,960 --> 00:46:18,480
+ganti menjadi
+
+948
+00:46:18,480 --> 00:46:20,160
+link
+
+949
+00:46:20,160 --> 00:46:22,380
+kemudian disini juga
+
+950
+00:46:22,380 --> 00:46:26,010
+link nah disini atributnya yaitu tuh
+
+951
+00:46:26,010 --> 00:46:28,760
+saya akan gunakan MP string Disini The
+
+952
+00:46:28,760 --> 00:46:34,160
+Flash edit kemudian disini id-nya id-nya
+
+953
+00:46:34,160 --> 00:46:38,450
+yaitu ngambil dari produk dot id seperti
+
+954
+00:46:38,450 --> 00:46:42,110
+ini simpan kembali ke browser seri long
+
+955
+00:46:42,110 --> 00:46:45,700
+nah jika saya klik edit disini maka
+
+956
+00:46:45,700 --> 00:46:49,850
+produk update disini dan jika ceklik di
+
+957
+00:46:49,850 --> 00:46:53,830
+produk dua maka disini karena pilrek dua
+
+958
+00:46:53,830 --> 00:46:56,810
+kemudian kita tinggal menjalankan fungsi
+
+959
+00:46:56,810 --> 00:46:59,920
+untuk dilihatnya disini saya tambahkan
+
+960
+00:46:59,920 --> 00:47:01,900
+onclick
+
+961
+00:47:01,900 --> 00:47:04,480
+kemudian disini
+
+962
+00:47:04,480 --> 00:47:07,970
+m untuk dilirik produknya seakan bernama
+
+963
+00:47:07,970 --> 00:47:12,410
+delete produk kemudian disini kita perlu
+
+964
+00:47:12,410 --> 00:47:14,480
+menyertakan parameternya karena kita
+
+965
+00:47:14,480 --> 00:47:17,420
+menghapus datanya berdasarkan ID disini
+
+966
+00:47:17,420 --> 00:47:21,350
+yaitu produk dot id kemudian saya akan
+
+967
+00:47:21,350 --> 00:47:25,120
+buat method direct produknya di sini
+
+968
+00:47:25,120 --> 00:47:28,740
+cone delete produk
+
+969
+00:47:28,740 --> 00:47:32,460
+Deni Eropa mission nah disini saya juga
+
+970
+00:47:32,460 --> 00:47:34,700
+akan menggunakan asyncronus function
+
+971
+00:47:34,700 --> 00:47:38,100
+kemudian disini Awards kemudian
+
+972
+00:47:38,100 --> 00:47:42,510
+axios.get delete kemudian disini url-nya
+
+973
+00:47:42,510 --> 00:47:45,450
+seakan gunakan template sering dan kita
+
+974
+00:47:45,450 --> 00:47:50,930
+tangkap id-nya disini ID kemudian ada DP
+
+975
+00:47:50,930 --> 00:47:54,119
+localhost kemudian pot yang 8080
+
+976
+00:47:54,119 --> 00:47:57,660
+kemudian slash produk kemudian disini
+
+977
+00:47:57,660 --> 00:48:01,230
+id-nya dollar kemudian porsi ngajinya di
+
+978
+00:48:01,230 --> 00:48:03,420
+sini Nah setelah delete saya akan
+
+979
+00:48:03,420 --> 00:48:06,480
+panggil lagi method get produk ini agar
+
+980
+00:48:06,480 --> 00:48:09,590
+kita bisa melihat perubahan pada datanya
+
+981
+00:48:09,590 --> 00:48:12,990
+simpan kembali ke browser kemudian seri
+
+982
+00:48:12,990 --> 00:48:15,260
+laut dan jika saya Klik tombol delete
+
+983
+00:48:15,260 --> 00:48:18,480
+maka akan terhapus dari listnya sedilit
+
+984
+00:48:18,480 --> 00:48:20,869
+lagi terhapus dari listnya
+
+985
+00:48:20,869 --> 00:48:23,760
+nah seperti itulah cara membuat Grid
+
+986
+00:48:23,760 --> 00:48:25,860
+Grid update delete menggunakan kurir
+
+987
+00:48:25,860 --> 00:48:29,230
+tempat sebagai been dan riak Jl Hai di
+
+988
+00:48:29,230 --> 00:48:31,840
+Chevron n jika anda pertama kali
+
+989
+00:48:31,840 --> 00:48:33,850
+menonton video pada channel ini silahkan
+
+990
+00:48:33,850 --> 00:48:36,010
+subscribe atau anda tidak Ketinggalan
+
+991
+00:48:36,010 --> 00:48:38,550
+informasi terbaru dari channel ini
+
+992
+00:48:38,550 --> 00:48:40,960
+semoga bermanfaat dan sampai jumpa
+
+993
+00:48:40,960 --> 00:48:44,950
+divideo selanjutnya dadaa
+

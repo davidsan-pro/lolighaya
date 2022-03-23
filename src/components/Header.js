@@ -43,7 +43,7 @@ const Header = () => {
           </Button>
         </div>
       </header>
-      <div className="mb-1 ml-3">
+      <div className="mb-1 ml-5">
         <small>{curdatetime}</small>
       </div>
       <h3 className="has-text-centered mb-3">

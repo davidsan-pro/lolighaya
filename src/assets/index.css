@@ -4,7 +4,7 @@ body {
 }
 
 header {
-  border-bottom: 1px solid #424242;
+  /* border-bottom: 1px solid #424242; */
 }
 
 /* body > * > .container {

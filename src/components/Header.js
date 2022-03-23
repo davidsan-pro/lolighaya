@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import "moment/locale/id";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+// import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = () => {
   // const curday = moment().locale('id').format('dddd');
@@ -29,16 +32,18 @@ const Header = () => {
 
   return (
     <>
-      <header className="is-size-3 is-flex is-justify-content-space-between is-align-items-center">
-        <span className="icon clickable" onClick={() => navigate(-1)}>
-          <i className="fas fa-arrow-left"></i>
-        </span>
-        <span>LoliGhaya</span>
-        <span style={{ opacity: 0 }}>
-          <i className="fas fa-arrow-left"></i>
-        </span>
+      <header className="fs-2 fw-bold pb-1" style={{ backgroundColor: "royalblue", color: "#fff" }}>
+        <div className="d-flex justify-content-between align-items-center">
+          <Button variant="primary" className="ms-3 btn-lg" onClick={() => navigate(-1)}>
+            <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
+          </Button>
+          <span>LoliGhaya</span>
+          <Button variant="primary" className="me-2 btn-lg">
+            <FontAwesomeIcon icon="fa-solid fa-bars" />
+          </Button>
+        </div>
       </header>
-      <div className="mb-1">
+      <div className="mb-1 ml-3">
         <small>{curdatetime}</small>
       </div>
       <h3 className="has-text-centered mb-3">

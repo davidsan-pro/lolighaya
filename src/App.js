@@ -19,9 +19,9 @@ const App = () => {
 
   return (
     <Router>
-      <div className="container hero is-fullheight">
-        <Header />
+      <Header />
 
+      <div className="container hero is-fullheight">
         {/* <BarangList /> */}
         <Routes>
           <Route path="/" element={<Dashboard />} />

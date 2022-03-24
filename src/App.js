@@ -20,7 +20,6 @@ const App = () => {
   return (
     <Router>
       <Header />
-      <h1>Hello World</h1>
 
       <div className="container hero is-fullheight">
         {/* <BarangList /> */}

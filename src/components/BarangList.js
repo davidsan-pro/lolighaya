@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const BarangList = () => {
   const [barangMulti, setBarangMulti] = useState([]);
@@ -9,9 +9,9 @@ const BarangList = () => {
   }, []);
 
   const getBarangMulti = async () => {
-    const barangMulti = await axios.get('http://localhost:8080/barang');
+    const barangMulti = await axios.get(`${global.config.base_url}/barang`);
     console.log(barangMulti.data);
-  }
+  };
   return (
     <div>
       {/* <div className="box">
@@ -44,7 +44,7 @@ const BarangList = () => {
           </div>
         </article>
       </div> */}
-      <table className='table is-striped is-fullwidth'>
+      <table className="table is-striped is-fullwidth">
         <thead>
           <tr>
             <th>No</th>
@@ -58,21 +58,19 @@ const BarangList = () => {
           </tr>
         </thead>
         <tbody>
-          {
-            barangMulti.map((barang, index) => (
-              <tr key={barang.id}>
-                <td>{index+1}.</td>
-                <td>
-                  <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
-                </td>
-                <td>{barang.nama}</td>
-                <td>{(index+2)*20}</td>
-                <td>{(index+2)*10}</td>
-                <td>{(index+2)*30}</td>
-                <td>175.000</td>
-              </tr>
-            ))
-          }
+          {barangMulti.map((barang, index) => (
+            <tr key={barang.id}>
+              <td>{index + 1}.</td>
+              <td>
+                <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
+              </td>
+              <td>{barang.nama}</td>
+              <td>{(index + 2) * 20}</td>
+              <td>{(index + 2) * 10}</td>
+              <td>{(index + 2) * 30}</td>
+              <td>175.000</td>
+            </tr>
+          ))}
           <tr>
             <td>2.</td>
             <td>
@@ -86,12 +84,12 @@ const BarangList = () => {
           </tr>
         </tbody>
       </table>
-      <div className='has-text-right has-text-right-mobile mr-3'>
-        <span className='is-size-5 mr-2'>TOTAL</span>
-        <strong className='is-size-4'>Rp375.000</strong>
+      <div className="has-text-right has-text-right-mobile mr-3">
+        <span className="is-size-5 mr-2">TOTAL</span>
+        <strong className="is-size-4">Rp375.000</strong>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BarangList
+export default BarangList;

@@ -17,7 +17,7 @@ const EditUser = () => {
   const updateUser = async (e) => {
     e.preventDefault();
 
-    await axios.put(`http://localhost:8080/users/${id}`, {
+    await axios.put(`${global.config.base_url}/${id}`, {
       username: username,
       password: password,
       nama: nama,
@@ -33,7 +33,7 @@ const EditUser = () => {
   }, []);
 
   const getUserById = async () => {
-    const response = await axios.get(`http://localhost:8080/users/${id}`);
+    const response = await axios.get(`${global.config.base_url}/${id}`);
     setUsername(response.data.username);
     setPassword(response.data.password);
     setNama(response.data.nama);

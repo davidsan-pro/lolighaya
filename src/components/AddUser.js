@@ -15,7 +15,7 @@ const AddUser = () => {
   const saveUser = async (e) => {
     e.preventDefault();
 
-    await axios.post("http://localhost:8080/users", {
+    await axios.post("https://lolighayabackend.herokuapp.com/users", {
       username: username,
       password: password,
       nama: nama,

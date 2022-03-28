@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
@@ -20,9 +19,11 @@ const MenuDatabase = () => {
         </Link>
       </div>
       <div className="mb-3">
-        <Button className="btn-menu fw-bold" variant="primary" size="lg">
-          MASTER TOKO
-        </Button>
+        <Link to="/master_toko">
+          <Button className="btn-menu fw-bold" variant="primary" size="lg">
+            MASTER TOKO
+          </Button>
+        </Link>
       </div>
       <div className="mb-3">
         <Button className="btn-menu fw-bold" variant="primary" size="lg">

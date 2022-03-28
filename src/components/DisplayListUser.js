@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 import { Link } from "react-router-dom";
 
-const DisplayUserList = ({ users, onDelete }) => {
-
+const DisplayListUser = ({ users, onDelete }) => {
+  console.log("display users", users);
   return (
     <>
       <>
@@ -38,7 +38,7 @@ const DisplayUserList = ({ users, onDelete }) => {
         </div> */}
       </>
 
-      <table className='table is-striped is-fullwidth'>
+      <table className="table is-striped is-fullwidth">
         <thead>
           <tr>
             <th>No</th>
@@ -49,24 +49,40 @@ const DisplayUserList = ({ users, onDelete }) => {
           </tr>
         </thead>
         <tbody>
-          { users.map((user, index) => (
-            <tr key={user.id}>
-              <td>{index+1}.</td>
-              <td>
-                <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
-              </td>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-              <td>
-                <Link to={`/edit/${user.id}`} className="button is-info mr-2">Edit</Link>
-                <button onClick={() => onDelete(user.id)} className="button is-danger">Delete</button>
-              </td>
-            </tr>
-          ))}
+          {
+            // kalo jumlah barangnya 1 atau lebih maka tampilkan dlm bentuk tabel
+            // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
+            users.length > 0 ? (
+              users.map((user, index) => (
+                <tr key={user.id}>
+                  <td>{index + 1}.</td>
+                  <td>
+                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
+                  </td>
+                  <td>{user.username}</td>
+                  <td>{user.email}</td>
+                  <td>
+                    <Link to={`/edit_user/${user.id}`} className="button is-success mr-2">
+                      Edit
+                    </Link>
+                    <button onClick={() => onDelete(user.id)} className="button is-danger">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={99}>
+                  <em>Data masih kosong</em>
+                </td>
+              </tr>
+            )
+          }
         </tbody>
       </table>
     </>
-  )
-}
+  );
+};
 
-export default DisplayUserList
+export default DisplayListUser;

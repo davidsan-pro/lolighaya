@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import DisplayUserList from "./DisplayUserList";
+import { useState, useEffect } from "react";
+import DisplayListUser from "./DisplayListUser";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import * as ReactBootstrap from "react-bootstrap";
+// import axios from "axios";
+// import * as ReactBootstrap from "react-bootstrap";
+import { Spinner, Button } from "react-bootstrap";
+import SearchBar from "./SearchBar";
 
 const MasterUser = () => {
-  console.log("base", global.config.base_url);
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -15,29 +16,36 @@ const MasterUser = () => {
 
   const getUsers = async () => {
     try {
-      const users = await axios.get(`${global.config.base_url}/users`);
-      console.log("get users", users.data);
-      setUsers(users.data);
+      const response = await fetch(`${global.config.base_url}/users`);
+      const data = await response.json();
+      setUsers(data);
+      // const users = await axios.get(`${global.config.base_url}/users`);
+      // console.log("get users", users.data);
+      // setUsers(users.data);
       setIsLoading(false);
     } catch (e) {
-      console.log(e);
+      console.log(e.getMessage());
     }
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`${global.config.base_url}/${id}`);
-    getUsers();
+    console.log("delete user", id);
+    // await axios.delete(`${global.config.base_url}/${id}`);
+    // getUsers();
   };
 
   return (
     <div>
-      <Link to="/add_user" className="button is-primary">
-        Tambah Baru
-      </Link>
+      <SearchBar />
       <div>
-        <strong className="is-size-4">Data User</strong>
+        <strong className="is-size-4 me-3">Data User</strong>
+        <Link to="/add_user" className="button is-primary">
+          Tambah Baru
+        </Link>
       </div>
-      {isLoading ? <ReactBootstrap.Spinner animation="border" /> : <DisplayUserList users={users} onDelete={deleteUser} />}
+      {/* <DisplayListUser users={users} /> */}
+      {/* {isLoading ? <ReactBootstrap.Spinner animation="border" /> : <DisplayListUser users={users} onDelete={deleteUser} />} */}
+      {isLoading ? <Spinner animation="border" /> : <DisplayListUser users={users} onDelete={deleteUser} />}
     </div>
   );
 };

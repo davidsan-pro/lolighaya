@@ -42,3 +42,23 @@ footer {
 .fs-7 {
   font-size: 0.8rem;
 }
+
+.hidden {
+  opacity: 0;
+}
+
+/* search bar */
+.search-btn {
+  border-radius: 50px !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+.search-input {
+  border-radius: 50px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  display: inline-block;
+}
+.shown {
+  opacity: 1;
+}

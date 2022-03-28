@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import DisplayUserList from "./DisplayUserList";
+import DisplayListUser from "./DisplayListUser";
 import * as ReactBootstrap from "react-bootstrap";
 
 const UserList = () => {
@@ -15,6 +15,7 @@ const UserList = () => {
 
   const getUsers = async () => {
     try {
+      console.log(global.config.base_url);
       const users = await axios.get(`${global.config.base_url}/users`);
       console.log("getusers", users.data);
       setUsers(users.data);
@@ -37,7 +38,7 @@ const UserList = () => {
       <div>
         <strong className="is-size-4">Data User</strong>
       </div>
-      {isLoading ? <ReactBootstrap.Spinner animation="border" /> : <DisplayUserList users={users} onDelete={deleteUser} />}
+      {isLoading ? <ReactBootstrap.Spinner animation="border" /> : <DisplayListUser users={users} onDelete={deleteUser} />}
     </div>
   );
 };

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+// import { useState } from "react";
 import moment from "moment";
 import "moment/locale/id";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 // import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Sidebar from "./Sidebar";
 
 const Header = () => {
   // const curday = moment().locale('id').format('dddd');
@@ -16,7 +17,7 @@ const Header = () => {
   const location = useLocation();
   // console.log("location", location);
   let title = "";
-  if (location.pathname === "/") {
+  if (location.pathname === "/" || location.pathname === "") {
     title = "Dashboard";
   } else if (location.pathname === "/pilih_hari") {
     title = "Pilih Hari";
@@ -34,13 +35,18 @@ const Header = () => {
     <>
       <header className="fs-2 fw-bold pb-1" style={{ backgroundColor: "royalblue", color: "#fff" }}>
         <div className="d-flex justify-content-between align-items-center">
-          <Button variant="primary" className="ms-3 btn-lg" onClick={() => navigate(-1)}>
-            <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
-          </Button>
+          {
+            // tombol Back hanya ditampilkan selain di hal.dashboard
+            location.pathname !== "/" ? (
+              <Button variant="primary" className="ms-3 btn-lg" onClick={() => navigate(-1)}>
+                <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
+              </Button>
+            ) : (
+              <Button className="ms-3 btn-lg" style={{ opacity: "0" }}></Button>
+            )
+          }
           <span>LoliGhaya</span>
-          <Button variant="primary" className="me-2 btn-lg">
-            <FontAwesomeIcon icon="fa-solid fa-bars" />
-          </Button>
+          <Sidebar />
         </div>
       </header>
       <div className="mb-1 ml-5">

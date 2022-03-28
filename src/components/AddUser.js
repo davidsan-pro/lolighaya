@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
@@ -15,15 +15,25 @@ const AddUser = () => {
   const saveUser = async (e) => {
     e.preventDefault();
 
-    await axios.post("https://lolighayabackend.herokuapp.com/users", {
-      username: username,
-      password: password,
-      nama: nama,
-      email: email,
-      telepon: telepon,
+    const user = { username, password, nama, email, telepon };
+    console.log('saveuser', user);
+    await fetch(`${global.config.base_url}/users`, {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     });
+    // await axios.post("https://lolighayabackend.herokuapp.com/users", {
+    //   username: username,
+    //   password: password,
+    //   nama: nama,
+    //   email: email,
+    //   telepon: telepon,
+    // });
 
-    navigate("/");
+    // setelah selesai, redirect ke hal.master user
+    navigate("/master_user");
   };
 
   return (
@@ -31,23 +41,48 @@ const AddUser = () => {
       <form onSubmit={saveUser}>
         <div className="field">
           <label className="label">Username</label>
-          <input type="text" className="input" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="text" 
+            className="input" 
+            placeholder="username" 
+            value={username} 
+            onChange={(e) => setUsername(e.target.value)} 
+          />
         </div>
         <div className="field">
           <label className="label">Password</label>
-          <input type="password" className="input" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" 
+            className="input" 
+            placeholder="password" 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+          />
         </div>
         <div className="field">
           <label className="label">Nama</label>
-          <input type="text" className="input" placeholder="nama lengkap" value={nama} onChange={(e) => setNama(e.target.value)} />
+          <input type="text" 
+            className="input" 
+            placeholder="nama lengkap" 
+            value={nama} 
+            onChange={(e) => setNama(e.target.value)} 
+          />
         </div>
         <div className="field">
           <label className="label">Email</label>
-          <input type="text" className="input" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="text" 
+            className="input" 
+            placeholder="email" 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+          />
         </div>
         <div className="field">
           <label className="label">No.Telepon</label>
-          <input type="text" className="input" placeholder="nomor telepon" value={telepon} onChange={(e) => setTelepon(e.target.value)} />
+          <input type="text" 
+            className="input" 
+            placeholder="nomor telepon" 
+            value={telepon} 
+            onChange={(e) => setTelepon(e.target.value)} 
+          />
         </div>
         <div className="field">
           <Button variant="primary">Simpan</Button>

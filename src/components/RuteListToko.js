@@ -2,7 +2,7 @@ import React from 'react'
 import Accordion from 'react-bootstrap/Accordion';
 import { Link } from "react-router-dom";
 
-const Rute_ListToko = () => {
+const RuteListToko = () => {
   return (
     <div className='container has-text-centered'>
 
@@ -77,4 +77,4 @@ const Rute_ListToko = () => {
   )
 }
 
-export default Rute_ListToko
+export default RuteListToko

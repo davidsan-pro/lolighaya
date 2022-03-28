@@ -1,137 +1,46 @@
-import React from "react";
-import Button from "react-bootstrap/Button";
+import { useState, useEffect } from "react";
+import DisplayListBarang from "./DisplayListBarang";
 import { Link } from "react-router-dom";
+import axios from "axios";
+// import * as ReactBootstrap from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 
 const MasterBarang = () => {
+  const [barang, setBarang] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getBarang();
+  }, []);
+
+  const getBarang = async () => {
+    try {
+      const barang = await axios.get(`${global.config.base_url}/barang`);
+      console.log("get barang", barang.data);
+      setBarang(barang.data);
+      setIsLoading(false);
+    } catch (e) {
+      console.log(e.getMessage());
+    }
+  };
+
+  const deleteBarang = async (id) => {
+    console.log("delete barang", id);
+    // await axios.delete(`${global.config.base_url}/${id}`);
+    // getUsers();
+  };
+
   return (
-    <div className="container">
-      <div className="mb-2">
-        <Link to="/add_barang">
-          <Button variant="primary">Tambah Barang</Button>
-        </Link>
+    <div>
+      <Link to="/add_barang" className="button is-primary">
+        Tambah Baru
+      </Link>
+      <div>
+        <strong className="is-size-4">Data Barang</strong>
       </div>
-      <table className="table is-striped is-fullwidth">
-        <thead>
-          <tr>
-            <th>No.</th>
-            <th>Foto Barang</th>
-            <th>Info</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1.</td>
-            <td>
-              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
-            </td>
-            <td>
-              <div className="fs-6 fw-bold">Lolipop Vanilla</div>
-              <div className="fs-6">
-                <div>
-                  <small>Stok: 120</small>
-                </div>
-              </div>
-            </td>
-            <td>
-              <Button className="me-2 mb-2" variant="info">
-                Edit
-              </Button>
-              <Button className="me-2 mb-2" variant="danger">
-                Hapus
-              </Button>
-            </td>
-          </tr>
-          <tr>
-            <td>2.</td>
-            <td>
-              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
-            </td>
-            <td>
-              <div className="fs-6 fw-bold">Lolipop Strawberry</div>
-              <div className="fs-6">
-                <div>
-                  <small>Stok: 90</small>
-                </div>
-              </div>
-            </td>
-            <td>
-              <Button className="me-2 mb-2" variant="info">
-                Edit
-              </Button>
-              <Button className="me-2 mb-2" variant="danger">
-                Hapus
-              </Button>
-            </td>
-          </tr>
-          <tr>
-            <td>3.</td>
-            <td>
-              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
-            </td>
-            <td>
-              <div className="fs-6 fw-bold">Lolipop Apel Jeruk</div>
-              <div className="fs-6">
-                <div>
-                  <small>Stok: 100</small>
-                </div>
-              </div>
-            </td>
-            <td>
-              <Button className="me-2 mb-2" variant="info">
-                Edit
-              </Button>
-              <Button className="me-2 mb-2" variant="danger">
-                Hapus
-              </Button>
-            </td>
-          </tr>
-          <tr>
-            <td>4.</td>
-            <td>
-              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
-            </td>
-            <td>
-              <div className="fs-6 fw-bold">Permen Coklat</div>
-              <div className="fs-6">
-                <div>
-                  <small>Stok: 120</small>
-                </div>
-              </div>
-            </td>
-            <td>
-              <Button className="me-2 mb-2" variant="info">
-                Edit
-              </Button>
-              <Button className="me-2 mb-2" variant="danger">
-                Hapus
-              </Button>
-            </td>
-          </tr>
-          <tr>
-            <td>5.</td>
-            <td>
-              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
-            </td>
-            <td>
-              <div className="fs-6 fw-bold">Balon Kecil Isi 12</div>
-              <div className="fs-6">
-                <div>
-                  <small>Stok: 100</small>
-                </div>
-              </div>
-            </td>
-            <td>
-              <Button className="me-2 mb-2" variant="info">
-                Edit
-              </Button>
-              <Button className="me-2 mb-2" variant="danger">
-                Hapus
-              </Button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      {/* <DisplayListBarang users={users} /> */}
+      {/* {isLoading ? <ReactBootstrap.Spinner animation="border" /> : <DisplayListBarang users={users} onDelete={deleteUser} />} */}
+      {isLoading ? <Spinner animation="border" /> : <DisplayListBarang barang={barang} onDelete={deleteBarang} />}
     </div>
   );
 };

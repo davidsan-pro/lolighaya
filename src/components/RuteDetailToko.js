@@ -1,14 +1,14 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 
-const Rute_Detail_Toko = () => {
+const RuteDetailToko = () => {
 
   console.log('rute detail toko');
   const location = useLocation();
   const qs = location.search;
   const qs_arr = qs.split('?');
   const filtered = qs_arr.filter(function(value, index, arr) {
-    return value != '';
+    return value !== '';
   });
   let id = 0;
   filtered.map((item, index) => {
@@ -25,4 +25,4 @@ const Rute_Detail_Toko = () => {
   )
 }
 
-export default Rute_Detail_Toko
+export default RuteDetailToko

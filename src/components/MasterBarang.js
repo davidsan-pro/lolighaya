@@ -1,46 +1,74 @@
 import { useState, useEffect } from "react";
 import DisplayListBarang from "./DisplayListBarang";
 import { Link } from "react-router-dom";
-import axios from "axios";
-// import * as ReactBootstrap from "react-bootstrap";
 import { Spinner } from "react-bootstrap";
+import SearchBar from "./SearchBar";
+import Pagination from "./Pagination";
 
 const MasterBarang = () => {
   const [barang, setBarang] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     getBarang();
   }, []);
 
-  const getBarang = async () => {
+  const getBarang = async (query='') => {
+    setIsLoading(true);
     try {
-      const barang = await axios.get(`${global.config.base_url}/barang`);
-      console.log("get barang", barang.data);
-      setBarang(barang.data);
-      setIsLoading(false);
+      let myurl = `${global.config.base_url}/barang`;
+      if (query) {
+        myurl += `?q=${query}`;
+      }
+      const response = await fetch(myurl);
+      const data = await response.json();
+      setBarang(data);
     } catch (e) {
       console.log(e.getMessage());
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const deleteBarang = async (id) => {
     console.log("delete barang", id);
-    // await axios.delete(`${global.config.base_url}/${id}`);
-    // getUsers();
+    const myurl = `${global.config.base_url}/barang/${id}`;
+    await fetch(myurl, {
+      method: 'DELETE', 
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    getBarang();
   };
+
+  // get current item
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItem = barang.slice(indexOfFirstItem, indexOfLastItem);
+
+  // change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+
 
   return (
     <div>
-      <Link to="/add_barang" className="button is-primary">
-        Tambah Baru
-      </Link>
+      <SearchBar onSearch={getBarang}/>
       <div>
-        <strong className="is-size-4">Data Barang</strong>
+        <strong className="is-size-4 me-3">Data Barang</strong>
+        <Link to="/add_barang" className="button is-primary">
+          Tambah Baru
+        </Link>
       </div>
-      {/* <DisplayListBarang users={users} /> */}
-      {/* {isLoading ? <ReactBootstrap.Spinner animation="border" /> : <DisplayListBarang users={users} onDelete={deleteUser} />} */}
       {isLoading ? <Spinner animation="border" /> : <DisplayListBarang barang={barang} onDelete={deleteBarang} />}
+      <Pagination itemsPerPage={itemsPerPage} 
+      totalItems={barang.length} 
+      paginate={paginate} 
+      curPageNumber={currentPage} 
+      />
     </div>
   );
 };

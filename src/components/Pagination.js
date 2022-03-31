@@ -10,7 +10,7 @@ const Pagination = ({ itemsPerPage, totalItems, paginate, curPageNumber }) => {
   }
 
   return (
-    <div className="is-flex justify-content-center align-items-center mb-5">
+    <div className="is-flex justify-content-center align-items-center">
       <ul className="pagination">
         <li className="me-2">
           <a onClick={() => paginate(1)} href="!#" className="page-link">

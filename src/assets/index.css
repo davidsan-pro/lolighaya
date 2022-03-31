@@ -13,7 +13,7 @@ header {
 
 footer {
   background-color: #f5f5f5;
-  position: fixed;
+  position: static;
   bottom: 0;
   left: 0;
   right: 0;
@@ -29,14 +29,14 @@ footer {
   cursor: pointer;
 }
 
+.container {
+  padding-bottom: 1rem;
+}
+
 .content-scroll {
   display: block;
   height: 200px;
   overflow: auto;
-}
-
-.container {
-  padding-bottom: 2rem;
 }
 
 .fs-7 {

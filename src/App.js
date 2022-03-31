@@ -33,15 +33,15 @@ const App = () => {
           <Route path="/master_barang" element={<MasterBarang />} />
           <Route path="/master_toko" element={<MasterToko />} />
         </Routes>
-
-        <footer className="has-text-centered is-flex-align-items-flex-end mt-auto">
-          <small>
-            <span>Copyright @2022</span>
-            <br />
-            <a href="/about">About</a>
-          </small>
-        </footer>
       </div>
+
+      <footer className="has-text-centered is-flex-align-items-flex-end mt-auto">
+        <small>
+          <span>Copyright @2022</span>
+          <br />
+          <a href="/about">About</a>
+        </small>
+      </footer>
     </Router>
   );
 };

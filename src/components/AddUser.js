@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Button from "react-bootstrap/Button";
 
 const AddUser = () => {
@@ -16,7 +15,6 @@ const AddUser = () => {
     e.preventDefault();
 
     const user = { username, password, nama, email, telepon };
-    console.log('saveuser', user);
     await fetch(`${global.config.base_url}/users`, {
       method: 'POST',
       body: JSON.stringify(user),

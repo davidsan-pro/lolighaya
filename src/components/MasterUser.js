@@ -29,7 +29,7 @@ const MasterUser = () => {
       setUsers(data);
       // setShowMsg(true);
     } catch (e) {
-      console.log(e.getMessage());
+      console.log(e);
     } finally {
       setIsLoading(false);
     }
@@ -59,11 +59,11 @@ const MasterUser = () => {
   return (
     <div>
       <SearchBar onSearch={getUsers} />
-      <div>
+      {/* <div>
         <Alert variant="success" show={showMsg} transition="Fade" dismissible>
           <p>Fetch data successful!</p>
         </Alert>
-      </div>
+      </div> */}
       <div>
         <strong className="is-size-4 me-3">Data User</strong>
         <Link to="/add_user" className="button is-primary">

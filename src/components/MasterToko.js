@@ -26,7 +26,7 @@ const MasterToko = () => {
       const data = await response.json();
       setToko(data);
     } catch (e) {
-      console.log(e.getMessage());
+      console.log(e);
     } finally {
       setIsLoading(false);
     }

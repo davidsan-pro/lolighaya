@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -17,15 +16,23 @@ const EditUser = () => {
   const updateUser = async (e) => {
     e.preventDefault();
 
-    await axios.put(`${global.config.base_url}/${id}`, {
-      username: username,
-      password: password,
-      nama: nama,
-      email: email,
-      telepon: telepon,
+    const user = { username, password, nama, email, telepon };
+    await fetch(`${global.config.base_url}/users/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     });
+    // await axios.put(`${global.config.base_url}/users/${id}`, {
+    //   username: username,
+    //   password: password,
+    //   nama: nama,
+    //   email: email,
+    //   telepon: telepon,
+    // });
 
-    navigate("/");
+    navigate("/master_user");
   };
 
   useEffect(() => {
@@ -33,7 +40,11 @@ const EditUser = () => {
   }, []);
 
   const getUserById = async () => {
-    const response = await axios.get(`${global.config.base_url}/${id}`);
+    const myurl = `${global.config.base_url}/users/${id}`; // http://localhost:8080/users/2
+    // const response = await fetch(myurl);
+    // const data = response.json();
+    // console.log(data); // returns < Pending > in developer tools
+    const response = await axios.get(myurl);
     setUsername(response.data.username);
     setPassword(response.data.password);
     setNama(response.data.nama);
@@ -64,7 +75,7 @@ const EditUser = () => {
           <label className="label">No.Telepon</label>
           <input type="text" className="input" placeholder="nomor telepon" value={telepon} onChange={(e) => setTelepon(e.target.value)} />
         </div>
-        <Button variant="primary">Update</Button>
+        <Button variant="primary" type="submit">Update</Button>
       </form>
     </div>
   );

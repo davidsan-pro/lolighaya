@@ -85,7 +85,7 @@ const AddUser = () => {
           />
         </div>
         <div className="field">
-          <Button variant="primary">Simpan</Button>
+          <Button variant="primary" type="submit">Simpan</Button>
         </div>
       </form>
     </div>

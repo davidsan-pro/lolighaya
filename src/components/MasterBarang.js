@@ -3,13 +3,10 @@ import DisplayListBarang from "./DisplayListBarang";
 import { Link } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 import SearchBar from "./SearchBar";
-import Pagination from "./Pagination";
 
 const MasterBarang = () => {
   const [barang, setBarang] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     getBarang();
@@ -33,7 +30,6 @@ const MasterBarang = () => {
   };
 
   const deleteBarang = async (id) => {
-    console.log("delete barang", id);
     const myurl = `${global.config.base_url}/barang/${id}`;
     await fetch(myurl, {
       method: 'DELETE', 
@@ -43,15 +39,6 @@ const MasterBarang = () => {
     });
     getBarang();
   };
-
-  // get current item
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItem = barang.slice(indexOfFirstItem, indexOfLastItem);
-
-  // change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
 
 
   return (
@@ -64,11 +51,6 @@ const MasterBarang = () => {
         </Link>
       </div>
       {isLoading ? <Spinner animation="border" /> : <DisplayListBarang barang={barang} onDelete={deleteBarang} />}
-      <Pagination itemsPerPage={itemsPerPage} 
-      totalItems={barang.length} 
-      paginate={paginate} 
-      curPageNumber={currentPage} 
-      />
     </div>
   );
 };

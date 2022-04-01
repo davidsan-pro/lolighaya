@@ -32,13 +32,10 @@ const EditBarang = () => {
 
   const getBarangById = async () => {
     const response = await fetch(`${global.config.base_url}/barang/${id}`);
-    console.log('response', response);
-    const data = response.json();
-    console.log('data', data);
+    const data = await response.json();
     setNama(data.nama);
     setHarga(data.harga);
     setStok(data.stok);
-    console.log(data.nama);
   };
 
   return (

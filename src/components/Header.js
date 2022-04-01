@@ -27,22 +27,20 @@ const Header = () => {
     title = "Master User";
   } else if (location.pathname === "/add_user") {
     title = "Tambah User";
-  } else if (location.pathname === "/edit_user") {
+  } else if (location.pathname.indexOf("/edit_user") === 0) {
     title = "Edit User";
   } else if (location.pathname === "/master_barang") {
     title = "Master Barang";
   } else if (location.pathname === "/add_barang") {
     title = "Tambah Barang";
-  } else if (location.pathname === "/edit_barang") {
+  } else if (location.pathname.indexOf("/edit_barang") === 0) {
     title = "Edit Barang";
   } else if (location.pathname === "/master_toko") {
     title = "Master Toko";
   } else if (location.pathname === "/add_toko") {
     title = "Tambah Toko";
-  } else if (location.pathname === "/edit_toko") {
+  } else if (location.pathname.indexOf("/edit_toko") === 0) {
     title = "Edit Toko";
-  } else if (location.pathname.indexOf("/edit_user") === 0) {
-    title = "Edit User";
   }
 
   return (

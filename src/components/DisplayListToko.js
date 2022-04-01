@@ -1,7 +1,22 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import Pagination from "./Pagination";
+// import Text from "react-native";
 
 const DisplayListToko = ({ toko, onDelete }) => {
   console.log("display toko", toko);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
+
+  // get current item
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItem = toko.slice(indexOfFirstItem, indexOfLastItem);
+
+  // change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <>
       <>
@@ -60,7 +75,12 @@ const DisplayListToko = ({ toko, onDelete }) => {
                   <td>
                     <div className="fs-5">{item.nama}</div>
                     <div>
-                      <small>{item.stok}</small>
+                      <small>
+                        {item.alamat}, Kec.{item.kecamatan}, Kota {item.kota}
+                      </small>
+                    </div>
+                    <div>
+                      <small>Telepon: {item.telepon}</small>
                     </div>
                   </td>
                   <td>
@@ -83,6 +103,13 @@ const DisplayListToko = ({ toko, onDelete }) => {
           }
         </tbody>
       </table>
+
+      <Pagination itemsPerPage={itemsPerPage} 
+      totalItems={toko.length} 
+      paginate={paginate} 
+      curPageNumber={currentPage} 
+      />
+
     </>
   );
 };

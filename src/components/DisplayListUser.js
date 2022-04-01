@@ -1,8 +1,21 @@
-import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import Pagination from "./Pagination";
 
 const DisplayListUser = ({ users, onDelete }) => {
   console.log("display users", users);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
+
+  // get current item
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItem = users.slice(indexOfFirstItem, indexOfLastItem);
+
+  // change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  
   return (
     <>
       <>
@@ -81,6 +94,13 @@ const DisplayListUser = ({ users, onDelete }) => {
           }
         </tbody>
       </table>
+
+      <Pagination itemsPerPage={itemsPerPage} 
+      totalItems={users.length} 
+      paginate={paginate} 
+      curPageNumber={currentPage} 
+      />
+
     </>
   );
 };

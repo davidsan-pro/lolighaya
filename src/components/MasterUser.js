@@ -1,17 +1,13 @@
 import { useState, useEffect } from "react";
 import DisplayListUser from "./DisplayListUser";
 import { Link } from "react-router-dom";
-import { Spinner, Button } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import SearchBar from "./SearchBar";
-import Alert from "react-bootstrap/Alert";
-import Pagination from "./Pagination";
 
 const MasterUser = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showMsg, setShowMsg] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     getUsers();
@@ -46,15 +42,6 @@ const MasterUser = () => {
     getUsers();
   };
 
-  // get current item
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItem = users.slice(indexOfFirstItem, indexOfLastItem);
-
-  // change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-
 
   return (
     <div>
@@ -71,11 +58,6 @@ const MasterUser = () => {
         </Link>
       </div>
       {isLoading ? <Spinner animation="border" /> : <DisplayListUser users={users} onDelete={deleteUser} />}
-      <Pagination itemsPerPage={itemsPerPage} 
-      totalItems={users.length} 
-      paginate={paginate} 
-      curPageNumber={currentPage} 
-      />
     </div>
   );
 };

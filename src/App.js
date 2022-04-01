@@ -11,11 +11,10 @@ import AddUser from "./components/AddUser";
 import EditUser from "./components/EditUser";
 import MasterBarang from "./components/MasterBarang";
 import MasterToko from "./components/MasterToko";
-import Test1 from "./components/Test1";
-import Test2 from "./components/Test2";
 import AddBarang from "./components/AddBarang";
 import AddToko from "./components/AddToko";
 import EditBarang from "./components/EditBarang";
+import EditToko from "./components/EditToko";
 
 const App = () => {
   const [showPrev, setShowPrev] = useState(false);
@@ -42,6 +41,7 @@ const App = () => {
           <Route path="/edit_barang/:id" element={<EditBarang />} />
           <Route path="/master_toko" element={<MasterToko />} />
           <Route path="/add_toko" element={<AddToko />} />
+          <Route path="/edit_toko/:id" element={<EditToko />} />
         </Routes>
       </div>
 

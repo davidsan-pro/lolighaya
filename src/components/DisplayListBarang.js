@@ -1,7 +1,21 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import Pagination from "./Pagination";
 
 const DisplayListBarang = ({ barang, onDelete }) => {
   console.log("display barang", barang);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
+
+  // get current item
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItem = barang.slice(indexOfFirstItem, indexOfLastItem);
+
+  // change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <>
       <>
@@ -60,7 +74,7 @@ const DisplayListBarang = ({ barang, onDelete }) => {
                   <td>
                     <div className="fs-5">{item.nama}</div>
                     <div>
-                      <small>{item.stok}</small>
+                      <small>Stok: {item.stok}</small>
                     </div>
                   </td>
                   <td>
@@ -83,6 +97,13 @@ const DisplayListBarang = ({ barang, onDelete }) => {
           }
         </tbody>
       </table>
+
+      <Pagination itemsPerPage={itemsPerPage} 
+      totalItems={barang.length} 
+      paginate={paginate} 
+      curPageNumber={currentPage} 
+      />
+
     </>
   );
 };

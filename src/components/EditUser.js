@@ -41,15 +41,13 @@ const EditUser = () => {
 
   const getUserById = async () => {
     const myurl = `${global.config.base_url}/users/${id}`; // http://localhost:8080/users/2
-    // const response = await fetch(myurl);
-    // const data = response.json();
-    // console.log(data); // returns < Pending > in developer tools
-    const response = await axios.get(myurl);
-    setUsername(response.data.username);
-    setPassword(response.data.password);
-    setNama(response.data.nama);
-    setEmail(response.data.email);
-    setTelepon(response.data.telepon);
+    const response = await fetch(myurl);
+    const data = await response.json();
+    setUsername(data.username);
+    setPassword(data.password);
+    setNama(data.nama);
+    setEmail(data.email);
+    setTelepon(data.telepon);
   };
 
   return (

@@ -34,7 +34,7 @@ const EditToko = () => {
 
   const getTokoById = async () => {
     const response = await fetch(`${global.config.base_url}/toko/${id}`);
-    const data = response.json();
+    const data = await response.json();
     setNama(data.nama);
     setAlamat(data.alamat);
     setTelepon(data.telepon);

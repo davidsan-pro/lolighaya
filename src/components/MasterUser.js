@@ -32,6 +32,10 @@ const MasterUser = () => {
   };
 
   const deleteUser = async (id) => {
+    if ( ! window.confirm('Data akan dihapus. Lanjutkan?')) {
+      return false;
+    }
+
     const myurl = `${global.config.base_url}/users/${id}`;
     await fetch(myurl, {
       method: "DELETE",
@@ -45,12 +49,7 @@ const MasterUser = () => {
 
   return (
     <div>
-      <SearchBar onSearch={getUsers} />
-      {/* <div>
-        <Alert variant="success" show={showMsg} transition="Fade" dismissible>
-          <p>Fetch data successful!</p>
-        </Alert>
-      </div> */}
+      <SearchBar onSearch={getUsers} keywordType="username" />
       <div>
         <strong className="is-size-4 me-3">Data User</strong>
         <Link to="/add_user" className="button is-primary">

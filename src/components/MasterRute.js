@@ -1,32 +1,33 @@
 import { useState, useEffect } from "react";
-// import DisplayListRute from "./DisplayListRute";
 import { Link } from "react-router-dom";
-import { ListGroup, Spinner } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import SearchBar from "./SearchBar";
+import DisplayListMasterRute from "./DisplayListMasterRute";
+import { useLocation } from "react-router-dom";
+// import AccordionItem from "react-bootstrap/esm/AccordionItem";
+// import { ListGroup, Accordion } from "react-bootstrap";
 
 const MasterRute = () => {
-  // const [barang, setBarang] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [rute, setRute] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   getBarang();
-  // }, []);
+  const location = useLocation();
+
+  useEffect(() => {
+    getRute();
+  }, []);
 
   const getRute = async (query='') => {
-  //   setIsLoading(true);
-  //   try {
-  //     let myurl = `${global.config.base_url}/barang`;
-  //     if (query) {
-  //       myurl += `?q=${query}`;
-  //     }
-  //     const response = await fetch(myurl);
-  //     const data = await response.json();
-  //     setBarang(data);
-  //   } catch (e) {
-  //     console.log(e);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
+    setIsLoading(true);
+    let myurl = `${global.config.base_url}/mrute`;
+    if (query) {
+      myurl += location.search ? '?' : '&';
+      myurl += `q=${query}`;
+    }
+    const response = await fetch(myurl);
+    const data = await response.json();
+    setRute(data);
+    setIsLoading(false);
   };
 
   // const deleteBarang = async (id) => {
@@ -43,96 +44,50 @@ const MasterRute = () => {
 
   return (
     <div>
-      <SearchBar onSearch={getRute}/>
-      <div>
-        <strong className="is-size-4 me-3">Data Barang</strong>
-        <Link to="/add_barang" className="button is-primary">
+      <SearchBar onSearch={getRute} keywordType="nama toko"/>
+      <div className="mb-3">
+        <strong className="is-size-4 me-3">Data Rute</strong>
+        <Link to="/add_rute" className="button is-primary">
           Tambah Baru
         </Link>
       </div>
+      {isLoading ? <Spinner animation="border" /> : <DisplayListMasterRute rute={rute} />}
+      {/* {console.log('asd1', rute)} */}
       {/* {isLoading ? <Spinner animation="border" /> : <DisplayListBarang barang={barang} onDelete={deleteBarang} />} */}
+      {/* 
       <Accordion>
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>Rute A</Accordion.Header>
-          <Accordion.Body>
-            <ListGroup>
-              <ListGroup.Item>
-                <div>
-                  <label className="fw-bold">Toko Makmur</label>
-                </div>
-                <div>
-                  <span>Jalan Kenjeran no.20, Kota Surabaya</span>
-                </div>
-                <div>
-                  <span>08111222333</span>
-                </div>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <div>
-                  <label className="fw-bold">Toko Sinar Terang</label>
-                </div>
-                <div>
-                  <span>Jalan Sudirman no.1, Kota Surabaya</span>
-                </div>
-                <div>
-                  <span>08111222444</span>
-                </div>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <div>
-                  <label className="fw-bold">Toko Barokah</label>
-                </div>
-                <div>
-                  <span>Jalan Merpati no.123, Kota Sidoarjo</span>
-                </div>
-                <div>
-                  <span>08123123123</span>
-                </div>
-              </ListGroup.Item>
-            </ListGroup>
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="1">
-          <Accordion.Header>Rute B</Accordion.Header>
-          <Accordion.Body>
-          <ListGroup>
-              <ListGroup.Item>
-                <div>
-                  <label className="fw-bold">Toko Makmur</label>
-                </div>
-                <div>
-                  <span>Jalan Kenjeran no.20, Kota Surabaya</span>
-                </div>
-                <div>
-                  <span>08111222333</span>
-                </div>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <div>
-                  <label className="fw-bold">Toko Sinar Terang</label>
-                </div>
-                <div>
-                  <span>Jalan Sudirman no.1, Kota Surabaya</span>
-                </div>
-                <div>
-                  <span>08111222444</span>
-                </div>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <div>
-                  <label className="fw-bold">Toko Barokah</label>
-                </div>
-                <div>
-                  <span>Jalan Merpati no.123, Kota Sidoarjo</span>
-                </div>
-                <div>
-                  <span>08123123123</span>
-                </div>
-              </ListGroup.Item>
-            </ListGroup>
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
+        {
+          rute.map((item, index) => {
+            if (index == 0 || rute[index].nama_rute != rute[index-1].nama_rute) {
+              return (
+                <Accordion.Item key={item.id} eventKey={item.id}>
+                  <Accordion.Header>
+                    <label className="fw-bold">Rute {item.nama_rute}</label>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <div className="mb-2">
+                      <Button className="fs-6">Edit</Button>
+                    </div>
+                    {ruteHari.map((subitem) => {
+                      if (item.nama_rute == subitem.nama_rute) {
+                        return (
+                          <ListGroup.Item>
+                            <div className="fs-5">
+                              <label>hari ke {subitem.hari}</label>
+                            </div>
+                          </ListGroup.Item>
+                        )
+                      }
+                    })}
+                  </Accordion.Body>
+                </Accordion.Item>
+              )
+            }
+            // end if (index == 0 || rute[index].nama_rute != rute[index-1].nama_rute) 
+          })
+        }
+      </Accordion> 
+      */}
     </div>
   );
 };

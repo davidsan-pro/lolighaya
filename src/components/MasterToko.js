@@ -43,7 +43,7 @@ const MasterToko = () => {
 
   return (
     <div>
-      <SearchBar onSearch={getToko} />
+      <SearchBar onSearch={getToko} keywordType="nama toko" />
       <div>
         <strong className="is-size-4 me-3">Data Toko</strong>
         <Link to="/add_toko" className="button is-primary">

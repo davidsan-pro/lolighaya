@@ -14,7 +14,7 @@ const Sidebar = () => {
       <Button variant="primary" className="me-2 btn-lg" onClick={handleShow}>
         <FontAwesomeIcon icon="fa-solid fa-bars" />
       </Button>
-      <Offcanvas show={show} placement="end" scroll="true">
+      <Offcanvas show={show} placement="end" scroll="true" style={{ maxWidth:'75%'}}>
         <Offcanvas.Header>
           <Button onClick={handleClose}>
             <FontAwesomeIcon icon="fa-solid fa-times fa-2xl" />

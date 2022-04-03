@@ -1,10 +1,11 @@
-import { Button } from "bootstrap";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Table, Button } from "react-bootstrap";
 import Pagination from "./Pagination";
+// import Text from "react-native";
 
-const DisplayListUser = ({ users, onDelete }) => {
-  console.log("display users", users);
+const DisplayListRuteToko = ({ toko, onDelete }) => {
+  console.log("display toko", toko);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -12,11 +13,11 @@ const DisplayListUser = ({ users, onDelete }) => {
   // get current item
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItem = users.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItem = toko.slice(indexOfFirstItem, indexOfLastItem);
 
   // change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  
+
   return (
     <>
       <>
@@ -52,41 +53,35 @@ const DisplayListUser = ({ users, onDelete }) => {
         </div> */}
       </>
 
-      <table className="table is-striped is-fullwidth">
+      <Table striped>
         <thead>
           <tr>
-            <th>No</th>
-            <th>Foto User</th>
-            <th>Info User</th>
-            <th>Action</th>
+            <td>No</td>
+            <td>Info Toko</td>
+            <td>Action</td>
           </tr>
         </thead>
         <tbody>
           {
-            // kalo jumlah barangnya 1 atau lebih maka tampilkan dlm bentuk tabel
+            // kalo jumlah datanya 1 atau lebih maka tampilkan dlm bentuk tabel
             // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
-            users.length > 0 ? (
-              users.map((user, index) => (
-                <tr key={user.id}>
-                  <td>{index + 1}.</td>
+            toko.length > 0 ? (
+              toko.map((item, index) => (
+                <tr key={item.id}>
+                  <td>{index +1}.</td>
                   <td>
-                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
+                    <label className="fs-5">{item.nama}</label>
+                    <br />
+                    <small style={{ textOverflow:'ellipsis'}} className="fs-7">{item.alamat}</small>
+                    <br />
+                    <small style={{ textOverflow:'ellipsis'}} className="fs-7">{item.kecamatan}, {item.kota}</small>
                   </td>
                   <td>
-                    <label className="fs-6">{user.username}</label>
-                    <br/>
-                    <small className="fs-7">{user.username}</small>
-                  </td>
-                  <td>
-                    <Link to={`/edit_user/${user.id}`}>
-                      <button className="button is-success mb-2">
-                        Edit
-                      </button>
+                    <Link to={`/edit_toko/${item.id_toko}`}>
+                      <Button variant="primary" className="mb-2 me-2">Edit</Button>
                     </Link>
                     <br/>
-                    <button onClick={() => onDelete(user.id)} className="button is-danger">
-                      Delete
-                    </button>
+                    <Button onClick={() => onDelete(item.id)} variant="danger" className="mb-2">Delete</Button>
                   </td>
                 </tr>
               ))
@@ -99,10 +94,10 @@ const DisplayListUser = ({ users, onDelete }) => {
             )
           }
         </tbody>
-      </table>
+      </Table>
 
       <Pagination itemsPerPage={itemsPerPage} 
-      totalItems={users.length} 
+      totalItems={toko.length} 
       paginate={paginate} 
       curPageNumber={currentPage} 
       />
@@ -111,4 +106,4 @@ const DisplayListUser = ({ users, onDelete }) => {
   );
 };
 
-export default DisplayListUser;
+export default DisplayListRuteToko;

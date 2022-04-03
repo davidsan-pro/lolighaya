@@ -30,6 +30,10 @@ const MasterBarang = () => {
   };
 
   const deleteBarang = async (id) => {
+    if ( ! window.confirm('Data akan dihapus. Lanjutkan?')) {
+      return false;
+    }
+
     const myurl = `${global.config.base_url}/barang/${id}`;
     await fetch(myurl, {
       method: 'DELETE', 
@@ -43,7 +47,7 @@ const MasterBarang = () => {
 
   return (
     <div>
-      <SearchBar onSearch={getBarang}/>
+      <SearchBar onSearch={getBarang} keywordType="nama barang"/>
       <div>
         <strong className="is-size-4 me-3">Data Barang</strong>
         <Link to="/add_barang" className="button is-primary">

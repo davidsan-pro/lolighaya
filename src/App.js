@@ -10,11 +10,14 @@ import MasterUser from "./components/MasterUser";
 import AddUser from "./components/AddUser";
 import EditUser from "./components/EditUser";
 import MasterBarang from "./components/MasterBarang";
-import MasterToko from "./components/MasterToko";
 import AddBarang from "./components/AddBarang";
-import AddToko from "./components/AddToko";
 import EditBarang from "./components/EditBarang";
+import MasterToko from "./components/MasterToko";
+import AddToko from "./components/AddToko";
 import EditToko from "./components/EditToko";
+import MasterRute from "./components/MasterRute";
+import AddRute from "./components/AddRute";
+import MasterRuteListToko from "./components/MasterRuteListToko";
 
 const App = () => {
   const [showPrev, setShowPrev] = useState(false);
@@ -42,6 +45,9 @@ const App = () => {
           <Route path="/master_toko" element={<MasterToko />} />
           <Route path="/add_toko" element={<AddToko />} />
           <Route path="/edit_toko/:id" element={<EditToko />} />
+          <Route path="/master_rute" element={<MasterRute />} />
+          <Route path="/add_rute" element={<AddRute />} />
+          <Route path="/master_rute_list/:id" element={<MasterRuteListToko />} />
         </Routes>
       </div>
 

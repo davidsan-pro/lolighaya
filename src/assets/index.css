@@ -39,6 +39,15 @@ footer {
   overflow: auto;
 }
 
+/* .myellipsis {
+  overflow: hidden;
+  line-height: 1em;
+  max-height: 2em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+} */
+
 .fs-7 {
   font-size: 0.8rem;
 }
@@ -61,4 +70,10 @@ footer {
 }
 .shown {
   opacity: 1;
+}
+
+Table td,
+Table th {
+  white-space: nowrap;
+  width: 1%;
 }

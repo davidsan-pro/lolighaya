@@ -1,7 +1,7 @@
 // import { useState } from "react";
 import moment from "moment";
 import "moment/locale/id";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 // import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -41,6 +41,8 @@ const Header = () => {
     title = "Tambah Toko";
   } else if (location.pathname.indexOf("/edit_toko") === 0) {
     title = "Edit Toko";
+  } else if (location.pathname === "/master_rute") {
+    title = "Master Rute";
   }
 
   return (
@@ -57,7 +59,14 @@ const Header = () => {
               <Button className="ms-3 btn-lg" style={{ opacity: "0" }}></Button>
             )
           }
-          <span>LoliGhaya</span>
+          <div>
+            <span>
+              LoliGhaya
+            </span>
+            {/* <Link to="/">
+              LoliGhaya
+            </Link> */}
+          </div>
           <Sidebar />
         </div>
       </header>

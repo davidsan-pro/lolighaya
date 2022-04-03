@@ -26,9 +26,11 @@ const MenuDatabase = () => {
         </Link>
       </div>
       <div className="mb-3">
-        <Button className="btn-menu fw-bold" variant="primary" size="lg">
-          MASTER RUTE
-        </Button>
+        <Link to="/master_rute">
+          <Button className="btn-menu fw-bold" variant="primary" size="lg">
+            MASTER RUTE
+          </Button>
+        </Link>
       </div>
     </div>
   );

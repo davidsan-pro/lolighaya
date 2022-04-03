@@ -26,6 +26,10 @@ const UserList = () => {
   };
 
   const deleteUser = async (id) => {
+    if ( ! window.confirm('Data akan dihapus. Lanjutkan?')) {
+      return false;
+    }
+
     await axios.delete(`${global.config.base_url}/users/${id}`);
     getUsers();
   };

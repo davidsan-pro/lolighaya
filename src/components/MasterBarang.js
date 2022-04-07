@@ -29,8 +29,8 @@ const MasterBarang = () => {
     }
   };
 
-  const deleteBarang = async (id) => {
-    if ( ! window.confirm('Data akan dihapus. Lanjutkan?')) {
+  const deleteBarang = async (id, string) => {
+    if ( ! window.confirm(`Data Barang [${string}] akan dihapus. Lanjutkan?`)) {
       return false;
     }
 

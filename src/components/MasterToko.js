@@ -29,7 +29,11 @@ const MasterToko = () => {
     }
   };
 
-  const deleteToko = async (id) => {
+  const deleteToko = async (id, string) => {
+    if ( ! window.confirm(`Data Toko [${string}] akan dihapus. Lanjutkan?`)) {
+      return false;
+    }
+
     const myurl = `${global.config.base_url}/toko/${id}`;
     await fetch(myurl, {
       method: "DELETE",

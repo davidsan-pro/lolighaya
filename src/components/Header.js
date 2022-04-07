@@ -43,6 +43,14 @@ const Header = () => {
     title = "Edit Toko";
   } else if (location.pathname === "/master_rute") {
     title = "Master Rute";
+  } else if (location.pathname === "/add_rute") {
+    title = "Tambah Rute";
+  } else if (location.pathname.indexOf("/edit_rute") === 0) {
+    title = "Edit Rute";
+  } else if (location.pathname.indexOf("/master_rute_list") === 0) {
+    title = "List Rute";
+  } else if (location.pathname.indexOf("/add_rute_list") === 0) {
+    title = "Tambah Rute - Toko";
   }
 
   return (

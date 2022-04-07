@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 import SearchBar from "./SearchBar";
+import * as fn from "../MyFunctions";
 
+const listHari = []
 const MasterRuteListToko = () => {
-  const [toko, setToko] = useState([]);
+  const [dRute, setDRute] = useState([]);
+  const [namaRute, setNamaRute] = useState('');
+  const [namaHari, setNamaHari] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   const location = useLocation();
@@ -14,56 +18,68 @@ const MasterRuteListToko = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    getTokoById();
+    getNamaRute();
+    getDRuteById();
   }, []);
 
-  const getTokoById = async (query='') => {
+  const getNamaRute = async () => {
+    const myurl = `${global.config.base_url}/mrute/${id}?qf=id_rute&qv=${id}`;
+    const response = await fetch(myurl);
+    const data = await response.json();
+    if (data.length > 0) {
+      setNamaRute(data[0].nama_rute);
+      setNamaHari(fn.getNamaHari(data[0].hari));
+    }
+  }
+
+  const getDRuteById = async (query='') => {
     setIsLoading(true);
     let myurl = `${global.config.base_url}/drute?qf=id_rute&qv=${id}`;
     if (query) {
       myurl += location.search ? '?' : '&';
       myurl += `q=${query}`;
     }
-    console.log("url", myurl);
     const response = await fetch(myurl);
     const data = await response.json();
-    console.log("data", data);
-    setToko(data);
+    setDRute(data);
     setIsLoading(false);
   };
 
-  const deleteToko = async (id) => {
-    if ( ! window.confirm('Data akan dihapus. Lanjutkan?')) {
+  const deleteDRute = async (id, string) => {
+    if ( ! window.confirm(`Data Rute utk [${string}] akan dihapus. Lanjutkan?`)) {
       return false;
     }
 
-    // const myurl = `${global.config.base_url}/toko/${id}`;
-    // await fetch(myurl, {
-    //   method: "DELETE",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    // getToko();
+    const myurl = `${global.config.base_url}/drute/${id}`;
+    await fetch(myurl, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    getDRuteById();
   };
 
   return (
     <div>
-      <SearchBar onSearch={getTokoById} keywordType="nama toko" />
+      <SearchBar onSearch={getDRuteById} keywordType="nama toko" />
       <div className="is-flex is-align-content-space-between">
         <div className="me-3 mb-3">
           <strong className="is-size-4">Daftar Toko</strong>
           <br />
-          <strong className="is-size-6">Rute SEMAMPIR hari SELASA</strong>
+          <span className="is-size-6">
+            Rute <strong>{namaRute}</strong>
+            , hari <strong>{fn.ucase(namaHari)}</strong>
+          </span>
         </div>
         <div>
-          <Link to="/" className="button is-primary">
+          <Link to={`/add_rute_list/${id}`} className="button is-primary">
             Tambah Data
           </Link>
         </div>
       </div>
-      {console.log('asd', toko)}
-      {isLoading ? <Spinner animation="border" /> : <DisplayListRuteToko toko={toko} onDelete={deleteToko}/>}
+      {/* {console.log('asd', toko)} */}
+      {isLoading ? <Spinner animation="border" /> : <DisplayListRuteToko toko={dRute} onDelete={deleteDRute}/>}
     </div>
   );
 };

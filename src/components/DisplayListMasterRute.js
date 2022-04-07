@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
 
-const DisplayListMasterRute = ({ rute }) => {
+const DisplayListMasterRute = ({ rute, onDelete }) => {
   const [ruteHari, setRuteHari] = useState(rute);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,7 +26,7 @@ const DisplayListMasterRute = ({ rute }) => {
         <Accordion>
           {
             rute.map((item, index) => {
-              if (index == 0 || rute[index].nama_rute != rute[index-1].nama_rute) {
+              if (index === 0 || rute[index].nama_rute !== rute[index-1].nama_rute) {
                 return (
                   <Accordion.Item key={item.id} eventKey={item.id}>
                     <Accordion.Header>
@@ -34,15 +34,19 @@ const DisplayListMasterRute = ({ rute }) => {
                     </Accordion.Header>
                     <Accordion.Body>
                       <div className="mb-2">
-                        <Button className="fs-6">Edit Rute {item.nama_rute}</Button>
+                        <Link to={`/edit_rute/${item.id}`}>
+                          <Button variant="info" className="fs-6 me-2">Edit</Button>
+                        </Link>
+                        <Button variant="danger" className="fs-6" onClick={() => onDelete(item.id, item.nama_rute)}>Delete</Button>
                       </div>
                       <Table striped size="sm">
                         <tbody>
                           {ruteHari.map((subitem) => {
-                            console.log('subitem', subitem.id, subitem.nama_rute, subitem.list_kota);
-                            if (item.nama_rute == subitem.nama_rute) {
+                            // if (subitem.)
+                            if (item.nama_rute === subitem.nama_rute && parseInt(subitem.status|0)) {
+                              console.log('subitem', index, item, subitem);
                               return (
-                                <tr key={subitem.id}>
+                                <tr key={subitem.id} className="mb-2">
                                   <td>
                                     <label className="fs-5">{fn.getNamaHari(subitem.hari)}</label>
                                     <br/>
@@ -50,8 +54,10 @@ const DisplayListMasterRute = ({ rute }) => {
                                   </td>
                                   <td style={{ textAlign:'center' }}>
                                     <Link to={`/master_rute_list/${subitem.id}`}>
-                                      <Button variant="primary">Edit</Button>
+                                      <Button variant="info" style={{ backgroundColor:'cerulean' }} className="mb-2 mt-2">Edit</Button>
+                                      <br/>
                                     </Link>
+                                      <Button variant="danger" className="mb-2">Delete</Button>
                                   </td>
                                 </tr>
                                 // <ListGroup.Item key={subitem.id}>

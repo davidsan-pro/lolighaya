@@ -26,20 +26,25 @@ const MasterRute = () => {
     }
     const response = await fetch(myurl);
     const data = await response.json();
+    console.log('data', data);
     setRute(data);
     setIsLoading(false);
   };
 
-  // const deleteBarang = async (id) => {
-  //   const myurl = `${global.config.base_url}/barang/${id}`;
-  //   await fetch(myurl, {
-  //     method: 'DELETE', 
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   });
-  //   getBarang();
-  // };
+  const deleteRute = async (id, string) => {
+    if ( ! window.confirm(`Data Rute [${string}] akan dihapus. Lanjutkan?`)) {
+      return false;
+    }
+
+    const myurl = `${global.config.base_url}/mrute/${id}`;
+    await fetch(myurl, {
+      method: 'DELETE', 
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    getRute();
+  };
 
 
   return (
@@ -51,7 +56,7 @@ const MasterRute = () => {
           Tambah Baru
         </Link>
       </div>
-      {isLoading ? <Spinner animation="border" /> : <DisplayListMasterRute rute={rute} />}
+      {isLoading ? <Spinner animation="border" /> : <DisplayListMasterRute rute={rute} onDelete={deleteRute} />}
       {/* {console.log('asd1', rute)} */}
       {/* {isLoading ? <Spinner animation="border" /> : <DisplayListBarang barang={barang} onDelete={deleteBarang} />} */}
       {/* 

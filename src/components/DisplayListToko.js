@@ -87,7 +87,7 @@ const DisplayListToko = ({ toko, onDelete }) => {
                     <Link to={`/edit_toko/${item.id}`} className="button is-success mr-2">
                       Edit
                     </Link>
-                    <button onClick={() => onDelete(item.id)} className="button is-danger">
+                    <button onClick={() => onDelete(item.id, item.nama)} className="button is-danger">
                       Delete
                     </button>
                   </td>

@@ -19,8 +19,9 @@ const MasterRute = () => {
 
   const getRute = async (query='') => {
     setIsLoading(true);
+    console.log('master rute getrute');
     let myurl = `${global.config.base_url}/MRute`;
-    console.log('master rute getrute', myurl);
+    console.log('myurl', myurl);
     if (query) {
       myurl += location.search ? '?' : '&';
       myurl += `q=${query}`;

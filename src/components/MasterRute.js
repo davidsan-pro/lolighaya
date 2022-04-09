@@ -22,15 +22,16 @@ const MasterRute = () => {
     console.log('master rute getrute');
     let myurl = `${global.config.base_url}/MRute`;
     console.log('myurl', myurl);
-    if (query) {
-      myurl += location.search ? '?' : '&';
-      myurl += `q=${query}`;
-    }
-    const response = await fetch(myurl);
-    const data = await response.json();
-    console.log('data', data);
-    setRute(data);
-    setIsLoading(false);
+    return;
+//     if (query) {
+//       myurl += location.search ? '?' : '&';
+//       myurl += `q=${query}`;
+//     }
+//     const response = await fetch(myurl);
+//     const data = await response.json();
+//     console.log('data', data);
+//     setRute(data);
+//     setIsLoading(false);
   };
 
   const deleteRute = async (id, string) => {

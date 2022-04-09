@@ -19,7 +19,8 @@ const MasterRute = () => {
 
   const getRute = async (query='') => {
     setIsLoading(true);
-    let myurl = `${global.config.base_url}/mrute`;
+    let myurl = `${global.config.base_url}/MRute`;
+    console.log('master rute getrute', myurl);
     if (query) {
       myurl += location.search ? '?' : '&';
       myurl += `q=${query}`;
@@ -36,7 +37,7 @@ const MasterRute = () => {
       return false;
     }
 
-    const myurl = `${global.config.base_url}/mrute/${id}`;
+    const myurl = `${global.config.base_url}/MRute/${id}`;
     await fetch(myurl, {
       method: 'DELETE', 
       headers: {

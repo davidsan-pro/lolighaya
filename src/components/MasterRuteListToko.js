@@ -24,7 +24,7 @@ const MasterRuteListToko = () => {
   }, []);
 
   const getInfoRute = async () => {
-    const myurl = `${global.config.base_url}/mrute/${id}`;
+    const myurl = `${global.config.base_url}/MRute/${id}`;
     console.log('get info rute url', myurl);
     const response = await fetch(myurl);
     const data = await response.json();

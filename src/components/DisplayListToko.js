@@ -73,14 +73,16 @@ const DisplayListToko = ({ toko, onDelete }) => {
                     <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
                   </td>
                   <td>
-                    <div className="fs-5">{item.nama}</div>
-                    <div>
-                      <small>
-                        {item.alamat}, Kec.{item.kecamatan}, Kota {item.kota}
-                      </small>
+                    <div className="fs-5">
+                      <Link to={`/view_toko/${item.id}`}>{item.nama}</Link>
                     </div>
                     <div>
-                      <small>Telepon: {item.telepon}</small>
+                      <small>{item.alamat}</small>
+                    </div>
+                    <div>
+                      <small>
+                        Kec.{item.kecamatan}, Kota {item.kota}
+                      </small>
                     </div>
                   </td>
                   <td>
@@ -104,12 +106,7 @@ const DisplayListToko = ({ toko, onDelete }) => {
         </tbody>
       </table>
 
-      <Pagination itemsPerPage={itemsPerPage} 
-      totalItems={toko.length} 
-      paginate={paginate} 
-      curPageNumber={currentPage} 
-      />
-
+      <Pagination itemsPerPage={itemsPerPage} totalItems={toko.length} paginate={paginate} curPageNumber={currentPage} />
     </>
   );
 };

@@ -3,8 +3,9 @@ body {
   height: 100%;
 }
 
-header {
-  /* border-bottom: 1px solid #424242; */
+a {
+  cursor: pointer;
+  text-decoration: none;
 }
 
 /* body > * > .container {
@@ -39,6 +40,10 @@ footer {
   overflow: auto;
 }
 
+.errmsg {
+  color: red;
+  font-style: italic;
+}
 /* .myellipsis {
   overflow: hidden;
   line-height: 1em;
@@ -54,11 +59,6 @@ footer {
 
 .hidden {
   opacity: 0;
-}
-
-.errmsg {
-  color: red;
-  font-style: italic;
 }
 
 /* search bar */
@@ -83,8 +83,8 @@ Table th {
   width: 1%;
 }
 
-Table tr>th:first-child,
-Table tr>td:first-child {
+Table tr > th:first-child,
+Table tr > td:first-child {
   padding-left: 1rem;
 }
 

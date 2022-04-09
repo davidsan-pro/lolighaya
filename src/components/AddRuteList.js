@@ -23,7 +23,7 @@ const AddRuteList = () => {
   }, []);
 
   const getInfoRute = async () => {
-    const myurl = `${global.config.base_url}/MRute/${id}?qf=id_rute&qv=${id}`;
+    const myurl = `${global.config.base_url}/Mrute/${id}?qf=id_rute&qv=${id}`;
     console.log('get info rute url', myurl);
     const response = await fetch(myurl);
     const data = await response.json();

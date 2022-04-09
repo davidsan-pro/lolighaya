@@ -24,7 +24,7 @@ const MasterRuteListToko = () => {
   }, []);
 
   const getInfoRute = async () => {
-    const myurl = `${global.config.base_url}/MRute/${id}`;
+    const myurl = `${global.config.base_url}/Mrute/${id}`;
     console.log('get info rute url', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
@@ -38,7 +38,7 @@ const MasterRuteListToko = () => {
 
   const getDRuteById = async (query='') => {
     setIsLoading(true);
-    let myurl = `${global.config.base_url}/drute?qf=id_rute&qv=${id}`;
+    let myurl = `${global.config.base_url}/Drute?qf=id_rute&qv=${id}`;
     if (query) {
       myurl += location.search ? '?' : '&';
       myurl += `q=${query}`;
@@ -54,7 +54,7 @@ const MasterRuteListToko = () => {
       return false;
     }
 
-    const myurl = `${global.config.base_url}/drute/${id}`;
+    const myurl = `${global.config.base_url}/Drute/${id}`;
     await fetch(myurl, {
       method: "DELETE",
       headers: {

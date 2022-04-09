@@ -10,8 +10,6 @@ const listHari = []
 const MasterRuteListToko = () => {
   const [dRute, setDRute] = useState([]);
   const [infoRute, setInfoRute] = useState([]);
-  const [namaRute, setNamaRute] = useState('');
-  const [namaHari, setNamaHari] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   const location = useLocation();
@@ -24,15 +22,13 @@ const MasterRuteListToko = () => {
   }, []);
 
   const getInfoRute = async () => {
-    const myurl = `${global.config.base_url}/Mrute/${id}`;
-    console.log('get info rute url', myurl);
+    const myurl = `${global.config.base_url}/Mrute?qf=id&qv=${id}&qmode=exact`;
+    // console.log('get info rute url', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
-    console.log('get info rute data', data);
-    setInfoRute(data);
+    // console.log('get info rute data', data);
     if (data.length > 0) {
-      setNamaRute(data[0].nama_rute);
-      setNamaHari(fn.getNamaHari(data[0].hari));
+      setInfoRute(data[0]);
     }
   }
 
@@ -43,14 +39,18 @@ const MasterRuteListToko = () => {
       myurl += location.search ? '?' : '&';
       myurl += `q=${query}`;
     }
+    console.log('get drute by id', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
+    // console.log('data drute', data);
     setDRute(data);
     setIsLoading(false);
   };
 
   const deleteDRute = async (id, string) => {
-    if ( ! window.confirm(`Data Rute utk [${string}] akan dihapus. Lanjutkan?`)) {
+    const hariRute = fn.ucase(fn.getNamaHari(infoRute.hari));
+    const strConfirm = `Data [${string}] akan dihapus dari daftar Rute ${infoRute.nama_rute} utk hari ${hariRute}. Lanjutkan?`;
+    if ( ! window.confirm(strConfirm)) {
       return false;
     }
 
@@ -71,9 +71,10 @@ const MasterRuteListToko = () => {
         <div className="me-3 mb-3">
           <strong className="is-size-4">Daftar Toko</strong>
           <br />
+          {console.log('info rute', infoRute)}
           <span className="is-size-6">
             Rute <strong>{infoRute.nama_rute}</strong>
-            , hari <strong>{fn.ucase(infoRute.hari)}</strong>
+            , hari <strong>{fn.ucase(fn.getNamaHari(infoRute.hari))}</strong>
           </span>
         </div>
         <div>
@@ -82,7 +83,7 @@ const MasterRuteListToko = () => {
           </Link>
         </div>
       </div>
-      {/* {console.log('asd', toko)} */}
+      {console.log('asd', dRute)}
       {isLoading ? <Spinner animation="border" /> : <DisplayListRuteToko toko={dRute} onDelete={deleteDRute} />}
     </div>
   );

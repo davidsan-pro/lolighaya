@@ -19,17 +19,17 @@ const MasterRute = () => {
 
   const getRute = async (query='') => {
     setIsLoading(true);
-    console.log('master rute getrute');
+    // console.log('master rute getrute');
     let myurl = `${global.config.base_url}/Mrute`;
     if (query) {
-      myurl += location.search ? '?' : '&';
+      myurl += myurl.indexOf('?') > 0 ? '&' : '?';
       myurl += `q=${query}`;
     }
     // console.log('master rute getrute', myurl);
     // return;
     const response = await fetch(myurl);
     const data = await response.json(); 
-    console.log('data', data);
+    // console.log('data', data);
     setRute(data);
     setIsLoading(false);
   };

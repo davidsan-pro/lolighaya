@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Table, Button } from "react-bootstrap";
 import Pagination from "./Pagination";
+import ViewToko from "./ViewToko";
 // import Text from "react-native";
 
 const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit }) => {
-  console.log("display toko", toko);
-  console.log("selected toko", selectedToko);
+  // console.log("display toko", toko);
+  // console.log("selected toko", selectedToko);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -25,8 +26,8 @@ const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit })
         <Table striped>
           <thead>
             <tr>
-              <th>No</th>
-              <th>Info Toko</th>
+              {/* <th>No</th> */}
+              <th className="ps-3">Info Toko</th>
               <th className="text-center">Action</th>
             </tr>
           </thead>
@@ -36,12 +37,14 @@ const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit })
               // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
               toko.length > 0 ? (
                 toko.map((item, index) => {
-                  // console.log('detail rute toko', index, item);
+                  console.log('detail rute toko', index, item);
                   return (
                   <tr key={index}>
-                    <td>{index +1}.</td>
+                    {/* <td>{index +1}.</td> */}
                     <td>
-                      <label className="fs-5">{item.nama}</label>
+                      <Link to={`/view_toko/${item.id}`}>
+                        <label className="fs-5">{item.nama}</label>
+                      </Link>
                       <br />
                       <small style={{ textOverflow:'ellipsis'}} className="fs-7">{item.alamat}</small>
                       <br />
@@ -58,7 +61,7 @@ const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit })
                           />
                           <span className="ms-2">Pilih</span>
                         </label> */}
-                        <Button onClick={() => onSelect(item)} variant="info" className="mb-2">Pilih</Button>
+                        <Button onClick={() => onSelect(item.id)} variant="info" className="mb-2">Pilih</Button>
                       </div>
                     </td>
                   </tr>
@@ -80,49 +83,6 @@ const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit })
         curPageNumber={currentPage} 
         />
       </div>
-      
-      <div className="fs-5 fw-bold">Toko yang dipilih</div>
-      <form onSubmit={onSubmit}>
-        <Table striped>
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Info Toko</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {selectedToko.map((item, index) => {
-              console.log('item', item);
-              return (
-                <tr>
-                  <td>{index +1}.</td>
-                  <td>
-                    <label className="fs-5">{item.nama}</label>
-                    <br />
-                    <small style={{ textOverflow:'ellipsis'}} className="fs-7">{item.alamat}</small>
-                    <br />
-                    <small style={{ textOverflow:'ellipsis'}} className="fs-7">{item.kecamatan}, {item.kota}</small>
-                  </td>
-                  <td>
-                    <Button onClick={() => onSelect(item)} variant="info" className="mb-2">Pilih</Button>
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </Table>
-        
-        <div>
-
-        </div>
-        {/* <div className="field d-grid">
-          <Button variant="primary" type="submit" size="lg">
-            SIMPAN
-          </Button>
-        </div> */}
-      </form>
-
     </>
   );
 };

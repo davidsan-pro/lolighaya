@@ -35,6 +35,8 @@ const Header = () => {
     title = "Tambah Barang";
   } else if (location.pathname.indexOf("/edit_barang") === 0) {
     title = "Edit Barang";
+  } else if (location.pathname.indexOf("/view_toko") === 0) {
+    title = "Detail Info Toko";
   } else if (location.pathname === "/master_toko") {
     title = "Master Toko";
   } else if (location.pathname === "/add_toko") {

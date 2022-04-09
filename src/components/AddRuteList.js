@@ -10,8 +10,6 @@ const AddRuteList = () => {
   const [toko, setToko] = useState([]);
   const [selectedToko, setSelectedToko] = useState([]);
   const [infoRute, setInfoRute] = useState([]);
-  const [namaRute, setNamaRute] = useState('');
-  const [namaHari, setNamaHari] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -23,12 +21,14 @@ const AddRuteList = () => {
   }, []);
 
   const getInfoRute = async () => {
-    const myurl = `${global.config.base_url}/Mrute/${id}?qf=id_rute&qv=${id}`;
-    console.log('get info rute url', myurl);
+    const myurl = `${global.config.base_url}/Mrute?qf=id&qv=${id}&qmode=exact`;
+    // console.log('get info rute url', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
-    console.log('info rute data', data);
-    setInfoRute(data[0]);
+    // console.log('get info rute data', data);
+    if (data.length > 0) {
+      setInfoRute(data[0]);
+    }
   }
 
   const getToko = async (query = "") => {
@@ -86,7 +86,7 @@ const AddRuteList = () => {
           <span className="is-size-6">
             Pilih Toko utk ditambahkan ke 
             rute <strong>{infoRute.nama_rute}</strong>
-            , hari <strong>{fn.ucase(infoRute.hari)}</strong>
+            , hari <strong>{fn.ucase(fn.getNamaHari(infoRute.hari))}</strong>
           </span>
       </div>
       {isLoading 

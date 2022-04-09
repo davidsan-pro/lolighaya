@@ -12,6 +12,7 @@ import EditUser from "./components/EditUser";
 import MasterBarang from "./components/MasterBarang";
 import AddBarang from "./components/AddBarang";
 import EditBarang from "./components/EditBarang";
+import ViewToko from "./components/ViewToko";
 import MasterToko from "./components/MasterToko";
 import AddToko from "./components/AddToko";
 import EditToko from "./components/EditToko";
@@ -44,6 +45,7 @@ const App = () => {
           <Route path="/master_barang" element={<MasterBarang />} />
           <Route path="/add_barang" element={<AddBarang />} />
           <Route path="/edit_barang/:id" element={<EditBarang />} />
+          <Route path="/view_toko/:id" element={<ViewToko />} />
           <Route path="/master_toko" element={<MasterToko />} />
           <Route path="/add_toko" element={<AddToko />} />
           <Route path="/edit_toko/:id" element={<EditToko />} />

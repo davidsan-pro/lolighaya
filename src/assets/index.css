@@ -83,6 +83,11 @@ Table th {
   width: 1%;
 }
 
+Table tr>th:first-child,
+Table tr>td:first-child {
+  padding-left: 1rem;
+}
+
 .text-center {
   text-align: center;
 }

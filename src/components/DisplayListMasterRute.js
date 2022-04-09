@@ -44,20 +44,19 @@ const DisplayListMasterRute = ({ rute, onDelete }) => {
                           {ruteHari.map((subitem) => {
                             // if (subitem.)
                             if (item.nama_rute === subitem.nama_rute && parseInt(subitem.status|0)) {
-                              console.log('subitem', index, item, subitem);
+                              // console.log('subitem', index, item, subitem);
                               return (
                                 <tr key={subitem.id} className="mb-2">
-                                  <td>
+                                  <td className="ps-3">
                                     <label className="fs-5">{fn.getNamaHari(subitem.hari)}</label>
                                     <br/>
                                     <em className="fs-7">{subitem.list_kota}</em>
                                   </td>
-                                  <td style={{ textAlign:'center' }}>
+                                  <td className="pe-3" style={{ textAlign:'right' }}>
                                     <Link to={`/master_rute_list/${subitem.id}`}>
                                       <Button variant="info" style={{ backgroundColor:'cerulean' }} className="mb-2 mt-2">Edit</Button>
                                       <br/>
                                     </Link>
-                                      <Button variant="danger" className="mb-2">Delete</Button>
                                   </td>
                                 </tr>
                                 // <ListGroup.Item key={subitem.id}>

@@ -9,6 +9,7 @@ import DisplayListAddRuteToko from "./DisplayListAddRuteToko";
 const AddRuteList = () => {
   const [toko, setToko] = useState([]);
   const [selectedToko, setSelectedToko] = useState([]);
+  const [infoRute, setInfoRute] = useState([]);
   const [namaRute, setNamaRute] = useState('');
   const [namaHari, setNamaHari] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -23,14 +24,11 @@ const AddRuteList = () => {
 
   const getInfoRute = async () => {
     const myurl = `${global.config.base_url}/mrute/${id}?qf=id_rute&qv=${id}`;
-    console.log('getinforute', myurl);
+    console.log('get info rute url', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
-    console.log('data', data);
-    if (data.length > 0) {
-      setNamaRute(data[0].nama_rute);
-      setNamaHari(fn.getNamaHari(data[0].hari));
-    }
+    console.log('info rute data', data);
+    setInfoRute(data[0]);
   }
 
   const getToko = async (query = "") => {
@@ -52,7 +50,16 @@ const AddRuteList = () => {
   };
 
   const addSelectedToko = (item) => {
-    setSelectedToko([...selectedToko, item]);
+    console.log('curtoko', selectedToko);
+    console.log('additem', item);
+    setToko([...toko, item]);
+
+    const newToko = {
+      id_rute: id,
+      id_toko: item.id,
+    }
+
+    navigate(`/master_rute_list/${id}`);
   }
 
   const saveRuteToko = async (e) => {
@@ -78,8 +85,8 @@ const AddRuteList = () => {
       <div>
           <span className="is-size-6">
             Pilih Toko utk ditambahkan ke 
-            rute <strong>{namaRute}</strong>
-            , hari <strong>{fn.ucase(namaHari)}</strong>
+            rute <strong>{infoRute.nama_rute}</strong>
+            , hari <strong>{fn.ucase(infoRute.hari)}</strong>
           </span>
       </div>
       {isLoading 

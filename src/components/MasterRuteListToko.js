@@ -9,6 +9,7 @@ import * as fn from "../MyFunctions";
 const listHari = []
 const MasterRuteListToko = () => {
   const [dRute, setDRute] = useState([]);
+  const [infoRute, setInfoRute] = useState([]);
   const [namaRute, setNamaRute] = useState('');
   const [namaHari, setNamaHari] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -18,14 +19,17 @@ const MasterRuteListToko = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    getNamaRute();
+    getInfoRute();
     getDRuteById();
   }, []);
 
-  const getNamaRute = async () => {
-    const myurl = `${global.config.base_url}/mrute/${id}?qf=id_rute&qv=${id}`;
+  const getInfoRute = async () => {
+    const myurl = `${global.config.base_url}/mrute/${id}`;
+    console.log('get info rute url', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
+    console.log('get info rute data', data);
+    setInfoRute(data);
     if (data.length > 0) {
       setNamaRute(data[0].nama_rute);
       setNamaHari(fn.getNamaHari(data[0].hari));
@@ -68,8 +72,8 @@ const MasterRuteListToko = () => {
           <strong className="is-size-4">Daftar Toko</strong>
           <br />
           <span className="is-size-6">
-            Rute <strong>{namaRute}</strong>
-            , hari <strong>{fn.ucase(namaHari)}</strong>
+            Rute <strong>{infoRute.nama_rute}</strong>
+            , hari <strong>{fn.ucase(infoRute.hari)}</strong>
           </span>
         </div>
         <div>
@@ -79,7 +83,7 @@ const MasterRuteListToko = () => {
         </div>
       </div>
       {/* {console.log('asd', toko)} */}
-      {isLoading ? <Spinner animation="border" /> : <DisplayListRuteToko toko={dRute} onDelete={deleteDRute}/>}
+      {isLoading ? <Spinner animation="border" /> : <DisplayListRuteToko toko={dRute} onDelete={deleteDRute} />}
     </div>
   );
 };

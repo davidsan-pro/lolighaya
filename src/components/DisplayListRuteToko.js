@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 // import Text from "react-native";
 
 const DisplayListRuteToko = ({ toko, onDelete }) => {
-  console.log("display toko", toko);
+  console.log("display rute toko", toko);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -25,7 +25,7 @@ const DisplayListRuteToko = ({ toko, onDelete }) => {
           <tr>
             <th>No</th>
             <th>Info Toko</th>
-            <th>Action</th>
+            <th style={{ textAlign:'center' }}>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -39,7 +39,7 @@ const DisplayListRuteToko = ({ toko, onDelete }) => {
                 <tr key={item.id}>
                   <td>{index +1}.</td>
                   <td>
-                    <label className="fs-5">{item.nama}</label>
+                    <label className="fw-bold">{item.nama}</label>
                     <br />
                     <small style={{ textOverflow:'ellipsis'}} className="fs-7">{item.alamat}</small>
                     <br />
@@ -47,14 +47,17 @@ const DisplayListRuteToko = ({ toko, onDelete }) => {
                   </td>
                   <td>
                     <div className="is-flex is-justify-content-center">
-                    <input
-                      type="checkbox"
-                      id="rute_toko"
-                      name="rute_toko"
-                      value={item.id}
-                    />
+                      {/* <label>
+                        <input
+                          type="checkbox"
+                          id="rute_toko"
+                          name="rute_toko"
+                          value={item.id}
+                        />
+                        <span className="ms-2">Pilih</span>
+                      </label> */}
+                      <Button onClick={() => onDelete(item.id, item.nama)} variant="danger" className="mb-2">Hapus</Button>
                     </div>
-                    {/* <Button onClick={() => onSelect(item)} variant="info" className="mb-2">Pilih</Button> */}
                   </td>
                 </tr>
               )})

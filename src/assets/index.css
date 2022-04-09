@@ -82,3 +82,7 @@ Table th {
   white-space: nowrap;
   width: 1%;
 }
+
+.text-center {
+  text-align: center;
+}

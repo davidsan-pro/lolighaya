@@ -6,6 +6,7 @@ import Pagination from "./Pagination";
 
 const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit }) => {
   console.log("display toko", toko);
+  console.log("selected toko", selectedToko);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -26,7 +27,7 @@ const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit })
             <tr>
               <th>No</th>
               <th>Info Toko</th>
-              <th>Action</th>
+              <th className="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -37,7 +38,7 @@ const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit })
                 toko.map((item, index) => {
                   // console.log('detail rute toko', index, item);
                   return (
-                  <tr key={item.id}>
+                  <tr key={index}>
                     <td>{index +1}.</td>
                     <td>
                       <label className="fs-5">{item.nama}</label>
@@ -47,15 +48,18 @@ const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit })
                       <small style={{ textOverflow:'ellipsis'}} className="fs-7">{item.kecamatan}, {item.kota}</small>
                     </td>
                     <td>
-                      <div className="is-flex is-justify-content-center">
-                      <input
-                        type="checkbox"
-                        id="rute_toko"
-                        name="rute_toko"
-                        value={item.id}
-                      />
+                      <div className="text-center">
+                        {/* <label>
+                          <input
+                            type="checkbox"
+                            id="rute_toko"
+                            name="rute_toko"
+                            value={item.id}
+                          />
+                          <span className="ms-2">Pilih</span>
+                        </label> */}
+                        <Button onClick={() => onSelect(item)} variant="info" className="mb-2">Pilih</Button>
                       </div>
-                      {/* <Button onClick={() => onSelect(item)} variant="info" className="mb-2">Pilih</Button> */}
                     </td>
                   </tr>
                 )})

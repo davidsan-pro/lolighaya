@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/lolighaya/static/css/main.eb232d3b.css",
-    "main.js": "/lolighaya/static/js/main.c525c6d7.js",
+    "main.css": "/lolighaya/static/css/main.1e156fec.css",
+    "main.js": "/lolighaya/static/js/main.1b64ff4c.js",
     "index.html": "/lolighaya/index.html",
-    "main.eb232d3b.css.map": "/lolighaya/static/css/main.eb232d3b.css.map",
-    "main.c525c6d7.js.map": "/lolighaya/static/js/main.c525c6d7.js.map"
+    "main.1e156fec.css.map": "/lolighaya/static/css/main.1e156fec.css.map",
+    "main.1b64ff4c.js.map": "/lolighaya/static/js/main.1b64ff4c.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb232d3b.css",
-    "static/js/main.c525c6d7.js"
+    "static/css/main.1e156fec.css",
+    "static/js/main.1b64ff4c.js"
   ]
 }

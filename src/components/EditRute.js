@@ -120,23 +120,23 @@ const AddRute = () => {
     //   {id: "4", nama: "kamis", hari: "4"}, 
     //   {id: "5", nama: "jumat", hari: "5"}
     // ];
-    console.log("get data", data);
+    // console.log("get rute by id", id, data);
     setNamaRute(data[0].nama_rute);
 
     const tmp1 = checkedState.map((item, index) => {
-      console.log("index", index);
+      // console.log("index", index);
 
       data.forEach(function (row) {
         const rowHari = row.hari - 1;
         if (index === rowHari && parseInt(row.status|0) > 0) {
           item.isChecked = true;
         }
-        console.log("hari", rowHari, item.isChecked);
+        // console.log("hari", rowHari, item.isChecked);
       });
 
       return item;
     });
-    console.log("temp", tmp1);
+    // console.log("temp", tmp1);
 
     setCheckedState(tmp1);
 
@@ -147,36 +147,36 @@ const AddRute = () => {
 
   return (
     <>
-    {isLoading 
-      ? <Spinner animation="border" /> 
-      : <div className="container">
-          <form onSubmit={updateRute}>
-            <div className="field">
-              <label className="label">Nama Rute</label>
-              <input type="text" className="input" placeholder="nama rute" value={namaRute} onChange={(e) => setNamaRute(e.target.value)} />
-              <div className="errmsg">{errNamaRute}</div>
-            </div>
-            {listHari.map(({ nama, nomor }, index) => {
-              return (
-                <div className="field" key={index}>
-                  <label className="checkbox">
-                    <input type="checkbox" title="Senin" className="me-2" value={nomor} checked={checkedState[index].isChecked} onChange={() => handleOnChange(index)} />
-                    {fn.ucasefirst(nama)}
-                  </label>
-                </div>
-              );
-            })}
-            
-            <div className="errmsg">{errHariRute}</div>
-            <hr />
-            <div className="field d-grid">
-              <Button variant="primary" type="submit" size="lg">
-                Update
-              </Button>
-            </div>
-          </form>
-        </div>
-      }
+      {isLoading 
+        ? <Spinner animation="border" /> 
+        : <div className="container">
+            <form onSubmit={updateRute}>
+              <div className="field">
+                <label className="label">Nama Rute</label>
+                <input type="text" className="input" placeholder="nama rute" value={namaRute} onChange={(e) => setNamaRute(e.target.value)} />
+                <div className="errmsg">{errNamaRute}</div>
+              </div>
+              {listHari.map(({ nama, nomor }, index) => {
+                return (
+                  <div className="field" key={index}>
+                    <label className="checkbox">
+                      <input type="checkbox" title="Senin" className="me-2" value={nomor} checked={checkedState[index].isChecked} onChange={() => handleOnChange(index)} />
+                      {fn.ucasefirst(nama)}
+                    </label>
+                  </div>
+                );
+              })}
+              
+              <div className="errmsg">{errHariRute}</div>
+              <hr />
+              <div className="field d-grid">
+                <Button variant="primary" type="submit" size="lg">
+                  Update
+                </Button>
+              </div>
+            </form>
+          </div>
+        }
     </>
   )
 };

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import DisplayListUser from "./DisplayListUser";
 import { Link } from "react-router-dom";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Button } from "react-bootstrap";
 import SearchBar from "./SearchBar";
 
 const MasterUser = () => {
@@ -52,8 +52,8 @@ const MasterUser = () => {
       <SearchBar onSearch={getUsers} keywordType="username" />
       <div>
         <strong className="is-size-4 me-3">Data User</strong>
-        <Link to="/add_user" className="button is-primary">
-          Tambah Baru
+        <Link to="/add_user">
+          <Button variant="primary">Tambah Baru</Button>
         </Link>
       </div>
       {isLoading ? <Spinner animation="border" /> : <DisplayListUser users={users} onDelete={deleteUser} />}

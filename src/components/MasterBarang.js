@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import DisplayListBarang from "./DisplayListBarang";
 import { Link } from "react-router-dom";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Button } from "react-bootstrap";
 import SearchBar from "./SearchBar";
 
 const MasterBarang = () => {
@@ -50,8 +50,8 @@ const MasterBarang = () => {
       <SearchBar onSearch={getBarang} keywordType="nama barang"/>
       <div>
         <strong className="is-size-4 me-3">Data Barang</strong>
-        <Link to="/add_barang" className="button is-primary">
-          Tambah Baru
+        <Link to="/add_barang">
+          <Button variant="primary">Tambah Baru</Button>
         </Link>
       </div>
       {isLoading ? <Spinner animation="border" /> : <DisplayListBarang barang={barang} onDelete={deleteBarang} />}

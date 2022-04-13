@@ -77,6 +77,20 @@ footer {
   opacity: 1;
 }
 
+.table-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}
+
+.table-container>table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
 Table td,
 Table th {
   white-space: nowrap;

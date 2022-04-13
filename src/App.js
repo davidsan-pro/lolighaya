@@ -7,9 +7,11 @@ import PilihHari from "./components/PilihHari";
 import RuteListToko from "./components/RuteListToko";
 import RuteDetailToko from "./components/RuteDetailToko";
 import MenuDatabase from "./components/MenuDatabase";
+import ViewUser from "./components/ViewUser";
 import MasterUser from "./components/MasterUser";
 import AddUser from "./components/AddUser";
 import EditUser from "./components/EditUser";
+import ViewBarang from "./components/ViewBarang";
 import MasterBarang from "./components/MasterBarang";
 import AddBarang from "./components/AddBarang";
 import EditBarang from "./components/EditBarang";
@@ -40,9 +42,11 @@ const App = () => {
           <Route path="/rute_list_toko" element={<RuteListToko />} />
           <Route path="/rute_detail_toko" element={<RuteDetailToko />} />
           <Route path="/master" element={<MenuDatabase />} />
+          <Route path="/view_user/:id" element={<ViewUser />} />
           <Route path="/master_user" element={<MasterUser />} />
           <Route path="/add_user" element={<AddUser />} />
           <Route path="/edit_user/:id" element={<EditUser />} />
+          <Route path="/view_barang/:id" element={<ViewBarang />} />
           <Route path="/master_barang" element={<MasterBarang />} />
           <Route path="/add_barang" element={<AddBarang />} />
           <Route path="/edit_barang/:id" element={<EditBarang />} />

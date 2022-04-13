@@ -3,20 +3,20 @@ import { useParams } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 import * as fn from "../MyFunctions";
 
-const ViewToko = () => {
-  const [toko, setToko] = useState([]);
+const ViewUser = () => {
+  const [user, setUser] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const { id } = useParams();
 
   useEffect(() => {
-    getToko();
+    getUser();
   }, []);
 
-  const getToko = async (query = "") => {
+  const getUser = async (query = "") => {
     setIsLoading(true);
 
-    let myurl = `${global.config.base_url}/toko/${id}`;
+    let myurl = `${global.config.base_url}/user/${id}`;
     if (query) {
       myurl += `?q=${query}`;
     }
@@ -24,7 +24,7 @@ const ViewToko = () => {
     const response = await fetch(myurl);
     const data = await response.json();
     // console.log('data', data);
-    setToko(data);
+    setUser(data);
 
     setIsLoading(false);
   };
@@ -47,17 +47,15 @@ const ViewToko = () => {
                   </figure>
                 </div>
                 <div className="media-content">
-                  <p className="title fs-4">{toko.nama}</p>
-                  {/* <p className="subtitle is-6">@johnsmith</p> */}
+                  <p className="title fs-4">{user.username}</p>
+                  <p className="subtitle is-6">{user.nama}</p>
                 </div>
               </div>
           
               <div className="content fs-6">
-                Alamat: {toko.alamat}
+                Email: {user.email}
                 <br />
-                Lokasi: Kec.{toko.kecamatan}, {fn.ucasefirst(toko.kota)}
-                <br />
-                Telepon: {toko.telepon}
+                Telepon: {user.telepon}
               </div>
             </div>
           </div>
@@ -66,4 +64,4 @@ const ViewToko = () => {
   )
 };
 
-export default ViewToko
+export default ViewUser

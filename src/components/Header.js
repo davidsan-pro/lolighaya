@@ -23,12 +23,16 @@ const Header = () => {
     title = "Pilih Hari";
   } else if (location.pathname === "/master") {
     title = "Menu Database";
+  } else if (location.pathname.indexOf("/view_user") === 0) {
+    title = "Detail User";
   } else if (location.pathname === "/master_user") {
     title = "Master User";
   } else if (location.pathname === "/add_user") {
     title = "Tambah User";
   } else if (location.pathname.indexOf("/edit_user") === 0) {
     title = "Edit User";
+  } else if (location.pathname.indexOf("/view_barang") === 0) {
+    title = "Detail Barang";
   } else if (location.pathname === "/master_barang") {
     title = "Master Barang";
   } else if (location.pathname === "/add_barang") {
@@ -36,7 +40,7 @@ const Header = () => {
   } else if (location.pathname.indexOf("/edit_barang") === 0) {
     title = "Edit Barang";
   } else if (location.pathname.indexOf("/view_toko") === 0) {
-    title = "Detail Info Toko";
+    title = "Detail Toko";
   } else if (location.pathname === "/master_toko") {
     title = "Master Toko";
   } else if (location.pathname === "/add_toko") {

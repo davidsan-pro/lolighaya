@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 // import Text from "react-native";
 
 const DisplayListRuteToko = ({ toko, onDelete }) => {
-  console.log("display list rute toko", toko);
+  // console.log("display list rute toko", toko);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);

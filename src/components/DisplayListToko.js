@@ -42,26 +42,16 @@ const DisplayListToko = ({ toko, onDelete }) => {
                       <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image" />
                     </td>
                     <td>
-                      <div className="mb-2">
-                        <div className="fs-5">
-                          <Link to={`/view_toko/${item.id}`}>{item.nama}</Link>
-                        </div>
-                        <div>
-                          <small>{item.alamat}</small>
-                        </div>
-                        <div>
-                          <small>
-                            Kec.{item.kecamatan}, Kota {item.kota}
-                          </small>
-                        </div>
+                      <div className="fs-5">
+                        <Link to={`/view_toko/${item.id}`} onDelete={onDelete}>{item.nama}</Link>
                       </div>
                       <div>
-                        <Link to={`/edit_toko/${item.id}`}>
-                          <Button variant="info" className="me-2">Edit</Button>
-                        </Link>
-                        <Button variant="danger" onClick={() => onDelete(item.id, item.nama)}>
-                          Delete
-                        </Button>
+                        <small>{item.alamat}</small>
+                      </div>
+                      <div>
+                        <small>
+                          Kec.{item.kecamatan}, Kota {item.kota}
+                        </small>
                       </div>
                     </td>
                   </tr>

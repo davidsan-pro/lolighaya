@@ -43,21 +43,13 @@ const DisplayListBarang = ({ barang, onDelete }) => {
                     <td>
                       <div className="mb-2">
                         <div className="fs-5">
-                          <Link to={`/view_barang/${item.id}`}>
+                          <Link to={`/view_barang/${item.id}`} onDelete={onDelete}>
                             {item.nama}
                           </Link>
                         </div>
                         <div>
                           <small>Stok: {item.stok}</small>
                         </div>
-                      </div>
-                      <div>
-                        <Link to={`/edit_barang/${item.id}`}>
-                          <Button variant="info" className="me-2">Edit</Button>
-                        </Link>
-                        <Button variant="danger" onClick={() => onDelete(item.id, item.nama)}>
-                          Delete
-                        </Button>
                       </div>
                     </td>
                   </tr>

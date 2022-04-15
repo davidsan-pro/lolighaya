@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
-import { Spinner } from "react-bootstrap";
+import { useParams, Link } from "react-router-dom";
+import { Button, Spinner } from "react-bootstrap";
 import * as fn from "../MyFunctions";
 
-const ViewToko = () => {
+const ViewToko = ({ onDelete }) => {
   const [toko, setToko] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -51,7 +51,7 @@ const ViewToko = () => {
                   {/* <p className="subtitle is-6">@johnsmith</p> */}
                 </div>
               </div>
-          
+
               <div className="content fs-6">
                 Alamat: {toko.alamat}
                 <br />
@@ -59,6 +59,23 @@ const ViewToko = () => {
                 <br />
                 Telepon: {toko.telepon}
               </div>
+
+              <div className='content'>
+                <div className="is-flex is-justify-content-space-between">
+                  <div className="mb-2">
+                    <Link to={`/edit_toko/${toko.id}`}>
+                      <Button variant="info" className="me-2">Edit</Button>
+                    </Link>
+                    <Button variant="danger" onClick={() => onDelete(toko.id, toko.nama)}>
+                      Delete
+                    </Button>
+                  </div>
+                  <div>
+                    <Button variant="success">Histori Transaksi</Button>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
       }

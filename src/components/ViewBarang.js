@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Spinner } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { useParams, Link } from "react-router-dom";
+import { Button, Spinner } from "react-bootstrap";
 
-const ViewBarang = () => {
+const ViewBarang = ({ onDelete }) => {
   const [barang, setBarang] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -56,15 +55,15 @@ const ViewBarang = () => {
             <div className="content">
               <div className="is-flex is-justify-content-space-between">
                 <div className="mb-2">
-                  <Button variant="success" className="me-2">
-                    Edit
-                  </Button>
-                  <Button variant="danger" className="me-2">
-                    Hapus
+                  <Link to={`/edit_barang/${barang.id}`}>
+                    <Button variant="info" className="me-2">Edit</Button>
+                  </Link>
+                  <Button variant="danger" onClick={() => onDelete(barang.id, barang.nama)}>
+                    Delete
                   </Button>
                 </div>
                 <div>
-                  <Button variant="info">Histori Transaksi</Button>
+                  <Button variant="success">Histori Transaksi</Button>
                 </div>
               </div>
             </div>

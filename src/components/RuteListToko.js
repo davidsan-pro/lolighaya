@@ -1,80 +1,81 @@
-import React from 'react'
-import Accordion from 'react-bootstrap/Accordion';
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Table, Button, Spinner } from "react-bootstrap";
+import { Link, useParams, useLocation } from "react-router-dom";
+import * as fn from "../MyFunctions";
+import SearchBar from "./SearchBar";
+import DisplayDashboardRuteListToko from "./DisplayDashboardRuteListToko";
 
 const RuteListToko = () => {
+  const [dRute, setDRute] = useState([]);
+  const [infoRute, setInfoRute] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { id } = useParams();
+  const location = useLocation();
+  // console.log("rutelisttoko", id);
+
+  useEffect(() => {
+    getInfoRute();
+    getDRuteById();
+  }, []);
+
+  const getInfoRute = async () => {
+    const myurl = `${global.config.base_url}/Mrute?qf=id&qv=${id}&qmode=exact`;
+    // console.log('get info rute url', myurl);
+    const response = await fetch(myurl);
+    const data = await response.json();
+    // console.log('get info rute data', data);
+    if (data.length > 0) {
+      setInfoRute(data[0]);
+    }
+  };
+
+  const getDRuteById = async (query = "") => {
+    setIsLoading(true);
+    let myurl = `${global.config.base_url}/Drute?qf=id_rute&qv=${id}`;
+    if (query) {
+      myurl += location.search ? "?" : "&";
+      myurl += `q=${query}`;
+    }
+    console.log("get drute by id", myurl);
+    const response = await fetch(myurl);
+    const data = await response.json();
+    // console.log("data drute", data);
+    setDRute(data);
+    setIsLoading(false);
+  };
+
+  const deleteRuteToko = (id, string) => {
+    const hariRute = fn.ucase(fn.getNamaHari(infoRute.hari));
+    const strConfirm = `Data [${string}] akan dihapus dari daftar Rute ${infoRute.nama_rute} utk hari ${hariRute}. Lanjutkan?`;
+    if ( ! window.confirm(strConfirm)) {
+      return false;
+    }
+  }
+
   return (
-    <div className='container has-text-centered'>
-
-      <Accordion defaultActiveKey="0" className='mb-3'>
-        <Accordion.Item eventKey="0">
-          <Accordion.Header><strong>DAFTAR TOKO</strong></Accordion.Header>
-          <Accordion.Body className='content-scroll'>
-
-            <table className='table'>
-              <thead>
-                <tr>
-                  <th>No.</th>
-                  <th>Nama Toko</th>
-                  <th>Tanggal Terakhir</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                    <td>1.</td>
-                    <td className='has-text-left'>
-                      <Link to='/rute_detail_toko?id=1'>
-                        Toko Makmur
-                      </Link>
-                    </td>
-                    <td>10-01-2022</td>
-                  </tr>
-                  <tr>
-                    <td>2.</td>
-                    <td className='has-text-left'>
-                      <Link to='/rute_detail_toko?id=2'>
-                        Toko Barokah
-                      </Link>
-                    </td>
-                    <td>10-01-2022</td>
-                  </tr>
-                  <tr>
-                    <td>3.</td>
-                    <td className='has-text-left'>
-                      <Link to='/rute_detail_toko?id=3'>
-                        Toko Sinar Jaya
-                      </Link>
-                    </td>
-                    <td>15-02-2022</td>
-                  </tr>
-                  <tr>
-                    <td>4.</td>
-                    <td className='has-text-left'>
-                      <Link to='/rute_detail_toko?id=4'>
-                        Toko Sumber Rejeki
-                      </Link>
-                    </td>
-                    <td>20-02-2022</td>
-                  </tr>
-                  <tr>
-                    <td>5.</td>
-                    <td className='has-text-left'>
-                      <Link to='/rute_detail_toko?id=5'>
-                        Toko Mainan ABC
-                      </Link>
-                    </td>
-                    <td>20-02-2022</td>
-                  </tr>
-              </tbody>
-              
-            </table>
-
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
-
+    <div>
+      <SearchBar onSearch={getDRuteById} keywordType="nama toko" />
+      <div className="is-flex is-justify-content-space-between">
+        <div className="me-3 mb-3">
+          <span className="is-size-6">
+            Rute <strong>{infoRute.nama_rute}</strong>
+            , hari <strong>{fn.ucase(fn.getNamaHari(infoRute.hari))}</strong>
+          </span>
+        </div>
+        <div>
+          <Link to={`/add_rute_list/${id}`}>
+            <Button variant="primary">Tambah Data</Button>
+          </Link>
+        </div>
+      </div>
+      {
+        isLoading 
+        ? <Spinner animation="border" /> 
+        : <DisplayDashboardRuteListToko dRute={dRute} onDelete={deleteRuteToko} />
+      }
     </div>
-  )
-}
+  );
+};
 
-export default RuteListToko
+export default RuteListToko;

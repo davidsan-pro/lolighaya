@@ -38,9 +38,9 @@ const App = () => {
           {/* <Route path="/asd" element={<Test2 />} />
           {/* <Route path="/" element={<Login />} /> */}
           <Route path="/" element={<Dashboard />} />
-          <Route path="/pilih_hari" element={<PilihHari />} />
-          <Route path="/rute_list_toko" element={<RuteListToko />} />
-          <Route path="/rute_detail_toko" element={<RuteDetailToko />} />
+          {/* <Route path="/pilih_hari" element={<PilihHari />} /> */}
+          <Route path="/rute_list_toko/:id" element={<RuteListToko />} />
+          <Route path="/rute_detail_toko/:id" element={<RuteDetailToko />} />
           <Route path="/master" element={<MenuDatabase />} />
           <Route path="/view_user/:id" element={<ViewUser />} />
           <Route path="/master_user" element={<MasterUser />} />

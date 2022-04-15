@@ -1,58 +1,48 @@
-import { Button, Accordion, ListGroup } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Spinner, Accordion, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import DisplayDashboard from "./DisplayDashboard";
 
 const Dashboard = () => {
+  const [rute, setRute] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getRute();
+  }, []);
+
+  const getRute = async (query='') => {
+    setIsLoading(true);
+    // console.log('master rute getrute');
+    let myurl = `${global.config.base_url}/Mrute`;
+    if (query) {
+      myurl += myurl.indexOf('?') > 0 ? '&' : '?';
+      myurl += `q=${query}`;
+    }
+    // console.log('master rute getrute', myurl);
+    // return;
+    const response = await fetch(myurl);
+    const data = await response.json(); 
+    // console.log('data', data);
+    setRute(data);
+    setIsLoading(false);
+  };
+
   return (
-    <div className="container has-text-centered">
-      <Accordion defaultActiveKey="0" className="mb-4">
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>
-            <strong>PILIH RUTE</strong>
-          </Accordion.Header>
-          <Accordion.Body className="content-scroll">
-            <ListGroup className="has-text-left">
-              <Link to="/pilih_hari">
-                <ListGroup.Item>
-                  <strong className="is-size-5 mr-2">Rute A</strong>
-                  <em>
-                    <small>Probolinggo, Surabaya</small>
-                  </em>
-                </ListGroup.Item>
-              </Link>
-              <Link to="/pilih_hari">
-                <ListGroup.Item>
-                  <strong className="is-size-5 mr-2">Rute B</strong>
-                  <em>
-                    <small>Surabaya Utara, Surabaya Timur</small>
-                  </em>
-                </ListGroup.Item>
-              </Link>
-              <Link to="/pilih_hari">
-                <ListGroup.Item>
-                  <strong className="is-size-5 mr-2">Rute C</strong>
-                  <em>
-                    <small>Surabaya Selatan, Sidoarjo, Bangkalan</small>
-                  </em>
-                </ListGroup.Item>
-              </Link>
-              <Link to="/pilih_hari">
-                <ListGroup.Item>
-                  <strong className="is-size-5 mr-2">Rute D</strong>
-                  <em>
-                    <small>Madura, Surabaya Utara, Surabaya Barat</small>
-                  </em>
-                </ListGroup.Item>
-              </Link>
-            </ListGroup>
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
+    <div className="container">
+      <div className="mb-3 fs-4">
+        <strong>Pilih Rute</strong>
+      </div>
+
+      {isLoading ? <Spinner animation="border" /> : <DisplayDashboard rute={rute} />}
 
       <div style={{ marginBottom: "5rem" }}>
         <Link to="/master">
-          <Button variant="info" size="lg" className="has-text-weight-bold">
-            Master Database
-          </Button>
+          <div className="d-grid fw-bold">
+            <button className="button is-link is-rounded is-medium is-fullwidth">
+              Master Database
+            </button>
+          </div>
         </Link>
       </div>
     </div>

@@ -19,6 +19,10 @@ const Header = () => {
   let title = "";
   if (location.pathname === "/" || location.pathname === "") {
     title = "Dashboard";
+  } else if (location.pathname.indexOf("/rute_list_toko") === 0) {
+    title = "Detail Rute";
+  } else if (location.pathname.indexOf("/rute_detail_toko") === 0) {
+    title = "Detail Rute - Toko";
   } else if (location.pathname === "/pilih_hari") {
     title = "Pilih Hari";
   } else if (location.pathname === "/master") {

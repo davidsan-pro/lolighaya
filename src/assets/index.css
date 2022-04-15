@@ -22,6 +22,10 @@ footer {
   height: 50px;
 }
 
+Link:hover {
+  cursor: pointer;
+}
+
 .btn-menu {
   width: 80%;
 }

@@ -71,7 +71,7 @@ const MasterRuteListToko = () => {
         <div className="me-3 mb-3">
           <strong className="is-size-4">Daftar Toko</strong>
           <br />
-          {console.log('info rute', infoRute)}
+          {/* {console.log('info rute', infoRute)} */}
           <span className="is-size-6">
             Rute <strong>{infoRute.nama_rute}</strong>
             , hari <strong>{fn.ucase(fn.getNamaHari(infoRute.hari))}</strong>
@@ -83,7 +83,6 @@ const MasterRuteListToko = () => {
           </Link>
         </div>
       </div>
-      {console.log('asd', dRute)}
       {isLoading ? <Spinner animation="border" /> : <DisplayListRuteToko toko={dRute} onDelete={deleteDRute} />}
     </div>
   );

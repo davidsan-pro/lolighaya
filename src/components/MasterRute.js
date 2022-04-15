@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Button } from "react-bootstrap";
 import SearchBar from "./SearchBar";
 import DisplayListMasterRute from "./DisplayListMasterRute";
 import { useLocation } from "react-router-dom";
@@ -55,8 +55,8 @@ const MasterRute = () => {
       <SearchBar onSearch={getRute} keywordType="nama toko"/>
       <div className="mb-3">
         <strong className="is-size-4 me-3">Data Rute</strong>
-        <Link to="/add_rute" className="button is-primary">
-          Tambah Baru
+        <Link to="/add_rute">
+          <Button variant="primary">Tambah Baru</Button>
         </Link>
       </div>
       {isLoading ? <Spinner animation="border" /> : <DisplayListMasterRute rute={rute} onDelete={deleteRute} />}

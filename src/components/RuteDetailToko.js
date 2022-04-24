@@ -49,7 +49,7 @@ const RuteDetailToko = ({ onDelete }) => {
               </div>
               <div className="media-content">
                 <p className="title fs-4">{toko.nama}</p>
-                {/* <p className="subtitle is-6">@johnsmith</p> */}
+                <div className="subtitle is-6">No.Urut Rute:</div>
               </div>
             </div>
 
@@ -63,7 +63,6 @@ const RuteDetailToko = ({ onDelete }) => {
 
             <div className="content">
               <div className="is-flex is-align-items-flex-start is-flex-wrap-wrap">
-                {/* <div className="mb-2"> */}
                 <Link to={`/add_transaksi`}>
                   <Button variant="primary" className="me-2 mb-2">
                     Nota Baru
@@ -80,9 +79,6 @@ const RuteDetailToko = ({ onDelete }) => {
                 <Button variant="danger" className="me-2 mb-2" onClick={() => onDelete(toko.id, toko.nama)}>
                   Delete
                 </Button>
-                {/* </div> */}
-                {/* <div> */}
-                {/* </div> */}
               </div>
             </div>
           </div>

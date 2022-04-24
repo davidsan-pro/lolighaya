@@ -43,12 +43,13 @@ const DisplayDashboard = ({ rute }) => {
                                 <tr key={subitem.id} className="mb-2">
                                   <td className="ps-3">
                                     <Link to={`/rute_list_toko/${subitem.id}`}>
-                                      <span className="fs-5">
+                                      <span className="fs-5 me-2">
                                         {fn.getNamaHari(subitem.hari)}
                                       </span>
-                                      <br/>
-                                      <em className="fs-7">{subitem.list_kota}</em>
                                     </Link>
+                                    <span>0/{parseInt(subitem.jum_toko|0)}</span>
+                                    <br/>
+                                    <em className="fs-7">{subitem.list_kota}</em>
                                   </td>
                                 </tr>
                               )

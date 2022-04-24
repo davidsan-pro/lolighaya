@@ -71,7 +71,6 @@ const AddRute = () => {
     let formData = { nama_rute:namaRute };
     formData['hari'] = pilihHari
     console.log("formdata", formData);
-    // const barang = { nama, harga, stok };
     await fetch(`${global.config.base_url}/Mrute`, {
       method: 'POST',
       body: JSON.stringify(formData),
@@ -92,7 +91,7 @@ const AddRute = () => {
           <input type="text" className="input" placeholder="nama rute" value={namaRute} onChange={(e) => setNamaRute(e.target.value)} />
           <div className="errmsg">{errNamaRute}</div>
         </div>
-        {listHari.map(({nama, nomor}, index) => {
+        {/* {listHari.map(({nama, nomor}, index) => {
           return (
             <div className="field" key={index}>
               <label className="checkbox">
@@ -108,7 +107,7 @@ const AddRute = () => {
               </label>
             </div>
             )
-        })}
+        })} */}
         {/* <div className="field">
           <label className="checkbox">
             <input type="checkbox" title="Senin" className="me-2" value={senin} onChange={(e) => setSenin(e.target.value)} />

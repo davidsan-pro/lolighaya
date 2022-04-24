@@ -5,6 +5,7 @@ import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
 
 const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
+  // console.log('drute', dRute);
   const [ruteHari, setRuteHari] = useState(dRute);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,8 +34,8 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
             </thead>
             <tbody>
               {dRute.map((item, index) => (
-                <tr>
-                  <td>{index + 1}.</td>
+                <tr key={item.id}>
+                  <td>{index +1}.</td>
                   <td>
                     <div className="media mb-1">
                       <div className="media-left">
@@ -46,7 +47,7 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
                         <p className="title fs-5">
                           <Link to={`/rute_detail_toko/${item.id}`}>{item.nama}</Link>
                         </p>
-                        <div className="subtitle is-7">{item.telepon}</div>
+                        <div className="subtitle is-7">No.Urut {item.urutan}</div>
                       </div>
                     </div>
 
@@ -56,7 +57,7 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
                       Lokasi: Kec.{item.kecamatan}, {fn.ucasefirst(item.kota)}
                     </div>
 
-                    <div className="content">
+                    {/* <div className="content">
                       <div className="is-flex is-justify-content-space-between">
                         <div className="mb-2">
                           <Link to={`/edit_toko/${item.id}`}>
@@ -72,7 +73,7 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
                           <Button variant="success" size="sm" className="me-2">Histori Transaksi</Button>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </td>
                 </tr>
               ))}

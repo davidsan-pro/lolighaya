@@ -32,6 +32,14 @@ const MenuDatabase = () => {
           </Button>
         </Link>
       </div>
+      <hr/>
+      <div className="mb-3">
+        <Link to="/master_transaksi">
+          <Button className="btn-menu fw-bold" variant="primary" size="lg">
+            HISTORI TRANSAKSI
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };

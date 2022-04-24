@@ -37,7 +37,7 @@ const RuteListToko = () => {
       myurl += location.search ? "?" : "&";
       myurl += `q=${query}`;
     }
-    console.log("get drute by id", myurl);
+    // console.log("get drute by id", myurl);
     const response = await fetch(myurl);
     const data = await response.json();
     // console.log("data drute", data);
@@ -57,10 +57,14 @@ const RuteListToko = () => {
     <div>
       <SearchBar onSearch={getDRuteById} keywordType="nama toko" />
       <div className="is-flex is-justify-content-space-between">
-        <div className="me-3 mb-3">
-          <span className="is-size-6">
+        <div className="me-3 mb-3 is-size-6">
+          <span>
             Rute <strong>{infoRute.nama_rute}</strong>
             , hari <strong>{fn.ucase(fn.getNamaHari(infoRute.hari))}</strong>
+          </span>
+          <br/>
+          <span>
+            ( 0/{parseInt(infoRute.jum_toko|0)} )
           </span>
         </div>
         <div>

@@ -24,6 +24,7 @@ import AddRute from "./components/AddRute";
 import EditRute from "./components/EditRute";
 import MasterRuteListToko from "./components/MasterRuteListToko";
 import AddRuteList from "./components/AddRuteList";
+import MasterTransaksi from "./components/MasterTransaksi";
 
 const App = () => {
   const [showPrev, setShowPrev] = useState(false);
@@ -59,6 +60,7 @@ const App = () => {
           <Route path="/edit_rute/:id" element={<EditRute />} />
           <Route path="/master_rute_list/:id" element={<MasterRuteListToko />} />
           <Route path="/add_rute_list/:id" element={<AddRuteList />} />
+          <Route path="/master_transaksi" element={<MasterTransaksi />} />
         </Routes>
       </div>
 

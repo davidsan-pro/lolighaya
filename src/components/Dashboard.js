@@ -19,7 +19,7 @@ const Dashboard = () => {
       myurl += myurl.indexOf('?') > 0 ? '&' : '?';
       myurl += `q=${query}`;
     }
-    // console.log('master rute getrute', myurl);
+    // console.log('dashboard rute', myurl);
     // return;
     const response = await fetch(myurl);
     const data = await response.json(); 

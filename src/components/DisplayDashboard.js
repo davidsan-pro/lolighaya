@@ -23,48 +23,27 @@ const DisplayDashboard = ({ rute }) => {
   return (
     <>
       <div className="mb-3">
-        <Accordion>
-          {
-            rute.map((item, index) => {
-              if (index === 0 || rute[index].nama_rute !== rute[index-1].nama_rute) {
-                return (
-                  <Accordion.Item key={item.id} eventKey={item.id}>
-                    <Accordion.Header>
-                      <label className="fw-bold">Rute {item.nama_rute}</label>
-                    </Accordion.Header>
-                    <Accordion.Body>
-                      <Table striped size="sm">
-                        <tbody>
-                          {ruteHari.map((subitem) => {
-                            // if (subitem.)
-                            if (item.nama_rute === subitem.nama_rute && parseInt(subitem.status|0)) {
-                              console.log('subitem', index, item, subitem);
-                              return (
-                                <tr key={subitem.id} className="mb-2">
-                                  <td className="ps-3">
-                                    <Link to={`/rute_list_toko/${subitem.id}`}>
-                                      <span className="fs-5 me-2">
-                                        {fn.getNamaHari(subitem.hari)}
-                                      </span>
-                                    </Link>
-                                    <span>0/{parseInt(subitem.jum_toko|0)}</span>
-                                    <br/>
-                                    <em className="fs-7">{subitem.list_kota}</em>
-                                  </td>
-                                </tr>
-                              )
-                            }
-                          })}
-                        </tbody>
-                      </Table>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                )
-              }
-              // end if (index == 0 || rute[index].nama_rute != rute[index-1].nama_rute) 
-            })
-          }
-        </Accordion> 
+        <Table striped bordered hover>
+          <tbody>
+            {
+              rute.map((item, index) => {
+                if (index === 0 || rute[index].nama_rute !== rute[index-1].nama_rute) {
+                  return (
+                    <tr key={item.id}>
+                      <td>
+                        <Link to={`/rute_list_toko/${item.id}`}>
+                          <div className="fw-bold">{item.nama_rute}</div>
+                          <em>{item.list_kota}</em>
+                        </Link>
+                      </td>
+                    </tr>
+                  )
+                }
+                // end if (index == 0 || rute[index].nama_rute != rute[index-1].nama_rute) 
+              })
+            }
+          </tbody>
+        </Table> 
       </div>
       {/* 
       <Table striped hover>

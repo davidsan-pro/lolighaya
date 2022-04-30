@@ -11,7 +11,7 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
 
-  const uniqueRute = [...new Set(dRute.map(item => item.nama_rute))];
+  const uniqueRute = [...new Set(dRute.map((item) => item.nama_rute))];
 
   // get current item
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -35,7 +35,7 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
             <tbody>
               {dRute.map((item, index) => (
                 <tr key={item.id}>
-                  <td>{index +1}.</td>
+                  <td>{index + 1}.</td>
                   <td>
                     <div className="media mb-1">
                       <div className="media-left">
@@ -44,18 +44,24 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
                         </div>
                       </div>
                       <div className="mb-2">
-                        <p className="title fs-5">
+                        <div className="title fs-5">
                           <Link to={`/rute_detail_toko/${item.id}`}>{item.nama}</Link>
-                        </p>
-                        <div className="subtitle is-7">No.Urut {item.urutan}</div>
+                          <br />
+                          <div className="subtitle fs-7 mb-2 ellipsis">
+                            {item.alamat}
+                            <br />
+                            Kec.{item.kecamatan}, {fn.ucasefirst(item.kota)}
+                          </div>
+                        </div>
+                        {/* <div className="subtitle is-7">No.Urut {item.urutan}</div> */}
                       </div>
                     </div>
 
-                    <div className="fs-7 mb-2">
+                    {/* <div className="fs-7 mb-2">
                       Alamat: {item.alamat}
                       <br />
                       Lokasi: Kec.{item.kecamatan}, {fn.ucasefirst(item.kota)}
-                    </div>
+                    </div> */}
 
                     {/* <div className="content">
                       <div className="is-flex is-justify-content-space-between">
@@ -81,13 +87,8 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
           </Table>
         </div>
 
-        <Pagination itemsPerPage={itemsPerPage} 
-        totalItems={uniqueRute.length} 
-        paginate={paginate} 
-        curPageNumber={currentPage} 
-        />
+        <Pagination itemsPerPage={itemsPerPage} totalItems={uniqueRute.length} paginate={paginate} curPageNumber={currentPage} />
       </div>
-
     </>
   );
 };

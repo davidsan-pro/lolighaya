@@ -58,14 +58,8 @@ const RuteListToko = () => {
       <SearchBar onSearch={getDRuteById} keywordType="nama toko" />
       <div className="is-flex is-justify-content-space-between">
         <div className="me-3 mb-3 is-size-6">
-          <span>
-            Rute <strong>{infoRute.nama_rute}</strong>
-            , hari <strong>{fn.ucase(fn.getNamaHari(infoRute.hari))}</strong>
-          </span>
-          <br/>
-          <span>
-            ( 0/{parseInt(infoRute.jum_toko|0)} )
-          </span>
+          <span className="me-2">Rute <strong>{infoRute.nama_rute}</strong></span>
+          <span>( 0/{parseInt(infoRute.jum_toko|0)} Toko)</span>
         </div>
         <div>
           <Link to={`/add_rute_list/${id}`}>
@@ -73,6 +67,7 @@ const RuteListToko = () => {
           </Link>
         </div>
       </div>
+      {/* {console.log('asd rute', dRute)} */}
       {
         isLoading 
         ? <Spinner animation="border" /> 

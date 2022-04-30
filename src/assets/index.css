@@ -44,6 +44,10 @@ Link:hover {
   overflow: auto;
 }
 
+.ellipsis {
+  text-overflow: ellipsis;
+}
+
 .errmsg {
   color: red;
   font-style: italic;

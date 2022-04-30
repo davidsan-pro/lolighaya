@@ -33,33 +33,43 @@ const AddRuteList = () => {
 
   const getToko = async (query = "") => {
     setIsLoading(true);
-    try {
-      let myurl = `${global.config.base_url}/toko`;
-      if (query) {
-        myurl += `?q=${query}`;
-      }
-      const response = await fetch(myurl);
-      const data = await response.json();
-      console.log('get toko', data);
-      setToko(data);
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setIsLoading(false);
+
+    let myurl = `${global.config.base_url}/toko`;
+    if (query) {
+      myurl += `?q=${query}`;
     }
+    let separator = myurl.indexOf('?') > 0 ? '&' : '?';
+    myurl += `${separator}qt_not_in=rute`;
+    // console.log('get toko url', myurl);
+    const response = await fetch(myurl);
+    const data = await response.json();
+    // console.log('get toko', data);
+    setToko(data);
+
+    setIsLoading(false);
   };
 
-  const addSelectedToko = (item) => {
+  const addSelectedToko = async (item) => {
     console.log('curtoko', selectedToko);
     console.log('additem', item);
-    setToko([...toko, item]);
+    // setToko([...toko, item]);
 
-    const newToko = {
+    const newRuteToko = {
       id_rute: id,
-      id_toko: item.id,
+      id_toko: item,
     }
+    // console.log('new toko', newRuteToko);
+    const myurl = `${global.config.base_url}/Drute`;
+    // console.log('myurl', myurl);
+    await fetch(myurl, {
+      method: 'POST',
+      body: JSON.stringify(newRuteToko),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
 
-    navigate(`/master_rute_list/${id}`);
+    navigate(`/rute_list_toko/${id}`);
   }
 
   const saveRuteToko = async (e) => {
@@ -82,11 +92,10 @@ const AddRuteList = () => {
   return (
     <div className="container">
       <SearchBar onSearch={getToko} keywordType="nama toko"/>
-      <div>
+      <div className="mb-2">
           <span className="is-size-6">
             Pilih Toko utk ditambahkan ke 
             rute <strong>{infoRute.nama_rute}</strong>
-            , hari <strong>{fn.ucase(fn.getNamaHari(infoRute.hari))}</strong>
           </span>
       </div>
       {isLoading 

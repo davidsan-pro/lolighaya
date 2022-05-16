@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Spinner, Accordion, ListGroup } from "react-bootstrap";
+import { Spinner, Button, Accordion, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import DisplayDashboard from "./DisplayDashboard";
 
@@ -36,15 +36,16 @@ const Dashboard = () => {
 
       {isLoading ? <Spinner animation="border" /> : <DisplayDashboard rute={rute} />}
 
-      <div style={{ marginBottom: "5rem" }}>
+      {/* <div style={{ marginBottom: "5rem" }}> */}
+        <hr/>
         <Link to="/master">
-          <div className="d-grid fw-bold">
-            <button className="button is-link is-rounded is-medium is-fullwidth">
-              Master Database
-            </button>
+          <div className="d-grid fw-bold mb-5">
+            <Button variant="primary" size="lg">
+              Menu Master
+            </Button>
           </div>
         </Link>
-      </div>
+      {/* </div> */}
     </div>
   );
 };

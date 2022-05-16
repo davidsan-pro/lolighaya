@@ -50,11 +50,15 @@ const MasterUser = () => {
   return (
     <div>
       <SearchBar onSearch={getUsers} keywordType="username" />
-      <div>
-        <strong className="is-size-4 me-3">Data User</strong>
-        <Link to="/add_user">
-          <Button variant="primary">Tambah Baru</Button>
-        </Link>
+      <div className="is-flex is-justify-content-space-between">
+        <div>
+          <strong className="is-size-4 me-3">Data User</strong>
+        </div>
+        <div>
+          <Link to="/add_user">
+            <Button variant="primary">Tambah Baru</Button>
+          </Link>
+        </div>
       </div>
       {isLoading ? <Spinner animation="border" /> : <DisplayListUser users={users} onDelete={deleteUser} />}
     </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Table, Accordion, ListGroup } from "react-bootstrap";
+import { Table, Dropdown, DropdownButton } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
@@ -22,101 +22,65 @@ const DisplayListMasterRute = ({ rute, onDelete }) => {
 
   return (
     <>
-      <div className="mb-3">
-        <Accordion>
-          {
-            rute.map((item, index) => {
-              if (index === 0 || rute[index].nama_rute !== rute[index-1].nama_rute) {
-                return (
-                  <Accordion.Item key={item.id} eventKey={item.id}>
-                    <Accordion.Header>
-                      <label className="fw-bold">Rute {item.nama_rute}</label>
-                    </Accordion.Header>
-                    <Accordion.Body>
-                      <div className="mb-2">
-                        <Link to={`/edit_rute/${item.id}`}>
-                          <Button variant="info" className="fs-6 me-2">Edit</Button>
-                        </Link>
-                        <Button variant="danger" className="fs-6" onClick={() => onDelete(item.id, item.nama_rute)}>Delete</Button>
-                      </div>
-                      <Table striped size="sm">
-                        <tbody>
-                          {ruteHari.map((subitem) => {
-                            // if (subitem.)
-                            if (item.nama_rute === subitem.nama_rute && parseInt(subitem.status|0)) {
-                              // console.log('subitem', index, item, subitem);
-                              return (
-                                <tr key={subitem.id} className="mb-2">
-                                  <td className="ps-3">
-                                    <label className="fs-5">{fn.getNamaHari(subitem.hari)}</label>
-                                    <br/>
-                                    <em className="fs-7">{subitem.list_kota}</em>
-                                  </td>
-                                  <td className="pe-3" style={{ textAlign:'right' }}>
-                                    <Link to={`/master_rute_list/${subitem.id}`}>
-                                      <Button variant="info" style={{ backgroundColor:'cerulean' }} className="mb-2 mt-2">Edit</Button>
-                                      <br/>
-                                    </Link>
-                                  </td>
-                                </tr>
-                                // <ListGroup.Item key={subitem.id}>
-                                //   <div className="fs-5 is-flex is-justify-content-space-between is-align-content-flex-start" style={{ maxWidth: '100%' }}>
-                                //     <label>
-                                //       {fn.getNamaHari(subitem.hari)}
-                                //       <br/>
-                                //       <small className="fs-7" style={{ lineHeight:'1em' }}>
-                                //       Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, iste.
-                                //       </small>
-                                //     </label>
-                                //     <label>
-                                //       <Button variant="primary">Edit</Button>
-                                //     </label>
-                                //   </div>
-                                // </ListGroup.Item>
-                              )
-                            }
-                          })}
-                        </tbody>
-                      </Table>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                )
-              }
-              // end if (index == 0 || rute[index].nama_rute != rute[index-1].nama_rute) 
-            })
-          }
-        </Accordion> 
-      </div>
-      {/* 
-      <Table striped hover>
-        <thead>
-          <tr>
-            <td>No</td>
-            <td>Nama Rute</td>
-            <td>Action</td>
-          </tr>
-        </thead>
-        <tbody>
-          {rute.map((item, index) => (
-            <tr key={item.id}>
-              <td>{index + 1}.</td>
-              <td>Rute {item.nama_rute}</td>
-              <td>
-                <Link to={`/master_rute_hari?nama_rute=${item.nama_rute}`}>
-                  <Button variant="primary">Edit</Button>
-                </Link>
-              </td>
+      <div className="mb-3 table-container">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Data</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </Table> 
-      */}
+          </thead>
+          <tbody>
+          {
+            // kalo jumlah datanya 1 atau lebih maka tampilkan dlm bentuk tabel
+            // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
+            rute.length > 0 
+            ? (
+              rute.map((item, index) => {
+                if (index === 0 || rute[index].nama_rute !== rute[index-1].nama_rute) {
+                  return (
+                    <tr key={item.id} className="is-align-items-baseline">
+                      <td style={{verticalAlign: 'top'}}>{index +1}.</td>
+                      <td>
+                        Rute {item.nama_rute}
+                        <br/>
+                        <small><em>{item.list_kota}</em></small>
+                      </td>
+                      <td>
+                        <DropdownButton id="dropdown-basic-button" title="Actions">
+                          <Dropdown.Item tag={Link} to={`/edit_rute/${item.id}`}>Edit Rute</Dropdown.Item>
+                          <Dropdown.Item onClick={onDelete}>Hapus Rute</Dropdown.Item>
+                        </DropdownButton>
+                      </td>
+                    </tr>
+                  )
+                }
+              })
+            ) : (
+              <tr>
+                <td colSpan={3}>No data</td>
+              </tr>
+            )
+          }
+          </tbody>
+        </Table> 
 
-      <Pagination itemsPerPage={itemsPerPage} 
-      totalItems={uniqueRute.length} 
-      paginate={paginate} 
-      curPageNumber={currentPage} 
-      />
+        {
+          // pagination hanya ditampilkan kalau ada datanya
+          rute.length > 0 
+          ? (
+            <Pagination 
+            itemsPerPage={itemsPerPage} 
+            totalItems={rute.length} 
+            paginate={paginate} 
+            curPageNumber={currentPage} 
+            />
+          )
+          : ''
+        }
+
+      </div>
 
     </>
   );

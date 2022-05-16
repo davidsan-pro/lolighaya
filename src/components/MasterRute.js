@@ -53,11 +53,15 @@ const MasterRute = () => {
   return (
     <div>
       <SearchBar onSearch={getRute} keywordType="nama toko"/>
-      <div className="mb-3">
-        <strong className="is-size-4 me-3">Data Rute</strong>
-        <Link to="/add_rute">
-          <Button variant="primary">Tambah Baru</Button>
-        </Link>
+      <div className="mb-3 is-flex is-justify-content-space-between">
+        <div>
+          <strong className="is-size-4 me-3">Data Rute</strong>
+        </div>
+        <div>
+          <Link to="/add_rute">
+            <Button variant="primary">Tambah Baru</Button>
+          </Link>
+        </div>
       </div>
       {isLoading ? <Spinner animation="border" /> : <DisplayListMasterRute rute={rute} onDelete={deleteRute} />}
       {/* {console.log('asd1', rute)} */}

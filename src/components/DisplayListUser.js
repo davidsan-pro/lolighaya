@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Dropdown, DropdownButton } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 
@@ -33,7 +33,8 @@ const DisplayListUser = ({ users, onDelete }) => {
             {
               // kalo jumlah barangnya 1 atau lebih maka tampilkan dlm bentuk tabel
               // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
-              users.length > 0 ? (
+              users.length > 0 
+              ? (
                 users.map((user, index) => (
                   <tr key={user.id}>
                     <td>{index + 1}.</td>
@@ -47,21 +48,17 @@ const DisplayListUser = ({ users, onDelete }) => {
                         <small className="fs-7">{user.email}</small>
                       </div>
                       <div>
-                        <Link to={`/edit_user/${user.id}`}>
-                          <Button variant="info" className="me-2">
-                            Edit
-                          </Button>
-                        </Link>
-                        <Button variant="danger" onClick={() => onDelete(user.id)}>
-                          Delete
-                        </Button>
+                        <DropdownButton id="dropdown-basic-button" title="Actions">
+                          <Dropdown.Item className="fc-edit" tag={Link} to={`/edit_user/${user.id}`}>Edit</Dropdown.Item>
+                          <Dropdown.Item className="fc-danger" onClick={() => onDelete(user.id)}>Hapus</Dropdown.Item>
+                        </DropdownButton>
                       </div>
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan={99}>
+                  <td colSpan={3}>
                     <em>Data masih kosong</em>
                   </td>
                 </tr>
@@ -70,11 +67,18 @@ const DisplayListUser = ({ users, onDelete }) => {
           </tbody>
         </Table>
 
-        <Pagination itemsPerPage={itemsPerPage} 
-        totalItems={users.length} 
-        paginate={paginate} 
-        curPageNumber={currentPage} 
-        />
+        {
+          // pagination hanya ditampilkan kalau ada datanya
+          users.length > 0 
+          ? (
+            <Pagination itemsPerPage={itemsPerPage} 
+            totalItems={users.length} 
+            paginate={paginate} 
+            curPageNumber={currentPage} 
+            />
+          )
+          : ''
+        }
       </div>
 
     </>

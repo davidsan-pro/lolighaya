@@ -26,7 +26,7 @@ const Header = () => {
   } else if (location.pathname === "/pilih_hari") {
     title = "Pilih Hari";
   } else if (location.pathname === "/master") {
-    title = "Menu Database";
+    title = "Menu Master";
   } else if (location.pathname.indexOf("/view_user") === 0) {
     title = "Detail User";
   } else if (location.pathname === "/master_user") {

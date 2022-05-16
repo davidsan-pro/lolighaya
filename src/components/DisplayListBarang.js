@@ -33,7 +33,8 @@ const DisplayListBarang = ({ barang, onDelete }) => {
             {
               // kalo jumlah barangnya 1 atau lebih maka tampilkan dlm bentuk tabel
               // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
-              barang.length > 0 ? (
+              barang.length > 0 
+              ? (
                 barang.map((item, index) => (
                   <tr key={item.id}>
                     <td>{index + 1}.</td>
@@ -56,7 +57,7 @@ const DisplayListBarang = ({ barang, onDelete }) => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={99}>
+                  <td colSpan={3}>
                     <em>Data masih kosong</em>
                   </td>
                 </tr>
@@ -65,11 +66,18 @@ const DisplayListBarang = ({ barang, onDelete }) => {
           </tbody>
         </Table>
 
-        <Pagination itemsPerPage={itemsPerPage} 
-        totalItems={barang.length} 
-        paginate={paginate} 
-        curPageNumber={currentPage} 
-        />
+        {
+          // pagination hanya ditampilkan kalau ada datanya
+          barang.length > 0 
+          ? (
+              <Pagination itemsPerPage={itemsPerPage} 
+              totalItems={barang.length} 
+              paginate={paginate} 
+              curPageNumber={currentPage} 
+              />
+            )
+          : ''
+        }
       </div>
 
     </>

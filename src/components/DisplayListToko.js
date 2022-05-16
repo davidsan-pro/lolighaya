@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 // import Text from "react-native";
 
 const DisplayListToko = ({ toko, onDelete }) => {
-  console.log("display toko", toko);
+  // console.log("display toko", toko, onDelete);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -25,7 +25,7 @@ const DisplayListToko = ({ toko, onDelete }) => {
         <Table className="table is-striped is-fullwidth">
           <thead>
             <tr>
-              <th>No</th>
+              <th>No.</th>
               <th>Foto Toko</th>
               <th>Info Toko</th>
             </tr>
@@ -34,7 +34,8 @@ const DisplayListToko = ({ toko, onDelete }) => {
             {
               // kalo jumlah datanya 1 atau lebih maka tampilkan dlm bentuk tabel
               // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
-              toko.length > 0 ? (
+              toko.length > 0 
+              ? (
                 toko.map((item, index) => (
                   <tr key={item.id}>
                     <td>{index + 1}.</td>
@@ -58,7 +59,7 @@ const DisplayListToko = ({ toko, onDelete }) => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={99}>
+                  <td colSpan={3}>
                     <em>Data masih kosong</em>
                   </td>
                 </tr>
@@ -67,12 +68,19 @@ const DisplayListToko = ({ toko, onDelete }) => {
           </tbody>
         </Table>
 
-        <Pagination 
-          itemsPerPage={itemsPerPage} 
-          totalItems={toko.length} 
-          paginate={paginate} 
-          curPageNumber={currentPage} 
-        />
+        {
+          // pagination hanya ditampilkan kalau ada datanya
+          toko.length > 0 
+          ? (
+            <Pagination 
+            itemsPerPage={itemsPerPage} 
+            totalItems={toko.length} 
+            paginate={paginate} 
+            curPageNumber={currentPage} 
+            />
+          )
+          : ''
+        }
       </div>
     </>
   );

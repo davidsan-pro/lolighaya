@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Table, Button } from "react-bootstrap";
 import Pagination from "./Pagination";
-import ViewToko from "./ViewToko";
+import * as fn from "../MyFunctions";
 // import Text from "react-native";
 
 const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit }) => {
@@ -48,7 +48,9 @@ const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit })
                         <br />
                         <small style={{ textOverflow:'ellipsis'}} className="fs-7">{item.alamat}</small>
                         <br />
-                        <small style={{ textOverflow:'ellipsis'}} className="fs-7">{item.kecamatan}, {item.kota}</small>
+                        <small style={{ textOverflow:'ellipsis'}} className="fs-7">
+                          Kec. {fn.ucasefirst(item.kecamatan)}, {fn.ucasefirst(item.kota)}
+                        </small>
                       </td>
                       <td>
                         <div className="text-center">

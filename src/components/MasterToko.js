@@ -48,11 +48,15 @@ const MasterToko = () => {
   return (
     <div>
       <SearchBar onSearch={getToko} keywordType="nama toko" />
-      <div>
-        <strong className="is-size-4 me-3">Data Toko</strong>
-        <Link to="/add_toko">
-          <Button variant="primary">Tambah Baru</Button>
-        </Link>
+      <div className="is-flex is-justify-content-space-between">
+        <div>
+          <strong className="is-size-4 me-3">Data Toko</strong>
+        </div>
+        <div>
+          <Link to="/add_toko">
+            <Button variant="primary">Tambah Baru</Button>
+          </Link>
+        </div>
       </div>
       {isLoading ? <Spinner animation="border" /> : <DisplayListToko toko={toko} onDelete={deleteToko} />}
     </div>

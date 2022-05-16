@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Table, Accordion, ListGroup } from "react-bootstrap";
+import { Button, Table, Dropdown, DropdownButton, DropdownItem, Accordion, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
@@ -37,7 +37,7 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
                 <tr key={item.id}>
                   <td>{index + 1}.</td>
                   <td>
-                    <div className="media mb-1">
+                    <div className="media">
                       <div className="media-left">
                         <div className="image is-48x48">
                           <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
@@ -52,34 +52,20 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
                             <br />
                             Kec.{item.kecamatan}, {fn.ucasefirst(item.kota)}
                           </div>
+                          <div className="subtitle mb-0">
+                            <DropdownButton id="dropdown-basic-button" title="Actions" size="sm">
+                              <Dropdown.Item to={`/add_transaksi_toko/${item.id}`}>Nota Baru</Dropdown.Item>
+                              <Dropdown.Item href="/histori_trx">Histori Nota</Dropdown.Item>
+                              <Dropdown.Item href={`/edit_toko/${item.id}`}>Edit Toko</Dropdown.Item>
+                              <Dropdown.Item onClick={() => onDelete(item.key_id, item.nama)}>
+                                Hapus dari Rute
+                              </Dropdown.Item>
+                            </DropdownButton>
+                          </div>
                         </div>
                         {/* <div className="subtitle is-7">No.Urut {item.urutan}</div> */}
                       </div>
                     </div>
-
-                    {/* <div className="fs-7 mb-2">
-                      Alamat: {item.alamat}
-                      <br />
-                      Lokasi: Kec.{item.kecamatan}, {fn.ucasefirst(item.kota)}
-                    </div> */}
-
-                    {/* <div className="content">
-                      <div className="is-flex is-justify-content-space-between">
-                        <div className="mb-2">
-                          <Link to={`/edit_toko/${item.id}`}>
-                            <Button variant="info" size="sm" className="me-2">
-                              Edit
-                            </Button>
-                          </Link>
-                          <Button variant="danger" size="sm" onClick={() => onDelete(item.id, item.nama)}>
-                            Delete
-                          </Button>
-                        </div>
-                        <div>
-                          <Button variant="success" size="sm" className="me-2">Histori Transaksi</Button>
-                        </div>
-                      </div>
-                    </div> */}
                   </td>
                 </tr>
               ))}

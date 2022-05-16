@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Table, Button, Spinner } from "react-bootstrap";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import * as fn from "../MyFunctions";
 import SearchBar from "./SearchBar";
 import DisplayDashboardRuteListToko from "./DisplayDashboardRuteListToko";
@@ -14,6 +14,8 @@ const RuteListToko = () => {
   const location = useLocation();
   // console.log("rutelisttoko", id);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     getInfoRute();
     getDRuteById();
@@ -24,7 +26,7 @@ const RuteListToko = () => {
     // console.log('get info rute url', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
-    // console.log('get info rute data', data);
+    // console.log('get info rute data', data[0]);
     if (data.length > 0) {
       setInfoRute(data[0]);
     }
@@ -45,12 +47,28 @@ const RuteListToko = () => {
     setIsLoading(false);
   };
 
-  const deleteRuteToko = (id, string) => {
+  const deleteRuteToko = async (id, string) => {
+    // console.log('delete from inforute', infoRute);
     const hariRute = fn.ucase(fn.getNamaHari(infoRute.hari));
-    const strConfirm = `Data [${string}] akan dihapus dari daftar Rute ${infoRute.nama_rute} utk hari ${hariRute}. Lanjutkan?`;
+    const strConfirm = `Data [${string}] akan dihapus dari daftar Rute ${infoRute.nama_rute}. Lanjutkan?`;
     if ( ! window.confirm(strConfirm)) {
       return false;
     }
+
+    const myurl = `${global.config.base_url}/Drute/${id}`;
+    await fetch(myurl, {
+      method: 'DELETE', 
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        // console.log('res delete drute', res);
+        // setelah selesai, redirect ke hal.master rute
+        navigate(`/rute_list_toko/${infoRute.id}`);
+      })
+      .catch(err => console.log(err));
   }
 
   return (
@@ -67,7 +85,6 @@ const RuteListToko = () => {
           </Link>
         </div>
       </div>
-      {/* {console.log('asd rute', dRute)} */}
       {
         isLoading 
         ? <Spinner animation="border" /> 

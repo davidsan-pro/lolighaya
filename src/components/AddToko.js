@@ -31,7 +31,7 @@ const AddToko = () => {
   return (
     <div className="container">
       <form onSubmit={saveToko}>
-      <div className="field">
+        <div className="field">
           <label className="label">Nama</label>
           <input type="text" className="input" placeholder="nama barang" value={nama} onChange={(e) => setNama(e.target.value)} />
         </div>

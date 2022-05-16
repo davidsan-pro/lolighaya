@@ -48,11 +48,15 @@ const MasterBarang = () => {
   return (
     <div>
       <SearchBar onSearch={getBarang} keywordType="nama barang"/>
-      <div>
-        <strong className="is-size-4 me-3">Data Barang</strong>
-        <Link to="/add_barang">
-          <Button variant="primary">Tambah Baru</Button>
-        </Link>
+      <div className="is-flex is-justify-content-space-between">
+        <div>
+          <strong className="is-size-4 me-3">Data Barang</strong>
+        </div>
+        <div>
+          <Link to="/add_barang">
+            <Button variant="primary">Tambah Baru</Button>
+          </Link>
+        </div>
       </div>
       {isLoading ? <Spinner animation="border" /> : <DisplayListBarang barang={barang} onDelete={deleteBarang} />}
     </div>

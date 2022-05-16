@@ -61,6 +61,22 @@ Link:hover {
   -webkit-line-clamp: 2;
 } */
 
+.fc-danger {
+  color: red;
+}
+
+.fc-edit {
+  color: rgb(0, 140, 255);
+}
+
+.fc-submit {
+  color: blue;
+}
+
+.fc-success {
+  color: rgb(47, 255, 57);
+}
+
 .fs-7 {
   font-size: 0.8rem;
 }
@@ -93,7 +109,7 @@ Link:hover {
   table-layout: fixed;
 }
 
-.table-container>table {
+.table-container > table {
   display: block;
   overflow-x: auto;
   white-space: nowrap;
@@ -103,6 +119,7 @@ Table td,
 Table th {
   white-space: nowrap;
   width: 1%;
+  vertical-align: middle;
 }
 
 Table tr > th:first-child,

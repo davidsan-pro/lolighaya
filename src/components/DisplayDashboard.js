@@ -22,7 +22,7 @@ const DisplayDashboard = ({ rute }) => {
 
   return (
     <>
-      <div className="mb-3">
+      <div className="mb-4">
         <Table striped bordered hover>
           <tbody>
             {
@@ -31,7 +31,7 @@ const DisplayDashboard = ({ rute }) => {
                   return (
                     <tr key={item.id}>
                       <td>
-                        <Link to={`/rute_list_toko/${item.id}`}>
+                        <Link to={`rute_list_toko/${item.id}`}>
                           <div className="fw-bold">{item.nama_rute}</div>
                           <em>{item.list_kota}</em>
                         </Link>
@@ -44,6 +44,15 @@ const DisplayDashboard = ({ rute }) => {
             }
           </tbody>
         </Table> 
+
+        <div>
+          <Pagination itemsPerPage={itemsPerPage} 
+          totalItems={uniqueRute.length} 
+          paginate={paginate} 
+          curPageNumber={currentPage} 
+          />
+        </div>
+
       </div>
       {/* 
       <Table striped hover>
@@ -70,13 +79,6 @@ const DisplayDashboard = ({ rute }) => {
       </Table> 
       */}
 
-      <div className="mb-5">
-        <Pagination itemsPerPage={itemsPerPage} 
-        totalItems={uniqueRute.length} 
-        paginate={paginate} 
-        curPageNumber={currentPage} 
-        />
-      </div>
 
     </>
   );

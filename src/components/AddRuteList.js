@@ -94,8 +94,7 @@ const AddRuteList = () => {
       <SearchBar onSearch={getToko} keywordType="nama toko"/>
       <div className="mb-2">
           <span className="is-size-6">
-            Pilih Toko utk ditambahkan ke 
-            rute <strong>{infoRute.nama_rute}</strong>
+            Pilih Toko utk ditambahkan ke rute <strong>{infoRute.nama_rute}</strong>
           </span>
       </div>
       {isLoading 

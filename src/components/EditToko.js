@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 const EditToko = () => {
+  // console.log('edit toko');
   const [nama, setNama] = useState("");
   const [alamat, setAlamat] = useState("");
   const [telepon, setTelepon] = useState("");
@@ -33,8 +34,10 @@ const EditToko = () => {
   }, []);
 
   const getTokoById = async () => {
+    // console.log('gettokobyid', id);
     const response = await fetch(`${global.config.base_url}/toko/${id}`);
     const data = await response.json();
+    // console.log('data', data);
     setNama(data.nama);
     setAlamat(data.alamat);
     setTelepon(data.telepon);

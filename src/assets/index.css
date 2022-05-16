@@ -101,6 +101,26 @@ Link:hover {
   opacity: 1;
 }
 
+.simple-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.simple-table Table {
+  width: 100%;
+  table-layout: fixed;  /* add table layout fixed */
+  overflow: hidden; /* add overflow hidden */
+  border-collapse: collapse;
+}
+.simple-table > Table tbody {
+  font-size: 14px;
+}
+.simple-table > Table td,
+.simple-table > Table th {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+}
+
 .table-container {
   margin: 0;
   padding: 0;
@@ -120,6 +140,7 @@ Table th {
   white-space: nowrap;
   width: 1%;
   vertical-align: middle;
+  word-break: break-all;
 }
 
 Table tr > th:first-child,

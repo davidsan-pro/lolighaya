@@ -54,12 +54,12 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
                           </div>
                           <div className="subtitle mb-0">
                             <DropdownButton id="dropdown-basic-button" title="Actions" size="sm">
-                              <Dropdown.Item to={`/add_transaksi_toko/${item.id}`}>Nota Baru</Dropdown.Item>
-                              <Dropdown.Item href="/histori_trx">Histori Nota</Dropdown.Item>
+                              <Dropdown.Item as={Link} to={`/add_transaksi_toko/${item.id}`}>Nota Baru</Dropdown.Item>
+                              {/* <Dropdown.Item href="/histori_trx">Histori Nota</Dropdown.Item>
                               <Dropdown.Item href={`/edit_toko/${item.id}`}>Edit Toko</Dropdown.Item>
                               <Dropdown.Item onClick={() => onDelete(item.key_id, item.nama)}>
                                 Hapus dari Rute
-                              </Dropdown.Item>
+                              </Dropdown.Item> */}
                             </DropdownButton>
                           </div>
                         </div>

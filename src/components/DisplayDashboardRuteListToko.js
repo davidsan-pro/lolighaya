@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Button, Table, Dropdown, DropdownButton, DropdownItem, Accordion, ListGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
 
 const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
-  // console.log('drute', dRute);
+  console.log('drute', dRute);
   const [ruteHari, setRuteHari] = useState(dRute);
+
+  const { id } = useParams();
+  // console.log('id', id);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -54,7 +57,7 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
                           </div>
                           <div className="subtitle mb-0">
                             <DropdownButton id="dropdown-basic-button" title="Actions" size="sm">
-                              <Dropdown.Item as={Link} to={`/add_transaksi_toko/${item.id}`}>Nota Baru</Dropdown.Item>
+                              <Dropdown.Item as={Link} to={`/add_transaksi_toko/${id}?id_toko=${item.id}`}>Nota Baru</Dropdown.Item>
                               {/* <Dropdown.Item href="/histori_trx">Histori Nota</Dropdown.Item>
                               <Dropdown.Item href={`/edit_toko/${item.id}`}>Edit Toko</Dropdown.Item>
                               <Dropdown.Item onClick={() => onDelete(item.key_id, item.nama)}>

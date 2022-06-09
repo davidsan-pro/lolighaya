@@ -26,12 +26,24 @@ Link:hover {
   cursor: pointer;
 }
 
+.align-center {
+  text-align: center !important;
+}
+.align-right {
+  text-align: right !important;
+}
+
 .btn-menu {
   width: 80%;
 }
 
 .clickable {
   cursor: pointer;
+}
+
+.content-container .media:not(:first-of-type) {
+  margin-top: 0.3rem;
+  padding-top: 0.75rem;
 }
 
 .container {
@@ -119,6 +131,9 @@ Link:hover {
 .simple-table > Table th {
   white-space: normal !important;
   word-wrap: break-word !important;
+}
+.simple-table > Table th {
+  text-align: center;
 }
 
 .table-container {

@@ -1,37 +1,49 @@
 export function getNamaHari(number) {
-  number = parseInt(number|0);
-  let result = '';
+  number = parseInt(number | 0);
+  let result = "";
   if (number === 1) {
-    result = 'senin';
+    result = "senin";
   } else if (number === 2) {
-    result = 'selasa';
+    result = "selasa";
   } else if (number === 3) {
-    result = 'rabu';
+    result = "rabu";
   } else if (number === 4) {
-    result = 'kamis';
+    result = "kamis";
   } else if (number === 5) {
-    result = 'jumat';
+    result = "jumat";
   } else if (number === 6) {
-    result = 'sabtu';
+    result = "sabtu";
   } else if (number === 7) {
-    result = 'minggu';
+    result = "minggu";
   }
-  
+
   return result;
 }
 
 export function ucasefirst(string) {
-  if ( ! string) { 
-    return '';
+  if (!string) {
+    return "";
   } else {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 }
 
 export function ucase(string) {
-  if ( ! string) { 
-    return '';
+  if (!string) {
+    return "";
   } else {
     return string.toUpperCase();
   }
+}
+
+export function thousandSeparator(string) {
+  let money = Number(string);
+  return new Intl.NumberFormat(
+    "id-ID"
+    // , { 
+    //   style: "currency", 
+    //   currency: "IDR", 
+    //   minimumFractionDigits: 0 
+    // }
+  ).format(money);
 }

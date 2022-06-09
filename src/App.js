@@ -25,7 +25,9 @@ import EditRute from "./components/EditRute";
 import MasterRuteListToko from "./components/MasterRuteListToko";
 import AddRuteList from "./components/AddRuteList";
 import MasterTransaksi from "./components/MasterTransaksi";
-import AddTransaksiToko from "./components/AddTransaksiToko";
+import AddTransaksiTokoCart from "./components/AddTransaksiTokoCart";
+import AddTransaksiListBarang from "./components/AddTransaksiListBarang";
+import AddTransaksiDetailBarang from "./components/AddTransaksiDetailBarang";
 
 const App = () => {
   const [showPrev, setShowPrev] = useState(false);
@@ -43,7 +45,9 @@ const App = () => {
           {/* <Route path="/pilih_hari" element={<PilihHari />} /> */}
           <Route path="/rute_list_toko/:id" element={<RuteListToko />} />
           <Route path="/rute_detail_toko/:id" element={<RuteDetailToko />} />
-          <Route path="/add_transaksi_toko/:id" element={<AddTransaksiToko />} />
+          <Route path="/add_transaksi_toko/:id" element={<AddTransaksiTokoCart />} />
+          <Route path="/add_transaksi_list_barang/:id" element={<AddTransaksiListBarang />} />
+          <Route path="/add_transaksi_detail_barang/:id" element={<AddTransaksiDetailBarang />} />
           <Route path="/master" element={<MenuDatabase />} />
           <Route path="/view_user/:id" element={<ViewUser />} />
           <Route path="/master_user" element={<MasterUser />} />

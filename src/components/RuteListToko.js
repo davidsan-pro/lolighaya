@@ -12,6 +12,7 @@ const RuteListToko = () => {
 
   const { id } = useParams();
   const location = useLocation();
+  let myCart = localStorage.getItem('cartList');
   // console.log("rutelisttoko", id);
 
   const navigate = useNavigate();
@@ -70,6 +71,58 @@ const RuteListToko = () => {
       })
       .catch(err => console.log(err));
   }
+
+  // const addCartItem = (item) => {
+  //   //create a copy of our cart state, avoid overwritting existing state
+  //   let cartCopy = [...cartList];
+  //   console.log('cartlist', cartList);
+    
+  //   //assuming we have an ID field in our item
+  //   let {ID} = item;
+  //   console.log(item, cartItem);
+    
+  //   //look for item in cart array
+  //   let existingItem = cartCopy.find(cartItem => cartItem.ID == ID);
+    
+  //   //if item already exists
+  //   if (existingItem) {
+  //     existingItem.jumlahTitip += item.jumlahTitip; //update item
+  //   } else { //if item doesn't exist, simply add it
+  //     cartCopy.push(item);
+  //   }
+    
+  //   //update app state
+  //   setCartList(cartCopy);
+    
+  //   //make cart a string and store in local space
+  //   let stringCart = JSON.stringify(cartCopy);
+  //   localStorage.setItem("cartList", stringCart);
+  // }
+
+  // const editCartItem = (itemID, amount) => {
+  //   let cartCopy = [...cartList];
+    
+  //   //find if item exists, just in case
+  //   let existentItem = cartCopy.find(item => item.ID == itemID);
+    
+  //   //if it doesnt exist simply return
+  //   if (!existentItem) return
+    
+  //   //continue and update quantity
+  //   existentItem.jumlahTitip += amount;
+    
+  //   //validate result
+  //   if (existentItem.jumlahTitip <= 0) {
+  //     //remove item  by filtering it from cart array
+  //     cartCopy = cartCopy.filter(item => item.ID != itemID)
+  //   }
+    
+  //   //again, update state and localState
+  //   setCartList(cartCopy);
+    
+  //   let cartString = JSON.stringify(cartCopy);
+  //   localStorage.setItem('cartList', cartString);
+  // }
 
   return (
     <div>

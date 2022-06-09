@@ -34,7 +34,7 @@ const Dashboard = () => {
         <strong>Pilih Rute</strong>
       </div>
 
-      {isLoading ? <Spinner animation="border" /> : <DisplayDashboard rute={rute} />}
+      {isLoading ? <Spinner animation="border" /> : <DisplayDashboard rute={rute}/>}
 
       {/* <div style={{ marginBottom: "5rem" }}> */}
         <hr/>

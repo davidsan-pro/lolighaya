@@ -20,7 +20,7 @@ const Header = () => {
   if (location.pathname === "/" || location.pathname === "") {
     title = "Dashboard";
   } else if (location.pathname.indexOf("/rute_list_toko") === 0) {
-    title = "Detail Rute";
+    title = "Daftar Toko di Rute";
   } else if (location.pathname.indexOf("/rute_detail_toko") === 0) {
     title = "Detail Rute - Toko";
   } else if (location.pathname === "/pilih_hari") {
@@ -61,6 +61,14 @@ const Header = () => {
     title = "List Rute";
   } else if (location.pathname.indexOf("/add_rute_list") === 0) {
     title = "Tambah Rute - Toko";
+  } else if (location.pathname.indexOf("/master_transaksi") === 0) {
+    title = "Master Transaksi";
+  } else if (location.pathname.indexOf("/add_transaksi_toko/") === 0) {
+    title = "Transaksi Baru";
+  } else if (location.pathname.indexOf("/add_transaksi_list_barang/") === 0) {
+    title = "Transaksi Baru<br/>Pilih Barang";
+  } else if (location.pathname.indexOf("/add_transaksi_detail_barang/") === 0) {
+    title = "Transaksi Baru<br/>Detail Barang";
   }
 
   return (
@@ -92,7 +100,9 @@ const Header = () => {
         <small>{curdatetime}</small>
       </div>
       <h3 className="has-text-centered mb-3">
-        <strong>{title.toUpperCase()}</strong>
+        <strong style={{whiteSpace:"pre-line"}}>
+          {title.replace('<br/>', '\n').toUpperCase()}
+        </strong>
       </h3>
     </>
   );

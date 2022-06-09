@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { Button, Table } from "react-bootstrap";
 
-const AddTransaksiToko = () => {
+const AddTransaksiTokoCart = () => {
   const [nama, setNama] = useState("");
   const [alamat, setAlamat] = useState("");
   const [telepon, setTelepon] = useState("");
@@ -10,8 +10,23 @@ const AddTransaksiToko = () => {
   const [kecamatan, setKecamatan] = useState("");
   const [kota, setKota] = useState("");
 
-  const { id } = useParams();
-  // console.log('add transaksi toko', id);
+  const { id } = useParams(); // id toko
+
+  useEffect(() => {
+    getTokoById();
+  }, []);
+
+  const getTokoById = async () => {
+    const response = await fetch(`${global.config.base_url}/toko/${id}`);
+    const data = await response.json();
+    // console.log('data', data);
+    setNama(data.nama);
+    setAlamat(data.alamat);
+    setTelepon(data.telepon);
+    setKecamatan(data.kecamatan);
+    setKota(data.kota);
+    setFoto(data.foto);
+  };
 
   // const saveToko = async (e) => {
   //   e.preventDefault();
@@ -31,9 +46,13 @@ const AddTransaksiToko = () => {
 
   return (
     <div className="container">
-      <div className="mb-3 fs-4">Nota baru untuk toko [xxx]</div>
+      <div className="mb-3 fs-4">
+        Nota baru untuk [<strong>{nama}</strong>]
+      </div>
       <div>
-        <Button variant="primary">Pilih Barang</Button>
+        <Link to="/add_transaksi_pilih_barang">
+          <Button variant="primary">Pilih Barang</Button>
+        </Link>
       </div>
       <div className="simple-table">
         <Table striped bordered hover>
@@ -59,4 +78,4 @@ const AddTransaksiToko = () => {
   );
 };
 
-export default AddTransaksiToko;
+export default AddTransaksiTokoCart;

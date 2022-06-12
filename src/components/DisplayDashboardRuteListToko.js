@@ -27,7 +27,7 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
   return (
     <>
       <div className="container">
-        <div className="table-container">
+        <div className="simple-table">
           <Table striped bordered>
             <thead>
               <tr>
@@ -48,7 +48,7 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
                       </div>
                       <div className="mb-2">
                         <div className="title fs-5">
-                          <Link to={`/rute_detail_toko/${item.id}`}>{item.nama}</Link>
+                          <Link to={`/rute_detail_toko/${id}?id_toko=${item.id}`}>{item.nama}</Link>
                           <br />
                           <div className="subtitle fs-7 mb-2 ellipsis">
                             {item.alamat}
@@ -57,7 +57,12 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
                           </div>
                           <div className="subtitle mb-0">
                             <DropdownButton id="dropdown-basic-button" title="Actions" size="sm">
-                              <Dropdown.Item as={Link} to={`/add_transaksi_toko/${id}?id_toko=${item.id}`}>Nota Baru</Dropdown.Item>
+                            <Dropdown.Item as={Link} to={`/add_transaksi_toko/${id}?id_toko=${item.id}`}>
+                                Nota Baru
+                              </Dropdown.Item>
+                              <Dropdown.Item as={Link} to={`/master_transaksi?qf=id_toko&qv=${item.id}&sbf=id&sbm=desc`}>
+                                Histori Transaksi
+                              </Dropdown.Item>
                               {/* <Dropdown.Item href="/histori_trx">Histori Nota</Dropdown.Item>
                               <Dropdown.Item href={`/edit_toko/${item.id}`}>Edit Toko</Dropdown.Item>
                               <Dropdown.Item onClick={() => onDelete(item.key_id, item.nama)}>

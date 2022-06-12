@@ -133,7 +133,7 @@ Link:hover {
   word-wrap: break-word !important;
 }
 .simple-table > Table th {
-  text-align: center;
+  text-align: center !important;
 }
 
 .table-container {

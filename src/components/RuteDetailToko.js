@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation, useParams, Link } from "react-router-dom";
+import { useLocation, useParams, useSearchParams, Link } from "react-router-dom";
 import { Button, Spinner } from "react-bootstrap";
 import * as fn from "../MyFunctions";
 
@@ -7,7 +7,9 @@ const RuteDetailToko = ({ onDelete }) => {
   const [toko, setToko] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { id } = useParams();
+  const { id } = useParams(); // id rute
+  const [searchParams, setSearchParams] = useSearchParams();
+  const idToko = searchParams.get("id_toko"); // id toko
 
   useEffect(() => {
     getToko();
@@ -16,7 +18,7 @@ const RuteDetailToko = ({ onDelete }) => {
   const getToko = async (query = "") => {
     setIsLoading(true);
 
-    let myurl = `${global.config.base_url}/toko/${id}`;
+    let myurl = `${global.config.base_url}/toko/${idToko}`;
     if (query) {
       myurl += `?q=${query}`;
     }
@@ -63,7 +65,7 @@ const RuteDetailToko = ({ onDelete }) => {
 
             <div className="content">
               <div className="is-flex is-align-items-flex-start is-flex-wrap-wrap">
-                <Link to={`/add_transaksi`}>
+                <Link to={`/add_transaksi_toko/${id}?id_toko=${idToko}`}>
                   <Button variant="primary" className="me-2 mb-2">
                     Nota Baru
                   </Button>

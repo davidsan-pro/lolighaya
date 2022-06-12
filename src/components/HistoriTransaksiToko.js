@@ -1,14 +1,18 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button, Table } from "react-bootstrap";
 
 const HistoriTransaksiToko = () => {
-  const [nama, setNama] = useState("");
-  const [alamat, setAlamat] = useState("");
-  const [telepon, setTelepon] = useState("");
-  const [foto, setFoto] = useState("");
-  const [kecamatan, setKecamatan] = useState("");
-  const [kota, setKota] = useState("");
+  const [toko, setToko] = useState({});
+  const [trx, setTrx] = useState([]);
+  // const [nama, setNama] = useState("");
+  // const [alamat, setAlamat] = useState("");
+  // const [telepon, setTelepon] = useState("");
+  // const [foto, setFoto] = useState("");
+  // const [kecamatan, setKecamatan] = useState("");
+  // const [kota, setKota] = useState("");
+
+  const { id } = useParams(); // id toko
 
   const navigate = useNavigate();
 
@@ -27,6 +31,28 @@ const HistoriTransaksiToko = () => {
     // setelah selesai, redirect ke hal.master toko
     navigate("/master_toko");
   };
+
+  const getTokoById = async () => {
+    const response = await fetch(`${global.config.base_url}/toko/${id}`);
+    const data = await response.json();
+    console.log('data toko', data);
+    setToko(data);
+    // setNama(data.nama);
+    // setAlamat(data.alamat);
+    // setTelepon(data.telepon);
+    // setKecamatan(data.kecamatan);
+    // setKota(data.kota);
+    // setFoto(data.foto);
+  };
+
+  const getHistoriTransaksi = async () => {
+    let myurl = `${global.config.base_url}/Mtransaksi
+      ?qf=id_toko&qv=${idToko}`;
+    const response = await fetch(myurl);
+    const data = await response.json();
+    console.log('data trx', data);
+    setTrx(data);
+  }
 
   return (
     <div className="container">

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
+import * as fn from "../MyFunctions";
 
 const DisplayListTransaksi = ({ transaksi, onDelete }) => {
   console.log("display transaksi", transaksi);
@@ -19,58 +20,59 @@ const DisplayListTransaksi = ({ transaksi, onDelete }) => {
 
   return (
     <>
-      <h1>Display List Transaksi</h1>
-      {/* <div className="table-container">
-        <Table className="table is-striped is-fullwidth">
+      <div className="simple-table">
+        <Table striped bordered hover>
           <thead>
             <tr>
-              <th>No</th>
-              <th>Foto</th>
-              <th>Info Barang</th>
+              <th>Nama Toko</th>
+              <th>Tanggal</th>
+              <th>Username</th>
+              <th>Nilai Transaksi</th>
             </tr>
           </thead>
           <tbody>
             {
-              // kalo jumlah barangnya 1 atau lebih maka tampilkan dlm bentuk tabel
-              // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
-              barang.length > 0 ? (
-                barang.map((item, index) => (
+              transaksi.length > 0
+              ? (
+                transaksi.map((item, index) => (
                   <tr key={item.id}>
-                    <td>{index + 1}.</td>
-                    <td>
-                      <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image" />
+                    <td style={{wordBreak:'break-word'}}>{item.nama}</td>
+                    <td style={{wordBreak:'break-word'}}>
+                      {item.created_at}
                     </td>
-                    <td>
-                      <div className="mb-2">
-                        <div className="fs-5">
-                          <Link to={`/view_barang/${item.id}`} onDelete={onDelete}>
-                            {item.nama}
-                          </Link>
-                        </div>
-                        <div>
-                          <small>Stok: {item.stok}</small>
-                        </div>
-                      </div>
+                    <td>{item.id_user}</td>
+                    <td className="align-right">
+                      Rp {fn.thousandSeparator(item.nilai_transaksi)}
                     </td>
                   </tr>
                 ))
-              ) : (
+              )
+              : (
                 <tr>
-                  <td colSpan={99}>
-                    <em>Data masih kosong</em>
+                  <td colSpan="4">
+                    Data transaksi masih kosong
                   </td>
                 </tr>
               )
             }
           </tbody>
         </Table>
+      </div>
 
-        <Pagination itemsPerPage={itemsPerPage} 
-        totalItems={barang.length} 
-        paginate={paginate} 
-        curPageNumber={currentPage} 
-        />
-      </div> */}
+      <div>Total: {transaksi.length} transaksi</div>
+      {
+        // pagination hanya ditampilkan kalau ada datanya
+        transaksi.length > 0 
+        ? (
+          <Pagination 
+          itemsPerPage={itemsPerPage} 
+          totalItems={transaksi.length} 
+          paginate={paginate} 
+          curPageNumber={currentPage} 
+          />
+        )
+        : ''
+      }
 
     </>
   );

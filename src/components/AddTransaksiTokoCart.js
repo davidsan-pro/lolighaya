@@ -73,17 +73,17 @@ const AddTransaksiTokoCart = () => {
       .then((response) => response.json())
       .then((res) => {
         console.log('res', res);
-        // // perbarui data di tabel barang
-        // // lalu hapus item localstorage utk toko ini
-        // for (let i=localCart.length-1; i>=0; i--) {
-        //   console.log('localcart', localCart[i].idToko, id);
-        //   if (localCart[i].idToko === idToko) {
-        //     localCart.splice(i, 1);
-        //   }
-        // }
-        // localStorage.setItem('cartList', localCart);
+        // perbarui data di tabel barang
+        // lalu hapus item localstorage utk toko ini
+        for (let i=localCart.length-1; i>=0; i--) {
+          console.log('localcart', localCart[i].idToko, id);
+          if (localCart[i].idToko === idToko) {
+            localCart.splice(i, 1);
+          }
+        }
+        localStorage.setItem('cartList', localCart);
         
-        // navigate(`/rute_list_toko/${id}`);
+        navigate(`/rute_list_toko/${id}`);
       })
       .catch((error) => console.log('error', error));
   }

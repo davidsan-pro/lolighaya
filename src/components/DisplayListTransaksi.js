@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
 
-const DisplayListTransaksi = ({ transaksi, onDelete }) => {
+const DisplayListTransaksi = ({ transaksi }) => {
   console.log("display transaksi", transaksi);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,6 +14,7 @@ const DisplayListTransaksi = ({ transaksi, onDelete }) => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItem = transaksi.slice(indexOfFirstItem, indexOfLastItem);
+  console.log('paging', indexOfFirstItem, indexOfLastItem, currentItem);
 
   // change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -36,7 +37,7 @@ const DisplayListTransaksi = ({ transaksi, onDelete }) => {
               ? (
                 transaksi.map((item, index) => (
                   <tr key={item.id}>
-                    <td style={{wordBreak:'break-word'}}>{item.nama}</td>
+                    <td style={{wordBreak:'break-word'}}>{item.nama_toko}</td>
                     <td style={{wordBreak:'break-word'}}>
                       {item.created_at}
                     </td>

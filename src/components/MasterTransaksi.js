@@ -54,7 +54,7 @@ const MasterTransaksi = () => {
       {
         isLoading 
           ? <Spinner animation="border" /> 
-          : <DisplayListTransaksi transaksi={transaksi} onDelete={deleteTransaksi} />
+          : <DisplayListTransaksi transaksi={transaksi} />
       }
     </div>
   );

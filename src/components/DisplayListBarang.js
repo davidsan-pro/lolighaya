@@ -19,9 +19,8 @@ const DisplayListBarang = ({ barang, onDelete }) => {
 
   return (
     <>
-
       <div className="table-container">
-        <Table className="table is-striped is-fullwidth">
+        <Table bordered className="table is-striped is-fullwidth">
           <thead>
             <tr>
               <th>No</th>
@@ -79,7 +78,6 @@ const DisplayListBarang = ({ barang, onDelete }) => {
           : ''
         }
       </div>
-
     </>
   );
 };

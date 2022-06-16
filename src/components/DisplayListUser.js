@@ -12,14 +12,13 @@ const DisplayListUser = ({ users, onDelete }) => {
   // get current item
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItem = users.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = users.slice(indexOfFirstItem, indexOfLastItem);
 
   // change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   
   return (
     <>
-
       <div className="table-container">
         <Table className="table is-striped is-fullwidth">
           <thead>
@@ -33,9 +32,9 @@ const DisplayListUser = ({ users, onDelete }) => {
             {
               // kalo jumlah barangnya 1 atau lebih maka tampilkan dlm bentuk tabel
               // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
-              users.length > 0 
+              currentItems.length > 0 
               ? (
-                users.map((user, index) => (
+                currentItems.map((user, index) => (
                   <tr key={user.id}>
                     <td>{index + 1}.</td>
                     <td>
@@ -80,7 +79,6 @@ const DisplayListUser = ({ users, onDelete }) => {
           : ''
         }
       </div>
-
     </>
   );
 };

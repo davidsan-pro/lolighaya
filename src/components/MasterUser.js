@@ -17,8 +17,12 @@ const MasterUser = () => {
     setIsLoading(true);
     try {
       let myurl = `${global.config.base_url}/users`;
+      let qsArr = [];
       if (query) {
-        myurl += `?q=${query}`;
+        qsArr.push(`q=${query}`);
+      }
+      if (qsArr.length > 0) {
+        myurl += '?' + qsArr.join('&');
       }
       const response = await fetch(myurl);
       const data = await response.json();

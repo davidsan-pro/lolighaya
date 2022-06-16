@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 
@@ -12,7 +12,7 @@ const DisplayListBarang = ({ barang, onDelete }) => {
   // get current item
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItem = barang.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = barang.slice(indexOfFirstItem, indexOfLastItem);
 
   // change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -32,11 +32,11 @@ const DisplayListBarang = ({ barang, onDelete }) => {
             {
               // kalo jumlah barangnya 1 atau lebih maka tampilkan dlm bentuk tabel
               // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
-              barang.length > 0 
+              currentItems.length > 0 
               ? (
-                barang.map((item, index) => (
+                currentItems.map((item, index) => (
                   <tr key={item.id}>
-                    <td>{index + 1}.</td>
+                    <td>{indexOfFirstItem + index + 1}.</td>
                     <td>
                       <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image" />
                     </td>

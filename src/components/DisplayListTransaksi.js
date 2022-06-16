@@ -41,7 +41,7 @@ const DisplayListTransaksi = ({ transaksi }) => {
                     <td style={{wordBreak:'break-word'}}>
                       {item.created_at}
                     </td>
-                    <td>{item.id_user}</td>
+                    <td>{item.username}</td>
                     <td className="align-right">
                       Rp {fn.thousandSeparator(item.nilai_transaksi)}
                     </td>

@@ -13,8 +13,7 @@ const DisplayListTransaksi = ({ transaksi }) => {
   // get current item
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItem = transaksi.slice(indexOfFirstItem, indexOfLastItem);
-  console.log('paging', indexOfFirstItem, indexOfLastItem, currentItem);
+  const currentItems = transaksi.slice(indexOfFirstItem, indexOfLastItem);
 
   // change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -33,15 +32,15 @@ const DisplayListTransaksi = ({ transaksi }) => {
           </thead>
           <tbody>
             {
-              transaksi.length > 0
+              currentItems.length > 0
               ? (
-                transaksi.map((item, index) => (
+                currentItems.map((item, index) => (
                   <tr key={item.id}>
                     <td style={{wordBreak:'break-word'}}>{item.nama_toko}</td>
                     <td style={{wordBreak:'break-word'}}>
                       {item.created_at}
                     </td>
-                    <td>{item.id_user}</td>
+                    <td>{item.username}</td>
                     <td className="align-right">
                       Rp {fn.thousandSeparator(item.nilai_transaksi)}
                     </td>

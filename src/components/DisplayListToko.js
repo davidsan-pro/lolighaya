@@ -13,14 +13,13 @@ const DisplayListToko = ({ toko, onDelete }) => {
   // get current item
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItem = toko.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = toko.slice(indexOfFirstItem, indexOfLastItem);
 
   // change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <>
-
       <div className="table-container">
         <Table className="table is-striped is-fullwidth">
           <thead>
@@ -34,11 +33,11 @@ const DisplayListToko = ({ toko, onDelete }) => {
             {
               // kalo jumlah datanya 1 atau lebih maka tampilkan dlm bentuk tabel
               // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
-              toko.length > 0 
+              currentItems.length > 0 
               ? (
-                toko.map((item, index) => (
+                currentItems.map((item, index) => (
                   <tr key={item.id}>
-                    <td>{index + 1}.</td>
+                    <td>{indexOfFirstItem + index + 1}.</td>
                     <td>
                       <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image" />
                     </td>

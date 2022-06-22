@@ -45,17 +45,16 @@ const RuteDetailToko = ({ onDelete }) => {
           <div className="card-content">
             <div className="media mb-1">
               <div className="media-left">
-                <figure className="image is-48x48">
+                <figure className="image is-48x48" style={{marginBottom:0}}>
                   <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
                 </figure>
               </div>
               <div className="media-content">
                 <p className="title fs-4">{toko.nama}</p>
-                <div className="subtitle is-6">No.Urut Rute:</div>
               </div>
             </div>
 
-            <div className="content fs-6">
+            <div className="content fs-7">
               Alamat: {toko.alamat}
               <br />
               Lokasi: Kec.{toko.kecamatan}, {fn.ucasefirst(toko.kota)}

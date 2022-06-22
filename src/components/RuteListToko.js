@@ -13,7 +13,7 @@ const RuteListToko = () => {
   const { id } = useParams();
   const location = useLocation();
   let myCart = localStorage.getItem('cartList');
-  // console.log("rutelisttoko", id);
+  console.log(new Date());
 
   const navigate = useNavigate();
 

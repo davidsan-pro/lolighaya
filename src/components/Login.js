@@ -1,22 +1,47 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import { useDispatch } from "react-redux";
+import { actionLogin } from "../actions";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const submitLogin = async (e) => {
-    e.preventDefault();
+  const dispatch = useDispatch();
 
-    const data = { username, password };
-    const myurl = `${global.config.base_url}/login`;
-    await fetch(myurl, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  const navigate = useNavigate();
+  console.log('login page');
+
+  const submitLogin = (e) => {
+    e.preventDefault();
+    console.log('submit login');
+    // const data = { username, password };
+    // const myurl = `${global.config.base_url}/login`;
+    // await fetch(myurl, {
+    //   method: "POST",
+    //   body: JSON.stringify(data),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+    const dateOptions = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    }
+    const dateStr = new Intl.DateTimeFormat('id-ID',dateOptions).format(new Date())
+    // dispatch(actionLogin('123', username, dateStr));
+    let loginData = {
+      id: '123',
+      username: username,
+      last_login: dateStr,
+    }
+    localStorage.setItem('loginData', JSON.stringify(loginData));
+    navigate('/dashboard');
   };
 
   return (
@@ -48,7 +73,7 @@ const Login = () => {
 
         <hr />
         <div className="d-grid">
-          <Button type="submit" variant="primary" size="lg">
+          <Button variant="primary" size="lg" onClick={(e) => submitLogin(e)}>
             Login
           </Button>
         </div>

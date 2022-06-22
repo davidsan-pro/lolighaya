@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useSearchParams, useNavigate } from "react-router-dom";
 import { Dropdown, DropdownButton } from "react-bootstrap";
-import { Button, Spinner } from "react-bootstrap";
+import { Spinner, Button, Table } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import * as fn from "../MyFunctions";
@@ -36,18 +36,27 @@ const AddTransaksiDetailBarang = () => {
   const getBarang = async (query='') => {
     setIsLoading(true);
     let myurl = `${global.config.base_url}/barang/${idBarang}`;
+    let qsArr = [];
+    qsArr.push(`id_toko=${idToko}`); // spy bs mendapatkan data barang dr trx terakhir di toko ini
     if (query) {
-      myurl += `?q=${query}`;
+      qsArr.push(`q=${query}`);
+    }
+    if (qsArr) {
+      const qs = qsArr.join('&');
+      myurl += `?${qs}`;
     }
     const response = await fetch(myurl);
     let data = await response.json();
     console.log('cartlist', cartList);
+    // data barang yg ditampilkan dipengaruhi oleh jumlah yg dititipkan dlm trx ini ke toko ini
     cartList.forEach(row => {
       if (row.id === data.id) {
-        data.stok -= row.jumlahTitip;
+        data.stok -= row.titip;
       }
     });
-    data.jumlahTitip = 0;
+    data.titip = 0;
+    data.sisa = 0;
+    data.laku = 0;
     setBarang(data);
     setCartItem(data);
     setIsLoading(false);
@@ -63,13 +72,20 @@ const AddTransaksiDetailBarang = () => {
     const targetID = arr.length > 0 ? arr[1] : ''; // 1 (integer)
     let value = e.target.value;
     console.log('target id', e.target.id, value);
+    value = parseInt(value.replace(/\D/g,''));
     if (arr[0] === 'input_titip') {
-      value = parseInt(value.replace(/\D/g,''));
       if (value > cartItem.stok) {
         value = cartItem.stok;
       }
-      setCartItem({...cartItem, jumlahTitip: value});
-    } else if (arr[0] === 'input_harga') {
+      setCartItem({...cartItem, titip: value});
+    } 
+    else if (arr[0] === 'input_sisa') {
+      setCartItem({...cartItem, sisa: value});
+    } 
+    else if (arr[0] === 'input_laku') {
+      setCartItem({...cartItem, laku: value});
+    } 
+    else if (arr[0] === 'input_harga') {
       setCartItem({...cartItem, harga: value});
     }
   }
@@ -137,88 +153,199 @@ const AddTransaksiDetailBarang = () => {
       {isLoading ? (
         <Spinner animation="border" />
       ) : (
-        <div className="card">
-          <div className="card-image">
-            <figure className="image is-4by3">
-              <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
-            </figure>
-          </div>
-          <div className="card-content">
-            <div className="media">
-              <div className="media-left">
-                <figure className="image is-48x48">
-                  <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
-                </figure>
-              </div>
-              <div className="media-content">
-                <p className="title is-5">{barang.nama}</p>
-                <div className="subtitle is-6">
-                  <div className="mb-2">
-                    Harga: Rp {fn.thousandSeparator(barang.harga)}, 
-                    <br/>
-                    Stok: {fn.thousandSeparator(barang.stok)}
-                  </div>
-                  <div className="mb-2">
-                    <DropdownButton id="dropdown-basic-button" title="Actions" size="sm">
-                      <Dropdown.Item as={Link} to={`/edit_barang/${barang.id}`}>Edit Barang</Dropdown.Item>
-                    </DropdownButton>
+        <div className="container">
+          <div className="card">
+            <div className="card-image">
+              <figure className="image is-4by3">
+                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
+              </figure>
+            </div>
+            <div className="card-content">
+              <div className="media">
+                <div className="media-left">
+                  <figure className="image is-48x48">
+                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
+                  </figure>
+                </div>
+                <div className="media-content">
+                  <p className="title is-5">{barang.nama}</p>
+                  <div className="subtitle is-6">
+                    <div className="mb-2">
+                      Harga: Rp {fn.thousandSeparator(barang.harga)}, 
+                      <br/>
+                      Stok: {fn.thousandSeparator(barang.stok)}
+                    </div>
+                    <div className="mb-2">
+                      <DropdownButton id="dropdown-basic-button" title="Actions" size="sm">
+                        <Dropdown.Item as={Link} to={`/edit_barang/${barang.id}`}>Edit Barang</Dropdown.Item>
+                      </DropdownButton>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="content">
-
-              <div className="mb-2 is-flex is-justify-content-space-between">
-                <label className="me-2">Harga</label>
-                <div>
-                  <Button variant="dark" size="sm" className="me-2" onClick={resetInput}>
-                    <FontAwesomeIcon icon={faRotateLeft} />
-                  </Button>
-                  <span className="me-2">Rp</span>
-                  <input type="text"
-                  style={{width:"100px"}}
-                  id={`input_harga-${idBarang}`}
-                  value={cartItem.harga}
-                  onChange={handleChangeInput}
-                  onFocus={selectAllText}
-                  />
-                </div>
+              <div className="simple-table" style={{width:"100%"}}>
+                <Table bordered striped>
+                  <thead>
+                    <tr>
+                      <th>Titip</th>
+                      <th>Sisa</th>
+                      <th>Laku</th>
+                      <th>Harga</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style={{paddingLeft:".5rem"}}>
+                        <input type="numeric" 
+                        id={`input_titip-${idBarang}`}
+                        value={cartItem.jumlahTitip | 0}
+                        onFocus={selectAllText}
+                        onChange={handleChangeInput}
+                        />
+                      </td>
+                      <td>
+                        <input type="numeric" 
+                        id={`input_sisa-${idBarang}`}
+                        value={cartItem.jumlahSisa | 0}
+                        onFocus={selectAllText}
+                        onChange={handleChangeInput}
+                        />
+                      </td>
+                      <td>
+                        <input type="numeric" 
+                        id={`input_laku-${idBarang}`}
+                        value={cartItem.jumlahLaku | 0}
+                        onFocus={selectAllText}
+                        onChange={handleChangeInput}
+                        />
+                      </td>
+                      <td>
+                        <input type="numeric" 
+                        id={`input_harga-${idBarang}`}
+                        value={cartItem.jumlahHarga | 0}
+                        onFocus={selectAllText}
+                        onChange={handleChangeInput}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </Table>
               </div>
-              <div className="mb-2 is-flex is-justify-content-space-between">
-                <label className="me-2">Jumlah Titip</label>
-                <input type="text"
-                style={{width:"100px"}}
-                id={`input_titip-${idBarang}`}
-                value={cartItem.jumlahTitip}
-                onChange={handleChangeInput}
-                onFocus={selectAllText}
-                />
-              </div>
-              <div className="mb-2">
-                <label className="me-2">Keterangan</label>
-                <br/>
-                <textarea style={{width:"100%"}} 
-                id={`keterangan-${idBarang}`}
-                onFocus={selectAllText}></textarea>
-              </div>
 
-              <hr/>
-
-              <div className="mb-2 fs-4 is-flex is-justify-content-flex-end">
-                <label className="me-2">Subtotal</label>
-                <strong>Rp {fn.thousandSeparator(cartItem.harga*cartItem.jumlahTitip)}</strong>
-              </div>
-
-              <div className="d-grid gap-2">
-                <Button variant="primary" size="lg" onClick={() => addCartItem(cartItem)}>
-                  Submit
-                </Button>
+              <div className="fs-6 fw-bold is-flex is-justify-content-flex-end is-align-items-baseline">
+                <label className="me-2">Total Nilai</label>
+                <label className="me-2">Rp</label>
+                <label className="fs-4">2.500.000</label>
               </div>
 
             </div>
           </div>
-        </div>
+        </div> // /.container
+        // <div className="is-flex is-justify-content-space-between">
+        // </div>
+        // <div className="card">
+        //   <div className="card-image">
+        //     <figure className="image is-4by3">
+        //       <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
+        //     </figure>
+        //   </div>
+        //   <div className="card-content">
+        //     <div className="media">
+        //       <div className="media-left">
+        //         <figure className="image is-48x48">
+        //           <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
+        //         </figure>
+        //       </div>
+        //       <div className="media-content">
+        //         <p className="title is-5">{barang.nama}</p>
+        //         <div className="subtitle is-6">
+        //           <div className="mb-2">
+        //             Harga: Rp {fn.thousandSeparator(barang.harga)}, 
+        //             <br/>
+        //             Stok: {fn.thousandSeparator(barang.stok)}
+        //           </div>
+        //           <div className="mb-2">
+        //             <DropdownButton id="dropdown-basic-button" title="Actions" size="sm">
+        //               <Dropdown.Item as={Link} to={`/edit_barang/${barang.id}`}>Edit Barang</Dropdown.Item>
+        //             </DropdownButton>
+        //           </div>
+        //         </div>
+        //       </div>
+        //     </div>
+
+        //     <div className="content">
+
+        //       <div className="mb-2 is-flex is-justify-content-space-between">
+        //         <label className="me-2">Harga</label>
+        //         <div>
+        //           <Button variant="dark" size="sm" className="me-2" onClick={resetInput}>
+        //             <FontAwesomeIcon icon={faRotateLeft} />
+        //           </Button>
+        //           <span className="me-2">Rp</span>
+        //           <input type="text"
+        //           style={{width:"100px"}}
+        //           id={`input_harga-${idBarang}`}
+        //           value={cartItem.harga}
+        //           onChange={handleChangeInput}
+        //           onFocus={selectAllText}
+        //           />
+        //         </div>
+        //       </div>
+        //       <div className="mb-2 is-flex is-justify-content-space-between">
+        //         <label className="me-2">Jumlah Titip</label>
+        //         <input type="text"
+        //         style={{width:"100px"}}
+        //         id={`input_titip-${idBarang}`}
+        //         value={cartItem.jumlahTitip}
+        //         onChange={handleChangeInput}
+        //         onFocus={selectAllText}
+        //         />
+        //       </div>
+        //       <div className="mb-2 is-flex is-justify-content-space-between">
+        //         <label className="me-2">Jumlah Sisa</label>
+        //         <input type="text"
+        //         style={{width:"100px"}}
+        //         id={`input_sisa-${idBarang}`}
+        //         value={cartItem.jumlahSisa}
+        //         onChange={handleChangeInput}
+        //         onFocus={selectAllText}
+        //         />
+        //       </div>
+        //       <div className="mb-2 is-flex is-justify-content-space-between">
+        //         <label className="me-2">Jumlah Laku</label>
+        //         <input type="text"
+        //         style={{width:"100px"}}
+        //         id={`input_laku-${idBarang}`}
+        //         value={cartItem.jumlahLaku}
+        //         onChange={handleChangeInput}
+        //         onFocus={selectAllText}
+        //         />
+        //       </div>
+        //       <div className="mb-2">
+        //         <label className="me-2">Keterangan</label>
+        //         <br/>
+        //         <textarea style={{width:"100%"}} 
+        //         id={`keterangan-${idBarang}`}
+        //         onFocus={selectAllText}></textarea>
+        //       </div>
+
+        //       <hr/>
+
+        //       <div className="mb-2 fs-4 is-flex is-justify-content-flex-end">
+        //         <label className="me-2">Subtotal</label>
+        //         <strong>Rp {fn.thousandSeparator(cartItem.harga * cartItem.jumlahLaku)}</strong>
+        //       </div>
+
+        //       <div className="d-grid gap-2">
+        //         <Button variant="primary" size="lg" onClick={() => addCartItem(cartItem)}>
+        //           Submit
+        //         </Button>
+        //       </div>
+
+        //     </div>
+        //   </div>
+        // </div>
       )}
     </div>
   );

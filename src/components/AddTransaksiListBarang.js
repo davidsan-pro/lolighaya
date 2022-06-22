@@ -91,19 +91,24 @@ const AddTransaksiListBarang = () => {
   const getBarang = async (query='') => {
     setIsLoading(true);
     let myurl = `${global.config.base_url}/barang`;
+    let qsArr = [];
     if (query) {
-      myurl += `?q=${query}`;
+      qsArr.push(`q=${query}`);
+    }
+    if (qsArr) {
+      const qs = qsArr.join('&');
+      myurl += `?${qs}`;
     }
     const response = await fetch(myurl);
     let data = await response.json();
     data.forEach((item, index) => {
       cartList.forEach(row => {
         if (row.id === item.id) {
-          item.stok -= row.jumlahTitip;
+          item.stok -= (row.jumlahTitip || 0);
         }
       });
-      item.jumlahTitip = 0;
-      item.isChecked = false;
+      // item.jumlahTitip = 0;
+      // item.isChecked = false;
     });
     setBarang(data);
     setIsLoading(false);
@@ -142,7 +147,11 @@ const AddTransaksiListBarang = () => {
       <div>
         <SearchBar onSearch={getBarang} keywordType="nama barang"/>
       </div>
-      {isLoading ? <Spinner animation="border" /> : <DisplayAddTransaksiListBarang barang={barang} idToko={idToko} idRute={id} />}
+      {
+        isLoading 
+          ? <Spinner animation="border" /> 
+          : <DisplayAddTransaksiListBarang barang={barang} idToko={idToko} idRute={id} />
+      }
       {/* <div className="content-container">
         {
           barang.length > 0

@@ -31,7 +31,7 @@ const DisplayDashboard = ({ rute }) => {
                   return (
                     <tr key={item.id}>
                       <td>
-                        <Link to={`rute_list_toko/${item.id}`}>
+                        <Link to={`/rute_list_toko/${item.id}`}>
                           <div className="fw-bold">{item.nama_rute}</div>
                           <em>{item.list_kota}</em>
                         </Link>

@@ -37,6 +37,11 @@ Link:hover {
   width: 80%;
 }
 
+.btn-success {
+  background-color: #02b602;
+  border-color: #02b602;
+}
+
 .clickable {
   cursor: pointer;
 }
@@ -97,6 +102,11 @@ Link:hover {
   opacity: 0;
 }
 
+.link {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 /* search bar */
 .search-btn {
   border-radius: 50px !important;
@@ -148,6 +158,10 @@ Link:hover {
   display: block;
   overflow-x: auto;
   white-space: nowrap;
+}
+
+Table input {
+  width: 100%;
 }
 
 Table td,

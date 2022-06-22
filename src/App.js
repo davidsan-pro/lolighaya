@@ -41,8 +41,9 @@ const App = () => {
         <Routes>
           {/* <Route path="/asd" element={<Test2 />} />
           {/* <Route path="/" element={<Login />} /> */}
-          <Route path="/" element={<Dashboard />} />
           {/* <Route path="/pilih_hari" element={<PilihHari />} /> */}
+          <Route path="/" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/rute_list_toko/:id" element={<RuteListToko />} />
           <Route path="/rute_detail_toko/:id" element={<RuteDetailToko />} />
           <Route path="/add_transaksi_toko/:id" element={<AddTransaksiTokoCart />} />

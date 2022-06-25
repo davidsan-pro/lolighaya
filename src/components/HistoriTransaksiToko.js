@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams, Link } from "react-router-dom";
 import { Button, Table } from "react-bootstrap";
 import * as fn from "../MyFunctions";
 
@@ -15,6 +15,7 @@ const HistoriTransaksiToko = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { id } = useParams(); // id toko
+  let total = 0;
 
   const navigate = useNavigate();
 
@@ -64,6 +65,11 @@ const HistoriTransaksiToko = () => {
     setHistoriTransaksi(data);
   }
 
+  const handleClickRow = (href) => {
+    console.log('href', href);
+    navigate(href);
+  }
+
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
 
@@ -77,8 +83,8 @@ const HistoriTransaksiToko = () => {
 
   return (
     <div className="container">
-      <div className="mb-3 fs-4">
-        Histori Nota toko [<strong>{toko.nama}</strong>]
+      <div className="mb-3 fs-4 text-center">
+        [<strong>{toko.nama}</strong>]
       </div>
       <div className="table-container">
         <Table striped hover>
@@ -94,7 +100,9 @@ const HistoriTransaksiToko = () => {
               currentItems.length > 0
               ? (
                 currentItems.map((item, index) => (
-                  <tr key={item.id}>
+                  <tr key={item.id} 
+                  className="link"
+                  onClick={() => handleClickRow(`/detail_histori_transaksi_toko/${item.id}`)}>
                     <td>{fn.formatDate(item.created_at)}</td>
                     <td>{item.username}</td>
                     <td>Rp {fn.thousandSeparator(item.nilai_transaksi)}</td>

@@ -88,6 +88,10 @@ const Header = () => {
     title = "Transaksi Baru<br/>Pilih Barang";
   } else if (location.pathname.indexOf("/add_transaksi_detail_barang/") === 0) {
     title = "Transaksi Baru<br/>Detail Barang";
+  } else if (location.pathname.indexOf("/histori_transaksi_toko/") === 0) {
+    title = "Histori Transaksi";
+  } else if (location.pathname.indexOf("/detail_histori_transaksi_toko/") === 0) {
+    title = "Detail Histori Transaksi";
   }
 
   return (

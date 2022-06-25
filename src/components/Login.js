@@ -8,6 +8,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [code, setCode] = useState(0);
   const [loginData, setLoginData] = useState({
     id: '',
     username: '',
@@ -50,7 +51,10 @@ const Login = () => {
     })
       .then(response => response.json())
       .then(res => {
-        if (res.status) {
+        setCode(res.status);
+        console.log('res', res);
+        if (res.status === 201) {
+          setMessage(res.message);
           const dateOptions = {
             year: 'numeric',
             month: '2-digit',
@@ -70,8 +74,11 @@ const Login = () => {
           setLoginData(tmp);
           // localStorage.setItem('loginData', JSON.stringify(loginData));
           navigate('/dashboard');
+        } else {
+          setMessage(res.messages.error);
         }
-      });
+      })
+      .catch(err => console.log('error', err));
   };
 
   return (
@@ -108,7 +115,11 @@ const Login = () => {
           </Button>
         </div>
         <div className="text-center">
-          {message}
+          {
+            code >= 200 && code < 400
+            ? <span>{message}</span>
+            : <span className="errmsg">{message}</span>
+          }
         </div>
       </form>
     </div>

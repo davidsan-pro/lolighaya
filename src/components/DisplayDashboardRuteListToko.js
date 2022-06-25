@@ -59,7 +59,7 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
                           <Dropdown.Item as={Link} to={`/add_transaksi_toko/${id}?id_toko=${item.id}`}>
                               Nota Baru
                             </Dropdown.Item>
-                            <Dropdown.Item as={Link} to={`/master_transaksi?qf=id_toko&qv=${item.id}&sbf=id&sbm=desc`}>
+                            <Dropdown.Item as={Link} to={`/histori_transaksi_toko/${item.id}?sbf=id&sbm=desc`}>
                               Histori Transaksi
                             </Dropdown.Item>
                             {/* <Dropdown.Item href="/histori_trx">Histori Nota</Dropdown.Item>

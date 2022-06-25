@@ -8,40 +8,52 @@ import { actionLogin, actionLogout } from "../actions";
 const Sidebar = () => {
   const [show, setShow] = useState(false);
   const [loginData, setLoginData] = useState({
+    id: '',
     username: '',
     email: '',
     telepon: '',
+    last_login: '',
   });
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const navigate = useNavigate();
-  const loginInfo = useSelector(state => state.isLogged)
+  // const loginInfo = useSelector(state => state.isLogged)
 
   useEffect(() => {
-    getUserInfo(loginInfo);
+    getUserInfo();
   }, []);
 
-  const getUserInfo = async (userObj) => {
-    let myurl = `${global.config.base_url}/users`;
-    let qsArr = [];
-    qsArr.push(`qf=username&qv=${loginInfo.username}&qmode=exact`);
-    if (qsArr.length > 0) {
-      myurl += '?' + qsArr.join('&');
+  const getUserInfo = () => {
+    let tmp = JSON.parse(localStorage.getItem('loginData') || '{}');
+    if (tmp.id !== '') {
+      setLoginData(tmp);
     }
-    const response = await fetch(myurl);
-    const data = await response.json();
-    console.log('getuserinfo', myurl, data);
-    if (data.length > 0) {
-      setLoginData(data[0]);
-    }
+    // let myurl = `${global.config.base_url}/users`;
+    // let qsArr = [];
+    // qsArr.push(`qf=username&qv=${loginInfo.username}&qmode=exact`);
+    // if (qsArr.length > 0) {
+    //   myurl += '?' + qsArr.join('&');
+    // }
+    // const response = await fetch(myurl);
+    // const data = await response.json();
+    // console.log('getuserinfo', myurl, data);
+    // if (data.length > 0) {
+    //   setLoginData(data[0]);
+    // }
   }
-  console.log('logininfo', loginInfo);
+  // console.log('logininfo', loginInfo);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(actionLogout());
+    const tmp = {
+      id: '',
+      username: '',
+      email: '',
+      telepon: '',
+    }
+    setLoginData(tmp);
     navigate('/');
   }
 

@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { useState, useEffect } from "react";
 import moment from "moment";
 import "moment/locale/id";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -8,6 +8,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Sidebar from "./Sidebar";
 
 const Header = () => {
+  const [loginData, setLoginData] = useState({
+    id: '',
+    username: '',
+    email: '',
+    telepon: '',
+    last_login: '',
+  });
+
+  useEffect(() => {
+    let tmp = JSON.parse(localStorage.getItem('loginData') || '{}');
+    if (typeof tmp.id != 'undefined') {
+      setLoginData(tmp);
+    }
+  }, [loginData]);
+  
   // const curday = moment().locale('id').format('dddd');
   // const curdate = moment().format("DD-MM-YYYY");
   // const curtime = moment().format("HH:mm:ss");
@@ -18,7 +33,11 @@ const Header = () => {
   // console.log("location", location);
   let title = "";
   if (location.pathname === "/" || location.pathname === "") {
-    title = "Dashboard";
+    if (loginData.id !== '') {
+      title = "Dashboard";
+    } else {
+      title = "Halaman Login";
+    }
   } else if (location.pathname.indexOf("/rute_list_toko") === 0) {
     title = "Daftar Toko di Rute";
   } else if (location.pathname.indexOf("/rute_detail_toko") === 0) {
@@ -75,16 +94,17 @@ const Header = () => {
     <>
       <header className="fs-2 fw-bold pb-1" style={{ backgroundColor: "royalblue", color: "#fff" }}>
         <div className="d-flex justify-content-between align-items-center">
-          {
-            // tombol Back hanya ditampilkan selain di hal.dashboard
-            location.pathname !== "/" ? (
-              <Button variant="primary" className="ms-3 btn-lg" onClick={() => navigate(-1)}>
-                <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
-              </Button>
-            ) : (
-              <Button className="ms-3 btn-lg" style={{ opacity: "0" }}></Button>
-            )
-          }
+          <div>
+            {
+              // tombol Back hanya ditampilkan selain di hal.dashboard
+              location.pathname !== "/" ? (
+                <Button variant="primary" className="ms-3 btn-lg" onClick={() => navigate(-1)}>
+                  <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
+                </Button>
+              ) : 
+              ''
+            }
+          </div>
           <div>
             <span>
               LoliGhaya
@@ -93,7 +113,9 @@ const Header = () => {
               LoliGhaya
             </Link> */}
           </div>
-          <Sidebar />
+          <div>
+            {loginData.id !== '' ? <Sidebar /> : ''}
+          </div>
         </div>
       </header>
       <div className="mb-1 ml-5">

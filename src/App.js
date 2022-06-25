@@ -3,6 +3,7 @@ import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import HistoriTransaksiToko from "./components/HistoriTransaksiToko";
 import PilihHari from "./components/PilihHari";
 import RuteListToko from "./components/RuteListToko";
 import RuteDetailToko from "./components/RuteDetailToko";
@@ -49,6 +50,7 @@ const App = () => {
           <Route path="/add_transaksi_toko/:id" element={<AddTransaksiTokoCart />} />
           <Route path="/add_transaksi_list_barang/:id" element={<AddTransaksiListBarang />} />
           <Route path="/add_transaksi_detail_barang/:id" element={<AddTransaksiDetailBarang />} />
+          <Route path="/histori_transaksi_toko/:id" element={<HistoriTransaksiToko />} />
           <Route path="/master" element={<MenuDatabase />} />
           <Route path="/view_user/:id" element={<ViewUser />} />
           <Route path="/master_user" element={<MasterUser />} />

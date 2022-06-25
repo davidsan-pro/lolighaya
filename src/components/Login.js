@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { useDispatch } from "react-redux";
@@ -7,41 +7,71 @@ import { actionLogin } from "../actions";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [loginData, setLoginData] = useState({
+    id: '',
+    username: '',
+    email: '',
+    telepon: '',
+    last_login: '',
+  });
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
   console.log('login page');
 
-  const submitLogin = (e) => {
-    e.preventDefault();
-    console.log('submit login');
-    // const data = { username, password };
-    // const myurl = `${global.config.base_url}/login`;
-    // await fetch(myurl, {
-    //   method: "POST",
-    //   body: JSON.stringify(data),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    const dateOptions = {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    }
-    const dateStr = new Intl.DateTimeFormat('id-ID',dateOptions).format(new Date())
-    // dispatch(actionLogin('123', username, dateStr));
-    let loginData = {
-      id: '123',
-      username: username,
-      last_login: dateStr,
-    }
+  const resetAllStorage = () => {
+    localStorage.removeItem('loginData');
+    localStorage.removeItem('kunjungan');
+  }
+
+  useEffect(() => {
+    resetAllStorage();
+  }, []);
+
+  useEffect(() => {
+    // tiap kali masuk k hal.login ini, kosongkan localStorage 'loginData'nya
     localStorage.setItem('loginData', JSON.stringify(loginData));
-    navigate('/dashboard');
+  }, [loginData]);
+
+  const submitLogin = async () => {
+    const data = { 
+      username: username, 
+      password: password 
+    };
+    const myurl = `${global.config.base_url}/users/login`;
+    await fetch(myurl, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(response => response.json())
+      .then(res => {
+        if (res.status) {
+          const dateOptions = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+          }
+          const dateStr = new Intl.DateTimeFormat('id-ID',dateOptions).format(new Date())
+          let tmp = {
+            id: res.id,
+            username: res.data.username,
+            email: res.data.email,
+            telepon: res.data.telepon,
+            last_login: dateStr,
+          }
+          setLoginData(tmp);
+          // localStorage.setItem('loginData', JSON.stringify(loginData));
+          navigate('/dashboard');
+        }
+      });
   };
 
   return (
@@ -76,6 +106,9 @@ const Login = () => {
           <Button variant="primary" size="lg" onClick={(e) => submitLogin(e)}>
             Login
           </Button>
+        </div>
+        <div className="text-center">
+          {message}
         </div>
       </form>
     </div>

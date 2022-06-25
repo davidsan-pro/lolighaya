@@ -6,15 +6,16 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const AddTransaksiTokoCart = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [nama, setNama] = useState("");
-  const [alamat, setAlamat] = useState("");
-  const [telepon, setTelepon] = useState("");
-  const [foto, setFoto] = useState("");
-  const [kecamatan, setKecamatan] = useState("");
-  const [kota, setKota] = useState("");
+  // const [nama, setNama] = useState("");
+  // const [alamat, setAlamat] = useState("");
+  // const [telepon, setTelepon] = useState("");
+  // const [foto, setFoto] = useState("");
+  // const [kecamatan, setKecamatan] = useState("");
+  // const [kota, setKota] = useState("");
   const [dataToko, setDataToko] = useState({});
 
   const [cartItems, setCartItems] = useState([]);
+  const [nilaiTotal, setNilaiTotal] = useState(0);
 
   const kunjunganToko = useSelector(state => state.kunjunganToko);
   console.log('kunjungan toko', kunjunganToko);
@@ -51,10 +52,19 @@ const AddTransaksiTokoCart = () => {
     setIsLoading(false);
   }, []);
 
+  useEffect(() => {
+    hitungTotal();
+    localStorage.setItem('cartList', JSON.stringify(cartItems));
+  }, [cartItems]);
+
   const getDataCart = () => {
     let arrCart = JSON.parse(localStorage.getItem('cartList') || '[]');
     console.log('arrcart', arrCart);
+    arrCart = arrCart.filter(function(item) {
+      return item.id_toko.toString() === idToko;
+    });
     setCartItems(arrCart);
+    // hitungTotal();
   }
 
   const getDataToko = async () => {
@@ -120,6 +130,7 @@ const AddTransaksiTokoCart = () => {
     console.log('change item', id, field, value);
     value = value.toString().replace(/\D/g,'');
     let updatedItems = cartItems.map(item => {
+      item.id_toko = idToko;
       if (item.id === id) {
         if (field === 'titip') {
           item.titip = value;
@@ -142,8 +153,12 @@ const AddTransaksiTokoCart = () => {
   }
   // end const handleOnChangeInput
 
-  const handleDelete = (e) => {
-    console.log('delete');
+  const handleDelete = (idBarang) => {
+    let arrCart = JSON.parse(localStorage.getItem('cartList') || '[]');
+    console.log('delete', idBarang, arrCart);
+    let tmpCart = arrCart.filter(item => {return item.id.toString() !== idBarang.toString()})
+    console.log('after delete', tmpCart);
+    setCartItems(tmpCart);
   }
 
   const selectAllText = (e) => {
@@ -155,8 +170,37 @@ const AddTransaksiTokoCart = () => {
     let copyCart = cartItems.map(item => {
       total += item.harga * item.laku;
     });
+    setNilaiTotal(total);
     return total;
   }
+
+  const saveTransaksi = async () => {
+    const loginData = JSON.parse(localStorage.getItem('loginData') || '{}');
+    const loginID = typeof loginData.id != 'undefined' ? loginData.id : '';
+    let data = {
+      id_user: loginID,
+      id_toko: idToko,
+      nilai_transaksi: nilaiTotal,
+      details: cartItems,
+    }
+    let myurl = `${global.config.base_url}/Mtransaksi`
+    console.log('save', myurl, data);
+    await fetch(myurl, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(res => {
+        if (res.status == 201) {
+          localStorage.removeItem('cartList');
+        }
+      });
+    navigate(`/rute_list_toko/${id}`)
+  }
+  // end const saveTransaksi
 
   // const saveToko = async (e) => {
   //   e.preventDefault();
@@ -193,67 +237,78 @@ const AddTransaksiTokoCart = () => {
                 cartItems.length > 0
                 ? (
                   cartItems.map((item, index) => (
-                      <Card.Body key={item.id}>
-                        <Card.Text className="fw-bold mb-2">
-                          <span className="me-2">{item.nama}</span>
-                          <Button size="sm" variant="danger" onClick={() => handleDelete(item.id)}>Hapus</Button>
-                        </Card.Text>
-                        <Card.Text className="mb-1 is-flex is-justify-content-space-between">
-                          <span className="me-2">Titip:</span>
-                          <input type="text"
-                          id={`titip-${item.id}`}
-                          value={item.titip}
-                          onChange={(e) => handleOnChangeInput(item.id, 'titip', e.target.value)}
-                          onFocus={selectAllText}
-                          />
-                        </Card.Text>
-                        <Card.Text className="mb-1 is-flex is-justify-content-space-between">
-                          <span className="me-2">Sisa:</span>
-                          <input type="text"
-                          id={`sisa-${item.id}`}
-                          value={item.sisa}
-                          onChange={(e) => handleOnChangeInput(item.id, 'sisa', e.target.value)}
-                          onFocus={selectAllText}
-                          />
-                        </Card.Text>
-                        <Card.Text className="mb-1 is-flex is-justify-content-space-between">
-                          <span className="me-2">Laku:</span>
-                          <input type="text"
-                          id={`laku-${item.id}`}
-                          value={fn.thousandSeparator(item.laku)}
-                          onChange={(e) => handleOnChangeInput(item.id, 'laku', e.target.value)}
-                          onFocus={selectAllText}
-                          />
-                        </Card.Text>
-                        <Card.Text className="mb-1 is-flex is-justify-content-space-between">
-                          <span className="me-2">Harga:</span>
-                          <input type="text"
-                          id={`harga-${item.id}`}
-                          value={fn.thousandSeparator(item.harga)}
-                          onChange={(e) => handleOnChangeInput(item.id, 'harga', e.target.value)}
-                          onFocus={selectAllText}
-                          />
-                        </Card.Text>
-                        <hr/>
-                        <Card.Text className="mb-1 is-flex is-justify-content-space-between">
-                          <span className="me-2">Subtotal:</span>
-                          <input type="text"
-                          style={{textAlign:"right"}}
-                          id={`subtotal-${item.id}`}
-                          value={fn.thousandSeparator(item.laku * item.harga)}
-                          />
-                        </Card.Text>
-                      </Card.Body>
+                    <Card.Body key={item.id}>
+                      <Card.Text className="fw-bold mb-2">
+                        <span className="me-2">{item.nama}</span>
+                        <Button size="sm" variant="danger" onClick={() => handleDelete(item.id)}>Hapus</Button>
+                      </Card.Text>
+                      <Card.Text className="mb-1 is-flex is-justify-content-space-between">
+                        <span className="me-2">Titip:</span>
+                        <input type="text"
+                        id={`titip-${item.id}`}
+                        value={item.titip}
+                        onChange={(e) => handleOnChangeInput(item.id, 'titip', e.target.value)}
+                        onFocus={selectAllText}
+                        />
+                      </Card.Text>
+                      <Card.Text className="mb-1 is-flex is-justify-content-space-between">
+                        <span className="me-2">Sisa:</span>
+                        <input type="text"
+                        id={`sisa-${item.id}`}
+                        value={item.sisa}
+                        onChange={(e) => handleOnChangeInput(item.id, 'sisa', e.target.value)}
+                        onFocus={selectAllText}
+                        />
+                      </Card.Text>
+                      <Card.Text className="mb-1 is-flex is-justify-content-space-between">
+                        <span className="me-2">Laku:</span>
+                        <input type="text"
+                        id={`laku-${item.id}`}
+                        value={fn.thousandSeparator(item.laku)}
+                        onChange={(e) => handleOnChangeInput(item.id, 'laku', e.target.value)}
+                        onFocus={selectAllText}
+                        />
+                      </Card.Text>
+                      <Card.Text className="mb-1 is-flex is-justify-content-space-between">
+                        <span className="me-2">Harga:</span>
+                        <input type="text"
+                        id={`harga-${item.id}`}
+                        value={fn.thousandSeparator(item.harga)}
+                        onChange={(e) => handleOnChangeInput(item.id, 'harga', e.target.value)}
+                        onFocus={selectAllText}
+                        />
+                      </Card.Text>
+                      <hr/>
+                      <Card.Text className="mb-1 is-flex is-justify-content-space-between">
+                        <span className="me-2">Subtotal:</span>
+                        <input type="text"
+                        style={{textAlign:"right"}}
+                        id={`subtotal-${item.id}`}
+                        value={fn.thousandSeparator(item.laku * item.harga)}
+                        />
+                      </Card.Text>
+                    </Card.Body>
                   ))
                 )
                 : (
-                  <em>Data transaksi masih kosong</em>
+                  <Card.Body>
+                    <Card.Text className="mb-2">
+                      <em>Data transaksi masih kosong</em>
+                    </Card.Text>
+                  </Card.Body>
                 )
               }
-              <Card.Body className="align-right fs-4 mb-2">
-                <span className="me-2">Total:</span>
-                <strong>Rp {fn.thousandSeparator(hitungTotal())}</strong>
-              </Card.Body>
+
+              {
+                cartItems.length > 0
+                ? (
+                  <Card.Body className="align-right fs-4 mb-2">
+                    <span className="me-2">Total:</span>
+                    <strong>Rp {fn.thousandSeparator(nilaiTotal)}</strong>
+                  </Card.Body>
+                )
+                : ''
+              }
 
             </Card>
 
@@ -261,7 +316,7 @@ const AddTransaksiTokoCart = () => {
               cartItems.length > 0
               ? (
                 <div className="d-grid gap-2">
-                  <Button variant="primary" size="lg" >
+                  <Button variant="primary" size="lg" onClick={() => saveTransaksi()}>
                     SIMPAN NOTA
                   </Button>
                 </div>

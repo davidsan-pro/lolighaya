@@ -47,3 +47,17 @@ export function thousandSeparator(string) {
     // }
   ).format(money);
 }
+
+export function formatDate(string) {
+  const dateOptions = {
+    year: 'numeric', 
+    month: 'short', 
+    day: 'numeric', 
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  }
+  const myDate = new Date(string);
+  
+  return myDate.toLocaleDateString('id-ID', dateOptions).replaceAll('.', ':');
+}

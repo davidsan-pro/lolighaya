@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
+import { Spinner, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { actionLogin } from "../actions";
 
@@ -9,6 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [code, setCode] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const [loginData, setLoginData] = useState({
     id: '',
     username: '',
@@ -37,6 +38,7 @@ const Login = () => {
   }, [loginData]);
 
   const submitLogin = async () => {
+    setIsLoading(true);
     const data = { 
       username: username, 
       password: password 
@@ -78,7 +80,10 @@ const Login = () => {
           setMessage(res.messages.error);
         }
       })
-      .catch(err => console.log('error', err));
+      .catch(err => console.log('error', err))
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -109,16 +114,20 @@ const Login = () => {
         </div>
 
         <hr />
-        <div className="d-grid">
+        <div className="d-grid mb-3">
           <Button variant="primary" size="lg" onClick={(e) => submitLogin(e)}>
             Login
           </Button>
         </div>
         <div className="text-center">
           {
-            code >= 200 && code < 400
-            ? <span>{message}</span>
-            : <span className="errmsg">{message}</span>
+            isLoading 
+            ? <Spinner animation="border" />
+            : (
+              code >= 200 && code < 400
+              ? <span>{message}</span>
+              : <span className="errmsg">{message}</span>
+            )
           }
         </div>
       </form>

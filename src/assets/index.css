@@ -61,6 +61,14 @@ Link:hover {
   overflow: auto;
 }
 
+.date-picker {
+  width: 100px;
+  z-index: 50;
+}
+.date-picker * {
+  z-index: 50;
+}
+
 .ellipsis {
   text-overflow: ellipsis;
 }
@@ -105,6 +113,10 @@ Link:hover {
 .link {
   cursor: pointer;
   text-decoration: none;
+}
+
+.react-datepicker-wrapper {
+  width: fit-content !important;
 }
 
 /* search bar */
@@ -162,6 +174,10 @@ Link:hover {
 
 Table input {
   width: 100%;
+}
+
+Table th {
+  text-align: center !important;
 }
 
 Table td,

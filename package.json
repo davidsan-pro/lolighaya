@@ -25,7 +25,8 @@
     "react-scripts": "5.0.0",
     "react-search-box": "^2.2.1",
     "redux": "^4.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
 
-const DisplayListTransaksi = ({ transaksi }) => {
+const DisplayListTransaksi = ({ transaksi, deleteTransaksi, handleClickRow }) => {
   console.log("display transaksi", transaksi);
+
+  let total = 0;
+  for (let i=0; i<transaksi.length; i++) {
+    total += transaksi[i].nilai_transaksi;
+  }
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -21,7 +26,7 @@ const DisplayListTransaksi = ({ transaksi }) => {
   return (
     <>
       <div className="simple-table">
-        <Table striped bordered hover>
+        <Table bordered hover>
           <thead>
             <tr>
               <th>Nama Toko</th>
@@ -35,7 +40,7 @@ const DisplayListTransaksi = ({ transaksi }) => {
               currentItems.length > 0
               ? (
                 currentItems.map((item, index) => (
-                  <tr key={item.id}>
+                  <tr key={item.id} className="link" onClick={() => handleClickRow(item.id)}>
                     <td style={{wordBreak:'break-word'}}>{item.nama_toko}</td>
                     <td style={{wordBreak:'break-word'}}>
                       {item.created_at}
@@ -49,7 +54,7 @@ const DisplayListTransaksi = ({ transaksi }) => {
               )
               : (
                 <tr>
-                  <td colSpan="4">
+                  <td colSpan="4" className="text-center">
                     Data transaksi masih kosong
                   </td>
                 </tr>
@@ -59,7 +64,12 @@ const DisplayListTransaksi = ({ transaksi }) => {
         </Table>
       </div>
 
-      <div>Total: {transaksi.length} transaksi</div>
+      <div className="align-right">
+        <span className="me-2">Total: Rp</span>
+        <span className="fs-5 fw-bold">{fn.thousandSeparator(total)}</span>
+      </div>
+      <div className="align-right mb-3">{fn.thousandSeparator(transaksi.length)} transaksi</div>
+      
       {
         // pagination hanya ditampilkan kalau ada datanya
         transaksi.length > 0 

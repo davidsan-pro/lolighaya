@@ -36,7 +36,7 @@ const Header = () => {
     if (loginData.id !== '') {
       title = "Dashboard";
     } else {
-      title = "Halaman Login";
+      title = "Login";
     }
   } else if (location.pathname.indexOf("/rute_list_toko") === 0) {
     title = "Daftar Toko di Rute";

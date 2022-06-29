@@ -48,14 +48,38 @@ export function thousandSeparator(string) {
   ).format(money);
 }
 
-export function formatDate(string) {
-  const dateOptions = {
-    year: 'numeric', 
-    month: 'short', 
-    day: 'numeric', 
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
+export function formatDate(string=null, mode='full') {
+  let dateOptions = {};
+  if (mode === 'full') {
+    dateOptions = {
+      year: 'numeric', 
+      month: 'short', 
+      day: 'numeric', 
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    }
+  }
+  else if (mode === 'date') {
+    dateOptions = {
+      year: 'numeric', 
+      month: 'short', 
+      day: 'numeric', 
+    }
+  }
+  else if (mode === 'date-std') {
+    dateOptions = {
+      year: 'numeric', 
+      month: '2-digit', 
+      day: '2-digit', 
+    }
+  }
+  else if (mode === 'time') {
+    dateOptions = {
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    }
   }
   const myDate = new Date(string);
   

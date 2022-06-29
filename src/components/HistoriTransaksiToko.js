@@ -1,28 +1,29 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, useSearchParams, Link } from "react-router-dom";
-import { Button, Table } from "react-bootstrap";
+import { Spinner, Button, Table } from "react-bootstrap";
+import { DropdownType, DropdownButton, SplitButton, Dropdown, ButtonGroup } from "react-bootstrap";
 import DatePicker from "react-datepicker";
-import '../../node_modules/react-datepicker/dist/react-datepicker.css';
+import "../../node_modules/react-datepicker/dist/react-datepicker.css";
 import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
+import * as XLSX from "xlsx";
+// import ReactExport from "react-data-export";
+// // utk export to excel. sumber: https://stackoverflow.com/a/66855054/1235167
+// import { saveAs } from "file-saver";
+// import XlsxPopulate from "xlsx-populate";
 
 const HistoriTransaksiToko = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [toko, setToko] = useState({});
   const [historiTransaksi, setHistoriTransaksi] = useState([]);
   const [nilaiTotal, setNilaiTotal] = useState(0);
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  // const [useFilter, setUseFilter] = useState(false);
-  // const [nama, setNama] = useState("");
-  // const [alamat, setAlamat] = useState("");
-  // const [telepon, setTelepon] = useState("");
-  // const [foto, setFoto] = useState("");
-  // const [kecamatan, setKecamatan] = useState("");
-  // const [kota, setKota] = useState("");
+  const [fStartDate, setFStartDate] = useState("");
+  const [fEndDate, setFEndDate] = useState("");
+  const [fUsername, setFUsername] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { id } = useParams(); // id toko
-  let total = 0;
 
   const navigate = useNavigate();
 
@@ -31,44 +32,100 @@ const HistoriTransaksiToko = () => {
     getHistoriTransaksi();
   }, []);
 
-  const handleClickFilter = (e) => {
-    console.log('filter', e.target.id, e.target.value);
-  }
-
   const getTokoById = async () => {
     const response = await fetch(`${global.config.base_url}/toko/${id}`);
     const data = await response.json();
-    console.log('data toko', data);
+    // console.log("data toko", data);
     setToko(data);
   };
 
   const getHistoriTransaksi = async () => {
+    setIsLoading(true);
+
     let myurl = `${global.config.base_url}/Mtransaksi`;
     let qsArr = [];
-    qsArr.push(`qf=id_toko&qv=${id}`);
-    if (searchParams.get('sbf')) {
-      qsArr.push(`sbf=${searchParams.get('sbf')}`);
+    qsArr.push(`qf[]=id_toko&qv[]=${id}`);
+    if (fStartDate !== "") {
+      let tmpStartDate = fn.formatDate(fStartDate, "date-std").replace("/", "-"); // dd-mm-yyyy
+      const tgl = tmpStartDate.slice(0, 2);
+      const bln = tmpStartDate.slice(3, 5);
+      const thn = tmpStartDate.slice(-4);
+      tmpStartDate = `${thn}-${bln}-${tgl}`;
+      qsArr.push(`qf[]=start_date&qv[]=${tmpStartDate}`);
     }
-    if (searchParams.get('sbm')) {
-      qsArr.push(`sbm=${searchParams.get('sbm')}`);
+    if (fEndDate !== "") {
+      let tmpEndDate = fn.formatDate(fEndDate, "date-std").replace("/", "-");
+      const tgl = tmpEndDate.slice(0, 2);
+      const bln = tmpEndDate.slice(3, 5);
+      const thn = tmpEndDate.slice(-4);
+      tmpEndDate = `${thn}-${bln}-${tgl}`;
+      qsArr.push(`qf[]=end_date&qv[]=${tmpEndDate}`);
     }
-    let qs = qsArr.join('&');
+    if (fUsername !== "") {
+      qsArr.push(`qf[]=username&qv[]=${fUsername}`);
+    }
+    if (searchParams.get("sbf")) {
+      // sort by field
+      qsArr.push(`sbf=${searchParams.get("sbf")}`);
+    }
+    if (searchParams.get("sbm")) {
+      // sort by mode (exact)
+      qsArr.push(`sbm=${searchParams.get("sbm")}`);
+    }
+    let qs = qsArr.join("&");
     myurl += `?${qs}`;
+    // console.log('myurl', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
-    console.log('data trx', data);
+    // console.log("data trx", data);
     setHistoriTransaksi(data);
     let total = 0;
-    data.map(item => {
+    data.map((item) => {
       total += item.nilai_transaksi;
     });
     setNilaiTotal(total);
-  }
+
+    setIsLoading(false);
+  };
 
   const handleClickRow = (idTransaksi) => {
-    let href = `/detail_histori_transaksi_toko/${idTransaksi}`
-    console.log('href', href);
+    let href = `/detail_histori_transaksi_toko/${idTransaksi}`;
+    // console.log("href", href);
     navigate(href);
+  };
+
+  const handleClickReset = () => {
+    setFStartDate("");
+    setFEndDate("");
+  };
+
+  const handleClickExportToExcel = () => {
+    let mydata = [];
+    historiTransaksi.map(item => {
+      mydata.push({
+        'TANGGAL': item.updated_at,
+        'NAMA TOKO': item.nama_toko,
+        'USERNAME': item.username,
+        'NILAI TRANSAKSI': item.nilai_transaksi,
+      });
+    });
+    let wb = XLSX.utils.book_new(),
+    ws = XLSX.utils.json_to_sheet(mydata);
+
+    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+
+    let tmpDate = new Date();
+    const tmpOptions = {
+      year: 'numeric', 
+      month: '2-digit', 
+      day: '2-digit', 
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    }
+    tmpDate = tmpDate.toLocaleDateString('id-ID', tmpOptions);
+    tmpDate = tmpDate.replaceAll('/', '-').replace(' ', '_');
+    XLSX.writeFile(wb, `histori_transaksi_${tmpDate}.xlsx`);
   }
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -88,83 +145,123 @@ const HistoriTransaksiToko = () => {
         [<strong>{toko.nama}</strong>]
       </div>
       <div className="mb-2 fs-7">
-        <div className="mb-2">Filter Tanggal Transaksi</div>
-        <div className="mb-2 is-flex is-align-items-baseline">
-          <DatePicker selected={startDate} 
-          className="date-picker me-2 text-center"
-          placeholderText="dd/mm/yyyy"
-          onChange={(date) => setStartDate(date)} 
-          dateFormat="dd/MM/yyyy"
-          maxDate={new Date()}
-          />
-          <span className="me-2">s/d</span>
-          <DatePicker selected={endDate} 
-          className="date-picker text-center"
-          placeholderText="dd/mm/yyyy"
-          onChange={(date) => setEndDate(date)} 
-          dateFormat="dd/MM/yyyy"
-          maxDate={new Date()}
+        <div className="mb-3">
+          <div className="mb-1">Tanggal Transaksi</div>
+          <div className="mb-2 is-flex is-align-items-baseline">
+            <DatePicker selected={fStartDate} className="date-picker me-2 text-center" placeholderText="dd/mm/yyyy" onChange={(date) => setFStartDate(date)} dateFormat="dd/MM/yyyy" maxDate={new Date()} />
+            <span className="me-2">s/d</span>
+            <DatePicker selected={fEndDate} className="date-picker text-center" placeholderText="dd/mm/yyyy" onChange={(date) => setFEndDate(date)} dateFormat="dd/MM/yyyy" maxDate={new Date()} />
+          </div>
+        </div>
+        <div className="mb-3">
+          <span className="me-2">Username</span>
+          <input type="text" 
+          style={{width:"150px"}} 
+          placeholder="username pembuat nota"
+          value={fUsername}
+          onChange={(e) => setFUsername(e.target.value)}
+          onFocus={(e) => e.target.select()}
           />
         </div>
-        <div>
-          <Button variant="info" className="me-2" size="sm">Terapkan</Button>
-          <Button variant="warning" size="sm">Reset</Button>
+        <div className="is-flex is-justify-content-space-between">
+          <div>
+            <Button variant="info" className="me-2" size="sm" onClick={() => getHistoriTransaksi()}>
+              Terapkan
+            </Button>
+            <Button variant="warning" size="sm" onClick={() => handleClickReset()}>
+              Reset
+            </Button>
+          </div>
+          <div>
+            {[DropdownButton].map((DropdownType, idx) => (
+              <DropdownType
+                as={ButtonGroup}
+                key={idx}
+                id={`dropdown-button-drop-${idx}`}
+                size="sm"
+                variant="info"
+                title="Urutkan"
+              >
+                <Dropdown.Item eventKey="1" value="newest">Terbaru</Dropdown.Item>
+                <Dropdown.Item eventKey="2" value="oldest">Terlama</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item eventKey="3" value="highesttotal">Nilai Tertinggi</Dropdown.Item>
+                <Dropdown.Item eventKey="4" value="leasttotal">Nilai Terendah</Dropdown.Item>
+              </DropdownType>
+            ))}
+          </div>
         </div>
       </div>
 
-      <hr />
+      <hr className="mb-0" />
 
-      <div className="table-container mb-0">
-        <Table hover className="mb-0">
-          <thead>
-            <tr>
-              <th>Tanggal</th>
-              <th>Username</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              currentItems.length > 0
-              ? (
-                currentItems.map((item, index) => (
-                  <tr key={item.id} 
-                  className="link"
-                  onClick={() => handleClickRow(item.id)}>
-                    <td>{fn.formatDate(item.created_at)}</td>
-                    <td>{item.username}</td>
-                    <td>Rp {fn.thousandSeparator(item.nilai_transaksi)}</td>
+      {
+        isLoading 
+        ? (<Spinner animation="border" />) 
+        : (
+          <>
+            <div className="table-container mb-0">
+              <Table hover className="mb-0">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>Username</th>
+                    <th>Total</th>
                   </tr>
-                ))
-              )
-              : (
-                <tr>
-                  <td colSpan={3}>Tidak ada data</td>
-                </tr>
-              )
-            }
-          </tbody>
-        </Table>
-      </div>
+                </thead>
+                <tbody>
+                  {currentItems.length > 0 ? (
+                    currentItems.map((item, index) => (
+                      <tr key={item.id} className="link" onClick={() => handleClickRow(item.id)}>
+                        <td>{fn.formatDate(item.created_at)}</td>
+                        <td>{item.username}</td>
+                        <td className="align-right">
+                          Rp {fn.thousandSeparator(item.nilai_transaksi)}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={3} className="text-center">
+                        Tidak ada data
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </Table>
+            </div>
 
-      <div className="align-right mb-3 me-3">
-        <span className="me-2 fs-6">Total: Rp</span>
-        <span className="fw-bold fs-4">{fn.thousandSeparator(nilaiTotal)}</span>
-      </div>
+            {historiTransaksi.length > 0 ? (
+              <div className="align-right mb-3 me-2">
+                <span className="me-2 fs-6">Total: Rp</span>
+                <span className="fw-bold fs-4">{fn.thousandSeparator(nilaiTotal)}</span>
+              </div>
+            ) : (
+              ""
+            )}
+          </>
+        )
+      }
 
       {
         // pagination hanya ditampilkan kalau ada datanya
         historiTransaksi.length > 0 
-        ? (
-          <Pagination itemsPerPage={itemsPerPage} 
-          totalItems={historiTransaksi.length} 
-          paginate={paginate} 
-          curPageNumber={currentPage} 
-          />
-        )
-        : ''
+        ? <>
+            <div className="mb-3">
+              <Pagination itemsPerPage={itemsPerPage} 
+                totalItems={historiTransaksi.length} 
+                paginate={paginate} 
+                curPageNumber={currentPage} 
+              />
+            </div>
+            <div className="d-grid">
+              <Button variant="primary" size="lg" onClick={() => handleClickExportToExcel()}>
+                Export ke Excel
+              </Button>
+            </div>
+          </> 
+        : ""
       }
-
     </div>
   );
 };

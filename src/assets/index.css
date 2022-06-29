@@ -115,6 +115,10 @@ Link:hover {
   text-decoration: none;
 }
 
+.pagination li {
+  z-index: 0;
+}
+
 .react-datepicker-wrapper {
   width: fit-content !important;
 }
@@ -153,6 +157,7 @@ Link:hover {
 .simple-table > Table th {
   white-space: normal !important;
   word-wrap: break-word !important;
+  word-break: break-word;
 }
 .simple-table > Table th {
   text-align: center !important;

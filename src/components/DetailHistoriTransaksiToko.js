@@ -47,6 +47,7 @@ const DetailHistoriTransaksiToko = () => {
         <Table bordered className="mb-0">
           <thead>
             <tr>
+              <th style={{width:"1%"}}>No.</th>
               <th style={{ width: "50%" }}>Info Barang</th>
               {/* <th>Titip</th>
               <th>Sisa</th>
@@ -62,12 +63,23 @@ const DetailHistoriTransaksiToko = () => {
               // </tr>
               detailTransaksi.map((item, index) => (
                 <tr key={item.id}>
+                  <td style={{ width: "1%" }}>
+                    {fn.thousandSeparator(index+1)}
+                  </td>
                   <td style={{ width: "50%" }}>
-                    <div className="fw-bold">{item.nama_barang}</div>
-                    <div>Titip: {fn.thousandSeparator(item.titip)}</div>
-                    <div>Sisa: {fn.thousandSeparator(item.sisa)}</div>
-                    <div>Laku: {fn.thousandSeparator(item.laku)}</div>
-                    <div>Harga: Rp {fn.thousandSeparator(item.harga)}</div>
+                    <div className="fw-bold mb-2">
+                      {item.nama_barang}
+                    </div>
+                    <div className="is-flex is-justify-content-space-between fs-7">
+                      <div style={{width:"50%"}}>
+                        <div>Titip: {fn.thousandSeparator(item.titip)}</div>
+                        <div>Sisa: {fn.thousandSeparator(item.sisa)}</div>
+                      </div>
+                      <div>
+                        <div>Laku: {fn.thousandSeparator(item.laku)}</div>
+                        <div>Harga: Rp {fn.thousandSeparator(item.harga)}</div>
+                      </div>
+                    </div>
                   </td>
                   <td className="align-right">
                     Rp {fn.thousandSeparator(item.harga * item.laku)}

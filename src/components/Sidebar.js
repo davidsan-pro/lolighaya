@@ -62,7 +62,7 @@ const Sidebar = () => {
       <Button variant="primary" className="me-2 btn-lg" onClick={handleShow}>
         <FontAwesomeIcon icon="fa-solid fa-bars" />
       </Button>
-      <Offcanvas show={show} placement="end" scroll="true" style={{ maxWidth:'75%'}}>
+      <Offcanvas show={show} placement="end" scroll="true" style={{ maxWidth:'75%'}} onHide={() => setShow(false)}>
         <Offcanvas.Header>
           <Button onClick={handleClose}>
             <FontAwesomeIcon icon="fa-solid fa-times fa-2xl" />
@@ -90,13 +90,13 @@ const Sidebar = () => {
                 {loginData.telepon}
               </Card.Text>
               <Card.Text>
-                <Link to="/edit_user/1">
+                <Link to="/edit_user/1" onClick={() => setShow(false)}>
                   <Button variant="success" className="mb-2">
                     <FontAwesomeIcon icon="fas fa-edit" className="me-2" />
                     Edit Profile
                   </Button>
                 </Link>
-                <Link to="/">
+                <Link to={loginData.id !== '' ? '/dashboard' : '/'} onClick={() => setShow(false)}>
                   <Button variant="primary">
                     <FontAwesomeIcon icon="fa-solid fa-home" className="me-2"/>
                     Homepage
@@ -111,17 +111,6 @@ const Sidebar = () => {
               </Button>
             </Card.Body>
           </Card>
-          {/* <Table>
-            <tr>
-              <th>col1</th>
-            </tr>
-            <tr>
-              <th>col2</th>
-            </tr>
-            <tr>
-              <th>col3</th>
-            </tr>
-          </Table> */}
         </Offcanvas.Body>
       </Offcanvas>
     </>

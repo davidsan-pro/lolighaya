@@ -35,7 +35,7 @@ const AddTransaksiDetailBarang = () => {
 
   const getBarang = async (query='') => {
     setIsLoading(true);
-    let myurl = `${global.config.base_url}/barang/${idBarang}`;
+    let myurl = `${fn.getBaseUrl()}/barang/${idBarang}`;
     let qsArr = [];
     qsArr.push(`id_toko=${idToko}`); // spy bs mendapatkan data barang dr trx terakhir di toko ini
     if (query) {

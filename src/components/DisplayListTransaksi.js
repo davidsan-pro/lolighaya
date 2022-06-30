@@ -74,12 +74,23 @@ const DisplayListTransaksi = ({ transaksi, deleteTransaksi, handleClickRow }) =>
         // pagination hanya ditampilkan kalau ada datanya
         transaksi.length > 0 
         ? (
-          <Pagination 
-          itemsPerPage={itemsPerPage} 
-          totalItems={transaksi.length} 
-          paginate={paginate} 
-          curPageNumber={currentPage} 
-          />
+          <>
+            <div className="mb-3">
+              <Pagination 
+              itemsPerPage={itemsPerPage} 
+              totalItems={transaksi.length} 
+              paginate={paginate} 
+              curPageNumber={currentPage} 
+              />
+            </div>
+            <div className="d-grid">
+              <Button variant="primary" 
+              size="lg" 
+              onClick={() => fn.handleClickExportToExcel(transaksi)}>
+                Export ke Excel
+              </Button>
+            </div>
+          </>
         )
         : ''
       }

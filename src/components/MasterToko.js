@@ -3,6 +3,7 @@ import DisplayListToko from "./DisplayListToko";
 import { Link } from "react-router-dom";
 import { Spinner, Button } from "react-bootstrap";
 import SearchBar from "./SearchBar";
+import * as fn from "../MyFunctions";
 
 const MasterToko = () => {
   const [toko, setToko] = useState([]);
@@ -15,7 +16,7 @@ const MasterToko = () => {
   const getToko = async (query = "") => {
     setIsLoading(true);
     try {
-      let myurl = `${global.config.base_url}/toko`;
+      let myurl = `${fn.getBaseUrl()}/toko`;
       let qsArr = [];
       if (query) {
         qsArr.push(`q=${query}`);
@@ -38,7 +39,7 @@ const MasterToko = () => {
       return false;
     }
 
-    const myurl = `${global.config.base_url}/toko/${id}`;
+    const myurl = `${fn.getBaseUrl()}/toko/${id}`;
     await fetch(myurl, {
       method: "DELETE",
       headers: {

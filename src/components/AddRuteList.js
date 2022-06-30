@@ -21,7 +21,7 @@ const AddRuteList = () => {
   }, []);
 
   const getInfoRute = async () => {
-    const myurl = `${global.config.base_url}/Mrute?qf=id&qv=${id}&qmode=exact`;
+    const myurl = `${fn.getBaseUrl()}/Mrute?qf=id&qv=${id}&qmode=exact`;
     // console.log('get info rute url', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
@@ -34,7 +34,7 @@ const AddRuteList = () => {
   const getToko = async (query = "") => {
     setIsLoading(true);
 
-    let myurl = `${global.config.base_url}/toko`;
+    let myurl = `${fn.getBaseUrl()}/toko`;
     if (query) {
       myurl += `?q=${query}`;
     }
@@ -59,7 +59,7 @@ const AddRuteList = () => {
       id_toko: item,
     }
     // console.log('new toko', newRuteToko);
-    const myurl = `${global.config.base_url}/Drute`;
+    const myurl = `${fn.getBaseUrl()}/Drute`;
     // console.log('myurl', myurl);
     await fetch(myurl, {
       method: 'POST',

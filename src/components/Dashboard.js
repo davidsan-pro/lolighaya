@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Spinner, Button, Accordion, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import DisplayDashboard from "./DisplayDashboard";
+import * as fn from "../MyFunctions";
 
 const Dashboard = () => {
   const [rute, setRute] = useState([]);
@@ -14,7 +15,7 @@ const Dashboard = () => {
   const getRute = async (query='') => {
     setIsLoading(true);
     // console.log('master rute getrute');
-    let myurl = `${global.config.base_url}/Mrute`;
+    let myurl = `${fn.getBaseUrl()}/Mrute`;
     if (query) {
       myurl += myurl.indexOf('?') > 0 ? '&' : '?';
       myurl += `q=${query}`;

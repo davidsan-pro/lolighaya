@@ -4,6 +4,7 @@ import { Spinner } from "react-bootstrap";
 import SearchBar from "./SearchBar";
 // import Pagination from "./Pagination";
 import DisplayAddTransaksiListBarang from "./DisplayAddTransaksiListBarang";
+import * as fn from "../MyFunctions";
 
 const AddTransaksiListBarang = () => {
   const [toko, setToko] = useState([]);
@@ -90,7 +91,7 @@ const AddTransaksiListBarang = () => {
 
   const getBarang = async (query='') => {
     setIsLoading(true);
-    let myurl = `${global.config.base_url}/barang`;
+    let myurl = `${fn.getBaseUrl()}/barang`;
     let qsArr = [];
     if (query) {
       qsArr.push(`q=${query}`);

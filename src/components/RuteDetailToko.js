@@ -18,7 +18,7 @@ const RuteDetailToko = ({ onDelete }) => {
   const getToko = async (query = "") => {
     setIsLoading(true);
 
-    let myurl = `${global.config.base_url}/toko/${idToko}`;
+    let myurl = `${fn.getBaseUrl()}/toko/${idToko}`;
     if (query) {
       myurl += `?q=${query}`;
     }

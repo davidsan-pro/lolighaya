@@ -17,7 +17,7 @@ const DetailHistoriTransaksiToko = () => {
   }, []);
 
   const getDataKunjungan = async (id) => {
-    let myurl = `${global.config.base_url}/Dtransaksi?qf=id_transaksi&qv=${id}`;
+    let myurl = `${fn.getBaseUrl()}/Dtransaksi?qf=id_transaksi&qv=${id}`;
     console.log("my url", myurl);
     const response = await fetch(myurl);
     const data = await response.json();

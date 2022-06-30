@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import Button from "react-bootstrap/Button";
+import * as fn from "../MyFunctions";
 
 const EditUser = () => {
   const [username, setUsername] = useState("");
@@ -17,7 +17,7 @@ const EditUser = () => {
     e.preventDefault();
 
     const user = { username, password, nama, email, telepon };
-    await fetch(`${global.config.base_url}/users/${id}`, {
+    await fetch(`${fn.getBaseUrl()}/users/${id}`, {
       method: 'PUT',
       body: JSON.stringify(user),
       headers: {
@@ -40,7 +40,7 @@ const EditUser = () => {
   }, []);
 
   const getUserById = async () => {
-    const myurl = `${global.config.base_url}/users/${id}`; // http://localhost:8080/users/2
+    const myurl = `${fn.getBaseUrl()}/users/${id}`; // http://localhost:8080/users/2
     const response = await fetch(myurl);
     const data = await response.json();
     setUsername(data.username);

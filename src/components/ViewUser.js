@@ -16,7 +16,7 @@ const ViewUser = () => {
   const getUser = async (query = "") => {
     setIsLoading(true);
 
-    let myurl = `${global.config.base_url}/user/${id}`;
+    let myurl = `${fn.getBaseUrl()}/user/${id}`;
     if (query) {
       myurl += `?q=${query}`;
     }

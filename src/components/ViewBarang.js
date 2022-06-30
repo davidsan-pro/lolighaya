@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button, Spinner } from "react-bootstrap";
+import * as fn from "../MyFunctions";
 
 const ViewBarang = ({ onDelete }) => {
   const [barang, setBarang] = useState([]);
@@ -15,7 +16,7 @@ const ViewBarang = ({ onDelete }) => {
   const getBarang = async (query = "") => {
     setIsLoading(true);
 
-    let myurl = `${global.config.base_url}/barang/${id}`;
+    let myurl = `${fn.getBaseUrl()}/barang/${id}`;
     if (query) {
       myurl += `?q=${query}`;
     }

@@ -3,6 +3,7 @@ import DisplayListBarang from "./DisplayListBarang";
 import { Link } from "react-router-dom";
 import { Spinner, Button } from "react-bootstrap";
 import SearchBar from "./SearchBar";
+import * as fn from "../MyFunctions";
 
 const MasterBarang = () => {
   const [barang, setBarang] = useState([]);
@@ -15,7 +16,7 @@ const MasterBarang = () => {
   const getBarang = async (query='') => {
     setIsLoading(true);
     try {
-      let myurl = `${global.config.base_url}/barang`;
+      let myurl = `${fn.getBaseUrl()}/barang`;
       let qsArr = [];
       if (query) {
         qsArr.push(`q=${query}`);
@@ -38,7 +39,7 @@ const MasterBarang = () => {
       return false;
     }
 
-    const myurl = `${global.config.base_url}/barang/${id}`;
+    const myurl = `${fn.getBaseUrl()}/barang/${id}`;
     await fetch(myurl, {
       method: 'DELETE', 
       headers: {

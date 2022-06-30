@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import * as fn from "../MyFunctions";
 
 const AddBarang = () => {
   const [nama, setNama] = useState("");
@@ -13,7 +14,7 @@ const AddBarang = () => {
     e.preventDefault();
 
     const barang = { nama, harga, stok };
-    await fetch(`${global.config.base_url}/barang`, {
+    await fetch(`${fn.getBaseUrl()}/barang`, {
       method: 'POST',
       body: JSON.stringify(barang),
       headers: {

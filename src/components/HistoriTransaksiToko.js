@@ -7,11 +7,6 @@ import DatePicker from "react-datepicker";
 import "../../node_modules/react-datepicker/dist/react-datepicker.css";
 import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
-import * as XLSX from "xlsx";
-// import ReactExport from "react-data-export";
-// // utk export to excel. sumber: https://stackoverflow.com/a/66855054/1235167
-// import { saveAs } from "file-saver";
-// import XlsxPopulate from "xlsx-populate";
 
 const HistoriTransaksiToko = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +28,7 @@ const HistoriTransaksiToko = () => {
   }, []);
 
   const getTokoById = async () => {
-    const response = await fetch(`${global.config.base_url}/toko/${id}`);
+    const response = await fetch(`${fn.getBaseUrl()}/toko/${id}`);
     const data = await response.json();
     // console.log("data toko", data);
     setToko(data);
@@ -42,7 +37,7 @@ const HistoriTransaksiToko = () => {
   const getHistoriTransaksi = async () => {
     setIsLoading(true);
 
-    let myurl = `${global.config.base_url}/Mtransaksi`;
+    let myurl = `${fn.getBaseUrl()}/Mtransaksi`;
     let qsArr = [];
     qsArr.push(`qf[]=id_toko&qv[]=${id}`);
     if (fStartDate !== "") {
@@ -98,35 +93,6 @@ const HistoriTransaksiToko = () => {
     setFStartDate("");
     setFEndDate("");
   };
-
-  const handleClickExportToExcel = () => {
-    let mydata = [];
-    historiTransaksi.map(item => {
-      mydata.push({
-        'TANGGAL': item.updated_at,
-        'NAMA TOKO': item.nama_toko,
-        'USERNAME': item.username,
-        'NILAI TRANSAKSI': item.nilai_transaksi,
-      });
-    });
-    let wb = XLSX.utils.book_new(),
-    ws = XLSX.utils.json_to_sheet(mydata);
-
-    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-
-    let tmpDate = new Date();
-    const tmpOptions = {
-      year: 'numeric', 
-      month: '2-digit', 
-      day: '2-digit', 
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-    }
-    tmpDate = tmpDate.toLocaleDateString('id-ID', tmpOptions);
-    tmpDate = tmpDate.replaceAll('/', '-').replace(' ', '_');
-    XLSX.writeFile(wb, `histori_transaksi_${tmpDate}.xlsx`);
-  }
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -255,7 +221,9 @@ const HistoriTransaksiToko = () => {
               />
             </div>
             <div className="d-grid">
-              <Button variant="primary" size="lg" onClick={() => handleClickExportToExcel()}>
+              <Button variant="primary" 
+              size="lg" 
+              onClick={() => fn.handleClickExportToExcel(historiTransaksi)}>
                 Export ke Excel
               </Button>
             </div>

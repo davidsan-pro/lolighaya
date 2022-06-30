@@ -89,7 +89,7 @@ const AddRute = () => {
     formData["hari"] = pilihHari;
     console.log("formdata", formData);
     
-    await fetch(`${global.config.base_url}/Mrute/${id}`, {
+    await fetch(`${fn.getBaseUrl()}/Mrute/${id}`, {
       method: "PUT",
       body: JSON.stringify(formData),
       headers: {
@@ -112,7 +112,7 @@ const AddRute = () => {
   const getRuteById = async () => {
     setIsLoading(true);
 
-    const myurl = `${global.config.base_url}/Mrute/${id}`;
+    const myurl = `${fn.getBaseUrl()}/Mrute/${id}`;
     const response = await fetch(myurl);
     const data = await response.json();
     // const data = [

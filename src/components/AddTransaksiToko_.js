@@ -17,7 +17,7 @@ const AddTransaksiTokoCart = () => {
   }, []);
 
   const getTokoById = async () => {
-    const response = await fetch(`${global.config.base_url}/toko/${id}`);
+    const response = await fetch(`${fn.getBaseUrl()}/toko/${id}`);
     const data = await response.json();
     // console.log('data', data);
     setNama(data.nama);

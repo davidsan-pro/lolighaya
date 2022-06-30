@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import * as fn from "../MyFunctions";
 
 const AddUser = () => {
   const [username, setUsername] = useState("");
@@ -15,7 +16,7 @@ const AddUser = () => {
     e.preventDefault();
 
     const user = { username, password, nama, email, telepon };
-    await fetch(`${global.config.base_url}/users`, {
+    await fetch(`${fn.getBaseUrl()}/users`, {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {

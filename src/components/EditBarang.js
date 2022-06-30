@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import * as fn from "../MyFunctions";
 
 const EditBarang = () => {
   const [nama, setNama] = useState("");
@@ -15,7 +16,7 @@ const EditBarang = () => {
     e.preventDefault();
 
     const barang = { nama, harga, stok };
-    await fetch(`${global.config.base_url}/barang/${id}`, {
+    await fetch(`${fn.getBaseUrl()}/barang/${id}`, {
       method: 'PUT',
       body: JSON.stringify(barang),
       headers: {
@@ -31,7 +32,7 @@ const EditBarang = () => {
   }, []);
 
   const getBarangById = async () => {
-    const response = await fetch(`${global.config.base_url}/barang/${id}`);
+    const response = await fetch(`${fn.getBaseUrl()}/barang/${id}`);
     const data = await response.json();
     setNama(data.nama);
     setHarga(data.harga);

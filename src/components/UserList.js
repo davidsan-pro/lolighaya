@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import DisplayListUser from "./DisplayListUser";
 import * as ReactBootstrap from "react-bootstrap";
+import * as fn from "../MyFunctions";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -15,9 +16,9 @@ const UserList = () => {
 
   const getUsers = async () => {
     try {
-      console.log(global.config.base_url);
-      const users = await axios.get(`${global.config.base_url}/users`);
-      console.log("getusers", users.data);
+      // console.log(global.config.base_url);
+      const users = await axios.get(`${fn.getBaseUrl()}/users`);
+      // console.log("getusers", users.data);
       setUsers(users.data);
       setIsLoading(false);
     } catch (e) {
@@ -30,7 +31,7 @@ const UserList = () => {
       return false;
     }
 
-    await axios.delete(`${global.config.base_url}/users/${id}`);
+    await axios.delete(`${fn.getBaseUrl()}/users/${id}`);
     getUsers();
   };
 

@@ -1,3 +1,9 @@
+import * as XLSX from "xlsx";
+
+export function getBaseUrl() {
+  return "https://lolighaya-be.davidsan.my.id"; // "http://localhost:8080",
+}
+
 export function getNamaHari(number) {
   number = parseInt(number | 0);
   let result = "";
@@ -84,4 +90,33 @@ export function formatDate(string=null, mode='full') {
   const myDate = new Date(string);
   
   return myDate.toLocaleDateString('id-ID', dateOptions).replaceAll('.', ':');
+}
+
+export function handleClickExportToExcel(sourceData) {
+  let mydata = [];
+  sourceData.map(item => {
+    mydata.push({
+      'TANGGAL': item.updated_at,
+      'NAMA TOKO': item.nama_toko,
+      'USERNAME': item.username,
+      'NILAI TRANSAKSI': item.nilai_transaksi,
+    });
+  });
+  let wb = XLSX.utils.book_new(),
+  ws = XLSX.utils.json_to_sheet(mydata);
+
+  XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+
+  let tmpDate = new Date();
+  const tmpOptions = {
+    year: 'numeric', 
+    month: '2-digit', 
+    day: '2-digit', 
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  }
+  tmpDate = tmpDate.toLocaleDateString('id-ID', tmpOptions);
+  tmpDate = tmpDate.replaceAll('/', '-').replace(' ', '_');
+  XLSX.writeFile(wb, `histori_transaksi_${tmpDate}.xlsx`);
 }

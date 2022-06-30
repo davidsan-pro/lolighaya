@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import * as fn from "../MyFunctions";
 
 const BarangList = () => {
   const [barangMulti, setBarangMulti] = useState([]);
@@ -9,7 +10,7 @@ const BarangList = () => {
   }, []);
 
   const getBarangMulti = async () => {
-    const barangMulti = await axios.get(`${global.config.base_url}/barang`);
+    const barangMulti = await axios.get(`${fn.getBaseUrl()}/barang`);
     console.log(barangMulti.data);
   };
   return (

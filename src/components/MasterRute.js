@@ -4,6 +4,7 @@ import { Spinner, Button } from "react-bootstrap";
 import SearchBar from "./SearchBar";
 import DisplayListMasterRute from "./DisplayListMasterRute";
 import { useLocation } from "react-router-dom";
+import * as fn from "../MyFunctions";
 // import AccordionItem from "react-bootstrap/esm/AccordionItem";
 // import { ListGroup, Accordion } from "react-bootstrap";
 
@@ -20,7 +21,7 @@ const MasterRute = () => {
   const getRute = async (query='') => {
     setIsLoading(true);
     // console.log('master rute getrute');
-    let myurl = `${global.config.base_url}/Mrute`;
+    let myurl = `${fn.getBaseUrl()}/Mrute`;
     if (query) {
       myurl += myurl.indexOf('?') > 0 ? '&' : '?';
       myurl += `q=${query}`;
@@ -39,7 +40,7 @@ const MasterRute = () => {
       return false;
     }
 
-    const myurl = `${global.config.base_url}/Mrute/${id}`;
+    const myurl = `${fn.getBaseUrl()}/Mrute/${id}`;
     await fetch(myurl, {
       method: 'DELETE', 
       headers: {

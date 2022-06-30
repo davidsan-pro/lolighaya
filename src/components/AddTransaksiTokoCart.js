@@ -81,7 +81,7 @@ const AddTransaksiTokoCart = () => {
       // artinya ini awal dari sebuah transaksi
       // maka ambil data toko dari API server
       // lalu simpan data tsb di localStorage
-      const response = await fetch(`${global.config.base_url}/toko/${idToko}`);
+      const response = await fetch(`${fn.getBaseUrl()}/toko/${idToko}`);
       const data = await response.json();
       console.log('getdatatoko', data);
       setDataToko(data);
@@ -183,7 +183,7 @@ const AddTransaksiTokoCart = () => {
       nilai_transaksi: nilaiTotal,
       details: cartItems,
     }
-    let myurl = `${global.config.base_url}/Mtransaksi`
+    let myurl = `${fn.getBaseUrl()}/Mtransaksi`
     console.log('save', myurl, data);
     await fetch(myurl, {
       method: 'POST',

@@ -3,6 +3,7 @@ import DisplayListUser from "./DisplayListUser";
 import { Link } from "react-router-dom";
 import { Spinner, Button } from "react-bootstrap";
 import SearchBar from "./SearchBar";
+import * as fn from "../MyFunctions";
 
 const MasterUser = () => {
   const [users, setUsers] = useState([]);
@@ -16,7 +17,7 @@ const MasterUser = () => {
   const getUsers = async (query = "") => {
     setIsLoading(true);
     try {
-      let myurl = `${global.config.base_url}/users`;
+      let myurl = `${fn.getBaseUrl()}/users`;
       let qsArr = [];
       if (query) {
         qsArr.push(`q=${query}`);
@@ -40,7 +41,7 @@ const MasterUser = () => {
       return false;
     }
 
-    const myurl = `${global.config.base_url}/users/${id}`;
+    const myurl = `${fn.getBaseUrl()}/users/${id}`;
     await fetch(myurl, {
       method: "DELETE",
       headers: {

@@ -71,7 +71,7 @@ const AddRute = () => {
     let formData = { nama_rute:namaRute };
     formData['hari'] = pilihHari
     console.log("formdata", formData);
-    await fetch(`${global.config.base_url}/Mrute`, {
+    await fetch(`${fn.getBaseUrl()}/Mrute`, {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {

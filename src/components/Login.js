@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Spinner, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { actionLogin } from "../actions";
+import * as fn from "../MyFunctions";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -43,7 +44,7 @@ const Login = () => {
       username: username, 
       password: password 
     };
-    const myurl = `${global.config.base_url}/users/login`;
+    const myurl = `${fn.getBaseUrl()}/users/login`;
     await fetch(myurl, {
       method: "POST",
       body: JSON.stringify(data),

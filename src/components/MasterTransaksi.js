@@ -4,7 +4,6 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Spinner, Button } from "react-bootstrap";
 import SearchBar from "./SearchBar";
 import * as fn from "../MyFunctions";
-import * as XLSX from "xlsx";
 
 const MasterTransaksi = () => {
   const [transaksi, setTransaksi] = useState([]);
@@ -23,8 +22,7 @@ const MasterTransaksi = () => {
 
   const getTransaksi = async (query='') => {
     setIsLoading(true);
-    console.log('asd', query);
-    let myurl = `${global.config.base_url}/Mtransaksi`;
+    let myurl = `${fn.getBaseUrl()}/Mtransaksi`;
     let qsArr = [];
     if (query !== "") {
       qsArr.push(`q=${query}`);
@@ -60,10 +58,10 @@ const MasterTransaksi = () => {
     if (qsArr.length > 0) {
       myurl += `?${qs}`;
     }
-    console.log('myurl', myurl);
+    // console.log('myurl', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
-    console.log("data trx", data);
+    // console.log("data trx", data);
     setTransaksi(data);
     let total = 0;
     data.map((item) => {
@@ -79,7 +77,7 @@ const MasterTransaksi = () => {
       return false;
     }
 
-    const myurl = `${global.config.base_url}/Mtransaksi/${id}`;
+    const myurl = `${fn.getBaseUrl()}/Mtransaksi/${id}`;
     await fetch(myurl, {
       method: 'DELETE', 
       headers: {

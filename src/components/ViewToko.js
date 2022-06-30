@@ -16,7 +16,7 @@ const ViewToko = ({ onDelete }) => {
   const getToko = async (query = "") => {
     setIsLoading(true);
 
-    let myurl = `${global.config.base_url}/toko/${id}`;
+    let myurl = `${fn.getBaseUrl()}/toko/${id}`;
     if (query) {
       myurl += `?q=${query}`;
     }

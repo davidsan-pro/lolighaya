@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import * as fn from "../MyFunctions";
 
 const EditToko = () => {
   // console.log('edit toko');
@@ -18,7 +19,7 @@ const EditToko = () => {
     e.preventDefault();
 
     const toko = { nama, alamat, foto, kecamatan, kota, telepon };
-    await fetch(`${global.config.base_url}/toko/${id}`, {
+    await fetch(`${fn.getBaseUrl()}/toko/${id}`, {
       method: 'PUT',
       body: JSON.stringify(toko),
       headers: {
@@ -35,7 +36,7 @@ const EditToko = () => {
 
   const getTokoById = async () => {
     // console.log('gettokobyid', id);
-    const response = await fetch(`${global.config.base_url}/toko/${id}`);
+    const response = await fetch(`${fn.getBaseUrl()}/toko/${id}`);
     const data = await response.json();
     // console.log('data', data);
     setNama(data.nama);

@@ -53,7 +53,7 @@ const MasterToko = () => {
   return (
     <div>
       <SearchBar onSearch={getToko} keywordType="nama toko" />
-      <div className="is-flex is-justify-content-space-between">
+      <div className="is-flex is-justify-content-space-between mb-2">
         <div>
           <strong className="is-size-4 me-3">Data Toko</strong>
         </div>

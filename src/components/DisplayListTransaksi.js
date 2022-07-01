@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { Table, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
 
 const DisplayListTransaksi = ({ transaksi, deleteTransaksi, handleClickRow }) => {
-  console.log("display transaksi", transaksi);
+  // console.log("display transaksi", transaksi);
 
   let total = 0;
   for (let i=0; i<transaksi.length; i++) {
@@ -86,7 +85,7 @@ const DisplayListTransaksi = ({ transaksi, deleteTransaksi, handleClickRow }) =>
             <div className="d-grid">
               <Button variant="primary" 
               size="lg" 
-              onClick={() => fn.handleClickExportToExcel(transaksi)}>
+              onClick={() => fn.handleClickExportToExcel(transaksi, 'Histori Transaksi')}>
                 Export ke Excel
               </Button>
             </div>

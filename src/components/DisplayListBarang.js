@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
+import * as fn from "../MyFunctions";
 
 const DisplayListBarang = ({ barang, onDelete }) => {
   console.log("display barang", barang);
@@ -69,11 +70,23 @@ const DisplayListBarang = ({ barang, onDelete }) => {
           // pagination hanya ditampilkan kalau ada datanya
           barang.length > 0 
           ? (
-              <Pagination itemsPerPage={itemsPerPage} 
-              totalItems={barang.length} 
-              paginate={paginate} 
-              curPageNumber={currentPage} 
-              />
+              <>
+                <div className="mb-3">
+                  <Pagination 
+                  itemsPerPage={itemsPerPage} 
+                  totalItems={barang.length} 
+                  paginate={paginate} 
+                  curPageNumber={currentPage} 
+                  />
+                </div>
+                <div className="d-grid">
+                  <Button variant="primary" 
+                  size="lg" 
+                  onClick={() => fn.handleClickExportToExcel(barang, 'Data Barang')}>
+                    Export ke Excel
+                  </Button>
+                </div>
+              </>
             )
           : ''
         }

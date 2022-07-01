@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Table, Button } from "react-bootstrap";
 import Pagination from "./Pagination";
+import * as fn from "../MyFunctions";
 // import Text from "react-native";
 
 const DisplayListToko = ({ toko, onDelete }) => {
@@ -29,7 +30,7 @@ const DisplayListToko = ({ toko, onDelete }) => {
               <th>Info Toko</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="">
             {
               // kalo jumlah datanya 1 atau lebih maka tampilkan dlm bentuk tabel
               // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
@@ -71,12 +72,23 @@ const DisplayListToko = ({ toko, onDelete }) => {
           // pagination hanya ditampilkan kalau ada datanya
           toko.length > 0 
           ? (
-            <Pagination 
-            itemsPerPage={itemsPerPage} 
-            totalItems={toko.length} 
-            paginate={paginate} 
-            curPageNumber={currentPage} 
-            />
+            <>
+              <div class="mb-3">
+                <Pagination 
+                itemsPerPage={itemsPerPage} 
+                totalItems={toko.length} 
+                paginate={paginate} 
+                curPageNumber={currentPage} 
+                />
+              </div>
+              <div className="d-grid">
+                <Button variant="primary" 
+                size="lg" 
+                onClick={() => fn.handleClickExportToExcel(toko, 'Data Toko')}>
+                  Export ke Excel
+                </Button>
+              </div>
+            </>
           )
           : ''
         }

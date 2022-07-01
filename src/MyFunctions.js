@@ -92,15 +92,19 @@ export function formatDate(string=null, mode='full') {
   return myDate.toLocaleDateString('id-ID', dateOptions).replaceAll('.', ':');
 }
 
-export function handleClickExportToExcel(sourceData) {
+export function handleClickExportToExcel(sourceData, dataCat='') {
   let mydata = [];
   sourceData.map(item => {
-    mydata.push({
-      'TANGGAL': item.updated_at,
-      'NAMA TOKO': item.nama_toko,
-      'USERNAME': item.username,
-      'NILAI TRANSAKSI': item.nilai_transaksi,
-    });
+    if (dataCat == 'histori_transaksi') {
+      mydata.push({
+        'TANGGAL': item.updated_at,
+        'NAMA TOKO': item.nama_toko,
+        'USERNAME': item.username,
+        'NILAI TRANSAKSI': item.nilai_transaksi,
+      });
+    } else {
+      mydata.push(item);
+    }
   });
   let wb = XLSX.utils.book_new(),
   ws = XLSX.utils.json_to_sheet(mydata);
@@ -118,5 +122,6 @@ export function handleClickExportToExcel(sourceData) {
   }
   tmpDate = tmpDate.toLocaleDateString('id-ID', tmpOptions);
   tmpDate = tmpDate.replaceAll('/', '-').replace(' ', '_');
-  XLSX.writeFile(wb, `histori_transaksi_${tmpDate}.xlsx`);
+  let namaFile = dataCat === 'histori transaksi' ? 'Histori Transaksi' : dataCat;
+  XLSX.writeFile(wb, `${namaFile}_${tmpDate}.xlsx`);
 }

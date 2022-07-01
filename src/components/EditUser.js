@@ -55,7 +55,7 @@ const EditUser = () => {
       <form onSubmit={updateUser}>
         <div className="field">
           <label className="label">Username</label>
-          <input type="text" className="input" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <label>{username}</label>
         </div>
         <div className="field">
           <label className="label">Password</label>

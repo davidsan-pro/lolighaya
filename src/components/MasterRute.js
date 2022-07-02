@@ -46,8 +46,21 @@ const MasterRute = () => {
       headers: {
         'Content-Type': 'application/json'
       }
-    });
-    getRute();
+    })
+      .then(response => response.json())
+      .then(res => {
+        if (res.status === 200) {
+          fn.showToastMsg(res.messages.success);
+        } else {
+          fn.showToastMsg('Gagal menghapus data rute', 'error');
+        }
+      })
+      .catch(err => {
+        fn.showToastMsg('Gagal menghapus data rute', 'error');
+      })
+      .finally(() => {
+        getRute();
+      });
   };
 
 

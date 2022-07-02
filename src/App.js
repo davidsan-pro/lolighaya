@@ -30,6 +30,8 @@ import AddTransaksiListBarang from "./components/AddTransaksiListBarang";
 import AddTransaksiDetailBarang from "./components/AddTransaksiDetailBarang";
 import HistoriTransaksiToko from "./components/HistoriTransaksiToko";
 import DetailHistoriTransaksiToko from "./components/DetailHistoriTransaksiToko";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const [showPrev, setShowPrev] = useState(false);
@@ -74,6 +76,8 @@ const App = () => {
           <Route path="/master_transaksi" element={<MasterTransaksi />} />
         </Routes>
       </div>
+
+      <ToastContainer />
 
       <footer className="has-text-centered is-flex-align-items-flex-end mt-auto">
         <small>

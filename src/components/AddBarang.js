@@ -20,6 +20,12 @@ const AddBarang = () => {
       headers: {
         'Content-Type': 'application/json'
       }
+    })
+    .then(response => response.json())
+    .then(res => {
+      if (res.status === 201) {
+        fn.showToastMsg(`Berhasil menambahkan data barang [${nama}]`);
+      }
     });
 
     // setelah selesai, redirect ke hal.master barang

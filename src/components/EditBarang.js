@@ -22,7 +22,13 @@ const EditBarang = () => {
       headers: {
         'Content-Type': 'application/json'
       }
-    });
+    })
+      .then(response => response.json())
+      .then(res => {
+        if (res.status === 200) {
+          fn.showToastMsg(`Berhasil update data barang [${nama}]`);
+        }
+      });
 
     navigate("/master_barang");
   };

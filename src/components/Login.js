@@ -22,7 +22,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  console.log('login page');
+  // console.log('login page');
 
   const resetAllStorage = () => {
     localStorage.removeItem('loginData');
@@ -55,18 +55,11 @@ const Login = () => {
       .then(response => response.json())
       .then(res => {
         setCode(res.status);
-        console.log('res', res);
+        console.log('res login', res);
         if (res.status === 201) {
           setMessage(res.message);
-          const dateOptions = {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-          }
-          const dateStr = new Intl.DateTimeFormat('id-ID',dateOptions).format(new Date())
+
+          const dateStr = fn.formatDate();
           let tmp = {
             id: res.id,
             username: res.data.username,
@@ -75,6 +68,9 @@ const Login = () => {
             last_login: dateStr,
           }
           setLoginData(tmp);
+
+          fn.showToastMsg(`Login username [${res.data.username}] berhasil`)
+
           // localStorage.setItem('loginData', JSON.stringify(loginData));
           navigate('/dashboard');
         } else {

@@ -45,8 +45,21 @@ const MasterBarang = () => {
       headers: {
         'Content-Type': 'application/json'
       }
-    });
-    getBarang();
+    })
+      .then(response => response.json())
+      .then(res => {
+        if (res.status === 200) {
+          fn.showToastMsg(res.messages.success);
+        } else {
+          fn.showToastMsg('Gagal menghapus data barang', 'error');
+        }
+      })
+      .catch(err => {
+        fn.showToastMsg('Gagal menghapus data barang', 'error');
+      })
+      .finally(() => {
+        getBarang();
+      });
   };
 
 

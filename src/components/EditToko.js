@@ -25,6 +25,12 @@ const EditToko = () => {
       headers: {
         'Content-Type': 'application/json'
       }
+    })
+    .then(response => response.json())
+    .then(res => {
+      if (res.status === 200) {
+        fn.showToastMsg(`Berhasil update data toko [${nama}]`);
+      }
     });
 
     navigate("/master_toko");

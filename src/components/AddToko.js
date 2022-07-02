@@ -23,6 +23,12 @@ const AddToko = () => {
       headers: {
         'Content-Type': 'application/json'
       }
+    })
+    .then(response => response.json())
+    .then(res => {
+      if (res.status === 201) {
+        fn.showToastMsg(`Berhasil menambahkan data toko [${nama}]`);
+      }
     });
 
     // setelah selesai, redirect ke hal.master toko

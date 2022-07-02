@@ -45,8 +45,21 @@ const MasterToko = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    });
-    getToko();
+    })
+      .then(response => response.json())
+      .then(res => {
+        if (res.status === 200) {
+          fn.showToastMsg(res.messages.success);
+        } else {
+          fn.showToastMsg('Gagal menghapus data toko', 'error');
+        }
+      })
+      .catch(err => {
+        fn.showToastMsg('Gagal menghapus data toko', 'error');
+      })
+      .finally(() => {
+        getToko();
+      });
   };
 
 

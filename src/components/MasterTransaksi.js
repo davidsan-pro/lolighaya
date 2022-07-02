@@ -83,8 +83,21 @@ const MasterTransaksi = () => {
       headers: {
         'Content-Type': 'application/json'
       }
-    });
-    getTransaksi();
+    })
+      .then(response => response.json())
+      .then(res => {
+        if (res.status === 200) {
+          fn.showToastMsg(res.messages.success);
+        } else {
+          fn.showToastMsg('Gagal menghapus data transaksi', 'error');
+        }
+      })
+      .catch(err => {
+        fn.showToastMsg('Gagal menghapus data transaksi', 'error');
+      })
+      .finally(() => {
+        getTransaksi();
+      });
   };
 
   const handleClickRow = (idTransaksi) => {

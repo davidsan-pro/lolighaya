@@ -6,14 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const AddTransaksiTokoCart = () => {
   const [isLoading, setIsLoading] = useState(false);
-  // const [nama, setNama] = useState("");
-  // const [alamat, setAlamat] = useState("");
-  // const [telepon, setTelepon] = useState("");
-  // const [foto, setFoto] = useState("");
-  // const [kecamatan, setKecamatan] = useState("");
-  // const [kota, setKota] = useState("");
-  const [dataToko, setDataToko] = useState({});
 
+  const [dataToko, setDataToko] = useState({});
   const [cartItems, setCartItems] = useState([]);
   const [nilaiTotal, setNilaiTotal] = useState(0);
 
@@ -27,23 +21,6 @@ const AddTransaksiTokoCart = () => {
   const idToko = searchParams.get("id_toko"); // id toko
 
   let localCart = JSON.parse(localStorage.getItem('cartList') || '[]');
-  // if (localStorage.getItem('cartList')) {
-  //   localCart = JSON.parse(localStorage.getItem("cartList"));
-  // }
-  // console.log('localcart', localCart);
-  // let tokoCart = [];
-  // let total = 0;
-  // localCart.map(item => {
-  //   console.log('cart', idToko, item.idToko);
-  //   if (idToko === item.idToko) {
-  //     // total += item.harga*item.jumlahTitip;
-
-  //     // if (item.id === id) {
-  //       tokoCart.push(item);
-  //     // }
-  //   }
-  // });
-  // console.log('tokocart', tokoCart);
 
   useEffect(() => {
     setIsLoading(true);
@@ -59,7 +36,7 @@ const AddTransaksiTokoCart = () => {
 
   const getDataCart = () => {
     let arrCart = JSON.parse(localStorage.getItem('cartList') || '[]');
-    console.log('arrcart', arrCart);
+    // console.log('arrcart', arrCart);
     arrCart = arrCart.filter(function(item) {
       return item.id_toko.toString() === idToko;
     });
@@ -126,8 +103,8 @@ const AddTransaksiTokoCart = () => {
   // }
 
   const handleOnChangeInput = (id, field, value) => {
-    console.log('asd0', cartItems);
-    console.log('change item', id, field, value);
+    // console.log('asd0', cartItems);
+    // console.log('change item', id, field, value);
     value = value.toString().replace(/\D/g,'');
     let updatedItems = cartItems.map(item => {
       item.id_toko = idToko;
@@ -147,7 +124,7 @@ const AddTransaksiTokoCart = () => {
       }
       return item;
     });
-    console.log('asd1', updatedItems);
+    // console.log('asd1', updatedItems);
     setCartItems(updatedItems);
     localStorage.setItem('cartList', JSON.stringify(updatedItems));
   }
@@ -155,9 +132,9 @@ const AddTransaksiTokoCart = () => {
 
   const handleDelete = (idBarang) => {
     let arrCart = JSON.parse(localStorage.getItem('cartList') || '[]');
-    console.log('delete', idBarang, arrCart);
+    // console.log('delete', idBarang, arrCart);
     let tmpCart = arrCart.filter(item => {return item.id.toString() !== idBarang.toString()})
-    console.log('after delete', tmpCart);
+    // console.log('after delete', tmpCart);
     setCartItems(tmpCart);
   }
 
@@ -184,7 +161,7 @@ const AddTransaksiTokoCart = () => {
       details: cartItems,
     }
     let myurl = `${fn.getBaseUrl()}/Mtransaksi`
-    console.log('save', myurl, data);
+    // console.log('save', myurl, data);
     await fetch(myurl, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -196,27 +173,16 @@ const AddTransaksiTokoCart = () => {
       .then(res => {
         if (res.status == 201) {
           localStorage.removeItem('cartList');
+          fn.showToastMsg(res.messages.success);
+          navigate(`/rute_list_toko/${id}`)
         }
+      })
+      .catch(err => {
+        fn.showToastMsg('Gagal menghapus data rute', 'error');
       });
-    navigate(`/rute_list_toko/${id}`)
   }
   // end const saveTransaksi
 
-  // const saveToko = async (e) => {
-  //   e.preventDefault();
-
-  //   const toko = { nama, alamat, foto, kecamatan, kota, telepon };
-  //   await fetch(`${global.config.base_url}/toko`, {
-  //     method: 'POST',
-  //     body: JSON.stringify(toko),
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   });
-
-  //   // setelah selesai, redirect ke hal.master toko
-  //   navigate("/master_toko");
-  // };
 
   return (
     <>

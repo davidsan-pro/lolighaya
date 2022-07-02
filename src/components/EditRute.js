@@ -99,6 +99,9 @@ const AddRute = () => {
       .then((response) => response.json())
       .then((res) => {
         console.log('after put', res);
+        if (res.status === 200) {
+          fn.showToastMsg(`Berhasil update data rute [${namaRute}]`);
+        }
       });
 
     // setelah selesai, redirect ke hal.master rute

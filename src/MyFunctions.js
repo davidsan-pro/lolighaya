@@ -1,4 +1,5 @@
 import * as XLSX from "xlsx";
+import { toast } from "react-toastify";
 
 export function getBaseUrl() {
   return "https://lolighaya-be.davidsan.my.id"; // "http://localhost:8080",
@@ -124,4 +125,23 @@ export function handleClickExportToExcel(sourceData, dataCat='') {
   tmpDate = tmpDate.replaceAll('/', '-').replace(' ', '_');
   let namaFile = dataCat === 'histori transaksi' ? 'Histori Transaksi' : dataCat;
   XLSX.writeFile(wb, `${namaFile}_${tmpDate}.xlsx`);
+}
+
+export function showToastMsg(string, mode='success') {
+  const options = {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  };
+  if (mode === 'success') {
+    toast.success(string, options);
+  } else if (mode === 'error') {
+    toast.error(string, options);
+  } else if (mode === 'info') {
+    toast.info(string, options);
+  }
 }

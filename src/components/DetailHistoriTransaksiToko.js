@@ -9,10 +9,10 @@ const DetailHistoriTransaksiToko = () => {
   const [nilaiTotal, setNilaiTotal] = useState(0);
 
   const { id } = useParams();
-  console.log("id trx", id);
+  // console.log("id trx", id);
 
   useEffect(() => {
-    console.log("asd", id);
+    // console.log("asd", id);
     getDataKunjungan(id);
   }, []);
 

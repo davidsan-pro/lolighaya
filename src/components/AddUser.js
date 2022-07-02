@@ -22,6 +22,12 @@ const AddUser = () => {
       headers: {
         'Content-Type': 'application/json'
       }
+    })
+    .then(response => response.json())
+    .then(res => {
+      if (res.status === 201) {
+        fn.showToastMsg(`Berhasil menambahkan data user [${username}]`);
+      }
     });
     // await axios.post("https://lolighayabackend.herokuapp.com/users", {
     //   username: username,

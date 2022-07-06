@@ -8,6 +8,8 @@ const Dashboard = () => {
   const [rute, setRute] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const loginData = fn.getCurrentLogin();
+  
   useEffect(() => {
     getRute();
   }, []);
@@ -37,15 +39,22 @@ const Dashboard = () => {
 
       {isLoading ? <Spinner animation="border" /> : <DisplayDashboard rute={rute}/>}
 
-      {/* <div style={{ marginBottom: "5rem" }}> */}
-        <hr/>
-        <Link to="/master">
-          <div className="d-grid fw-bold mb-5">
-            <Button variant="primary" size="lg">
-              Menu Master
-            </Button>
-          </div>
-        </Link>
+      {
+        parseInt(loginData.level) === 1
+        ? (
+          <>
+            <hr/>
+            <Link to="/master">
+              <div className="d-grid fw-bold mb-5">
+                <Button variant="primary" size="lg">
+                  Menu Master
+                </Button>
+              </div>
+            </Link>
+          </>
+        )
+        : ''
+      }
       {/* </div> */}
     </div>
   );

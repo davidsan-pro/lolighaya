@@ -193,6 +193,11 @@ Table th {
   word-break: break-all;
 }
 
+Table th.col-1percent,
+Table td.col-1percent {
+  width: 1% !important;
+}
+
 Table tr > th:first-child,
 Table tr > td:first-child {
   padding-left: 1rem;

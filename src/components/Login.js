@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Spinner, Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { actionLogin } from "../actions";
 import * as fn from "../MyFunctions";
 
 const Login = () => {
@@ -11,32 +9,18 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const [code, setCode] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [loginData, setLoginData] = useState({
-    id: '',
-    username: '',
-    email: '',
-    telepon: '',
-    last_login: '',
-  });
-
-  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   // console.log('login page');
 
-  const resetAllStorage = () => {
-    localStorage.removeItem('loginData');
-    localStorage.removeItem('kunjungan');
-  }
+  // useEffect(() => {
+    localStorage.clear();
+  // }, []);
 
-  useEffect(() => {
-    resetAllStorage();
-  }, []);
-
-  useEffect(() => {
-    // tiap kali masuk k hal.login ini, kosongkan localStorage 'loginData'nya
-    localStorage.setItem('loginData', JSON.stringify(loginData));
-  }, [loginData]);
+  // useEffect(() => {
+  //   // tiap kali masuk k hal.login ini, kosongkan localStorage 'loginData'nya
+  //   localStorage.setItem('loginData', JSON.stringify(loginData));
+  // }, [loginData]);
 
   const submitLogin = async () => {
     setIsLoading(true);
@@ -54,24 +38,25 @@ const Login = () => {
     })
       .then(response => response.json())
       .then(res => {
+        // console.log('res login', res);
         setCode(res.status);
-        console.log('res login', res);
         if (res.status === 201) {
           setMessage(res.message);
-
-          const dateStr = fn.formatDate();
+          const dateStr = fn.formatDate(null, 'full-std');
           let tmp = {
             id: res.id,
+            level: res.data.level,
             username: res.data.username,
             email: res.data.email,
             telepon: res.data.telepon,
             last_login: dateStr,
           }
-          setLoginData(tmp);
+          // console.log('login tmp', tmp);
+          // setLoginData(tmp);
+          // tiap kali masuk k hal.login ini, kosongkan localStorage 'loginData'nya
+          localStorage.setItem('loginData', JSON.stringify(tmp));
 
-          fn.showToastMsg(`Login username [${res.data.username}] berhasil`)
-
-          // localStorage.setItem('loginData', JSON.stringify(loginData));
+          fn.showToastMsg(res.message);
           navigate('/dashboard');
         } else {
           setMessage(res.messages.error);

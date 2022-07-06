@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
 // import Text from "react-native";
 
-const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit }) => {
+const DisplayListAddRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit }) => {
   // console.log("display toko", toko, idRute);
   // console.log("selected toko", selectedToko);
 
@@ -27,32 +27,31 @@ const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit })
         // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
         toko.length > 0 
         ? (
-          <>
-            <Table striped>
+          <div className="table-container">
+            <Table striped bordered>
               <thead>
                 <tr>
-                  {/* <th>No</th> */}
-                  <th className="ps-3">Info Toko</th>
-                  <th className="text-center">Action</th>
+                  <th className="ps-3" style={{width:"90%"}}>Info Toko</th>
+                  <th className="text-center" style={{width:"10%"}}>Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="fs-6">
                 {toko.map((item, index) => {
                   // console.log('detail rute toko', index, item);
                   return (
-                    <tr key={index}>
-                      <td>
+                    <tr key={item.id}>
+                      <td style={{width:"90%"}}>
                         <Link to={`/view_toko/${item.id}`}>
-                          <label className="fs-5">{item.nama}</label>
+                          <label>{item.nama}</label>
                         </Link>
-                        <br />
-                        <small style={{ textOverflow:'ellipsis'}} className="fs-7">{item.alamat}</small>
-                        <br />
-                        <small style={{ textOverflow:'ellipsis'}} className="fs-7">
+                        <div style={{ textOverflow:'ellipsis'}} className="fs-7">
+                          {item.alamat}
+                        </div>
+                        <div style={{ textOverflow:'ellipsis'}} className="fs-7">
                           Kec. {fn.ucasefirst(item.kecamatan)}, {fn.ucasefirst(item.kota)}
-                        </small>
+                        </div>
                       </td>
-                      <td>
+                      <td style={{width:"10%"}}>
                         <div className="text-center">
                           <Button onClick={() => onSelect(item.id)} variant="info" className="mb-2">Pilih</Button>
                         </div>
@@ -68,7 +67,7 @@ const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit })
             paginate={paginate} 
             curPageNumber={currentPage} 
             />
-          </>
+          </div>
         ) : (
           <div>
             <em>Tidak ada toko yg bisa ditambahkan ke rute</em>
@@ -79,4 +78,4 @@ const DisplayListRuteToko = ({ toko, idRute, selectedToko, onSelect, onSubmit })
   );
 };
 
-export default DisplayListRuteToko;
+export default DisplayListAddRuteToko;

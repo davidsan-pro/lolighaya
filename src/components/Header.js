@@ -2,42 +2,32 @@ import { useState, useEffect } from "react";
 import moment from "moment";
 import "moment/locale/id";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Row, Col } from "react-bootstrap";
 // import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Sidebar from "./Sidebar";
+import * as fn from "../MyFunctions";
 
 const Header = () => {
-  const [loginData, setLoginData] = useState({
-    id: '',
-    username: '',
-    email: '',
-    telepon: '',
-    last_login: '',
-  });
-
-  useEffect(() => {
-    let tmp = JSON.parse(localStorage.getItem('loginData') || '{}');
-    if (typeof tmp.id != 'undefined') {
-      setLoginData(tmp);
-    }
-  }, [loginData]);
-  
   // const curday = moment().locale('id').format('dddd');
   // const curdate = moment().format("DD-MM-YYYY");
   // const curtime = moment().format("HH:mm:ss");
   const curdatetime = moment().locale("id").format("dddd, DD-MM-YYYY");
   const navigate = useNavigate();
-
   const location = useLocation();
+
+  const loginData = fn.getCurrentLogin();
+
+  // useEffect(() => {
+  //   setLoginData(JSON.parse(localStorage.getItem('loginData') || '{}'));
+  // }, []);
+
   // console.log("location", location);
   let title = "";
   if (location.pathname === "/" || location.pathname === "") {
-    if (loginData.id !== '') {
-      title = "Dashboard";
-    } else {
-      title = "Login";
-    }
+    title = "Login";
+  } else if (location.pathname === "/dashboard") {
+    title = "Dashboard";
   } else if (location.pathname.indexOf("/rute_list_toko") === 0) {
     title = "Daftar Toko di Rute";
   } else if (location.pathname.indexOf("/rute_detail_toko") === 0) {
@@ -97,30 +87,32 @@ const Header = () => {
   return (
     <>
       <header className="fs-2 fw-bold pb-1" style={{ backgroundColor: "royalblue", color: "#fff" }}>
-        <div className="d-flex justify-content-between align-items-center">
-          <div>
+        <Row className="is-flex is-align-items-center">
+          <Col>
             {
               // tombol Back hanya ditampilkan selain di hal.dashboard
-              location.pathname !== "/" ? (
+              !["/", "/dashboard"].includes(location.pathname) 
+              ? (
                 <Button variant="primary" className="ms-3 btn-lg" onClick={() => navigate(-1)}>
                   <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
                 </Button>
-              ) : 
-              ''
+              ) 
+              : ''
             }
-          </div>
-          <div>
+          </Col>
+          <Col className="text-center is-flex is-align-items-center">
             <span>
               LoliGhaya
             </span>
             {/* <Link to="/">
               LoliGhaya
             </Link> */}
-          </div>
-          <div>
-            {loginData.id !== '' ? <Sidebar /> : ''}
-          </div>
-        </div>
+          </Col>
+          {console.log('asd1', loginData.id, location.pathname)}
+          <Col className="align-right">
+            {loginData.id && !["/"].includes(location.pathname) ? <Sidebar /> : ''}
+          </Col>
+        </Row>
       </header>
       <div className="mb-1 ml-5">
         <small>{curdatetime}</small>

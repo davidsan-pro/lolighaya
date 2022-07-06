@@ -65,7 +65,7 @@ const MasterRute = () => {
 
 
   return (
-    <div>
+    <div className="container">
       <SearchBar onSearch={getRute} keywordType="nama toko"/>
       <div className="mb-3 is-flex is-justify-content-space-between">
         <div>
@@ -73,47 +73,11 @@ const MasterRute = () => {
         </div>
         <div>
           <Link to="/add_rute">
-            <Button variant="primary">Tambah Baru</Button>
+            <Button variant="primary">Rute Baru</Button>
           </Link>
         </div>
       </div>
       {isLoading ? <Spinner animation="border" /> : <DisplayListMasterRute rute={rute} onDelete={deleteRute} />}
-      {/* {console.log('asd1', rute)} */}
-      {/* {isLoading ? <Spinner animation="border" /> : <DisplayListBarang barang={barang} onDelete={deleteBarang} />} */}
-      {/* 
-      <Accordion>
-        {
-          rute.map((item, index) => {
-            if (index == 0 || rute[index].nama_rute != rute[index-1].nama_rute) {
-              return (
-                <Accordion.Item key={item.id} eventKey={item.id}>
-                  <Accordion.Header>
-                    <label className="fw-bold">Rute {item.nama_rute}</label>
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    <div className="mb-2">
-                      <Button className="fs-6">Edit</Button>
-                    </div>
-                    {ruteHari.map((subitem) => {
-                      if (item.nama_rute == subitem.nama_rute) {
-                        return (
-                          <ListGroup.Item>
-                            <div className="fs-5">
-                              <label>hari ke {subitem.hari}</label>
-                            </div>
-                          </ListGroup.Item>
-                        )
-                      }
-                    })}
-                  </Accordion.Body>
-                </Accordion.Item>
-              )
-            }
-            // end if (index == 0 || rute[index].nama_rute != rute[index-1].nama_rute) 
-          })
-        }
-      </Accordion> 
-      */}
     </div>
   );
 };

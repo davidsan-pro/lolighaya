@@ -2,63 +2,40 @@ import { useState, useEffect } from "react";
 import { Button, Offcanvas, Table, Card, Figure } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { actionLogin, actionLogout } from "../actions";
 
 const Sidebar = () => {
   const [show, setShow] = useState(false);
-  const [loginData, setLoginData] = useState({
-    id: '',
-    username: '',
-    email: '',
-    telepon: '',
-    last_login: '',
-  });
+  // const [loginData, setLoginData] = useState({});
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const navigate = useNavigate();
-  // const loginInfo = useSelector(state => state.isLogged)
 
-  useEffect(() => {
-    getUserInfo();
-  }, []);
+  let tmp = JSON.parse(localStorage.getItem('loginData') || '{}');
+  console.log('sidebar tmp', tmp);
+  let loginData = tmp;
 
-  const getUserInfo = () => {
-    let tmp = JSON.parse(localStorage.getItem('loginData') || '{}');
-    if (tmp.id !== '') {
-      setLoginData(tmp);
-    }
-    // let myurl = `${global.config.base_url}/users`;
-    // let qsArr = [];
-    // qsArr.push(`qf=username&qv=${loginInfo.username}&qmode=exact`);
-    // if (qsArr.length > 0) {
-    //   myurl += '?' + qsArr.join('&');
-    // }
-    // const response = await fetch(myurl);
-    // const data = await response.json();
-    // console.log('getuserinfo', myurl, data);
-    // if (data.length > 0) {
-    //   setLoginData(data[0]);
-    // }
-  }
-  // console.log('logininfo', loginInfo);
-  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   // let isMounted = true; 
+  //   // if (isMounted) {
+  //   // }
+  //   // return () => {isMounted = false}
+  // }, []);
 
   const handleLogout = () => {
-    const tmp = {
-      id: '',
-      username: '',
-      email: '',
-      telepon: '',
+    if ( ! window.confirm(`Anda ingin Logout?`)) {
+      return false;
     }
-    setLoginData(tmp);
+
+    setShow(false);
+    localStorage.removeItem('loginData');
     navigate('/');
   }
 
   return (
     <>
+      {console.log('logindata', loginData)}
       <Button variant="primary" className="me-2 btn-lg" onClick={handleShow}>
         <FontAwesomeIcon icon="fa-solid fa-bars" />
       </Button>

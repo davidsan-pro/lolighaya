@@ -13,7 +13,7 @@ const AddRuteList = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id } = useParams(); // id rute
 
   useEffect(() => {
     getInfoRute();
@@ -21,11 +21,11 @@ const AddRuteList = () => {
   }, []);
 
   const getInfoRute = async () => {
-    const myurl = `${fn.getBaseUrl()}/Mrute?qf=id&qv=${id}&qmode=exact`;
-    // console.log('get info rute url', myurl);
+    const myurl = `${fn.getBaseUrl()}/Mrute?qf[]=id&qv[]=${id}&qmode[]=exact`;
+    console.log('get info rute url', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
-    // console.log('get info rute data', data);
+    console.log('get info rute data', data);
     if (data.length > 0) {
       setInfoRute(data[0]);
     }
@@ -35,15 +35,19 @@ const AddRuteList = () => {
     setIsLoading(true);
 
     let myurl = `${fn.getBaseUrl()}/toko`;
+    let qsArr = [];
+    qsArr.push(`qf_not_in[]=id_rute&qv_not_in[]=${id}`);
     if (query) {
-      myurl += `?q=${query}`;
+      qsArr.push(`q=${query}`);
     }
-    let separator = myurl.indexOf('?') > 0 ? '&' : '?';
-    myurl += `${separator}qt_not_in=rute`;
-    // console.log('get toko url', myurl);
+    if (qsArr.length > 0) {
+      const qs = qsArr.join('&');
+      myurl += `?${qs}`;
+    }
+    console.log('get toko url', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
-    // console.log('get toko', data);
+    console.log('get toko', data);
     setToko(data);
 
     setIsLoading(false);

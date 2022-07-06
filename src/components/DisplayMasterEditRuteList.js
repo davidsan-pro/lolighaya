@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
 
-const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
+const DisplayMasterEditRuteList = ({ dRute, onDelete }) => {
   console.log('drute', dRute);
   const [ruteHari, setRuteHari] = useState(dRute);
 
@@ -94,4 +94,4 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
   );
 };
 
-export default DisplayDashboardRuteListToko;
+export default DisplayMasterEditRuteList;

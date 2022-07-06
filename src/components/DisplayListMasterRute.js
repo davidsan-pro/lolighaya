@@ -26,9 +26,9 @@ const DisplayListMasterRute = ({ rute, onDelete }) => {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>No.</th>
-              <th>Data</th>
-              <th>Actions</th>
+              <th style={{ width:"1%" }}>No.</th>
+              <th style={{ width:"100%" }}>Data</th>
+              {/* <th style={{ width:"1%" }}>Actions</th> */}
             </tr>
           </thead>
           <tbody>
@@ -41,18 +41,19 @@ const DisplayListMasterRute = ({ rute, onDelete }) => {
                 if (index === 0 || rute[index].nama_rute !== rute[index-1].nama_rute) {
                   return (
                     <tr key={item.id} className="is-align-items-baseline">
-                      <td style={{verticalAlign: 'top'}}>{index +1}.</td>
+                      <td style={{ verticalAlign:"top" }}>{index +1}.</td>
                       <td>
-                        Rute {item.nama_rute}
-                        <br/>
-                        <small><em>{item.list_kota}</em></small>
+                        <Link to={`/master_edit_rute_list/${item.id}`}>
+                          <div className="fw-bold">Rute {item.nama_rute}</div>
+                          <div className="fs-6 fst-italic">{item.list_kota}</div>
+                        </Link>
                       </td>
-                      <td>
-                        <DropdownButton id="dropdown-basic-button" title="Actions">
-                          <Dropdown.Item tag={Link} to={`/edit_rute/${item.id}`}>Edit Rute</Dropdown.Item>
+                      {/* <td>
+                        <DropdownButton id="dropdown-basic-button" title="Actions" size="sm">
+                          <Dropdown.Item as={Link} to={`/master_edit_rute_list/${item.id}`}>Edit Rute</Dropdown.Item>
                           <Dropdown.Item onClick={onDelete}>Hapus Rute</Dropdown.Item>
                         </DropdownButton>
-                      </td>
+                      </td> */}
                     </tr>
                   )
                 }

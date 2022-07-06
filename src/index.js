@@ -4,7 +4,7 @@ import App from "./App";
 import "bulma/css/bulma.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/index.css";
-import "./config.js";
+// import "./config.js";
 
 import { createStore } from "redux";
 import allReducers from "./reducers";

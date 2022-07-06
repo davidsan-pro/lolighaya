@@ -25,6 +25,7 @@
     "react-scripts": "5.0.0",
     "react-search-box": "^2.2.1",
     "react-toastify": "^9.0.5",
+    "react-whatsapp": "^0.3.0",
     "redux": "^4.0.1",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"

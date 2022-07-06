@@ -3,17 +3,16 @@ import { Table, Button, Spinner } from "react-bootstrap";
 import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import * as fn from "../MyFunctions";
 import SearchBar from "./SearchBar";
-import DisplayDashboardRuteListToko from "./DisplayDashboardRuteListToko";
+import DisplayMasterEditRuteListToko from "./DisplayMasterEditRuteListToko";
 
-const RuteListToko = () => {
+const MasterEditRuteListToko = () => {
   const [dRute, setDRute] = useState([]);
   const [infoRute, setInfoRute] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { id } = useParams();
+  const { id } = useParams(); // id rute
+  console.log('mastereditrutelisttoko', id);
   const location = useLocation();
-  let myCart = localStorage.getItem('cartList');
-  console.log(new Date());
 
   const navigate = useNavigate();
 
@@ -22,7 +21,7 @@ const RuteListToko = () => {
     getDRuteById(id);
   }, []);
 
-  const getInfoRute = async (id) => {
+  const getInfoRute = async () => {
     let myurl = `${fn.getBaseUrl()}/Mrute`;
     let qsArr = [];
     qsArr.push(`qf[]=id&qv[]=${id}&qmode[]=exact`);
@@ -30,10 +29,10 @@ const RuteListToko = () => {
       const qs = qsArr.join('&');
       myurl += `?${qs}`;
     }
-    // console.log('get info rute url', myurl);
+    console.log('getinforute', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
-    console.log('get info rute data', data[0]);
+    console.log('inforute', data);
     if (data.length > 0) {
       setInfoRute(data[0]);
     }
@@ -48,10 +47,10 @@ const RuteListToko = () => {
       const qs = qsArr.join('&');
       myurl += `?${qs}`;
     }
-    // console.log("get drute by id", myurl);
+    console.log("getdrutebyid", myurl);
     const response = await fetch(myurl);
     const data = await response.json();
-    // console.log("data drute", data);
+    console.log("datadrute", data);
     setDRute(data);
     setIsLoading(false);
   };
@@ -80,58 +79,6 @@ const RuteListToko = () => {
       .catch(err => console.log(err));
   }
 
-  // const addCartItem = (item) => {
-  //   //create a copy of our cart state, avoid overwritting existing state
-  //   let cartCopy = [...cartList];
-  //   console.log('cartlist', cartList);
-    
-  //   //assuming we have an ID field in our item
-  //   let {ID} = item;
-  //   console.log(item, cartItem);
-    
-  //   //look for item in cart array
-  //   let existingItem = cartCopy.find(cartItem => cartItem.ID == ID);
-    
-  //   //if item already exists
-  //   if (existingItem) {
-  //     existingItem.jumlahTitip += item.jumlahTitip; //update item
-  //   } else { //if item doesn't exist, simply add it
-  //     cartCopy.push(item);
-  //   }
-    
-  //   //update app state
-  //   setCartList(cartCopy);
-    
-  //   //make cart a string and store in local space
-  //   let stringCart = JSON.stringify(cartCopy);
-  //   localStorage.setItem("cartList", stringCart);
-  // }
-
-  // const editCartItem = (itemID, amount) => {
-  //   let cartCopy = [...cartList];
-    
-  //   //find if item exists, just in case
-  //   let existentItem = cartCopy.find(item => item.ID == itemID);
-    
-  //   //if it doesnt exist simply return
-  //   if (!existentItem) return
-    
-  //   //continue and update quantity
-  //   existentItem.jumlahTitip += amount;
-    
-  //   //validate result
-  //   if (existentItem.jumlahTitip <= 0) {
-  //     //remove item  by filtering it from cart array
-  //     cartCopy = cartCopy.filter(item => item.ID != itemID)
-  //   }
-    
-  //   //again, update state and localState
-  //   setCartList(cartCopy);
-    
-  //   let cartString = JSON.stringify(cartCopy);
-  //   localStorage.setItem('cartList', cartString);
-  // }
-
   return (
     <div className="container">
       <SearchBar onSearch={getDRuteById} keywordType="nama toko" />
@@ -149,10 +96,11 @@ const RuteListToko = () => {
       {
         isLoading 
         ? <Spinner animation="border" /> 
-        : <DisplayDashboardRuteListToko dRute={dRute} onDelete={deleteRuteToko} />
+        // : <div>Hello World</div>
+        : <DisplayMasterEditRuteListToko dRute={dRute} onDelete={deleteRuteToko} />
       }
     </div>
   );
 };
 
-export default RuteListToko;
+export default MasterEditRuteListToko;

@@ -6,7 +6,10 @@ import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
 
 const DisplayListUser = ({ users, onDelete }) => {
-  console.log("display users", users);
+  // console.log("display users", users);
+  // console.log('login', fn.getCurrentLogin());
+
+  const loginData = fn.getCurrentLogin();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -49,38 +52,50 @@ const DisplayListUser = ({ users, onDelete }) => {
                         <br />
                         <small className="fs-7">{user.email}</small>
                       </div>
-                      <div>
-                        {[DropdownButton].map((DropdownType, idx) => (
-                          <DropdownType
-                            as={ButtonGroup}
-                            key={idx}
-                            id={`dropdown-button-drop-${idx}`}
-                            size="sm"
-                            variant="info"
-                            title="Urutkan"
-                          >
-                            {/* <Link to={`/edit_user/${user.id}`}> */}
-                            <Dropdown.Item eventKey="1" as={Link} to={`/edit_user/${user.id}`}>
-                              Edit
-                            </Dropdown.Item>
-                            {/* </Link> */}
-                            <Dropdown.Divider />
-                            <Dropdown.Item eventKey="3" 
-                            className="fc-danger" 
-                            onClick={() => onDelete(user.id)}>
-                              Hapus
-                            </Dropdown.Item>
-                          </DropdownType>
-                        ))}
-                        <DropdownButton id="dropdown-basic-button" title="Actions">
-                          <Dropdown.Item className="fc-edit" tag={Link} to={`/edit_user/${user.id}`}>
-                            Edit
-                          </Dropdown.Item>
-                          <Dropdown.Item className="fc-danger" onClick={() => onDelete(user.id)}>
-                            Hapus
-                          </Dropdown.Item>
-                        </DropdownButton>
-                      </div>
+                      {
+                        (
+                          // user lv 1 bisa mengedit semua user yg bkn lv 1
+                          // tp tdk bisa melihat user lain yg sama2 lv 1
+                          (
+                            parseInt(loginData.level) === 1
+                            && (parseInt(user.level) !== 1 || user.id === loginData.id)
+                          )
+                          // selain user lv 1 hny bs mengedit data milik sendiri
+                          || user.id === loginData.id
+                        ) 
+                        ? (
+                            <div>
+                              {[DropdownButton].map((DropdownType, idx) => (
+                                <DropdownType
+                                  as={ButtonGroup}
+                                  key={idx}
+                                  id={`dropdown-button-drop-${idx}`}
+                                  size="sm"
+                                  variant="info"
+                                  title="Menu"
+                                >
+                                  <Dropdown.Item eventKey="1" as={Link} to={`/edit_user/${user.id}`}>
+                                    Edit
+                                  </Dropdown.Item>
+                                  {
+                                    // khusus utk menu delete hanya bs diakses oleh user lv 1
+                                    loginData.level === '1' 
+                                    ? <>
+                                        <Dropdown.Divider />
+                                        <Dropdown.Item eventKey="3" 
+                                        className="fc-danger" 
+                                        onClick={() => onDelete(user.id)}>
+                                          Hapus
+                                        </Dropdown.Item>
+                                      </>
+                                    : ''
+                                  }
+                                </DropdownType>
+                              ))}
+                            </div>
+                          )
+                        : ''
+                      }
                     </td>
                   </tr>
                 ))

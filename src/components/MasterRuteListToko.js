@@ -22,7 +22,7 @@ const MasterRuteListToko = () => {
   }, []);
 
   const getInfoRute = async () => {
-    const myurl = `${fn.getBaseUrl()}/Mrute?qf=id&qv=${id}&qmode=exact`;
+    const myurl = `${fn.getBaseUrl()}/Mrute?qf[]=id&qv[]=${id}&qmode=exact`;
     // console.log('get info rute url', myurl);
     const response = await fetch(myurl);
     const data = await response.json();

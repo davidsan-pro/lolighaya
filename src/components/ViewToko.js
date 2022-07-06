@@ -9,6 +9,8 @@ const ViewToko = ({ onDelete }) => {
 
   const { id } = useParams();
 
+  let loginData = fn.getCurrentLogin();
+
   useEffect(() => {
     getToko();
   }, []);
@@ -66,9 +68,15 @@ const ViewToko = ({ onDelete }) => {
                     <Link to={`/edit_toko/${toko.id}`}>
                       <Button variant="info" className="me-2">Edit</Button>
                     </Link>
-                    <Button variant="danger" onClick={() => onDelete(toko.id, toko.nama)}>
-                      Delete
-                    </Button>
+                    {
+                      parseInt(loginData.level) === 1
+                      ? (
+                        <Button variant="danger" onClick={() => onDelete(toko.id, toko.nama)}>
+                          Delete
+                        </Button>
+                      )
+                      : ''
+                    }
                   </div>
                   <div>
                     <Button variant="success">Histori Transaksi</Button>

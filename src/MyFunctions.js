@@ -67,6 +67,16 @@ export function formatDate(string=null, mode='full') {
       second: 'numeric',
     }
   }
+  else if (mode === 'full-std') {
+    dateOptions = {
+      year: 'numeric', 
+      month: '2-digit', 
+      day: '2-digit', 
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    }
+  }
   else if (mode === 'date') {
     dateOptions = {
       year: 'numeric', 
@@ -88,7 +98,7 @@ export function formatDate(string=null, mode='full') {
       second: 'numeric',
     }
   }
-  const myDate = new Date(string);
+  const myDate = string === null ? new Date() : new Date(string);
   
   return myDate.toLocaleDateString('id-ID', dateOptions).replaceAll('.', ':');
 }
@@ -144,4 +154,10 @@ export function showToastMsg(string, mode='success') {
   } else if (mode === 'info') {
     toast.info(string, options);
   }
+}
+
+export function getCurrentLogin() {
+  let tmp = JSON.parse(localStorage.getItem('loginData') || '{}');
+  // console.log('tmp', tmp);
+  return tmp;
 }

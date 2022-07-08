@@ -6,7 +6,7 @@ import * as fn from "../MyFunctions";
 // import Text from "react-native";
 
 const DisplayListToko = ({ toko, onDelete }) => {
-  // console.log("display toko", toko, onDelete);
+  console.log("display toko", toko, onDelete);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);

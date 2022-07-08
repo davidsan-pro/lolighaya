@@ -4,9 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
 
-const DisplayMasterEditRuteList = ({ dRute, onDelete }) => {
-  console.log('drute', dRute);
-  const [ruteHari, setRuteHari] = useState(dRute);
+const DisplayMasterEditRute = ({ dRute, onDelete }) => {
+  // console.log('drute', dRute);
 
   const { id } = useParams();
   // console.log('id', id);
@@ -14,8 +13,6 @@ const DisplayMasterEditRuteList = ({ dRute, onDelete }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
 
-  const uniqueRute = [...new Set(dRute.map((item) => item.nama_rute))];
-  console.log(dRute, uniqueRute);
   // get current item
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -25,7 +22,7 @@ const DisplayMasterEditRuteList = ({ dRute, onDelete }) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <>
+    <div className="table-container">
       <Table striped bordered>
         <thead>
           <tr>
@@ -46,8 +43,9 @@ const DisplayMasterEditRuteList = ({ dRute, onDelete }) => {
                   </div>
                   <div className="mb-2">
                     <div className="title fs-5">
-                      <Link to={`/rute_detail_toko/${id}?id_toko=${item.id}`}>{item.nama}</Link>
-                      <br />
+                      <Link to={`/view_toko/${item.id}`}>
+                        <div>{item.nama}</div>
+                      </Link>
                       <div className="subtitle fs-7 mb-2 ellipsis">
                         {item.alamat}
                         <br />
@@ -55,11 +53,11 @@ const DisplayMasterEditRuteList = ({ dRute, onDelete }) => {
                       </div>
                       <div className="subtitle mb-0">
                         <DropdownButton id="dropdown-basic-button" title="Actions" size="sm">
-                        <Dropdown.Item as={Link} to={`/add_transaksi_toko/${id}?id_toko=${item.id}`}>
-                            Nota Baru
+                          <Dropdown.Item as={Link} to={`/edit_toko/${item.id}`}>
+                            Edit Toko
                           </Dropdown.Item>
-                          <Dropdown.Item as={Link} to={`/histori_transaksi_toko/${item.id}?sbf=id&sbm=desc`}>
-                            Histori Transaksi
+                          <Dropdown.Item onClick={() => onDelete(id, item.nama)}>
+                            <span className="text-danger">Hapus Toko</span>
                           </Dropdown.Item>
                           {/* <Dropdown.Item href="/histori_trx">Histori Nota</Dropdown.Item>
                           <Dropdown.Item href={`/edit_toko/${item.id}`}>Edit Toko</Dropdown.Item>
@@ -90,8 +88,8 @@ const DisplayMasterEditRuteList = ({ dRute, onDelete }) => {
         )
         : ''
       }
-    </>
+    </div>
   );
 };
 
-export default DisplayMasterEditRuteList;
+export default DisplayMasterEditRute;

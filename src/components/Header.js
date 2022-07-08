@@ -12,7 +12,7 @@ const Header = () => {
   // const curday = moment().locale('id').format('dddd');
   // const curdate = moment().format("DD-MM-YYYY");
   // const curtime = moment().format("HH:mm:ss");
-  const curdatetime = moment().locale("id").format("dddd, DD-MM-YYYY");
+  const curdatetime = fn.formatDate(null, 'date-long');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -70,6 +70,8 @@ const Header = () => {
     title = "List Rute";
   } else if (location.pathname.indexOf("/add_rute_list") === 0) {
     title = "Tambah Rute - Toko";
+  } else if (location.pathname.indexOf("/master_edit_rute/") === 0) {
+    title = "Master Edit Rute";
   } else if (location.pathname.indexOf("/master_transaksi") === 0) {
     title = "Master Transaksi";
   } else if (location.pathname.indexOf("/add_transaksi_toko/") === 0) {
@@ -86,42 +88,42 @@ const Header = () => {
 
   return (
     <>
-      <header className="fs-2 fw-bold pb-1" style={{ backgroundColor: "royalblue", color: "#fff" }}>
+      <header className="fs-2 fw-bold pb-1 mb-2" style={{ backgroundColor: "royalblue", color: "#fff" }}>
         <Row className="is-flex is-align-items-center">
           <Col>
             {
               // tombol Back hanya ditampilkan selain di hal.dashboard
               !["/", "/dashboard"].includes(location.pathname) 
               ? (
-                <Button variant="primary" className="ms-3 btn-lg" onClick={() => navigate(-1)}>
+                <Button variant="primary" className="ms-2 btn-lg" onClick={() => navigate(-1)}>
                   <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
                 </Button>
               ) 
               : ''
             }
           </Col>
-          <Col className="text-center is-flex is-align-items-center">
-            <span>
+          <Col>
               LoliGhaya
-            </span>
             {/* <Link to="/">
               LoliGhaya
             </Link> */}
           </Col>
-          {console.log('asd1', loginData.id, location.pathname)}
+          {/*console.log('asd1', loginData.id, location.pathname)*/}
           <Col className="align-right">
             {loginData.id && !["/"].includes(location.pathname) ? <Sidebar /> : ''}
           </Col>
         </Row>
       </header>
-      <div className="mb-1 ml-5">
-        <small>{curdatetime}</small>
+      <div className="container pb-1">
+        <div className="mb-1 fs-6">
+          {curdatetime}
+        </div>
+        <h3 className="has-text-centered">
+          <strong style={{whiteSpace:"pre-line"}}>
+            {title.replace('<br/>', '\n').toUpperCase()}
+          </strong>
+        </h3>
       </div>
-      <h3 className="has-text-centered mb-3">
-        <strong style={{whiteSpace:"pre-line"}}>
-          {title.replace('<br/>', '\n').toUpperCase()}
-        </strong>
-      </h3>
     </>
   );
 };

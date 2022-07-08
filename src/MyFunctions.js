@@ -60,6 +60,16 @@ export function formatDate(string=null, mode='full') {
   if (mode === 'full') {
     dateOptions = {
       year: 'numeric', 
+      month: 'long', 
+      day: 'numeric', 
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    }
+  }
+  if (mode === 'full-short') {
+    dateOptions = {
+      year: 'numeric', 
       month: 'short', 
       day: 'numeric', 
       hour: 'numeric',
@@ -77,10 +87,17 @@ export function formatDate(string=null, mode='full') {
       second: 'numeric',
     }
   }
-  else if (mode === 'date') {
+  else if (mode === 'date-short') {
     dateOptions = {
       year: 'numeric', 
       month: 'short', 
+      day: 'numeric', 
+    }
+  }
+  else if (mode === 'date-long') {
+    dateOptions = {
+      year: 'numeric', 
+      month: 'long', 
       day: 'numeric', 
     }
   }

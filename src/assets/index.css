@@ -188,19 +188,15 @@ Table th {
 Table td,
 Table th {
   white-space: nowrap;
-  width: 1%;
+  width: 100%;
   vertical-align: middle;
   word-break: break-all;
 }
 
-Table th.col-1percent,
-Table td.col-1percent {
-  width: 1% !important;
-}
-
-Table tr > th:first-child,
-Table tr > td:first-child {
+Table tr > td:first-child,
+Table tr > th:first-child {
   padding-left: 1rem;
+  width: 1%;
 }
 
 .text-center {

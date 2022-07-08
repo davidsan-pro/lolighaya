@@ -135,7 +135,7 @@ const RuteListToko = () => {
   return (
     <div className="container">
       <SearchBar onSearch={getDRuteById} keywordType="nama toko" />
-      <div className="is-flex is-justify-content-space-between">
+      <div className="is-flex is-justify-content-space-between is-align-items-baseline">
         <div className="me-3 mb-3 is-size-6">
           <span className="me-2">Rute <strong>{infoRute.nama_rute}</strong></span>
           <span>( 0/{parseInt(infoRute.jum_toko|0)} Toko)</span>

@@ -24,9 +24,11 @@ const MasterToko = () => {
       if (qsArr.length > 0) {
         myurl += '?' + qsArr.join('&');
       }
+      console.log('mastertoko gettoko', myurl);
       const response = await fetch(myurl);
-      const data = await response.json();
-      setToko(data);
+      const result = await response.json();
+      console.log('mastertoko data', result);
+      setToko(result.data);
     } catch (e) {
       console.log(e);
     } finally {

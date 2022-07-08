@@ -43,7 +43,7 @@ const DisplayListMasterRute = ({ rute, onDelete }) => {
                     <tr key={item.id} className="is-align-items-baseline">
                       <td style={{ verticalAlign:"top" }}>{index +1}.</td>
                       <td>
-                        <Link to={`/master_edit_rute_list/${item.id}`}>
+                        <Link to={`/master_edit_rute/${item.id}`}>
                           <div className="fw-bold">Rute {item.nama_rute}</div>
                           <div className="fs-6 fst-italic">{item.list_kota}</div>
                         </Link>

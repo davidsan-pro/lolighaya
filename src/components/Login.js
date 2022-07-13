@@ -71,7 +71,7 @@ const Login = () => {
   return (
     <div className="container">
       <div>
-        <Button onClick={() => fn.sendWhatsApp('test pesan whatsapp', '6281382522328')}>
+        <Button onClick={() => fn.sendWhatsApp('6281382522328', 'test pesan wa timestamp:'+fn.formatDate(null, 'full-std'))}>
           test WA {fn.formatDate(null, 'full-std')}
         </Button>
       </div>

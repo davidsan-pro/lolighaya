@@ -145,9 +145,8 @@ const AddTransaksiTokoCart = () => {
       .then(res => {
         if (res.status == 201) {
           localStorage.removeItem('cartList');
-          let arr = (fn.ltrim(dataToko.telepon, '0')).split()
-          let phone = `+62 813-8252-2328`;
-          console.log('phone', phone);
+          let phone = fn.ltrim(dataToko.telepon);
+          // console.log('phone', phone);
           let msgWA = `Nota Baru untuk toko [${dataToko.nama}] telah berhasil dibuat pada 
             ${fn.formatDate()} oleh user ${loginData.username}. 
             Total nilai transaksi: Rp ${nilaiTotal}`;

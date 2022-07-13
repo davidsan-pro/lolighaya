@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Pagination from "./Pagination";
 
 const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
@@ -15,7 +15,8 @@ const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const navigate = useNavigate();
-
+  
+  const [searchParams] = useSearchParams();
   const [cartList, setCartList] = useState([]);
   const [cartItem, setCartItem] = useState([]);
   let arrCart = [];
@@ -34,13 +35,15 @@ const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
     console.log('item', item, cartList);
 
     // kalau item tsb blm ada di localStorage 'cartList' maka tambahkan sbg item baru
-    const exist = cartList.find((x) => x.id === item.id);
+    const exist = cartList.find((x) => x.id === item.id && x.id_toko === item.id_toko);
     console.log('arrcart0', arrCart);
-    console.log(exist ? 'exist' : '404')
+    console.log(exist ? 'exist' : 'not exist')
     if ( ! exist) {
+      item.id_toko = searchParams.get('id_toko');
       item.titip = 0 
       item.sisa = 0 
       item.laku = 0
+      item.subtotal = 0
       arrCart.push(item);
       // console.log('arrcart1', arrCart);
       localStorage.setItem('cartList', JSON.stringify(arrCart));

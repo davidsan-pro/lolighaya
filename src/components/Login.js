@@ -70,6 +70,11 @@ const Login = () => {
 
   return (
     <div className="container">
+      <div>
+        <Button onClick={() => fn.sendWhatsApp('test pesan whatsapp', '6281382522328')}>
+          test WA
+        </Button>
+      </div>
       <form>
         <div className="field">
           <label className="label">Username</label>

@@ -92,8 +92,13 @@ const Header = () => {
     title = "Master Transaksi";
   } else if (curPageName === "add_transaksi_toko") {
     title = "Transaksi Baru";
+    prevPage = `/rute_list_toko/${id}`;
   } else if (curPageName === "add_transaksi_list_barang") {
     title = "Transaksi Baru<br/>Pilih Barang";
+    prevPage = `/add_transaksi_toko/${id}`;
+    if (searchParams.get('id_toko')) {
+      prevPage += `?id_toko=${searchParams.get('id_toko')}`;
+    }
   } else if (curPageName === "add_transaksi_detail_barang") {
     title = "Transaksi Baru<br/>Detail Barang";
   } else if (curPageName === "histori_transaksi_toko") {

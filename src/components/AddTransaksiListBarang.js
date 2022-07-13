@@ -29,66 +29,6 @@ const AddTransaksiListBarang = () => {
     setCartList(localCart);
   }, []);
 
-  // const addCartItem = (item) => {
-  //   item.id_toko = idToko;
-  //   //create a copy of our cart state, avoid overwritting existing state
-  //   let cartCopy = [...cartList];
-  //   console.log('cartlist', cartList)
-    
-  //   //assuming we have an ID field in our item
-  //   let {ID} = item;
-  //   console.log(item, cartItem);
-    
-  //   //look for item in cart array
-  //   let existingItem = cartCopy.find(cartItem => cartItem.ID == ID);
-    
-  //   //if item already exists
-  //   if (existingItem) {
-  //     existingItem.jumlahTitip += item.jumlahTitip; //update item
-  //   } else { //if item doesn't exist, simply add it
-  //     cartCopy.push(item);
-  //   }
-    
-  //   //update app state
-  //   setCartList(cartCopy);
-    
-  //   //make cart a string and store in local space
-  //   let stringCart = JSON.stringify(cartCopy);
-  //   localStorage.setItem("cartList", stringCart);
-  // }
-
-  // const editCartItem = (itemID, amount) => {
-  //   let cartCopy = [...cartList];
-    
-  //   //find if item exists, just in case
-  //   let existentItem = cartCopy.find(item => item.ID == itemID);
-    
-  //   //if it doesnt exist simply return
-  //   if (!existentItem) return
-    
-  //   //continue and update quantity
-  //   existentItem.jumlahTitip += amount;
-    
-  //   //validate result
-  //   if (existentItem.jumlahTitip <= 0) {
-  //     //remove item  by filtering it from cart array
-  //     cartCopy = cartCopy.filter(item => item.ID != itemID)
-  //   }
-    
-  //   //again, update state and localState
-  //   setCartList(cartCopy);
-    
-  //   let cartString = JSON.stringify(cartCopy);
-  //   localStorage.setItem('cartList', cartString);
-  // }
-
-  // const getTokoById = async (id) => {
-  //   let myurl = `${global.config.base_url}/toko/${id}`;
-  //   const response = await fetch(myurl);
-  //   const data = await response.json();
-  //   setToko(data);
-  // }
-
   const getBarang = async (query='') => {
     setIsLoading(true);
     let myurl = `${fn.getBaseUrl()}/barang`;
@@ -115,33 +55,6 @@ const AddTransaksiListBarang = () => {
     setIsLoading(false);
   };
 
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [itemsPerPage] = useState(10);
-
-  // // get current item
-  // const indexOfLastItem = currentPage * itemsPerPage;
-  // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  // const currentItem = barang.slice(indexOfFirstItem, indexOfLastItem);
-
-  // // change page
-  // const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-
-  // const saveToko = async (e) => {
-  //   e.preventDefault();
-
-  //   const toko = { nama, alamat, foto, kecamatan, kota, telepon };
-  //   await fetch(`${global.config.base_url}/toko`, {
-  //     method: 'POST',
-  //     body: JSON.stringify(toko),
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   });
-
-  //   // setelah selesai, redirect ke hal.master toko
-  //   navigate("/master_toko");
-  // };
 
   return (
     <div className="container">

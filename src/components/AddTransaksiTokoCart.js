@@ -5,7 +5,8 @@ import * as fn from "../MyFunctions";
 import { useSelector, useDispatch } from 'react-redux';
 
 const AddTransaksiTokoCart = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingInfoToko, setIsLoadingInfoToko] = useState(false);
+  const [isLoadingCartData, setIsLoadingCartData] = useState(false);
 
   const [dataToko, setDataToko] = useState({});
   const [cartItems, setCartItems] = useState([]);
@@ -23,10 +24,8 @@ const AddTransaksiTokoCart = () => {
   let localCart = JSON.parse(localStorage.getItem('cartList') || '[]');
 
   useEffect(() => {
-    setIsLoading(true);
     getDataToko();
     getDataCart();
-    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -35,16 +34,19 @@ const AddTransaksiTokoCart = () => {
   }, [cartItems]);
 
   const getDataCart = () => {
+    setIsLoadingCartData(true);
     let arrCart = JSON.parse(localStorage.getItem('cartList') || '[]');
-    // console.log('arrcart', arrCart);
+    console.log('getdatacart', arrCart);
     arrCart = arrCart.filter(function(item) {
       return item.id_toko.toString() === idToko;
     });
     setCartItems(arrCart);
     // hitungTotal();
+    setIsLoadingCartData(false);
   }
 
   const getDataToko = async () => {
+    setIsLoadingInfoToko(true);
     let kunjungan = localStorage.getItem('kunjungan') || '[]';
     kunjungan = JSON.parse(kunjungan);
     // kalo variabel kunjungan terakhir masih tersimpan di localStorage
@@ -64,43 +66,8 @@ const AddTransaksiTokoCart = () => {
       setDataToko(data);
       localStorage.setItem('kunjungan', JSON.stringify(data));
     }
+    setIsLoadingInfoToko(false);
   };
-
-  // const onClickSubmit = async () => {
-  //   // gunakan data dr localstorage utk simpan data ke tabel
-  //   const dataTransaksi = { 
-  //     id_toko: idToko, 
-  //     id_user: 2, // id user yg sedang login
-  //     nilai_transaksi: total,
-  //     details: localCart,
-  //   };
-  //   console.log('data transaksi', dataTransaksi);
-  //   const myurl = `${global.config.base_url}/Mtransaksi`;
-  //   console.log(myurl);
-  //   await fetch(myurl, {
-  //     method: 'POST',
-  //     body: JSON.stringify(dataTransaksi),
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //     .then((response) => response.json())
-  //     .then((res) => {
-  //       console.log('res', res);
-  //       // perbarui data di tabel barang
-  //       // lalu hapus item localstorage utk toko ini
-  //       for (let i=localCart.length-1; i>=0; i--) {
-  //         console.log('localcart', localCart[i].idToko, id);
-  //         if (localCart[i].idToko === idToko) {
-  //           localCart.splice(i, 1);
-  //         }
-  //       }
-  //       localStorage.setItem('cartList', localCart);
-        
-  //       navigate(`/rute_list_toko/${id}`);
-  //     })
-  //     .catch((error) => console.log('error', error));
-  // }
 
   const handleOnChangeInput = (id, field, value) => {
     // console.log('asd0', cartItems);
@@ -117,14 +84,19 @@ const AddTransaksiTokoCart = () => {
         }
         if (field === 'laku') {
           item.laku = value;
+          item.subtotal = item.laku * item.harga;
         }
         if (field === 'harga') {
           item.harga = value;
+          item.subtotal = item.laku * item.harga;
+        }
+        if (field === 'subtotal') {
+          item.subtotal = value;
         }
       }
       return item;
     });
-    // console.log('asd1', updatedItems);
+    console.log('asd1', updatedItems);
     setCartItems(updatedItems);
     localStorage.setItem('cartList', JSON.stringify(updatedItems));
   }
@@ -144,8 +116,8 @@ const AddTransaksiTokoCart = () => {
 
   const hitungTotal = () => {
     let total = 0;
-    let copyCart = cartItems.map(item => {
-      total += item.harga * item.laku;
+    cartItems.map(item => {
+      total += item.subtotal;
     });
     setNilaiTotal(total);
     return total;
@@ -173,8 +145,15 @@ const AddTransaksiTokoCart = () => {
       .then(res => {
         if (res.status == 201) {
           localStorage.removeItem('cartList');
+          let arr = (fn.ltrim(dataToko.telepon, '0')).split()
+          let phone = `+62 813-8252-2328`;
+          console.log('phone', phone);
+          let msgWA = `Nota Baru untuk toko [${dataToko.nama}] telah berhasil dibuat pada 
+            ${fn.formatDate()} oleh user ${loginData.username}. 
+            Total nilai transaksi: Rp ${nilaiTotal}`;
+          fn.sendWhatsApp(phone, msgWA);
           fn.showToastMsg(res.messages.success);
-          navigate(`/rute_list_toko/${id}`)
+          // navigate(`/rute_list_toko/${id}`)
         }
       })
       .catch(err => {
@@ -186,18 +165,25 @@ const AddTransaksiTokoCart = () => {
 
   return (
     <>
-      {
-        isLoading
-        ? <Spinner animation="border" />
-        : <div className="container">
-            <div className="mb-3 fs-4">
-              Ringkasan Nota baru untuk [<strong>{dataToko.nama}</strong>]
-            </div>
-            <div className="mb-3">
-              <Link to={`/add_transaksi_list_barang/${id}?id_toko=${idToko}`}>
-                <Button variant="primary">Pilih Barang</Button>
-              </Link>
-            </div>
+      <div className="container">
+        <div className="mb-3 fs-5">
+          Ringkasan Nota baru untuk [
+            {
+              isLoadingInfoToko 
+              ? <Spinner animation="border" /> 
+              : <span className="fw-bold">{dataToko.nama}</span>
+            }
+          ]
+        </div>
+        <div className="mb-3">
+          <Link to={`/add_transaksi_list_barang/${id}?id_toko=${idToko}`}>
+            <Button variant="primary">Pilih Barang</Button>
+          </Link>
+        </div>
+        {
+          isLoadingCartData
+          ? <Spinner animation="border" />
+          : <>
             <Card className="mb-3">
               {
                 cartItems.length > 0
@@ -251,6 +237,7 @@ const AddTransaksiTokoCart = () => {
                         style={{textAlign:"right"}}
                         id={`subtotal-${item.id}`}
                         value={fn.thousandSeparator(item.laku * item.harga)}
+                        onChange={(e) => handleOnChangeInput(item.id, 'subtotal', e.target.value)}
                         />
                       </Card.Text>
                     </Card.Body>
@@ -287,11 +274,11 @@ const AddTransaksiTokoCart = () => {
                   </Button>
                 </div>
               )
-              : (<></>)
+              : ""
             }
-          </div>
-
-      }
+          </>
+        }
+      </div>
     </>
   );
 };

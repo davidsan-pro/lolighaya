@@ -1,6 +1,7 @@
 // import React from "react";
 import * as XLSX from "xlsx";
 import { toast } from "react-toastify";
+import { Linking } from "react-native";
 // import { useLocation } from "react-router-dom";
 
 export function getBaseUrl() {
@@ -192,8 +193,39 @@ export function getCurrentLogin() {
   return tmp;
 }
 
-// export function getCurrentURL() {
-//   const location = useLocation();
-//   let result = location.pathname + location.search + location.hash;
-//   return result;
-// }
+// sumber: https://stackoverflow.com/a/61843183/1235167
+export function sendWhatsApp(phone='', msg='') {
+  if (!msg) {
+    alert('Pesan yang akan dikirimkan melalui whatsapp tidak boleh kosong.')
+  }
+  if (!phone) {
+    alert('No.whatsapp tujuan tidak boleh kosong.');
+  }
+
+  let phoneWithCountryCode = `62${phone}`;
+
+  // let mobile = Platform.OS == 'ios' ? phoneWithCountryCode : '+' + phoneWithCountryCode;
+  let mobile = `+${phoneWithCountryCode}`;
+  if (mobile) {
+    if (msg) {
+      let url = 'whatsapp://send?text=' + msg + '&phone=' + mobile;
+      Linking.openURL(url).then((data) => {
+        console.log('WhatsApp Opened');
+      }).catch(() => {
+        alert('Make sure WhatsApp installed on your device');
+      });
+    } else {
+      alert('Please insert message to send');
+    }
+  } else {
+    alert('Please insert mobile no');
+  }
+}
+
+export function ltrim(val, char='') {
+  let string = val.toString();
+  while (string.charAt(0) === char) { // Assume we remove all leading zeros
+      string = string.substr(1, string.length-1)
+  }
+  return string;
+}

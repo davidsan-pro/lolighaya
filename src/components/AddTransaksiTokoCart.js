@@ -147,9 +147,7 @@ const AddTransaksiTokoCart = () => {
           localStorage.removeItem('cartList');
           let phone = fn.ltrim(dataToko.telepon);
           // console.log('phone', phone);
-          let msgWA = `Nota Baru untuk toko [${dataToko.nama}] telah berhasil dibuat pada 
-            ${fn.formatDate()} oleh user ${loginData.username}. 
-            Total nilai transaksi: Rp ${nilaiTotal}`;
+          let msgWA = `Nota Baru untuk toko *${dataToko.nama}* telah berhasil dibuat pada ${fn.formatDate()} oleh user ${loginData.username}. Total nilai transaksi: Rp ${nilaiTotal}`;
           fn.sendWhatsApp(phone, msgWA);
           fn.showToastMsg(res.messages.success);
           // navigate(`/rute_list_toko/${id}`)

@@ -23,11 +23,11 @@ const DisplayListMasterRute = ({ rute, onDelete }) => {
   return (
     <>
       <div className="mb-3 table-container">
-        <Table striped bordered hover>
+        <Table bordered hover>
           <thead>
             <tr>
-              <th style={{ width:"1%" }}>No.</th>
-              <th style={{ width:"100%" }}>Data</th>
+              <th>No.</th>
+              <th>Data</th>
               {/* <th style={{ width:"1%" }}>Actions</th> */}
             </tr>
           </thead>

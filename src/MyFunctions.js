@@ -1,5 +1,7 @@
+// import React from "react";
 import * as XLSX from "xlsx";
 import { toast } from "react-toastify";
+// import { useLocation } from "react-router-dom";
 
 export function getBaseUrl() {
   return "https://lolighaya-be.davidsan.my.id"; // "http://localhost:8080",
@@ -59,6 +61,7 @@ export function formatDate(string=null, mode='full') {
   let dateOptions = {};
   if (mode === 'full') {
     dateOptions = {
+      weekday: 'long', 
       year: 'numeric', 
       month: 'long', 
       day: 'numeric', 
@@ -67,8 +70,17 @@ export function formatDate(string=null, mode='full') {
       second: 'numeric',
     }
   }
+  if (mode === 'full-date') {
+    dateOptions = {
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric', 
+    }
+  }
   if (mode === 'full-short') {
     dateOptions = {
+      weekday: 'long', 
       year: 'numeric', 
       month: 'short', 
       day: 'numeric', 
@@ -79,6 +91,7 @@ export function formatDate(string=null, mode='full') {
   }
   else if (mode === 'full-std') {
     dateOptions = {
+      weekday: 'long', 
       year: 'numeric', 
       month: '2-digit', 
       day: '2-digit', 
@@ -178,3 +191,9 @@ export function getCurrentLogin() {
   // console.log('tmp', tmp);
   return tmp;
 }
+
+// export function getCurrentURL() {
+//   const location = useLocation();
+//   let result = location.pathname + location.search + location.hash;
+//   return result;
+// }

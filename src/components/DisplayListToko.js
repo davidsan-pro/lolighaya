@@ -44,7 +44,7 @@ const DisplayListToko = ({ toko, onDelete }) => {
                     </td>
                     <td>
                       <div className="fs-5">
-                        <Link to={`/view_toko/${item.id}`} onDelete={onDelete}>{item.nama}</Link>
+                        <Link to={`/view_toko/${item.id}`} onDelete={onDelete}>{item.nama}xxx</Link>
                       </div>
                       <div>
                         <small>{item.alamat}</small>

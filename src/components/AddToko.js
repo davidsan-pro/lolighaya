@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import * as fn from "../MyFunctions";
 
@@ -10,8 +10,12 @@ const AddToko = () => {
   const [foto, setFoto] = useState("");
   const [kecamatan, setKecamatan] = useState("");
   const [kota, setKota] = useState("");
+  const [searchParams] = useSearchParams({});
 
   const navigate = useNavigate();
+
+  const backURL = searchParams.get('back_url') || '/master_toko';
+  let formMsg = '';
 
   const saveToko = async (e) => {
     e.preventDefault();
@@ -29,18 +33,23 @@ const AddToko = () => {
       if (res.status === 201) {
         fn.showToastMsg(`Berhasil menambahkan data toko [${nama}]`);
       }
+    })
+    .catch(err => {
+      formMsg = 'Gagal menambahkan data toko baru.';
+      console.log('error', err);
     });
 
     // setelah selesai, redirect ke hal.master toko
-    navigate("/master_toko");
+    navigate(backURL);
   };
 
   return (
     <div className="container">
+      <div className="mb-2">Masukkan detail data toko baru</div>
       <form onSubmit={saveToko}>
         <div className="field">
           <label className="label">Nama</label>
-          <input type="text" className="input" placeholder="nama barang" value={nama} onChange={(e) => setNama(e.target.value)} />
+          <input type="text" className="input" placeholder="nama toko" value={nama} onChange={(e) => setNama(e.target.value)} />
         </div>
         <div className="field">
           <label className="label">Alamat</label>
@@ -58,6 +67,7 @@ const AddToko = () => {
           <label className="label">Kota</label>
           <input type="text" className="input" placeholder="kota" value={kota} onChange={(e) => setKota(e.target.value)} />
         </div>
+        <div className="field fst-italic text-danger">{formMsg}</div>
         <div className="field">
           <Button variant="primary" type="submit">Simpan</Button>
         </div>

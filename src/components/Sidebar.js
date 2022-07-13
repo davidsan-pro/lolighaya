@@ -13,7 +13,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   let tmp = JSON.parse(localStorage.getItem('loginData') || '{}');
-  console.log('sidebar tmp', tmp);
+  // console.log('sidebar tmp', tmp);
   let loginData = tmp;
 
   // useEffect(() => {
@@ -35,7 +35,7 @@ const Sidebar = () => {
 
   return (
     <>
-      {console.log('logindata', loginData)}
+      {/* {console.log('logindata', loginData)} */}
       <Button variant="primary" className="me-2 btn-lg" onClick={handleShow}>
         <FontAwesomeIcon icon="fa-solid fa-bars" />
       </Button>

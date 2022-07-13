@@ -144,8 +144,8 @@ const MasterEditRute = () => {
           <SearchBar onSearch={getDRuteById} keywordType="nama toko" />
         </div>
         <div>
-          <Link to={`/add_rute_list/${id}`}>
-            <Button variant="primary">Tambah Toko</Button>
+          <Link to={`/add_rute_list/${id}?back_url=/`}>
+            <Button variant="primary" style={{ whiteSpace:"nowrap" }}>Tambah Toko</Button>
           </Link>
         </div>
       </div>

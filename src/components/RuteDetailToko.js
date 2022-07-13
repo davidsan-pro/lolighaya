@@ -10,6 +10,7 @@ const RuteDetailToko = ({ onDelete }) => {
   const { id } = useParams(); // id rute
   const [searchParams, setSearchParams] = useSearchParams();
   const idToko = searchParams.get("id_toko"); // id toko
+  console.log('id', id, idToko);
 
   useEffect(() => {
     getToko();
@@ -50,7 +51,7 @@ const RuteDetailToko = ({ onDelete }) => {
                 </figure>
               </div>
               <div className="media-content">
-                <p className="title fs-4">{toko.nama}</p>
+                <p className="title fs-4">{toko.nama}xxx</p>
               </div>
             </div>
 
@@ -72,7 +73,7 @@ const RuteDetailToko = ({ onDelete }) => {
                 <Button variant="success" className="me-2 mb-2">
                   Histori Transaksi
                 </Button>
-                <Link to={`/edit_toko/${toko.id}`}>
+                <Link to={`/edit_toko/${toko.id}?back_url=/view_toko/${toko.id}`}>
                   <Button variant="info" className="me-2 mb-2">
                     Edit Toko
                   </Button>

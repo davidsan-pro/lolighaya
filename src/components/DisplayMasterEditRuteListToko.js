@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
 
 const DisplayMasterEditRuteListToko = ({ dRute, onDelete }) => {
-  console.log('drute', dRute);
+  // console.log('drute', dRute);
   const [ruteHari, setRuteHari] = useState(dRute);
 
   const { id } = useParams();
@@ -14,8 +14,6 @@ const DisplayMasterEditRuteListToko = ({ dRute, onDelete }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
 
-  const uniqueRute = [...new Set(dRute.map((item) => item.nama_rute))];
-  console.log(dRute, uniqueRute);
   // get current item
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;

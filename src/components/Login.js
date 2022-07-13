@@ -86,31 +86,33 @@ const Login = () => {
           {/* <p className="help is-success">This username is available</p> */}
         </div>
 
-        <div className="field">
+        {/* <div className="field">
           <div className="control">
             <label className="checkbox">
               <input type="checkbox" />
               <span className="ps-2">Remember me</span>
             </label>
           </div>
-        </div>
+          <hr />
+        </div> */}
 
-        <hr />
-        <div className="d-grid mb-3">
-          <Button variant="primary" size="lg" onClick={(e) => submitLogin(e)}>
-            Login
-          </Button>
-        </div>
-        <div className="text-center">
-          {
-            isLoading 
-            ? <Spinner animation="border" />
-            : (
-              code >= 200 && code < 400
-              ? <span>{message}</span>
-              : <span className="errmsg">{message}</span>
-            )
-          }
+        <div className="mt-4">
+          <div className="d-grid mb-3">
+            <Button variant="primary" size="lg" onClick={(e) => submitLogin(e)}>
+              Login
+            </Button>
+          </div>
+          <div className="text-center">
+            {
+              isLoading 
+              ? <Spinner animation="border" />
+              : (
+                code >= 200 && code < 400
+                ? <span>{message}</span>
+                : <span className="errmsg">{message}</span>
+              )
+            }
+          </div>
         </div>
       </form>
     </div>

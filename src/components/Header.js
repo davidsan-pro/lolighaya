@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import moment from "moment";
 import "moment/locale/id";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Button, Row, Col } from "react-bootstrap";
 // import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,78 +12,110 @@ const Header = () => {
   // const curday = moment().locale('id').format('dddd');
   // const curdate = moment().format("DD-MM-YYYY");
   // const curtime = moment().format("HH:mm:ss");
-  const curdatetime = fn.formatDate(null, 'date-long');
+  const [searchParams] = useSearchParams({});
+  const curdatetime = fn.formatDate(new Date(), 'full-date');
   const navigate = useNavigate();
   const location = useLocation();
 
+  console.log('header location', location);
+  // const { id } = useParams();
+  const id = location.pathname.split('/').pop();
+  const idRute = searchParams.get('id_rute');
+  console.log('header asd1', id, idRute);
+
   const loginData = fn.getCurrentLogin();
 
-  // useEffect(() => {
-  //   setLoginData(JSON.parse(localStorage.getItem('loginData') || '{}'));
-  // }, []);
+  // const prevPath = props.location.state || '/dashboard';
+  // console.log('prevpath', prevPath);
 
   // console.log("location", location);
+  const pathurl = window.location.hash || window.location.pathname;
+  const arrHash = pathurl.split('/');
+  let curPageName = arrHash.length > 0 ? arrHash[1] : '';
+  curPageName = curPageName.split('?')[0];
+  // console.log('asd1', arrHash, curPageName);
   let title = "";
-  if (location.pathname === "/" || location.pathname === "") {
+  let prevPage = "";
+  if (curPageName === "" || !window.location.hash) {
     title = "Login";
-  } else if (location.pathname === "/dashboard") {
+  } else if (curPageName === "dashboard") {
     title = "Dashboard";
-  } else if (location.pathname.indexOf("/rute_list_toko") === 0) {
+  } else if (curPageName === "rute_list_toko") {
     title = "Daftar Toko di Rute";
-  } else if (location.pathname.indexOf("/rute_detail_toko") === 0) {
-    title = "Detail Rute - Toko";
-  } else if (location.pathname === "/pilih_hari") {
-    title = "Pilih Hari";
-  } else if (location.pathname === "/master") {
+    prevPage = "/dashboard";
+  } else if (curPageName === "rute_detail_toko") {
+    title = "Detail Toko di Rute";
+    prevPage = `/rute_list_toko/${id}`;
+  // } else if (curPageName === "pilih_hari") {
+  //   title = "Pilih Hari";
+  } else if (curPageName === "master") {
     title = "Menu Master";
-  } else if (location.pathname.indexOf("/view_user") === 0) {
+  } else if (curPageName === "view_user") {
     title = "Detail User";
-  } else if (location.pathname === "/master_user") {
+  } else if (curPageName === "master_user") {
     title = "Master User";
-  } else if (location.pathname === "/add_user") {
+  } else if (curPageName === "add_user") {
     title = "Tambah User";
-  } else if (location.pathname.indexOf("/edit_user") === 0) {
+  } else if (curPageName === "edit_user") {
     title = "Edit User";
-  } else if (location.pathname.indexOf("/view_barang") === 0) {
+  } else if (curPageName === "view_barang") {
     title = "Detail Barang";
-  } else if (location.pathname === "/master_barang") {
+  } else if (curPageName === "master_barang") {
     title = "Master Barang";
-  } else if (location.pathname === "/add_barang") {
+  } else if (curPageName === "add_barang") {
     title = "Tambah Barang";
-  } else if (location.pathname.indexOf("/edit_barang") === 0) {
+  } else if (curPageName === "edit_barang") {
     title = "Edit Barang";
-  } else if (location.pathname.indexOf("/view_toko") === 0) {
+  } else if (curPageName === "view_toko") {
     title = "Detail Toko";
-  } else if (location.pathname === "/master_toko") {
+    prevPage = `/rute_list_toko/${idRute}`;
+  } else if (curPageName === "master_toko") {
     title = "Master Toko";
-  } else if (location.pathname === "/add_toko") {
+  } else if (curPageName === "add_toko") {
     title = "Tambah Toko";
-  } else if (location.pathname.indexOf("/edit_toko") === 0) {
+  } else if (curPageName === "edit_toko") {
     title = "Edit Toko";
-  } else if (location.pathname === "/master_rute") {
+  } else if (curPageName === "master_rute") {
     title = "Master Rute";
-  } else if (location.pathname === "/add_rute") {
+  } else if (curPageName === "add_rute") {
     title = "Tambah Rute";
-  } else if (location.pathname.indexOf("/edit_rute") === 0) {
+  } else if (curPageName === "edit_rute") {
     title = "Edit Rute";
-  } else if (location.pathname.indexOf("/master_rute_list") === 0) {
+  } else if (curPageName === "master_rute_list") {
     title = "List Rute";
-  } else if (location.pathname.indexOf("/add_rute_list") === 0) {
-    title = "Tambah Rute - Toko";
-  } else if (location.pathname.indexOf("/master_edit_rute/") === 0) {
+  } else if (curPageName === "add_rute_list") {
+    title = "Ubah Rute - Tambah Toko";
+    prevPage = `/rute_list_toko/${id}`;
+  } else if (curPageName === "master_edit_rute") {
     title = "Master Edit Rute";
-  } else if (location.pathname.indexOf("/master_transaksi") === 0) {
+  } else if (curPageName === "master_transaksi") {
     title = "Master Transaksi";
-  } else if (location.pathname.indexOf("/add_transaksi_toko/") === 0) {
+  } else if (curPageName === "add_transaksi_toko") {
     title = "Transaksi Baru";
-  } else if (location.pathname.indexOf("/add_transaksi_list_barang/") === 0) {
+  } else if (curPageName === "add_transaksi_list_barang") {
     title = "Transaksi Baru<br/>Pilih Barang";
-  } else if (location.pathname.indexOf("/add_transaksi_detail_barang/") === 0) {
+  } else if (curPageName === "add_transaksi_detail_barang") {
     title = "Transaksi Baru<br/>Detail Barang";
-  } else if (location.pathname.indexOf("/histori_transaksi_toko/") === 0) {
+  } else if (curPageName === "histori_transaksi_toko") {
     title = "Histori Transaksi";
-  } else if (location.pathname.indexOf("/detail_histori_transaksi_toko/") === 0) {
+  } else if (curPageName === "detail_histori_transaksi_toko") {
     title = "Detail Histori Transaksi";
+  }
+  // console.log('title');
+  // {console.log('pathname', window.location.pathname)}
+  // {console.log('hash', window.location.hash)}
+  // {console.log('hasharr', window.location.hash.split('/'))}
+
+  const gotoPrevPage = () => {
+    console.log('backurl', searchParams.get('back_url'));
+    let goto = -1;
+    const backURL = searchParams.get('back_url');
+    if (backURL) {
+      goto = backURL;
+    } else if (prevPage) {
+      goto = prevPage;
+    }
+    navigate(goto);
   }
 
   return (
@@ -95,7 +127,7 @@ const Header = () => {
               // tombol Back hanya ditampilkan selain di hal.dashboard
               !["/", "/dashboard"].includes(location.pathname) 
               ? (
-                <Button variant="primary" className="ms-2 btn-lg" onClick={() => navigate(-1)}>
+                <Button variant="primary" className="ms-2 btn-lg" onClick={() => gotoPrevPage()}>
                   <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
                 </Button>
               ) 
@@ -103,19 +135,15 @@ const Header = () => {
             }
           </Col>
           <Col>
-              LoliGhaya
-            {/* <Link to="/">
-              LoliGhaya
-            </Link> */}
+            LoliGhaya
           </Col>
-          {/*console.log('asd1', loginData.id, location.pathname)*/}
           <Col className="align-right">
             {loginData.id && !["/"].includes(location.pathname) ? <Sidebar /> : ''}
           </Col>
         </Row>
       </header>
       <div className="container pb-1">
-        <div className="mb-1 fs-6">
+        <div className="ms-2 mb-1 fs-6">
           {curdatetime}
         </div>
         <h3 className="has-text-centered">

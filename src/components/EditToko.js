@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import * as fn from "../MyFunctions";
 
@@ -11,6 +11,9 @@ const EditToko = () => {
   const [foto, setFoto] = useState("");
   const [kecamatan, setKecamatan] = useState("");
   const [kota, setKota] = useState("");
+  const [searchParams] = useSearchParams({});
+
+  let backURL = searchParams.get('back_url') || "/master_toko";
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -30,10 +33,10 @@ const EditToko = () => {
     .then(res => {
       if (res.status === 200) {
         fn.showToastMsg(`Berhasil update data toko [${nama}]`);
+        navigate(backURL);
       }
     });
 
-    navigate("/master_toko");
   };
 
   useEffect(() => {

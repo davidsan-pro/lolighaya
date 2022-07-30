@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useLocation, useParams, useSearchParams, Link } from "react-router-dom";
-import { Button, Spinner } from "react-bootstrap";
+import { Table, Button, Spinner, Dropdown, DropdownButton, ButtonGroup, DropdownType } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import * as fn from "../MyFunctions";
 
 const RuteDetailToko = ({ onDelete }) => {
@@ -37,54 +39,100 @@ const RuteDetailToko = ({ onDelete }) => {
       {isLoading ? (
         <Spinner animation="border" />
       ) : (
-        <div className="card">
-          <div className="card-image">
-            <figure className="image is-4by3">
-              <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
-            </figure>
-          </div>
-          <div className="card-content">
-            <div className="media mb-1">
-              <div className="media-left">
-                <figure className="image is-48x48" style={{marginBottom:0}}>
-                  <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
-                </figure>
-              </div>
-              <div className="media-content">
-                <p className="title fs-4">{toko.nama}xxx</p>
-              </div>
+        <>
+          <div className="card">
+            <div className="card-image">
+              <figure className="image is-4by3">
+                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
+              </figure>
             </div>
-
-            <div className="content fs-7">
-              Alamat: {toko.alamat}
-              <br />
-              Lokasi: Kec.{toko.kecamatan}, {fn.ucasefirst(toko.kota)}
-              <br />
-              Telepon: {toko.telepon}
-            </div>
-
-            <div className="content">
-              <div className="is-flex is-align-items-flex-start is-flex-wrap-wrap">
-                <Link to={`/add_transaksi_toko/${id}?id_toko=${idToko}`}>
-                  <Button variant="primary" className="me-2 mb-2">
-                    Nota Baru
-                  </Button>
-                </Link>
-                <Button variant="success" className="me-2 mb-2">
-                  Histori Transaksi
-                </Button>
-                <Link to={`/edit_toko/${toko.id}?back_url=/view_toko/${toko.id}`}>
-                  <Button variant="info" className="me-2 mb-2">
-                    Edit Toko
-                  </Button>
-                </Link>
-                <Button variant="danger" className="me-2 mb-2" onClick={() => onDelete(toko.id, toko.nama)}>
-                  Delete
-                </Button>
+            <div className="card-content">
+              <div className="media mb-1">
+                <div className="media-left">
+                  <figure className="image is-48x48" style={{marginBottom:0}}>
+                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
+                  </figure>
+                </div>
+                <div className="media-content">
+                  <p className="title fs-4">{toko.nama}xxx</p>
+                </div>
               </div>
+
+              <div className="content fs-7">
+                Alamat: {toko.alamat}
+                <br />
+                Lokasi: Kec.{toko.kecamatan}, {fn.ucasefirst(toko.kota)}
+                <br />
+                Telepon: {toko.telepon}
+              </div>
+
             </div>
           </div>
-        </div>
+
+          <div className="mt-3 ms-2 mb-2 fw-bold is-flex is-justify-content-space-between">
+            <label>Daftar Transaksi</label>
+            <Button size="sm">Tambah Transaksi</Button>
+          </div>
+          {/* <div className="table-container"> */}
+            <Table bordered className="is-fullwidth">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th style={{width:"90%"}}>Ringkasan</th>
+                  <th style={{width:"50%"}}>Menu</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1.</td>
+                  <td>
+                    <div>{fn.formatDate(new Date(), 'datetime-std')}</div>
+                    <div className="fs-7">
+                      <span>Jml item: 5</span>
+                      <br/>
+                      <span>Total Nilai: Rp 500.000</span>
+                    </div>
+                  </td>
+                  <td className="text-center">
+                    {/* <DropdownButton
+                      as={ButtonGroup}
+                      key="primary"
+                      id={`dropdown-variants-primary`}
+                      variant="primary"
+                      title="primary"
+                    >
+                      <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                      <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
+                      <Dropdown.Item eventKey="3" active>
+                        Active Item
+                      </Dropdown.Item>
+                      <Dropdown.Divider />
+                      <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+                    </DropdownButton> */}
+
+
+                    <Dropdown className="no-arrow">
+                      <Dropdown.Toggle id="dropdown-button-dark-example1" className="no-arrow">
+                        <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item as={Link} to={`/add_transaksi_toko/${id}?id_toko=${idToko}`}>
+                          Lanjutkan Nota
+                        </Dropdown.Item>
+                        {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item href="#/action-4">Separated link</Dropdown.Item> */}
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+          {/* </div> */}
+        </>
+
       )}
     </div>
   );

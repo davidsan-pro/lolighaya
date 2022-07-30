@@ -32,6 +32,7 @@ import HistoriTransaksiToko from "./components/HistoriTransaksiToko";
 import DetailHistoriTransaksiToko from "./components/DetailHistoriTransaksiToko";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AddTransaksiTokoListNota from "./components/AddTransaksiTokoListNota";
 
 const App = () => {
   const [showPrev, setShowPrev] = useState(false);
@@ -51,6 +52,7 @@ const App = () => {
           <Route path="/rute_list_toko/:id" element={<RuteListToko />} />
           <Route path="/rute_detail_toko/:id" element={<RuteDetailToko />} />
           <Route path="/add_transaksi_toko/:id" element={<AddTransaksiTokoCart />} />
+          <Route path="/add_transaksi_toko_nota/:id" element={<AddTransaksiTokoListNota />} />
           <Route path="/add_transaksi_list_barang/:id" element={<AddTransaksiListBarang />} />
           <Route path="/add_transaksi_detail_barang/:id" element={<AddTransaksiDetailBarang />} />
           <Route path="/histori_transaksi_toko/:id" element={<HistoriTransaksiToko />} />

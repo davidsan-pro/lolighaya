@@ -69,6 +69,10 @@ Link:hover {
   z-index: 50;
 }
 
+.dropdown-toggle.no-arrow::after {
+  display: none !important;
+}
+
 .ellipsis {
   text-overflow: ellipsis;
 }

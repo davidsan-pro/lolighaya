@@ -93,6 +93,9 @@ const Header = () => {
   } else if (curPageName === "add_transaksi_toko") {
     title = "Transaksi Baru";
     prevPage = `/rute_list_toko/${id}`;
+  } else if (curPageName === "add_transaksi_toko_nota") {
+    title = "Transaksi Baru";
+    prevPage = `/rute_list_toko/${id}`;
   } else if (curPageName === "add_transaksi_list_barang") {
     title = "Transaksi Baru<br/>Pilih Barang";
     prevPage = `/add_transaksi_toko/${id}`;

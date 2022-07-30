@@ -71,10 +71,39 @@ const Login = () => {
   return (
     <div className="container">
       {/* <div>
-        <Button onClick={() => fn.sendWhatsApp('081382522328', 'test pesan wa timestamp:'+fn.formatDate(null, 'full-std'))}>
-          test WA {fn.formatDate(null, 'full-std')}
+        <Button onClick={() => fn.componentToImage('asd1', 'asd001')}>
+          save as jpg
         </Button>
+      </div>
+      <div id="asd1" style={{backgroundColor:"#FFF", color:"#000"}}>
+        <table>
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Name</th>
+              <th>Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1.</td>
+              <td>budi</td>
+              <td>123456</td>
+            </tr>
+            <tr>
+              <td>2.</td>
+              <td>andre</td>
+              <td>111222</td>
+            </tr>
+            <tr>
+              <td>3.</td>
+              <td>sisil</td>
+              <td>123123</td>
+            </tr>
+          </tbody>
+        </table>
       </div> */}
+
       <form>
         <div className="field">
           <label className="label">Username</label>

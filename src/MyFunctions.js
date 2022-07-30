@@ -2,6 +2,8 @@
 import * as XLSX from "xlsx";
 import { toast } from "react-toastify";
 import { Linking } from "react-native";
+import * as htmlToImage from 'html-to-image';
+import { toJpeg } from 'html-to-image';
 // import { useLocation } from "react-router-dom";
 
 export function getBaseUrl() {
@@ -93,6 +95,16 @@ export function formatDate(string=null, mode='full') {
   else if (mode === 'full-std') {
     dateOptions = {
       weekday: 'long', 
+      year: 'numeric', 
+      month: '2-digit', 
+      day: '2-digit', 
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    }
+  }
+  else if (mode === 'datetime-std') {
+    dateOptions = {
       year: 'numeric', 
       month: '2-digit', 
       day: '2-digit', 
@@ -212,15 +224,16 @@ export function sendWhatsApp(phone='', msg='') {
       Linking.openURL(url).then((data) => {
         console.log('WhatsApp Opened');
       }).catch(() => {
-        alert('Make sure WhatsApp installed on your device');
+        alert('Please make sure WhatsApp installed on your device');
       });
     } else {
       alert('Please insert message to send');
     }
   } else {
-    alert('Please insert mobile no');
+    alert('Please insert mobile number');
   }
 }
+// end export function sendWhatsApp
 
 export function ltrim(val, char='') {
   let string = val.toString();
@@ -228,4 +241,15 @@ export function ltrim(val, char='') {
       string = string.substr(1, string.length-1)
   }
   return string;
+}
+
+export function componentToImage(elemID, filename) {
+  filename += '_' + formatDate(null, 'datetime-std');
+  htmlToImage.toJpeg(document.getElementById(elemID), { quality: 0.95 })
+  .then(function (dataUrl) {
+    var link = document.createElement('a');
+    link.download = `${filename}.jpeg`;
+    link.href = dataUrl;
+    link.click();
+  });
 }

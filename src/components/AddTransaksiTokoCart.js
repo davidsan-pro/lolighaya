@@ -20,6 +20,7 @@ const AddTransaksiTokoCart = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const idToko = searchParams.get("id_toko"); // id toko
+  const idTrx = searchParams.get("id_trx"); // id transaksi (hanya ada saat mengedit trx lama)
 
   let localCart = JSON.parse(localStorage.getItem('cartList') || '[]');
 
@@ -164,16 +165,31 @@ const AddTransaksiTokoCart = () => {
     <>
       <div className="container">
         <div className="mb-3 fs-5">
-          Ringkasan Nota baru untuk [
-            {
-              isLoadingInfoToko 
-              ? <Spinner animation="border" /> 
-              : <span className="fw-bold">{dataToko.nama}</span>
-            }
-          ]
+          {console.log('asd', isLoadingInfoToko, dataToko)}
+          {
+            (() => {
+              if (isLoadingInfoToko)
+                return <Spinner animation="border" />;
+              if (parseInt(idTrx|0) > 0)
+                return <span>Ringkasan Nota <strong>{idTrx}</strong> untuk [<strong>{dataToko.nama}</strong>]</span>
+              if (parseInt(idToko|0) > 0)
+              return <span>Ringkasan Nota Baru untuk [<strong>{dataToko.nama}</strong>]</span>
+            })()
+            // idTrx
+            // ? (
+            //   'halo'
+            // )
+            // : (
+            //   `Ringkasan Nota baru untuk ${[
+            //     isLoadingInfoToko 
+            //     ? <Spinner animation="border" /> 
+            //     : <span className="fw-bold">{dataToko.nama}</span>
+            //   ]}`
+            // )
+          }
         </div>
         <div className="mb-3">
-          <Link to={`/add_transaksi_list_barang/${id}?id_toko=${idToko}`}>
+          <Link to={`/add_transaksi_toko_nota/${id}?id_toko=${idToko}`}>
             <Button variant="primary">Pilih Barang</Button>
           </Link>
         </div>

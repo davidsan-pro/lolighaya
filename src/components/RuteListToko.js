@@ -12,10 +12,7 @@ const RuteListToko = () => {
   const [searchParams] = useSearchParams({});
 
   const { id } = useParams();
-  // console.log('asdasd', location.pathname, location.pathname.split('/'));
-  // const id = location.pathname.split('/').pop();
   console.log('rutelisttoko', id);
-  const location = useLocation();
   // let myCart = localStorage.getItem('cartList');
   // console.log(new Date());
 

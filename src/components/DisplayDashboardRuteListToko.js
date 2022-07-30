@@ -73,6 +73,13 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
                                 <Dropdown.Item className="link is-danger" onClick={() => onDelete(id, item.nama)}>
                                   Hapus dari Rute
                                 </Dropdown.Item>
+                                <Dropdown.Divider />
+                                <Dropdown.Item as={Link} to="/">
+                                  Tambah Toko Sebelum Toko Ini
+                                </Dropdown.Item>
+                                <Dropdown.Item as={Link} to="/">
+                                  Tambah Toko Setelah Toko Ini
+                                </Dropdown.Item>
 
                                 {/* <Dropdown.Item href="/histori_trx">Histori Nota</Dropdown.Item>
                                 <Dropdown.Item href={`/edit_toko/${item.id}`}>Edit Toko</Dropdown.Item>

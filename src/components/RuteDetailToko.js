@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { useLocation, useParams, useSearchParams, Link } from "react-router-dom";
 import { Table, Button, Spinner, Dropdown, DropdownButton, ButtonGroup, DropdownType } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import * as fn from "../MyFunctions";
 
 const RuteDetailToko = ({ onDelete }) => {
   const [toko, setToko] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [nota, setNota] = useState([]);
+  const [isLoadingToko, setIsLoadingToko] = useState(true);
+  const [isLoadingNota, setIsLoadingNota] = useState(true);
 
   const { id } = useParams(); // id rute
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,10 +18,11 @@ const RuteDetailToko = ({ onDelete }) => {
 
   useEffect(() => {
     getToko();
+    getDataNota();
   }, []);
 
   const getToko = async (query = "") => {
-    setIsLoading(true);
+    setIsLoadingToko(true);
 
     let myurl = `${fn.getBaseUrl()}/toko/${idToko}`;
     if (query) {
@@ -31,12 +34,29 @@ const RuteDetailToko = ({ onDelete }) => {
     // console.log('data', data);
     setToko(data);
 
-    setIsLoading(false);
+    setIsLoadingToko(false);
   };
+
+  const getDataNota = async () => {
+    setIsLoadingNota(true);
+    let myurl = "/Mtransaksi";
+    let qsArr = [];
+    qsArr.push(`qf[]=id_toko&qv[]=${idToko}`);
+    qsArr.push(`gb[]=id`);
+    qsArr.push(`sb_field[]=id&sb_mode[]=desc`);
+    console.log(myurl, qsArr);
+    myurl = fn.prepURL(myurl, qsArr);
+    console.log('getdatanota url', myurl);
+    const response = await fetch(myurl);
+    const data = await response.json();
+    console.log("getdatanota data1", data);
+    setNota(data);
+    setIsLoadingNota(false);
+  }
 
   return (
     <div>
-      {isLoading ? (
+      {isLoadingToko ? (
         <Spinner animation="border" />
       ) : (
         <>
@@ -73,63 +93,64 @@ const RuteDetailToko = ({ onDelete }) => {
             <label>Daftar Transaksi</label>
             <Button size="sm">Tambah Transaksi</Button>
           </div>
-          {/* <div className="table-container"> */}
-            <Table bordered className="is-fullwidth">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th style={{width:"90%"}}>Ringkasan</th>
-                  <th style={{width:"50%"}}>Menu</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1.</td>
-                  <td>
-                    <div>{fn.formatDate(new Date(), 'datetime-std')}</div>
-                    <div className="fs-7">
-                      <span>Jml item: 5</span>
-                      <br/>
-                      <span>Total Nilai: Rp 500.000</span>
-                    </div>
-                  </td>
-                  <td className="text-center">
-                    {/* <DropdownButton
-                      as={ButtonGroup}
-                      key="primary"
-                      id={`dropdown-variants-primary`}
-                      variant="primary"
-                      title="primary"
-                    >
-                      <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                      <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                      <Dropdown.Item eventKey="3" active>
-                        Active Item
-                      </Dropdown.Item>
-                      <Dropdown.Divider />
-                      <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-                    </DropdownButton> */}
 
-
-                    <Dropdown className="no-arrow">
-                      <Dropdown.Toggle id="dropdown-button-dark-example1" className="no-arrow">
-                        <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item as={Link} to={`/add_transaksi_toko/${id}?id_toko=${idToko}`}>
-                          Lanjutkan Nota
-                        </Dropdown.Item>
-                        {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item href="#/action-4">Separated link</Dropdown.Item> */}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
+          {
+            nota.length > 0
+            ? (
+              <Table bordered className="is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th style={{width:"90%"}}>Ringkasan</th>
+                    <th style={{width:"50%"}}>Menu</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    nota.map((item, index) => (
+                      <tr key={item.id}  style={item.nilai_transaksi > 0 ? {backgroundColor:"rgba(160, 240, 160, 0.8)"} : ""}>
+                        <td>{index+1}.</td>
+                        <td>
+                          <div className="fs-6">
+                            <span className="me-2">
+                              {fn.formatDate(item.created_at, 'full-std')}
+                            </span>
+                          </div>
+                          <div className="fs-7">
+                            <span>Jumlah Jenis Item: {fn.thousandSeparator(item.jum_jenis_brg)}</span>
+                            <br/>
+                            <span>Total Nilai: Rp {fn.thousandSeparator(item.nilai_transaksi)}</span>
+                          </div>
+                        </td>
+                        <td className="text-center">
+                          <Dropdown className="no-arrow">
+                            <Dropdown.Toggle id="dropdown-button-dark-example1" className="no-arrow">
+                              <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+                            </Dropdown.Toggle>
+    
+                            <Dropdown.Menu>
+                              <Dropdown.Item 
+                              as={Link} 
+                              to={`/add_transaksi_toko/${id}?id_toko=${idToko}&id_trx=${item.id}`} 
+                              // disabled={item.nilai_transaksi > 0 ? "disabled" : ""}
+                              >
+                                Lanjutkan Nota
+                              </Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
+                        </td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </Table>
+            )
+            : (
+              <div className="ms-2 fst-italic">
+                Belum ada data transaksi
+              </div>
+            )
+          }
           {/* </div> */}
         </>
 

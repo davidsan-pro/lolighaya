@@ -26,7 +26,11 @@ const AddTransaksiTokoCart = () => {
 
   useEffect(() => {
     getDataToko();
-    getDataCart();
+    if (idTrx) {
+      getDataNota();
+    } else {
+      getDataCart();
+    }
   }, []);
 
   useEffect(() => {
@@ -43,6 +47,20 @@ const AddTransaksiTokoCart = () => {
     });
     setCartItems(arrCart);
     // hitungTotal();
+    setIsLoadingCartData(false);
+  }
+
+  const getDataNota = async () => {
+    setIsLoadingCartData(true);
+    let myurl = `${fn.getBaseUrl()}/Dtransaksi?qf=id_transaksi&qv=${idTrx}`;
+    console.log('getdatanota myurl', myurl);
+    const response = await fetch(myurl);
+    const data = await response.json();
+    data.forEach(item => {
+      item.nama = item.nama_barang;
+    });
+    console.log('getdatanota data', data);
+    setCartItems(data);
     setIsLoadingCartData(false);
   }
 
@@ -70,18 +88,20 @@ const AddTransaksiTokoCart = () => {
     setIsLoadingInfoToko(false);
   };
 
-  const handleOnChangeInput = (id, field, value) => {
+  const handleOnChangeInput = (itemID, field, value) => {
     // console.log('asd0', cartItems);
     // console.log('change item', id, field, value);
     value = value.toString().replace(/\D/g,'');
+    console.log('asd1', id, itemID, cartItems[0]);
     let updatedItems = cartItems.map(item => {
       item.id_toko = idToko;
-      if (item.id === id) {
+      if (item.id === itemID) {
         if (field === 'titip') {
           item.titip = value;
         }
         if (field === 'sisa') {
           item.sisa = value;
+          item.subtotal = item.laku * item.harga;
         }
         if (field === 'laku') {
           item.laku = value;
@@ -94,10 +114,12 @@ const AddTransaksiTokoCart = () => {
         if (field === 'subtotal') {
           item.subtotal = value;
         }
+        console.log('item', field, item.titip - item.sisa)
+        // console.log('item', field, item.titip, item.sisa, item.laku, item.harga, item.subtotal);
       }
       return item;
     });
-    console.log('asd1', updatedItems);
+    console.log('asd2', updatedItems);
     setCartItems(updatedItems);
     localStorage.setItem('cartList', JSON.stringify(updatedItems));
   }
@@ -112,6 +134,8 @@ const AddTransaksiTokoCart = () => {
   }
 
   const selectAllText = (e) => {
+    let str = e.target.value;
+    e.target.value = str.replace(/\D/g,'');
     e.target.select();
   }
 
@@ -175,17 +199,6 @@ const AddTransaksiTokoCart = () => {
               if (parseInt(idToko|0) > 0)
               return <span>Ringkasan Nota Baru untuk [<strong>{dataToko.nama}</strong>]</span>
             })()
-            // idTrx
-            // ? (
-            //   'halo'
-            // )
-            // : (
-            //   `Ringkasan Nota baru untuk ${[
-            //     isLoadingInfoToko 
-            //     ? <Spinner animation="border" /> 
-            //     : <span className="fw-bold">{dataToko.nama}</span>
-            //   ]}`
-            // )
           }
         </div>
         <div className="mb-3">
@@ -204,7 +217,7 @@ const AddTransaksiTokoCart = () => {
                   cartItems.map((item, index) => (
                     <Card.Body key={item.id}>
                       <Card.Text className="fw-bold mb-2">
-                        <span className="me-2">{item.nama}</span>
+                        <span className="me-2">{index+1}. {item.nama}</span>
                         <Button size="sm" variant="danger" onClick={() => handleDelete(item.id)}>Hapus</Button>
                       </Card.Text>
                       <Card.Text className="mb-1 is-flex is-justify-content-space-between">
@@ -229,9 +242,10 @@ const AddTransaksiTokoCart = () => {
                         <span className="me-2">Laku:</span>
                         <input type="text"
                         id={`laku-${item.id}`}
-                        value={fn.thousandSeparator(item.laku)}
+                        value={fn.thousandSeparator(item.titip - item.sisa)}
                         onChange={(e) => handleOnChangeInput(item.id, 'laku', e.target.value)}
                         onFocus={selectAllText}
+                        readOnly="readonly"
                         />
                       </Card.Text>
                       <Card.Text className="mb-1 is-flex is-justify-content-space-between">
@@ -249,7 +263,7 @@ const AddTransaksiTokoCart = () => {
                         <input type="text"
                         style={{textAlign:"right"}}
                         id={`subtotal-${item.id}`}
-                        value={fn.thousandSeparator(item.laku * item.harga)}
+                        value={fn.thousandSeparator((item.titip - item.sisa) * item.harga)}
                         onChange={(e) => handleOnChangeInput(item.id, 'subtotal', e.target.value)}
                         />
                       </Card.Text>

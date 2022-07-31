@@ -2,8 +2,8 @@
 import * as XLSX from "xlsx";
 import { toast } from "react-toastify";
 import { Linking } from "react-native";
-import * as htmlToImage from 'html-to-image';
-import { toJpeg } from 'html-to-image';
+// import * as htmlToImage from 'html-to-image';
+// import { toJpeg } from 'html-to-image';
 // import { useLocation } from "react-router-dom";
 
 export function getBaseUrl() {
@@ -243,13 +243,22 @@ export function ltrim(val, char='') {
   return string;
 }
 
-export function componentToImage(elemID, filename) {
-  filename += '_' + formatDate(null, 'datetime-std');
-  htmlToImage.toJpeg(document.getElementById(elemID), { quality: 0.95 })
-  .then(function (dataUrl) {
-    var link = document.createElement('a');
-    link.download = `${filename}.jpeg`;
-    link.href = dataUrl;
-    link.click();
-  });
+// export function componentToImage(elemID, filename) {
+//   filename += '_' + formatDate(null, 'datetime-std');
+//   htmlToImage.toJpeg(document.getElementById(elemID), { quality: 0.95 })
+//   .then(function (dataUrl) {
+//     var link = document.createElement('a');
+//     link.download = `${filename}.jpeg`;
+//     link.href = dataUrl;
+//     link.click();
+//   });
+// }
+
+export function prepURL(urlPart, qsArr=[]) {
+  let myurl = `${getBaseUrl()}${urlPart}`;
+  if (qsArr.length > 0) {
+    const qs = qsArr.join('&');
+    myurl += `?${qs}`;
+  }
+  return myurl;
 }

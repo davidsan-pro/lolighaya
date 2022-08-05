@@ -33,6 +33,8 @@ import DetailHistoriTransaksiToko from "./components/DetailHistoriTransaksiToko"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddTransaksiTokoListNota from "./components/AddTransaksiTokoListNota";
+import ForgotUserPassword from "./components/ForgotUserPassword";
+import TransaksiNota from "./components/TransaksiNota";
 
 const App = () => {
   const [showPrev, setShowPrev] = useState(false);
@@ -48,9 +50,11 @@ const App = () => {
           {/* <Route path="/" element={<Login />} /> */}
           {/* <Route path="/pilih_hari" element={<PilihHari />} /> */}
           <Route path="/" element={<Login />} />
+          <Route path="/forgot_password" element={<ForgotUserPassword />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/rute_list_toko/:id" element={<RuteListToko />} />
           <Route path="/rute_detail_toko/:id" element={<RuteDetailToko />} />
+          <Route path="/transaksi_nota/:id" element={<TransaksiNota />} />
           <Route path="/add_transaksi_toko/:id" element={<AddTransaksiTokoCart />} />
           <Route path="/add_transaksi_toko_nota/:id" element={<AddTransaksiTokoListNota />} />
           <Route path="/add_transaksi_list_barang/:id" element={<AddTransaksiListBarang />} />

@@ -38,6 +38,8 @@ const Header = () => {
   let prevPage = "";
   if (curPageName === "" || !window.location.hash) {
     title = "Login";
+  } else if (curPageName === "forgot_password") {
+    title = "Reset Password User";
   } else if (curPageName === "dashboard") {
     title = "Dashboard";
   } else if (curPageName === "rute_list_toko") {
@@ -109,7 +111,7 @@ const Header = () => {
   } else if (curPageName === "detail_histori_transaksi_toko") {
     title = "Detail Histori Transaksi";
   }
-  // console.log('title');
+  // console.log('title', title);
   // {console.log('pathname', window.location.pathname)}
   // {console.log('hash', window.location.hash)}
   // {console.log('hasharr', window.location.hash.split('/'))}
@@ -129,8 +131,8 @@ const Header = () => {
   return (
     <>
       <header className="fs-2 fw-bold pb-1 mb-2" style={{ backgroundColor: "royalblue", color: "#fff" }}>
-        <Row className="is-flex is-align-items-center">
-          <Col>
+        <div className="is-flex is-justify-content-space-between">
+          <div>
             {
               // tombol Back hanya ditampilkan selain di hal.dashboard
               !["/", "/dashboard"].includes(location.pathname) 
@@ -139,16 +141,38 @@ const Header = () => {
                   <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
                 </Button>
               ) 
-              : ''
+              : <Button style={{opacity:"0"}} className="btn-lg hidden">
+                  <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
+                </Button>
+            }
+          </div>
+          <div>
+            <span>LoliGhaya</span>
+          </div>
+          <div>
+            {loginData.id && !["/"].includes(location.pathname) ? <Sidebar /> : ''}
+          </div>
+        </div>
+        {/* <Row className="is-flex is-align-items-center">
+          <Col xs={4}>
+            {
+              // tombol Back hanya ditampilkan selain di hal.dashboard
+              !["/", "/dashboard"].includes(location.pathname) 
+              ? (
+                <Button variant="primary" className="ms-2 btn-lg" onClick={() => gotoPrevPage()}>
+                  <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
+                </Button>
+              ) 
+              : <div>&nbsp;</div>
             }
           </Col>
-          <Col>
+          <Col xs={4}>
             LoliGhaya
           </Col>
-          <Col className="align-right">
+          <Col className="align-right" xs={4}>
             {loginData.id && !["/"].includes(location.pathname) ? <Sidebar /> : ''}
           </Col>
-        </Row>
+        </Row> */}
       </header>
       <div className="container pb-1">
         <div className="ms-2 mb-1 fs-6">

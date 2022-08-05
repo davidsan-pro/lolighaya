@@ -73,6 +73,7 @@ const Sidebar = () => {
                     Edit Profile
                   </Button>
                 </Link>
+                <br />
                 <Link to={loginData.id !== '' ? '/dashboard' : '/'} onClick={() => setShow(false)}>
                   <Button variant="primary">
                     <FontAwesomeIcon icon="fa-solid fa-home" className="me-2"/>
@@ -81,7 +82,7 @@ const Sidebar = () => {
                 </Link>
               </Card.Text>
               <Button variant="link" 
-              className="fc-danger link" 
+              className="text-danger link" 
               onClick={() => handleLogout()}>
                 <FontAwesomeIcon icon="fa-solid fa-times" className="me-2"/>
                 Logout

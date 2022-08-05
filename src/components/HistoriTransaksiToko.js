@@ -6,6 +6,8 @@ import { DropdownType, DropdownButton, SplitButton, Dropdown, ButtonGroup } from
 import DatePicker from "react-datepicker";
 import "../../node_modules/react-datepicker/dist/react-datepicker.css";
 import Pagination from "./Pagination";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import * as fn from "../MyFunctions";
 
 const HistoriTransaksiToko = () => {
@@ -173,6 +175,7 @@ const HistoriTransaksiToko = () => {
                     <th>Tanggal</th>
                     <th>Username</th>
                     <th>Total</th>
+                    <th>Menu</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -183,6 +186,29 @@ const HistoriTransaksiToko = () => {
                         <td>{item.username}</td>
                         <td className="align-right">
                           Rp {fn.thousandSeparator(item.nilai_transaksi)}
+                        </td>
+                        <td>
+                          {[DropdownButton].map((DropdownType, idx) => (
+                            <DropdownType
+                              as={ButtonGroup}
+                              key={idx}
+                              id={`dropdown-button-drop-${idx}`}
+                              size="sm"
+                              variant="info"
+                              className="no-arrow"
+                              title={
+                                <FontAwesomeIcon icon={faBars} />
+                              }
+                            >
+                              <Dropdown.Item 
+                                eventKey="1" 
+                                value="newest"
+                                className="no-arrow"
+                              >
+                                Kirim ke WhatsApp
+                              </Dropdown.Item>
+                            </DropdownType>
+                          ))}
                         </td>
                       </tr>
                     ))

@@ -43,6 +43,7 @@ const AddTransaksiTokoCart = () => {
     let arrCart = JSON.parse(localStorage.getItem('cartList') || '[]');
     console.log('getdatacart', arrCart);
     arrCart = arrCart.filter(function(item) {
+      item.subtotal = (item.titip - item.sisa) * item.harga;
       return item.id_toko.toString() === idToko;
     });
     setCartItems(arrCart);
@@ -58,6 +59,7 @@ const AddTransaksiTokoCart = () => {
     const data = await response.json();
     data.forEach(item => {
       item.nama = item.nama_barang;
+      item.subtotal = (item.titip - item.sisa) * item.harga;
     });
     console.log('getdatanota data', data);
     setCartItems(data);
@@ -189,13 +191,13 @@ const AddTransaksiTokoCart = () => {
     <>
       <div className="container">
         <div className="mb-3 fs-5">
-          {console.log('asd', isLoadingInfoToko, dataToko)}
+          {/* console.log('asd', isLoadingInfoToko, dataToko) */}
           {
             (() => {
               if (isLoadingInfoToko)
                 return <Spinner animation="border" />;
               if (parseInt(idTrx|0) > 0)
-                return <span>Ringkasan Nota <strong>{idTrx}</strong> untuk [<strong>{dataToko.nama}</strong>]</span>
+                return <span>Ringkasan Nota <strong>{idTrx.padStart(4, '0')}</strong> untuk [<strong>{dataToko.nama}</strong>]</span>
               if (parseInt(idToko|0) > 0)
               return <span>Ringkasan Nota Baru untuk [<strong>{dataToko.nama}</strong>]</span>
             })()

@@ -69,7 +69,7 @@ Link:hover {
   z-index: 50;
 }
 
-.dropdown-toggle.no-arrow::after {
+.no-arrow::after {
   display: none !important;
 }
 
@@ -112,6 +112,9 @@ Link:hover {
 
 .hidden {
   opacity: 0;
+}
+.hidden:hover {
+  cursor: default;
 }
 
 .link {

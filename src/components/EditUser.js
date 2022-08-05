@@ -6,6 +6,8 @@ import * as fn from "../MyFunctions";
 const EditUser = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [newPasswordConfirmation, setNewPasswordConfirmation] = useState("");
   const [nama, setNama] = useState("");
   const [email, setEmail] = useState("");
   const [telepon, setTelepon] = useState("");
@@ -16,7 +18,8 @@ const EditUser = () => {
   const updateUser = async (e) => {
     e.preventDefault();
 
-    const user = { username, password, nama, email, telepon };
+    const user = { username, nama, email, telepon };
+    
     await fetch(`${fn.getBaseUrl()}/users/${id}`, {
       method: 'PUT',
       body: JSON.stringify(user),
@@ -40,26 +43,21 @@ const EditUser = () => {
   }, []);
 
   const getUserById = async () => {
-    const myurl = `${fn.getBaseUrl()}/users/${id}`; // http://localhost:8080/users/2
+    const myurl = fn.prepURL(`/users/${id}`); // http://localhost:8080/users/2
     const response = await fetch(myurl);
     const data = await response.json();
     setUsername(data.username);
-    setPassword(data.password);
     setNama(data.nama);
     setEmail(data.email);
     setTelepon(data.telepon);
   };
 
   return (
-    <div className="container">
+    <div className="ms-2 me-2">
       <form onSubmit={updateUser}>
         <div className="field">
           <label className="label">Username</label>
           <label>{username}</label>
-        </div>
-        <div className="field">
-          <label className="label">Password</label>
-          <input type="password" className="input" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <div className="field">
           <label className="label">Nama</label>
@@ -73,6 +71,21 @@ const EditUser = () => {
           <label className="label">No.Telepon</label>
           <input type="text" className="input" placeholder="nomor telepon" value={telepon} onChange={(e) => setTelepon(e.target.value)} />
         </div>
+        <hr />
+        <div className="field">
+          <label className="label">Password Baru</label>
+          <input type="password" className="input" placeholder="password baru" onChange={(e) => setNewPassword(e.target.value)} />
+        </div>
+        <div className="field">
+          <label className="label">Ulangi Password Baru</label>
+          <input type="password" className="input" placeholder="ulangi password baru" onChange={(e) => setNewPasswordConfirmation(e.target.value)} />
+        </div>
+        <hr />
+        <div className="field">
+          <label className="label">Password</label>
+          <input type="password" className="input" placeholder="password saat ini" onChange={(e) => setPassword(e.target.value)} />
+        </div>
+
         <Button variant="primary" type="submit">Update</Button>
       </form>
     </div>

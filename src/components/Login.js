@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Spinner, Button } from "react-bootstrap";
+import { useCookies } from "react-cookie";
 import * as fn from "../MyFunctions";
 
 const Login = () => {
@@ -9,6 +10,7 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const [code, setCode] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(['message']);
 
   const navigate = useNavigate();
   // console.log('login page');
@@ -21,6 +23,11 @@ const Login = () => {
   //   // tiap kali masuk k hal.login ini, kosongkan localStorage 'loginData'nya
   //   localStorage.setItem('loginData', JSON.stringify(loginData));
   // }, [loginData]);
+  console.log('cookie', cookies.message || '');
+  if (cookies.message) {
+    setMessage(cookies.message); // display the cookie using 'message' state variable
+    cookies.remove('message'); // delete the cookie after storing it in the state variable
+  }
 
   const submitLogin = async () => {
     setIsLoading(true);
@@ -28,7 +35,8 @@ const Login = () => {
       username: username, 
       password: password 
     };
-    const myurl = `${fn.getBaseUrl()}/users/login`;
+    const myurl = fn.prepURL('/users/login');
+    console.log('submitlogin', myurl, data);
     await fetch(myurl, {
       method: "POST",
       body: JSON.stringify(data),
@@ -38,7 +46,7 @@ const Login = () => {
     })
       .then(response => response.json())
       .then(res => {
-        // console.log('res login', res);
+        // console.log('res login', res); return;
         setCode(res.status);
         if (res.status === 201) {
           setMessage(res.message);
@@ -68,41 +76,14 @@ const Login = () => {
       });
   };
 
+  const handleClickBtn = (e) => {
+    if (e.target.id === 'forgot_password_btn') {
+      navigate('/forgot_password');
+    }
+  }
+
   return (
     <div className="container">
-      {/* <div>
-        <Button onClick={() => fn.componentToImage('asd1', 'asd001')}>
-          save as jpg
-        </Button>
-      </div>
-      <div id="asd1" style={{backgroundColor:"#FFF", color:"#000"}}>
-        <table>
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>Name</th>
-              <th>Phone</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1.</td>
-              <td>budi</td>
-              <td>123456</td>
-            </tr>
-            <tr>
-              <td>2.</td>
-              <td>andre</td>
-              <td>111222</td>
-            </tr>
-            <tr>
-              <td>3.</td>
-              <td>sisil</td>
-              <td>123123</td>
-            </tr>
-          </tbody>
-        </table>
-      </div> */}
 
       <form>
         <div className="field">
@@ -117,18 +98,7 @@ const Login = () => {
           <div className="control">
             <input className="input" type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
-          {/* <p className="help is-success">This username is available</p> */}
         </div>
-
-        {/* <div className="field">
-          <div className="control">
-            <label className="checkbox">
-              <input type="checkbox" />
-              <span className="ps-2">Remember me</span>
-            </label>
-          </div>
-          <hr />
-        </div> */}
 
         <div className="mt-4">
           <div className="d-grid mb-3">
@@ -147,6 +117,15 @@ const Login = () => {
               )
             }
           </div>
+        </div>
+
+        <div>
+          <Button variant="link"
+          className="ps-0"
+          id="forgot_password_btn" 
+          onClick={(e) => handleClickBtn(e)}>
+            Forgot Password?
+          </Button>
         </div>
       </form>
     </div>

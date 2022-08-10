@@ -48,8 +48,12 @@ const Header = () => {
   } else if (curPageName === "rute_detail_toko") {
     title = "Detail Toko di Rute";
     prevPage = `/rute_list_toko/${id}`;
-  // } else if (curPageName === "pilih_hari") {
-  //   title = "Pilih Hari";
+    // } else if (curPageName === "pilih_hari") {
+      //   title = "Pilih Hari";
+  } else if (curPageName === "checkout_transaksi") {
+    title = "Ringkasan Nota";
+  } else if (curPageName === "transaksi_detail") {
+    title = "Detail Transaksi";
   } else if (curPageName === "master") {
     title = "Menu Master";
   } else if (curPageName === "view_user") {
@@ -100,7 +104,7 @@ const Header = () => {
     prevPage = `/rute_list_toko/${id}`;
   } else if (curPageName === "add_transaksi_list_barang") {
     title = "Transaksi Baru<br/>Pilih Barang";
-    prevPage = `/add_transaksi_toko/${id}`;
+    prevPage = `/checkout_transaksi/${id}`;
     if (searchParams.get('id_toko')) {
       prevPage += `?id_toko=${searchParams.get('id_toko')}`;
     }

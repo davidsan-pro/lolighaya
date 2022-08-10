@@ -48,7 +48,7 @@ const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
       // console.log('arrcart1', arrCart);
       localStorage.setItem('cartList', JSON.stringify(arrCart));
     }
-    const href = `/add_transaksi_toko/${idRute}?id_toko=${idToko}`;
+    const href = `/checkout_transaksi/${idRute}?id_toko=${idToko}`;
     console.log('href', href);
     // // const selected = e.target.id;
     // // const arr = e.target.id.split('-');
@@ -90,7 +90,7 @@ const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
     // //make cart a string and store in local space
     // localStorage.setItem("cartList", JSON.stringify(cartCopy));
 
-    // navigate(`/add_transaksi_toko/${id}?id_toko=${idToko}`);
+    // navigate(`/checkout_transaksi/${id}?id_toko=${idToko}`);
   }
 
   return (

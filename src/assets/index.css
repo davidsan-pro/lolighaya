@@ -204,8 +204,29 @@ Table tr > td:first-child,
 Table tr > th:first-child {
   padding-left: 1rem;
   width: 1%;
+  border-left-width: 0;
+}
+
+Table th:not(:last-child),
+Table td:not(:last-child) {
+  border-right-width: 1px;
 }
 
 .text-center {
   text-align: center;
+}
+
+.watermarked {
+  position: relative;
+}
+
+.watermarked img {
+  /* the actual 'watermark' */
+  position: absolute;
+  top: 10%; /* or whatever */
+  left: 10%; /* or whatever, position according to taste */
+  opacity: 0.10; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
+  width: 80%;
+  height: 80%;
+  filter:alpha(opacity=10); /* for <= IE 8 */
 }

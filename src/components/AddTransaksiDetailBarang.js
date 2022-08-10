@@ -120,7 +120,7 @@ const AddTransaksiDetailBarang = () => {
     //make cart a string and store in local space
     localStorage.setItem("cartList", JSON.stringify(cartCopy));
 
-    navigate(`/add_transaksi_toko/${id}?id_toko=${idToko}`);
+    navigate(`/checkout_transaksi/${id}?id_toko=${idToko}`);
   }
 
   const editCartItem = (itemID, amount) => {

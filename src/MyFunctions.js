@@ -209,29 +209,23 @@ export function getCurrentLogin() {
 export function sendWhatsApp(phone='', msg='') {
   if (!msg) {
     alert('Pesan yang akan dikirimkan melalui whatsapp tidak boleh kosong.')
+    return;
   }
   if (!phone) {
     alert('No.whatsapp tujuan tidak boleh kosong.');
+    return;
   }
 
-  let phoneWithCountryCode = `62${phone}`;
+  let phoneWithCountryCode = `62${ltrim(phone, '0')}`;
 
   // let mobile = Platform.OS == 'ios' ? phoneWithCountryCode : '+' + phoneWithCountryCode;
   let mobile = `+${phoneWithCountryCode}`;
-  if (mobile) {
-    if (msg) {
-      let url = 'whatsapp://send?text=' + msg + '&phone=' + mobile;
-      Linking.openURL(url).then((data) => {
-        console.log('WhatsApp Opened');
-      }).catch(() => {
-        alert('Please make sure WhatsApp installed on your device');
-      });
-    } else {
-      alert('Please insert message to send');
-    }
-  } else {
-    alert('Please insert mobile number');
-  }
+  let url = `whatsapp://send?phone=${mobile}&text=${msg}`;
+  Linking.openURL(url).then((data) => {
+    console.log('WhatsApp Opened');
+  }).catch(() => {
+    alert('Please make sure WhatsApp installed on your device');
+  });
 }
 // end export function sendWhatsApp
 
@@ -268,4 +262,12 @@ export function getCookie(name) {
   const parts = value.split(`; ${name}=`);
   if (parts.length === 2) 
     return parts.pop().split(';').shift();
+}
+
+export function removeNonNumeric(str) {
+  return str.replace(/\D/g,'');
+}
+
+export function formatNoNota(str) {
+  return str.padStart(4, '0');
 }

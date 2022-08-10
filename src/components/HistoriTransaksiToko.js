@@ -103,7 +103,7 @@ const HistoriTransaksiToko = () => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = historiTransaksi.slice(indexOfFirstItem, indexOfLastItem);
-
+  console.log('histori transaksi', currentItems);
   // change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 

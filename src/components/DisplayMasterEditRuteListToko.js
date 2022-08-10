@@ -53,7 +53,7 @@ const DisplayMasterEditRuteListToko = ({ dRute, onDelete }) => {
                       </div>
                       <div className="subtitle mb-0">
                         <DropdownButton id="dropdown-basic-button" title="Actions" size="sm">
-                        <Dropdown.Item as={Link} to={`/add_transaksi_toko/${id}?id_toko=${item.id}`}>
+                          <Dropdown.Item as={Link} to={`/checkout_transaksi/${id}?id_toko=${item.id}`}>
                             Nota Baru
                           </Dropdown.Item>
                           <Dropdown.Item as={Link} to={`/histori_transaksi_toko/${item.id}?sbf=id&sbm=desc`}>

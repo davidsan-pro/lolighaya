@@ -43,7 +43,7 @@ const RuteDetailToko = ({ onDelete }) => {
     let qsArr = [];
     qsArr.push(`qf[]=id_toko&qv[]=${idToko}`);
     qsArr.push(`gb[]=id`);
-    qsArr.push(`sb_field[]=id&sb_mode[]=desc`);
+    qsArr.push(`sbf[]=id&sbm[]=desc`);
     console.log(myurl, qsArr);
     myurl = fn.prepURL(myurl, qsArr);
     console.log('getdatanota url', myurl);
@@ -55,9 +55,9 @@ const RuteDetailToko = ({ onDelete }) => {
   }
 
   return (
-    <div>
+    <div className="text-center">
       {isLoadingToko ? (
-        <Spinner animation="border" />
+        <Spinner animation="border" className="mt-3"/>
       ) : (
         <>
           <div className="card">
@@ -74,7 +74,7 @@ const RuteDetailToko = ({ onDelete }) => {
                   </figure>
                 </div>
                 <div className="media-content">
-                  <p className="title fs-4">{toko.nama}xxx</p>
+                  <p className="title fs-4">{toko.nama}</p>
                 </div>
               </div>
 
@@ -91,7 +91,9 @@ const RuteDetailToko = ({ onDelete }) => {
 
           <div className="mt-3 ms-2 mb-2 fw-bold is-flex is-justify-content-space-between">
             <label>Daftar Transaksi</label>
-            <Button size="sm">Tambah Transaksi</Button>
+            <Button size="sm" as={Link} to={`/checkout_transaksi/${id}?id_toko=${idToko}`}>
+              Tambah Transaksi
+            </Button>
           </div>
 
           {
@@ -110,13 +112,17 @@ const RuteDetailToko = ({ onDelete }) => {
                     nota.map((item, index) => (
                       <tr key={item.id}  style={item.nilai_transaksi > 0 ? {backgroundColor:"rgba(160, 240, 160, 0.8)"} : ""}>
                         <td>{index+1}.</td>
-                        <td>
+                        <td className="has-text-left">
                           <div className="fs-6">
-                            <span className="me-2">
-                              {fn.formatDate(item.created_at, 'full-std')}
-                            </span>
+                            <Link to={`/transaksi_detail/${item.id}`}>
+                              <strong className="me-2">
+                                {fn.formatNoNota(item.id)}
+                              </strong>
+                            </Link>
                           </div>
                           <div className="fs-7">
+                            <span>{fn.formatDate(item.created_at, 'full-std')}</span>
+                            <br/>
                             <span>Jumlah Jenis Item: {fn.thousandSeparator(item.jum_jenis_brg)}</span>
                             <br/>
                             <span>Total Nilai: Rp {fn.thousandSeparator(item.nilai_transaksi)}</span>
@@ -131,10 +137,17 @@ const RuteDetailToko = ({ onDelete }) => {
                             <Dropdown.Menu>
                               <Dropdown.Item 
                               as={Link} 
-                              to={`/add_transaksi_toko/${id}?id_toko=${idToko}&id_trx=${item.id}`} 
+                              to={`/transaksi_detail/${item.id}`} 
                               // disabled={item.nilai_transaksi > 0 ? "disabled" : ""}
                               >
                                 Lanjutkan Nota
+                              </Dropdown.Item>
+                              <Dropdown.Item 
+                              as={Link} 
+                              to={`/transaksi_detail/${item.id}`} 
+                              // disabled={item.nilai_transaksi > 0 ? "disabled" : ""}
+                              >
+                                Cetak Nota
                               </Dropdown.Item>
                             </Dropdown.Menu>
                           </Dropdown>

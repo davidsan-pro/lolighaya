@@ -4,7 +4,7 @@ import { Spinner, Button, Card, ListGroup, Table } from "react-bootstrap";
 import * as fn from "../MyFunctions";
 import { useSelector, useDispatch } from 'react-redux';
 
-const AddTransaksiTokoCart = () => {
+const CheckoutTransaksi = () => {
   const [isLoadingInfoToko, setIsLoadingInfoToko] = useState(false);
   const [isLoadingCartData, setIsLoadingCartData] = useState(false);
 
@@ -90,33 +90,36 @@ const AddTransaksiTokoCart = () => {
     setIsLoadingInfoToko(false);
   };
 
+
   const handleOnChangeInput = (itemID, field, value) => {
     // console.log('asd0', cartItems);
     // console.log('change item', id, field, value);
     value = value.toString().replace(/\D/g,'');
-    console.log('asd1', id, itemID, cartItems[0]);
+    console.log('asd1', id, itemID, value, cartItems[0]);
     let updatedItems = cartItems.map(item => {
       item.id_toko = idToko;
       if (item.id === itemID) {
         if (field === 'titip') {
-          item.titip = value;
+          item.titip = parseInt(value|0).toString();
+          item.laku = item.titip - item.sisa;
         }
         if (field === 'sisa') {
-          item.sisa = value;
+          item.sisa = parseInt(value|0).toString();
+          item.laku = item.titip - item.sisa;
           item.subtotal = item.laku * item.harga;
         }
         if (field === 'laku') {
-          item.laku = value;
+          item.laku = parseInt(value|0).toString();
           item.subtotal = item.laku * item.harga;
         }
         if (field === 'harga') {
-          item.harga = value;
+          item.harga = parseInt(value|0).toString();
           item.subtotal = item.laku * item.harga;
         }
         if (field === 'subtotal') {
           item.subtotal = value;
         }
-        console.log('item', field, item.titip - item.sisa)
+        console.log('item', field, item.titip - item.sisa, item.laku);
         // console.log('item', field, item.titip, item.sisa, item.laku, item.harga, item.subtotal);
       }
       return item;
@@ -204,7 +207,7 @@ const AddTransaksiTokoCart = () => {
           }
         </div>
         <div className="mb-3">
-          <Link to={`/add_transaksi_toko_nota/${id}?id_toko=${idToko}`}>
+          <Link to={`/add_transaksi_list_barang/${id}?id_toko=${idToko}`}>
             <Button variant="primary">Pilih Barang</Button>
           </Link>
         </div>
@@ -228,6 +231,7 @@ const AddTransaksiTokoCart = () => {
                         id={`titip-${item.id}`}
                         value={item.titip}
                         onChange={(e) => handleOnChangeInput(item.id, 'titip', e.target.value)}
+                        onBlur={(e) => {e.target.value = parseInt(e.target.value|0).toString()}}
                         onFocus={selectAllText}
                         />
                       </Card.Text>
@@ -238,16 +242,17 @@ const AddTransaksiTokoCart = () => {
                         value={item.sisa}
                         onChange={(e) => handleOnChangeInput(item.id, 'sisa', e.target.value)}
                         onFocus={selectAllText}
+                        onBlur={(e) => {e.target.value = parseInt(e.target.value|0).toString()}}
                         />
                       </Card.Text>
                       <Card.Text className="mb-1 is-flex is-justify-content-space-between">
                         <span className="me-2">Laku:</span>
                         <input type="text"
                         id={`laku-${item.id}`}
-                        value={fn.thousandSeparator(item.titip - item.sisa)}
+                        value={fn.thousandSeparator(item.laku)}
                         onChange={(e) => handleOnChangeInput(item.id, 'laku', e.target.value)}
                         onFocus={selectAllText}
-                        readOnly="readonly"
+                        readOnly={idTrx ?"readonly" : ""}
                         />
                       </Card.Text>
                       <Card.Text className="mb-1 is-flex is-justify-content-space-between">
@@ -265,7 +270,7 @@ const AddTransaksiTokoCart = () => {
                         <input type="text"
                         style={{textAlign:"right"}}
                         id={`subtotal-${item.id}`}
-                        value={fn.thousandSeparator((item.titip - item.sisa) * item.harga)}
+                        value={fn.thousandSeparator(item.laku * item.harga)}
                         onChange={(e) => handleOnChangeInput(item.id, 'subtotal', e.target.value)}
                         />
                       </Card.Text>
@@ -312,4 +317,4 @@ const AddTransaksiTokoCart = () => {
   );
 };
 
-export default AddTransaksiTokoCart;
+export default CheckoutTransaksi;

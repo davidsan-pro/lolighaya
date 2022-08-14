@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useSearchParams, Link, useNavigate } from "react-router-dom";
-import { Spinner, Button, Card, ListGroup, Table } from "react-bootstrap";
+import { Spinner, Button, Card, Container, Row, Col } from "react-bootstrap";
 import * as fn from "../MyFunctions";
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -21,16 +21,19 @@ const CheckoutTransaksi = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const idToko = searchParams.get("id_toko"); // id toko
   const idTrx = searchParams.get("id_trx"); // id transaksi (hanya ada saat mengedit trx lama)
+  console.log('id', id, idToko, idTrx);
 
-  let localCart = JSON.parse(localStorage.getItem('cartList') || '[]');
+  // let localCart = JSON.parse(localStorage.getItem('cartList') || '[]');
 
   useEffect(() => {
     getDataToko();
-    if (idTrx) {
-      getDataNota();
-    } else {
-      getDataCart();
-    }
+    console.log('idtrx', idTrx, idToko, id);
+    getDataNota();
+    // if (idTrx) {
+    //   getDataNota();
+    // } else {
+    //   getDataCart();
+    // }
   }, []);
 
   useEffect(() => {
@@ -39,27 +42,52 @@ const CheckoutTransaksi = () => {
   }, [cartItems]);
 
   const getDataCart = () => {
-    setIsLoadingCartData(true);
-    let arrCart = JSON.parse(localStorage.getItem('cartList') || '[]');
-    console.log('getdatacart', arrCart);
-    arrCart = arrCart.filter(function(item) {
-      item.subtotal = (item.titip - item.sisa) * item.harga;
-      return item.id_toko.toString() === idToko;
-    });
-    setCartItems(arrCart);
-    // hitungTotal();
-    setIsLoadingCartData(false);
+    // setIsLoadingCartData(true);
+    // let arrCart = [];
+    // if (idTrx) {
+    //   let myurl = `${fn.getBaseUrl()}/Dtransaksi?qf=id_transaksi&qv=${idTrx}`;
+    //   console.log('getdatanota myurl', myurl);
+    //   fetch(myurl)
+    //     .then(response => response.json())
+    //     .then(res => {
+    //       arrCart = res;
+    //     });
+    // } else {
+    //   arrCart = JSON.parse(localStorage.getItem('cartList') || '[]');
+    //   console.log('getdatacart', arrCart);
+    //   // yg diambil dr localStorage hanya yg id_toko nya sesuai dgn transaksi saat ini
+    //   // utk kasus dmn user bolak balik ke halaman sblmnya sblm menyelesaikan/submit nota
+    //   arrCart = arrCart.filter(function(item) {
+    //     return item.id_toko.toString() === idToko;
+    //   });
+    // }
+    // arrCart.map(item => {
+    //   item.subtotal = (item.titip - item.sisa) * item.harga;
+    //   if (idTrx) {
+    //     item.nama = item.nama_barang;
+    //   }
+    // });
+    // setCartItems(arrCart);
+    // // hitungTotal();
+    // setIsLoadingCartData(false);
   }
 
   const getDataNota = async () => {
     setIsLoadingCartData(true);
-    let myurl = `${fn.getBaseUrl()}/Dtransaksi?qf=id_transaksi&qv=${idTrx}`;
-    console.log('getdatanota myurl', myurl);
+    let qsArr = [];
+    qsArr.push(`qf[]=id_transaksi&qv[]=${idTrx}&qmode[]=exact`);
+    let myurl = fn.prepURL('/Dtransaksi', qsArr);
+    // let myurl = `${fn.getBaseUrl()}/Dtransaksi?qf[]=id_transaksi&qv[]=${idTrx}`;
+    console.log('getdatanota myurl', myurl, idTrx);
     const response = await fetch(myurl);
     const data = await response.json();
-    data.forEach(item => {
+    data.map(item => {
       item.nama = item.nama_barang;
-      item.subtotal = (item.titip - item.sisa) * item.harga;
+      if (idTrx) {
+        item.laku = item.titip - item.sisa;
+      }
+      item.subtotal = item.laku * item.harga;
+      // item.subtotal = (item.titip - item.sisa) * item.harga;
     });
     console.log('getdatanota data', data);
     setCartItems(data);
@@ -67,6 +95,7 @@ const CheckoutTransaksi = () => {
   }
 
   const getDataToko = async () => {
+    console.log('get data toko');
     setIsLoadingInfoToko(true);
     let kunjungan = localStorage.getItem('kunjungan') || '[]';
     kunjungan = JSON.parse(kunjungan);
@@ -101,20 +130,27 @@ const CheckoutTransaksi = () => {
       if (item.id === itemID) {
         if (field === 'titip') {
           item.titip = parseInt(value|0).toString();
-          item.laku = item.titip - item.sisa;
+          // item.laku = item.titip - item.sisa;
         }
         if (field === 'sisa') {
           item.sisa = parseInt(value|0).toString();
-          item.laku = item.titip - item.sisa;
-          item.subtotal = item.laku * item.harga;
+          // item.laku = item.titip - item.sisa;
+          // item.subtotal = item.laku * item.harga;
         }
         if (field === 'laku') {
           item.laku = parseInt(value|0).toString();
-          item.subtotal = item.laku * item.harga;
+          // item.subtotal = item.laku * item.harga;
         }
         if (field === 'harga') {
           item.harga = parseInt(value|0).toString();
+          // item.subtotal = item.laku * item.harga;
+        }
+        console.log('idtrx', idTrx, item.laku, item.harga);
+        if (idTrx) {
+          item.laku = item.titip - item.sisa;
           item.subtotal = item.laku * item.harga;
+        } else {
+          item.subtotal = 0;
         }
         if (field === 'subtotal') {
           item.subtotal = value;
@@ -130,7 +166,11 @@ const CheckoutTransaksi = () => {
   }
   // end const handleOnChangeInput
 
-  const handleDelete = (idBarang) => {
+  const handleDelete = (idBarang, string) => {
+    if ( ! window.confirm(`Data barang [${string}] akan dihapus dari nota ini. Lanjutkan?`)) {
+      return false;
+    }
+
     let arrCart = JSON.parse(localStorage.getItem('cartList') || '[]');
     // console.log('delete', idBarang, arrCart);
     let tmpCart = arrCart.filter(item => {return item.id.toString() !== idBarang.toString()})
@@ -147,7 +187,7 @@ const CheckoutTransaksi = () => {
   const hitungTotal = () => {
     let total = 0;
     cartItems.map(item => {
-      total += item.subtotal;
+      total += parseInt(fn.removeNonNumeric(item.subtotal.toString())|0);
     });
     setNilaiTotal(total);
     return total;
@@ -194,15 +234,71 @@ const CheckoutTransaksi = () => {
     <>
       <div className="container">
         <div className="mb-3 fs-5">
-          {/* console.log('asd', isLoadingInfoToko, dataToko) */}
+          { console.log('asd', isLoadingInfoToko, dataToko) }
           {
             (() => {
-              if (isLoadingInfoToko)
+              if (isLoadingInfoToko) {
                 return <Spinner animation="border" />;
-              if (parseInt(idTrx|0) > 0)
-                return <span>Ringkasan Nota <strong>{fn.formatNoNota(idTrx)}</strong> untuk [<strong>{dataToko.nama}</strong>]</span>
-              if (parseInt(idToko|0) > 0)
-              return <span>Ringkasan Nota Baru untuk [<strong>{dataToko.nama}</strong>]</span>
+              } else if (idTrx) {
+                return (
+                  <Container fluid className="fs-7 p-0">
+                    <Row>
+                      <Col xs={3} className="pe-0">
+                        <div className="is-flex is-justify-content-space-between">
+                          <div>Kode Nota</div>
+                          <div>:</div>
+                        </div>
+                      </Col>
+                      <Col>{fn.formatNoNota(idTrx)}</Col>
+                    </Row>
+                    <Row>
+                      <Col xs={3} className="pe-0">
+                        <div className="is-flex is-justify-content-space-between">
+                          <div>Nama Toko</div>
+                          <div>:</div>
+                        </div>
+                      </Col>
+                      <Col>{dataToko.nama}</Col>
+                    </Row>
+                    <Row>
+                      <Col xs={3} className="pe-0">
+                        <div className="is-flex is-justify-content-space-between">
+                          <div>Tanggal</div>
+                          <div>:</div>
+                        </div>
+                      </Col>
+                      {
+                        cartItems.length > 0
+                        ? (<Col>{fn.formatDate(new Date(cartItems[0].created_at))}</Col>)
+                        : (<Col>{fn.formatDate(new Date())}</Col>)
+                      }
+                    </Row>
+                  </Container>
+                );
+              } else {
+                return (
+                  <Container fluid className="fs-7 p-0">
+                    <Row>
+                      <Col xs={3} className="pe-0">
+                        <div className="is-flex is-justify-content-space-between">
+                          <div>Nama Toko</div>
+                          <div>:</div>
+                        </div>
+                      </Col>
+                      <Col>{dataToko.nama}</Col>
+                    </Row>
+                    <Row>
+                      <Col xs={3} className="pe-0">
+                        <div className="is-flex is-justify-content-space-between">
+                          <div>Tanggal</div>
+                          <div>:</div>
+                        </div>
+                      </Col>
+                      <Col>{fn.formatDate(new Date())}</Col>
+                    </Row>
+                  </Container>
+                );
+              }
             })()
           }
         </div>
@@ -215,101 +311,147 @@ const CheckoutTransaksi = () => {
           isLoadingCartData
           ? <Spinner animation="border" />
           : <>
-            <Card className="mb-3">
               {
                 cartItems.length > 0
                 ? (
-                  cartItems.map((item, index) => (
-                    <Card.Body key={item.id}>
-                      <Card.Text className="fw-bold mb-2">
-                        <span className="me-2">{index+1}. {item.nama}</span>
-                        <Button size="sm" variant="danger" onClick={() => handleDelete(item.id)}>Hapus</Button>
-                      </Card.Text>
-                      <Card.Text className="mb-1 is-flex is-justify-content-space-between">
-                        <span className="me-2">Titip:</span>
-                        <input type="text"
-                        id={`titip-${item.id}`}
-                        value={item.titip}
-                        onChange={(e) => handleOnChangeInput(item.id, 'titip', e.target.value)}
-                        onBlur={(e) => {e.target.value = parseInt(e.target.value|0).toString()}}
-                        onFocus={selectAllText}
-                        />
-                      </Card.Text>
-                      <Card.Text className="mb-1 is-flex is-justify-content-space-between">
-                        <span className="me-2">Sisa:</span>
-                        <input type="text"
-                        id={`sisa-${item.id}`}
-                        value={item.sisa}
-                        onChange={(e) => handleOnChangeInput(item.id, 'sisa', e.target.value)}
-                        onFocus={selectAllText}
-                        onBlur={(e) => {e.target.value = parseInt(e.target.value|0).toString()}}
-                        />
-                      </Card.Text>
-                      <Card.Text className="mb-1 is-flex is-justify-content-space-between">
-                        <span className="me-2">Laku:</span>
-                        <input type="text"
-                        id={`laku-${item.id}`}
-                        value={fn.thousandSeparator(item.laku)}
-                        onChange={(e) => handleOnChangeInput(item.id, 'laku', e.target.value)}
-                        onFocus={selectAllText}
-                        readOnly={idTrx ?"readonly" : ""}
-                        />
-                      </Card.Text>
-                      <Card.Text className="mb-1 is-flex is-justify-content-space-between">
-                        <span className="me-2">Harga:</span>
-                        <input type="text"
-                        id={`harga-${item.id}`}
-                        value={fn.thousandSeparator(item.harga)}
-                        onChange={(e) => handleOnChangeInput(item.id, 'harga', e.target.value)}
-                        onFocus={selectAllText}
-                        />
-                      </Card.Text>
-                      <hr/>
-                      <Card.Text className="mb-1 is-flex is-justify-content-space-between">
-                        <span className="me-2">Subtotal:</span>
-                        <input type="text"
-                        style={{textAlign:"right"}}
-                        id={`subtotal-${item.id}`}
-                        value={fn.thousandSeparator(item.laku * item.harga)}
-                        onChange={(e) => handleOnChangeInput(item.id, 'subtotal', e.target.value)}
-                        />
-                      </Card.Text>
-                    </Card.Body>
-                  ))
+                  <>
+                    {cartItems.map((item, index) => (
+                      <>
+                      <Card key={item.id} className="mb-3">
+                        <Card.Body>
+                          <Card.Text className="fw-bold mb-2">
+                            <span className="me-2">{index+1}. {item.nama}</span>
+                            {
+                              idTrx 
+                                ? '' 
+                                : (
+                                  <Button size="sm" variant="danger" onClick={() => handleDelete(item.id, item.nama)}>Hapus</Button>
+                                )
+                            }
+                          </Card.Text>
+                          <Card.Text className="mb-1 is-flex is-justify-content-space-between">
+                            <Container fluid className="p-0">
+                              <Row>
+                                <Col xs={3} className="pe-0">
+                                  <div className="is-flex is-justify-content-space-between">
+                                    <div>Titip</div>
+                                    <div>:</div>
+                                  </div>
+                                </Col>
+                                <Col>
+                                  <input type="text"
+                                  id={`titip-${item.id}`}
+                                  value={item.titip}
+                                  onChange={(e) => handleOnChangeInput(item.id, 'titip', e.target.value)}
+                                  onBlur={(e) => handleOnChangeInput(item.id, 'titip', e.target.value)}
+                                  // onBlur={(e) => {e.target.value = parseInt(e.target.value|0).toString()}}
+                                  onFocus={selectAllText}
+                                  />
+                                </Col>
+                              </Row>
+                              <Row>
+                                <Col xs={3} className="pe-0">
+                                  <div className="is-flex is-justify-content-space-between">
+                                    <div>Sisa</div>
+                                    <div>:</div>
+                                  </div>
+                                </Col>
+                                <Col>
+                                  <input type="text"
+                                  id={`sisa-${item.id}`}
+                                  value={item.sisa}
+                                  onChange={(e) => handleOnChangeInput(item.id, 'sisa', e.target.value)}
+                                  onBlur={(e) => handleOnChangeInput(item.id, 'sisa', e.target.value)}
+                                  // onBlur={(e) => {e.target.value = parseInt(e.target.value|0).toString()}}
+                                  onFocus={selectAllText}
+                                  />
+                                </Col>
+                              </Row>
+                              <Row>
+                                <Col xs={3} className="pe-0">
+                                  <div className="is-flex is-justify-content-space-between">
+                                    <div>Laku</div>
+                                    <div>:</div>
+                                  </div>
+                                </Col>
+                                <Col>
+                                  <input type="text"
+                                  id={`laku-${item.id}`}
+                                  value={fn.thousandSeparator(item.laku)}
+                                  onBlur={(e) => handleOnChangeInput(item.id, 'laku', e.target.value)}
+                                  onFocus={selectAllText}
+                                  readOnly={idTrx ?"readonly" : ""}
+                                  />
+                                </Col>
+                              </Row>
+                              <Row>
+                                <Col xs={3} className="pe-0">
+                                  <div className="is-flex is-justify-content-space-between">
+                                    <div>Harga</div>
+                                    <div>:</div>
+                                  </div>
+                                </Col>
+                                <Col>
+                                  <input type="text"
+                                  id={`harga-${item.id}`}
+                                  value={fn.thousandSeparator(item.harga)}
+                                  onChange={(e) => handleOnChangeInput(item.id, 'harga', e.target.value)}
+                                  onBlur={(e) => handleOnChangeInput(item.id, 'harga', e.target.value)}
+                                  onFocus={selectAllText}
+                                  />
+                                </Col>
+                              </Row>
+                              <Row>
+                                <Col xs={3} className="pe-0">
+                                  <div className="is-flex is-justify-content-space-between">
+                                    <div>Subtotal</div>
+                                    <div>:</div>
+                                  </div>
+                                </Col>
+                                <Col>
+                                  <input type="text"
+                                  style={{textAlign:"right"}}
+                                  id={`subtotal-${item.id}`}
+                                  value={fn.thousandSeparator(item.subtotal)}
+                                  onChange={(e) => handleOnChangeInput(item.id, 'subtotal', e.target.value)}
+                                  onBlur={(e) => handleOnChangeInput(item.id, 'subtotal', e.target.value)}
+                                  onFocus={selectAllText}
+                                  />
+                                </Col>
+                              </Row>
+                            </Container>
+                          </Card.Text>
+                        </Card.Body>
+                      </Card>
+                      </>
+                    ))}
+                  </>
                 )
                 : (
-                  <Card.Body>
-                    <Card.Text className="mb-2">
-                      <em>Data transaksi masih kosong</em>
-                    </Card.Text>
-                  </Card.Body>
+                  <div className="mb-2 fst-italic">
+                    Data transaksi masih kosong
+                  </div>
                 )
               }
 
               {
                 cartItems.length > 0
                 ? (
-                  <Card.Body className="align-right fs-4 mb-2">
-                    <span className="me-2">Total:</span>
-                    <strong>Rp {fn.thousandSeparator(nilaiTotal)}</strong>
-                  </Card.Body>
+                  <>
+                    <div className="align-right fs-4 mb-2">
+                      <span className="me-2">Total:</span>
+                      <strong>Rp {fn.thousandSeparator(nilaiTotal)}</strong>
+                    </div>
+
+                    <div className="d-grid gap-2">
+                      <Button variant="primary" size="lg" onClick={() => saveTransaksi()}>
+                        SIMPAN NOTA
+                      </Button>
+                    </div>
+                  </>
                 )
                 : ''
               }
-
-            </Card>
-
-            {
-              cartItems.length > 0
-              ? (
-                <div className="d-grid gap-2">
-                  <Button variant="primary" size="lg" onClick={() => saveTransaksi()}>
-                    SIMPAN NOTA
-                  </Button>
-                </div>
-              )
-              : ""
-            }
           </>
         }
       </div>

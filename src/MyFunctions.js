@@ -2,6 +2,7 @@
 import * as XLSX from "xlsx";
 import { toast } from "react-toastify";
 import { Linking } from "react-native";
+import * as html2canvas from "html2canvas";
 // import * as htmlToImage from 'html-to-image';
 // import { toJpeg } from 'html-to-image';
 // import { useLocation } from "react-router-dom";
@@ -270,4 +271,27 @@ export function removeNonNumeric(str) {
 
 export function formatNoNota(str) {
   return str.padStart(4, '0');
+}
+
+export function saveElementAsImage(elemID, targetName, format='image/jpg') {
+  (async () => {
+    const element = document.getElementById(elemID);
+    // console.log('saveElementAsImage', elemID, element);
+    if (!element) {
+      alert('Elemen yang akan dicetak tidak ditemukan');
+      return;
+    }
+    const canvas = await html2canvas(element),
+    data = canvas.toDataURL('image/jpg'),
+    link = document.createElement('a');
+
+    link.href = data;
+    link.download = targetName;
+    // link.download = `Lolighaya-${fn.formatNoNota(id)}-${dataToko.nama_toko.replaceAll(' ', '_')}.jpg`;
+    // link.download = 'downloaded-image.jpg';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  })();
 }

@@ -32,10 +32,21 @@ const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
 
   const handleClick = (e, item) => {
     e.preventDefault();
-    console.log('item', item, cartList);
+    console.log('item', item, arrCart);
+
+    // let found = false;
+    // arrCart.map(itemrow => {
+    //   console.log('cartlist map', itemrow.id, item.id);
+    //   if (itemrow.id === item.id) {
+    //     found = true;
+    //   }
+    // });
+    // if (found) {
+    //   alert(`Barang [${item.nama}] sudah ada di daftar pembelian barang`);
+    // }
 
     // kalau item tsb blm ada di localStorage 'cartList' maka tambahkan sbg item baru
-    const exist = cartList.find((x) => x.id === item.id && x.id_toko === item.id_toko);
+    const exist = arrCart.find((x) => x.id === item.id && x.id_toko === item.id_toko);
     console.log('arrcart0', arrCart);
     console.log(exist ? 'exist' : 'not exist')
     if ( ! exist) {
@@ -47,9 +58,13 @@ const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
       arrCart.push(item);
       // console.log('arrcart1', arrCart);
       localStorage.setItem('cartList', JSON.stringify(arrCart));
+
+      const href = `/checkout_transaksi/${idRute}?id_toko=${idToko}`;
+      console.log('href', href);
+      navigate(href);
+    } else {
+      alert(`Barang [${item.nama}] sudah ada di daftar pembelian barang`);
     }
-    const href = `/checkout_transaksi/${idRute}?id_toko=${idToko}`;
-    console.log('href', href);
     // // const selected = e.target.id;
     // // const arr = e.target.id.split('-');
     // // const selectedID = arr[1];
@@ -65,7 +80,6 @@ const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
     // localStorage.setItem('cartList', JSON.stringify(cartList));
     // // setCartItem({...cartItem, id: selectedID});
     // // console.log('cart item', cartItem);
-    navigate(href);
     // return;
     // setCartList({...cartList, cartItem});
     // console.log('cart list', cartList);

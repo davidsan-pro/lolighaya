@@ -21,6 +21,7 @@ const Header = () => {
   // const { id } = useParams();
   const id = location.pathname.split('/').pop();
   const idRute = searchParams.get('id_rute');
+  const idToko = searchParams.get('id_toko');
   console.log('header asd1', id, idRute);
 
   const loginData = fn.getCurrentLogin();
@@ -52,6 +53,7 @@ const Header = () => {
       //   title = "Pilih Hari";
   } else if (curPageName === "checkout_transaksi") {
     title = "Ringkasan Nota";
+    prevPage = `/rute_detail_toko/${id}?id_toko=${idToko}`;
   } else if (curPageName === "transaksi_detail") {
     title = "Detail Transaksi";
   } else if (curPageName === "master") {

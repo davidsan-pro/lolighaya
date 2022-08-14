@@ -51,36 +51,62 @@ const TransaksiDetail = () => {
     handleDownloadImage(e);
     
     const target = e.target.getAttribute('data-action');
-    if (target === 'save_and_send') {
-      let msg = `No.Nota: ${fn.formatNoNota(id)}; 
-      Nama Toko: ${dataToko.nama_toko}; 
-      Tanggal: ${fn.formatDate(new Date(dataToko.created_at), 'full-std')};
+    if (target === 'kirim_nota_wa') {
+      const kodeNota = fn.formatNoNota(id);
+      const tanggal = fn.formatDate(new Date(), 'full-std');
+      let msg = `Tanggal: ${tanggal} 
+      Kode Nota: ${kodeNota} 
+      Nama Toko: ${dataToko.nama_toko} 
       Catatan: `
       ;
       fn.sendWhatsApp(dataToko.telepon, msg);
+      // let qsArr = [];
+      // qsArr.push()
+      // qsArr.push(`action=${target}`); // action=kirim_nota_wa
+      // qsArr.push(`kode_nota=${fn.formatNoNota(id)}`); // kode_nota=0008
+      // qsArr.push(`nama_toko=${dataToko.nama_toko}`);
+      // qsArr.push(`tanggal=${fn.formatDate(new Date(dataToko.created_at), 'full-std')}`);
+      // let myurl = fn.prepURL('/Mtransaksi', qsArr);
+      // console.log('click', myurl);
+      // // return;
+      // fetch(myurl)
+      //   .then(response => response.json())
+      //   .then(res => {
+      //     console.log('res', res);
+      //     // return;
+      //     fn.sendWhatsApp(dataToko.telepon, res.message);
+      //   })
+      //   .catch(error => console.log('error', myurl, error))
+      //   ;
     }
   }
 
   // sumber: https://www.wisdomgeek.com/development/web-development/react/how-to-convert-a-react-component-to-an-image/
   const handleDownloadImage = async (e) => {
     const idElem = e.target.getAttribute('data-targetElem');
-    const element = document.getElementById(idElem);
-    console.log(e.target.dataset, idElem, element);
-    if (!element) {
-      alert('Elemen yang akan dicetak tidak ditemukan');
-      return;
-    }
-    const canvas = await html2canvas(element),
-    data = canvas.toDataURL('image/jpg'),
-    link = document.createElement('a');
+    const tanggal = fn.formatDate(new Date(), 'datetime-std');
+    console.log('tanggal', tanggal, tanggal.replaceAll(':', '_'));
+    const noNota = fn.formatNoNota(id);
+    const namaToko = dataToko.nama_toko.replaceAll(' ', '_');
+    const targetName = `Lolighaya-${tanggal.replaceAll(':', '_')}-${noNota}-${namaToko}.jpg`;
+    fn.saveElementAsImage(idElem, targetName);
+    // const element = document.getElementById(idElem);
+    // console.log(e.target.dataset, idElem, element);
+    // if (!element) {
+    //   alert('Elemen yang akan dicetak tidak ditemukan');
+    //   return;
+    // }
+    // const canvas = await html2canvas(element),
+    // data = canvas.toDataURL('image/jpg'),
+    // link = document.createElement('a');
  
-    link.href = data;
-    link.download = `Lolighaya-${fn.formatNoNota(id)}-${dataToko.nama_toko.replaceAll(' ', '_')}.jpg`;
-    // link.download = 'downloaded-image.jpg';
+    // link.href = data;
+    // link.download = `Lolighaya-${fn.formatNoNota(id)}-${dataToko.nama_toko.replaceAll(' ', '_')}.jpg`;
+    // // link.download = 'downloaded-image.jpg';
 
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // document.body.appendChild(link);
+    // link.click();
+    // document.body.removeChild(link);
   };
 
   return (
@@ -96,7 +122,7 @@ const TransaksiDetail = () => {
 
         <Button variant="success" 
         disabled={isLoading ? 'disabled' : ''} 
-        data-action="save_and_send"
+        data-action="kirim_nota_wa"
         data-targetElem="detail_transaksi"
         onClick={(e) => handleClickBtn(e)}>
           Kirim ke WhatsApp Toko

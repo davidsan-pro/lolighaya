@@ -109,51 +109,57 @@ const RuteDetailToko = ({ onDelete }) => {
                 </thead>
                 <tbody>
                   {
-                    nota.map((item, index) => (
-                      <tr key={item.id}  style={item.nilai_transaksi > 0 ? {backgroundColor:"rgba(160, 240, 160, 0.8)"} : ""}>
-                        <td>{index+1}.</td>
-                        <td className="has-text-left">
-                          <div className="fs-6">
-                            <Link to={`/transaksi_detail/${item.id}`}>
-                              <strong className="me-2">
-                                {fn.formatNoNota(item.id)}
-                              </strong>
-                            </Link>
-                          </div>
-                          <div className="fs-7">
-                            <span>{fn.formatDate(item.created_at, 'full-std')}</span>
-                            <br/>
-                            <span>Jumlah Jenis Item: {fn.thousandSeparator(item.jum_jenis_brg)}</span>
-                            <br/>
-                            <span>Total Nilai: Rp {fn.thousandSeparator(item.nilai_transaksi)}</span>
-                          </div>
-                        </td>
-                        <td className="text-center">
-                          <Dropdown className="no-arrow">
-                            <Dropdown.Toggle id="dropdown-button-dark-example1" className="no-arrow">
-                              <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
-                            </Dropdown.Toggle>
-    
-                            <Dropdown.Menu>
-                              <Dropdown.Item 
-                              as={Link} 
-                              to={`/transaksi_detail/${item.id}`} 
-                              // disabled={item.nilai_transaksi > 0 ? "disabled" : ""}
-                              >
-                                Lanjutkan Nota
-                              </Dropdown.Item>
-                              <Dropdown.Item 
-                              as={Link} 
-                              to={`/transaksi_detail/${item.id}`} 
-                              // disabled={item.nilai_transaksi > 0 ? "disabled" : ""}
-                              >
-                                Cetak Nota
-                              </Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown>
-                        </td>
-                      </tr>
-                    ))
+                    nota.map((item, index) => {
+                      const mystyle = item.nilai_transaksi > 0
+                        ? {backgroundColor:"rgba(160, 240, 160, 0.8)"}
+                        : {}
+                        ;
+                      return (
+                        <tr key={item.id}  style={mystyle}>
+                          <td>{index+1}.</td>
+                          <td className="has-text-left">
+                            <div className="fs-6">
+                              <Link to={`/transaksi_detail/${item.id}`}>
+                                <strong className="me-2">
+                                  {fn.formatNoNota(item.id)}
+                                </strong>
+                              </Link>
+                            </div>
+                            <div className="fs-7">
+                              <span>{fn.formatDate(item.created_at, 'full-std')}</span>
+                              <br/>
+                              <span>Jumlah Jenis Item: {fn.thousandSeparator(item.jum_jenis_brg)}</span>
+                              <br/>
+                              <span>Total Nilai: Rp {fn.thousandSeparator(item.nilai_transaksi)}</span>
+                            </div>
+                          </td>
+                          <td className="text-center">
+                            <Dropdown className="no-arrow">
+                              <Dropdown.Toggle id="dropdown-button-dark-example1" className="no-arrow">
+                                <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+                              </Dropdown.Toggle>
+      
+                              <Dropdown.Menu>
+                                <Dropdown.Item 
+                                as={Link} 
+                                to={`/checkout_transaksi/${id}?id_toko=${item.id_toko}&id_trx=${item.id}`} 
+                                // disabled={item.nilai_transaksi > 0 ? "disabled" : ""}
+                                >
+                                  Lanjutkan Nota
+                                </Dropdown.Item>
+                                <Dropdown.Item 
+                                as={Link} 
+                                to={`/transaksi_detail/${item.id}`} 
+                                // disabled={item.nilai_transaksi > 0 ? "disabled" : ""}
+                                >
+                                  Cetak Nota
+                                </Dropdown.Item>
+                              </Dropdown.Menu>
+                            </Dropdown>
+                          </td>
+                        </tr>
+                      )
+                    })
                   }
                 </tbody>
               </Table>
@@ -164,7 +170,6 @@ const RuteDetailToko = ({ onDelete }) => {
               </div>
             )
           }
-          {/* </div> */}
         </>
 
       )}

@@ -14,7 +14,7 @@ const RuteDetailToko = ({ onDelete }) => {
   const { id } = useParams(); // id rute
   const [searchParams, setSearchParams] = useSearchParams();
   const idToko = searchParams.get("id_toko"); // id toko
-  console.log('id', id, idToko);
+  // console.log('id', id, idToko);
 
   useEffect(() => {
     getToko();
@@ -44,12 +44,12 @@ const RuteDetailToko = ({ onDelete }) => {
     qsArr.push(`qf[]=id_toko&qv[]=${idToko}`);
     qsArr.push(`gb[]=id`);
     qsArr.push(`sbf[]=id&sbm[]=desc`);
-    console.log(myurl, qsArr);
+    // console.log(myurl, qsArr);
     myurl = fn.prepURL(myurl, qsArr);
-    console.log('getdatanota url', myurl);
+    // console.log('getdatanota url', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
-    console.log("getdatanota data1", data);
+    // console.log("getdatanota data1", data);
     setNota(data);
     setIsLoadingNota(false);
   }

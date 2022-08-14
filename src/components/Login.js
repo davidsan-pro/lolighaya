@@ -7,6 +7,8 @@ import * as fn from "../MyFunctions";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errUsername, setErrUsername] = useState("");
+  const [errPassword, setErrPassword] = useState("");
   const [message, setMessage] = useState("");
   const [code, setCode] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +25,7 @@ const Login = () => {
   //   // tiap kali masuk k hal.login ini, kosongkan localStorage 'loginData'nya
   //   localStorage.setItem('loginData', JSON.stringify(loginData));
   // }, [loginData]);
-  console.log('cookie', cookies.message || '');
+  // console.log('cookie', cookies.message || '');
   if (cookies.message) {
     setMessage(cookies.message); // display the cookie using 'message' state variable
     cookies.remove('message'); // delete the cookie after storing it in the state variable
@@ -36,7 +38,7 @@ const Login = () => {
       password: password 
     };
     const myurl = fn.prepURL('/users/login');
-    console.log('submitlogin', myurl, data);
+    // console.log('submitlogin', myurl, data);
     await fetch(myurl, {
       method: "POST",
       body: JSON.stringify(data),
@@ -46,8 +48,14 @@ const Login = () => {
     })
       .then(response => response.json())
       .then(res => {
-        // console.log('res login', res); return;
+        // console.log('res login', res);
         setCode(res.status);
+        if (res.messages.username) {
+          setErrUsername(res.messages.username);
+        }
+        if (res.messages.password) {
+          setErrPassword(res.messages.password);
+        }
         if (res.status === 201) {
           setMessage(res.message);
           const dateStr = fn.formatDate(null, 'full-std');
@@ -91,6 +99,7 @@ const Login = () => {
           <div className="control">
             <input className="input" type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
           </div>
+          <div className="errmsg">{errUsername}</div>
         </div>
 
         <div className="field">
@@ -98,24 +107,19 @@ const Login = () => {
           <div className="control">
             <input className="input" type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
+          <div className="errmsg">{errPassword}</div>
         </div>
 
         <div className="mt-4">
           <div className="d-grid mb-3">
             <Button variant="primary" size="lg" onClick={(e) => submitLogin(e)}>
               Login
+              {
+                isLoading 
+                ? <Spinner animation="border" size="sm" className="ms-2"/>
+                : ''
+              }
             </Button>
-          </div>
-          <div className="text-center">
-            {
-              isLoading 
-              ? <Spinner animation="border" />
-              : (
-                code >= 200 && code < 400
-                ? <span>{message}</span>
-                : <span className="errmsg">{message}</span>
-              )
-            }
           </div>
         </div>
 

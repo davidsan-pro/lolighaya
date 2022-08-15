@@ -270,6 +270,7 @@ export function removeNonNumeric(str) {
 }
 
 export function formatNoNota(str) {
+  str = str.toString();
   return str.padStart(4, '0');
 }
 

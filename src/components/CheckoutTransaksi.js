@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 const CheckoutTransaksi = () => {
   const [isLoadingInfoToko, setIsLoadingInfoToko] = useState(false);
   const [isLoadingCartData, setIsLoadingCartData] = useState(false);
+  const [isLoadingTrx, setIsLoadingTrx] = useState(false);
 
   const [dataToko, setDataToko] = useState({});
   const [cartItems, setCartItems] = useState([]);
@@ -22,6 +23,16 @@ const CheckoutTransaksi = () => {
   const idToko = searchParams.get("id_toko"); // id toko
   const idTrx = searchParams.get("id_trx"); // id transaksi (hanya ada saat mengedit trx lama)
   console.log('id', id, idToko, idTrx);
+  let qsArr = [];
+  for (const entry of searchParams.entries()) {
+    qsArr.push(`${entry[0]}=${entry[1]}`);
+  }
+  let qs = qsArr.join('&');
+  qs = qs ? `?${qs}` : '';
+  // if (qsArr) {
+  //   qs = qsArr.join('&');
+  // }
+  // console.log('querystring', qs);
 
   // let localCart = JSON.parse(localStorage.getItem('cartList') || '[]');
 
@@ -99,6 +110,7 @@ const CheckoutTransaksi = () => {
     setIsLoadingInfoToko(true);
     let kunjungan = localStorage.getItem('kunjungan') || '[]';
     kunjungan = JSON.parse(kunjungan);
+    kunjungan.id_rute = id;
     // kalo variabel kunjungan terakhir masih tersimpan di localStorage
     // artinya masih dlm proses transaksi
     // maka data toko langsung diambil dr data localStorage tsb
@@ -112,7 +124,8 @@ const CheckoutTransaksi = () => {
       // lalu simpan data tsb di localStorage
       const response = await fetch(`${fn.getBaseUrl()}/toko/${idToko}`);
       const data = await response.json();
-      console.log('getdatatoko', data);
+      data.id_rute = id;
+      // console.log('getdatatoko1', data);
       setDataToko(data);
       localStorage.setItem('kunjungan', JSON.stringify(data));
     }
@@ -194,6 +207,7 @@ const CheckoutTransaksi = () => {
   }
 
   const saveTransaksi = async () => {
+    setIsLoadingTrx(true);
     const loginData = JSON.parse(localStorage.getItem('loginData') || '{}');
     const loginID = typeof loginData.id != 'undefined' ? loginData.id : '';
     let data = {
@@ -213,18 +227,30 @@ const CheckoutTransaksi = () => {
     })
       .then(response => response.json())
       .then(res => {
-        if (res.status == 201) {
+        if (res.status === 201) {
+          const tanggal = fn.formatDate(new Date(), 'datetime-std');
+          const noNota = fn.formatNoNota(res.insertid);
+          const namaToko = dataToko.nama.replaceAll(' ', '_');
+          const targetName = `Lolighaya-${tanggal.replaceAll(':', '_')}-${noNota}-${namaToko}.jpg`;
+          fn.saveElementAsImage("main_content", targetName);
+
           localStorage.removeItem('cartList');
           let phone = fn.ltrim(dataToko.telepon);
           // console.log('phone', phone);
-          let msgWA = `Nota Baru untuk toko *${dataToko.nama}* telah berhasil dibuat pada ${fn.formatDate()} oleh user ${loginData.username}. Total nilai transaksi: Rp ${fn.thousandSeparator(nilaiTotal)}`;
+          let msgWA = `Nota Baru untuk toko *${dataToko.nama}* telah berhasil disimpan 
+          Tanggal ${fn.formatDate()} 
+          Username ${loginData.username} 
+          Total nilai transaksi: Rp ${fn.thousandSeparator(nilaiTotal)}`;
           fn.sendWhatsApp(phone, msgWA);
           fn.showToastMsg(res.messages.success);
-          // navigate(`/rute_list_toko/${id}`)
+          navigate(`/rute_detail_toko/${id}${qs}`)
         }
       })
       .catch(err => {
         fn.showToastMsg('Gagal menghapus data rute', 'error');
+      })
+      .finally(() => {
+        setIsLoadingTrx(false);
       });
   }
   // end const saveTransaksi
@@ -232,7 +258,7 @@ const CheckoutTransaksi = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container" id="main_content">
         <div className="mb-3 fs-5">
           { console.log('asd', isLoadingInfoToko, dataToko) }
           {
@@ -303,7 +329,7 @@ const CheckoutTransaksi = () => {
           }
         </div>
         <div className="mb-3">
-          <Link to={`/add_transaksi_list_barang/${id}?id_toko=${idToko}`}>
+          <Link to={`/add_transaksi_list_barang/${id}${qs}`}>
             <Button variant="primary">Pilih Barang</Button>
           </Link>
         </div>
@@ -446,6 +472,11 @@ const CheckoutTransaksi = () => {
                     <div className="d-grid gap-2">
                       <Button variant="primary" size="lg" onClick={() => saveTransaksi()}>
                         SIMPAN NOTA
+                        {
+                          isLoadingTrx 
+                            ? <Spinner animation="border" size="sm" className="ms-2" /> 
+                            : ''
+                        }
                       </Button>
                     </div>
                   </>

@@ -24,6 +24,14 @@ const Header = () => {
   const idToko = searchParams.get('id_toko');
   console.log('header asd1', id, idRute);
 
+  let qsArr = [];
+  for (const entry of searchParams.entries()) {
+    qsArr.push(`${entry[0]}=${entry[1]}`);
+  }
+  let qs = qsArr.join('&');
+  qs = qs ? `?${qs}` : '';
+  // console.log('querystring', idRute, qs);
+
   const loginData = fn.getCurrentLogin();
 
   // const prevPath = props.location.state || '/dashboard';
@@ -53,7 +61,7 @@ const Header = () => {
       //   title = "Pilih Hari";
   } else if (curPageName === "checkout_transaksi") {
     title = "Ringkasan Nota";
-    prevPage = `/rute_detail_toko/${id}?id_toko=${idToko}`;
+    prevPage = `/rute_detail_toko/${id}${qs}`;
   } else if (curPageName === "transaksi_detail") {
     title = "Detail Transaksi";
   } else if (curPageName === "master") {
@@ -76,7 +84,7 @@ const Header = () => {
     title = "Edit Barang";
   } else if (curPageName === "view_toko") {
     title = "Detail Toko";
-    prevPage = `/rute_list_toko/${idRute}`;
+    prevPage = `/rute_list_toko/${idRute}${qs}`;
   } else if (curPageName === "master_toko") {
     title = "Master Toko";
   } else if (curPageName === "add_toko") {
@@ -93,23 +101,23 @@ const Header = () => {
     title = "List Rute";
   } else if (curPageName === "add_rute_list") {
     title = "Ubah Rute - Tambah Toko";
-    prevPage = `/rute_list_toko/${id}`;
+    prevPage = `/rute_list_toko/${id}${qs}`;
   } else if (curPageName === "master_edit_rute") {
     title = "Master Edit Rute";
   } else if (curPageName === "master_transaksi") {
     title = "Master Transaksi";
   } else if (curPageName === "add_transaksi_toko") {
     title = "Transaksi Baru";
-    prevPage = `/rute_list_toko/${id}`;
+    prevPage = `/rute_list_toko/${id}${qs}`;
   } else if (curPageName === "add_transaksi_toko_nota") {
     title = "Transaksi Baru";
-    prevPage = `/rute_list_toko/${id}`;
+    prevPage = `/rute_list_toko/${id}${qs}`;
   } else if (curPageName === "add_transaksi_list_barang") {
     title = "Transaksi Baru<br/>Pilih Barang";
-    prevPage = `/checkout_transaksi/${id}`;
-    if (searchParams.get('id_toko')) {
-      prevPage += `?id_toko=${searchParams.get('id_toko')}`;
-    }
+    prevPage = `/checkout_transaksi/${id}${qs}`;
+    // if (searchParams.get('id_toko')) {
+    //   prevPage += `?id_toko=${searchParams.get('id_toko')}`;
+    // }
   } else if (curPageName === "add_transaksi_detail_barang") {
     title = "Transaksi Baru<br/>Detail Barang";
   } else if (curPageName === "histori_transaksi_toko") {

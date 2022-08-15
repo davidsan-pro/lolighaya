@@ -6,6 +6,18 @@ const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
   
+  const [searchParams] = useSearchParams();
+  const [cartList, setCartList] = useState([]);
+  const [cartItem, setCartItem] = useState([]);
+
+  let arrCart = [];
+  let qsArr = [];
+  for (const entry of searchParams.entries()) {
+    qsArr.push(`${entry[0]}=${entry[1]}`);
+  }
+  let qs = qsArr.join('&');
+  qs = qs ? `?${qs}` : '';
+
   // get current item
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -13,13 +25,7 @@ const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
 
   // change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
   const navigate = useNavigate();
-  
-  const [searchParams] = useSearchParams();
-  const [cartList, setCartList] = useState([]);
-  const [cartItem, setCartItem] = useState([]);
-  let arrCart = [];
 
   useEffect(() => {
     // get the 'cartList' localstorage
@@ -32,7 +38,7 @@ const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
 
   const handleClick = (e, item) => {
     e.preventDefault();
-    console.log('item', item, arrCart);
+    // console.log('item', idToko, item, arrCart);
 
     // let found = false;
     // arrCart.map(itemrow => {
@@ -46,11 +52,12 @@ const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
     // }
 
     // kalau item tsb blm ada di localStorage 'cartList' maka tambahkan sbg item baru
-    const exist = arrCart.find((x) => x.id === item.id && x.id_toko === item.id_toko);
-    console.log('arrcart0', arrCart);
-    console.log(exist ? 'exist' : 'not exist')
+    const exist = arrCart.find((x) => x.id_barang === item.id && x.id_toko === idToko);
+    // console.log('arrcart0', arrCart);
+    // console.log(exist ? 'exist' : 'not exist');
+    // return;
     if ( ! exist) {
-      item.id_toko = searchParams.get('id_toko');
+      item.id_toko = idToko;
       item.titip = 0 
       item.sisa = 0 
       item.laku = 0
@@ -59,8 +66,8 @@ const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
       // console.log('arrcart1', arrCart);
       localStorage.setItem('cartList', JSON.stringify(arrCart));
 
-      const href = `/checkout_transaksi/${idRute}?id_toko=${idToko}`;
-      console.log('href', href);
+      const href = `/checkout_transaksi/${idRute}${qs}`;
+      // console.log('href', href);
       navigate(href);
     } else {
       alert(`Barang [${item.nama}] sudah ada di daftar pembelian barang`);

@@ -50,12 +50,12 @@ const Login = () => {
       .then(res => {
         // console.log('res login', res);
         setCode(res.status);
-        if (res.messages.username) {
-          setErrUsername(res.messages.username);
-        }
-        if (res.messages.password) {
-          setErrPassword(res.messages.password);
-        }
+        // if (res.messages.username) {
+        //   setErrUsername(res.messages.username);
+        // }
+        // if (res.messages.password) {
+        //   setErrPassword(res.messages.password);
+        // }
         if (res.status === 201) {
           setMessage(res.message);
           const dateStr = fn.formatDate(null, 'full-std');
@@ -131,6 +131,8 @@ const Login = () => {
             Forgot Password?
           </Button>
         </div>
+
+        <div className="errmsg">{message}</div>
       </form>
     </div>
   );

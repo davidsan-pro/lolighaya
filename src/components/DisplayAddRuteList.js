@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { Table, Button } from "react-bootstrap";
 import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
 // import Text from "react-native";
 
-const DisplayAddRuteList = ({ toko, idRute, selectedToko, onSelect, onSubmit }) => {
+const DisplayAddRuteList = ({ listToko, idRute, selectedToko, onSelect, onSubmit }) => {
   const location = useLocation();
-  console.log("display list toko", toko, idRute);
+  console.log("display list toko", listToko, idRute);
   // console.log("selected toko", selectedToko);
+
+  const [searchParams] = useSearchParams();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -16,7 +18,7 @@ const DisplayAddRuteList = ({ toko, idRute, selectedToko, onSelect, onSubmit }) 
   // get current item
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItem = toko.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = listToko.slice(indexOfFirstItem, indexOfLastItem);
 
   // change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -28,23 +30,22 @@ const DisplayAddRuteList = ({ toko, idRute, selectedToko, onSelect, onSubmit }) 
       {
         // kalo jumlah datanya 1 atau lebih maka tampilkan dlm bentuk tabel
         // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
-        toko.length > 0 
+        currentItems.length > 0 
         ? (
           <div className="table-container">
-            <Table striped bordered>
+            <Table bordered>
               <thead>
                 <tr>
-                  <th>No.</th>
+                  <th className="ps-0">No.</th>
                   <th>Info Toko</th>
                   <th className="text-center">Action</th>
                 </tr>
               </thead>
               <tbody className="fs-6">
-                {toko.map((item, index) => {
-                  // console.log('detail rute toko', index, item);
+                {currentItems.map((item, index) => {
                   return (
                     <tr key={item.id}>
-                      <td>{index+1}.</td>
+                      <td className="ps-0">{index+1}.</td>
                       <td>
                         <Link to={`/view_toko/${item.id}?id_rute=${idRute}&back_url=${currentURL}`}>
                           {item.nama}
@@ -68,7 +69,7 @@ const DisplayAddRuteList = ({ toko, idRute, selectedToko, onSelect, onSubmit }) 
             </Table>
 
             <Pagination itemsPerPage={itemsPerPage} 
-            totalItems={toko.length} 
+            totalItems={listToko.length} 
             paginate={paginate} 
             curPageNumber={currentPage} 
             />

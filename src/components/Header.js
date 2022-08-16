@@ -47,84 +47,87 @@ const Header = () => {
   let prevPage = "";
   if (curPageName === "" || !window.location.hash) {
     title = "Login";
-  } else if (curPageName === "forgot_password") {
-    title = "Reset Password User";
-  } else if (curPageName === "dashboard") {
-    title = "Dashboard";
-  } else if (curPageName === "rute_list_toko") {
-    title = "Daftar Toko di Rute";
-    prevPage = "/dashboard";
-  } else if (curPageName === "rute_detail_toko") {
-    title = "Detail Toko di Rute";
-    prevPage = `/rute_list_toko/${id}`;
-    // } else if (curPageName === "pilih_hari") {
-      //   title = "Pilih Hari";
-  } else if (curPageName === "checkout_transaksi") {
-    title = "Ringkasan Nota";
-    prevPage = `/rute_detail_toko/${id}${qs}`;
-  } else if (curPageName === "transaksi_detail") {
-    title = "Detail Transaksi";
-  } else if (curPageName === "master") {
-    title = "Menu Master";
-  } else if (curPageName === "view_user") {
-    title = "Detail User";
-  } else if (curPageName === "master_user") {
-    title = "Master User";
-  } else if (curPageName === "add_user") {
-    title = "Tambah User";
-  } else if (curPageName === "edit_user") {
-    title = "Edit User";
-  } else if (curPageName === "view_barang") {
-    title = "Detail Barang";
-  } else if (curPageName === "master_barang") {
-    title = "Master Barang";
-  } else if (curPageName === "add_barang") {
-    title = "Tambah Barang";
-  } else if (curPageName === "edit_barang") {
-    title = "Edit Barang";
-  } else if (curPageName === "view_toko") {
-    title = "Detail Toko";
-    prevPage = `/rute_list_toko/${idRute}${qs}`;
-  } else if (curPageName === "master_toko") {
-    title = "Master Toko";
-  } else if (curPageName === "add_toko") {
-    title = "Tambah Toko";
-  } else if (curPageName === "edit_toko") {
-    title = "Edit Toko";
-  } else if (curPageName === "master_rute") {
-    title = "Master Rute";
-  } else if (curPageName === "add_rute") {
-    title = "Tambah Rute";
-  } else if (curPageName === "edit_rute") {
-    title = "Edit Rute";
-  } else if (curPageName === "master_rute_list") {
-    title = "List Rute";
-  } else if (curPageName === "add_rute_list") {
-    title = "Ubah Rute - Tambah Toko";
-    prevPage = `/rute_list_toko/${id}${qs}`;
-  } else if (curPageName === "master_edit_rute") {
-    title = "Master Edit Rute";
-  } else if (curPageName === "master_transaksi") {
-    title = "Master Transaksi";
-  } else if (curPageName === "add_transaksi_toko") {
-    title = "Transaksi Baru";
-    prevPage = `/rute_list_toko/${id}${qs}`;
-  } else if (curPageName === "add_transaksi_toko_nota") {
-    title = "Transaksi Baru";
-    prevPage = `/rute_list_toko/${id}${qs}`;
-  } else if (curPageName === "add_transaksi_list_barang") {
-    title = "Transaksi Baru<br/>Pilih Barang";
-    prevPage = `/checkout_transaksi/${id}${qs}`;
-    // if (searchParams.get('id_toko')) {
-    //   prevPage += `?id_toko=${searchParams.get('id_toko')}`;
-    // }
-  } else if (curPageName === "add_transaksi_detail_barang") {
-    title = "Transaksi Baru<br/>Detail Barang";
-  } else if (curPageName === "histori_transaksi_toko") {
-    title = "Histori Transaksi";
-  } else if (curPageName === "detail_histori_transaksi_toko") {
-    title = "Detail Histori Transaksi";
+  } else if (curPageName !== "") {
+    if (curPageName === "forgot_password") {
+      title = "Reset Password User";
+    } else if (curPageName === "dashboard") {
+      title = "Dashboard";
+    } else if (curPageName === "rute_list_toko") {
+      title = "Daftar Toko di Rute";
+      prevPage = "/dashboard";
+    } else if (curPageName === "rute_detail_toko") {
+      title = "Detail Toko di Rute";
+      prevPage = `/rute_list_toko/${id}`;
+      // } else if (curPageName === "pilih_hari") {
+        //   title = "Pilih Hari";
+    } else if (curPageName === "checkout_transaksi") {
+      title = "Ringkasan Nota";
+      prevPage = `/rute_detail_toko/${id}${qs}`;
+    } else if (curPageName === "transaksi_detail") {
+      title = "Detail Transaksi";
+    } else if (curPageName === "master") {
+      title = "Menu Master";
+    } else if (curPageName === "view_user") {
+      title = "Detail User";
+    } else if (curPageName === "master_user") {
+      title = "Master User";
+    } else if (curPageName === "add_user") {
+      title = "Tambah User";
+    } else if (curPageName === "edit_user") {
+      title = "Edit User";
+    } else if (curPageName === "view_barang") {
+      title = "Detail Barang";
+    } else if (curPageName === "master_barang") {
+      title = "Master Barang";
+    } else if (curPageName === "add_barang") {
+      title = "Tambah Barang";
+    } else if (curPageName === "edit_barang") {
+      title = "Edit Barang";
+    } else if (curPageName === "view_toko") {
+      title = "Detail Toko";
+      prevPage = `/rute_list_toko/${idRute}${qs}`;
+    } else if (curPageName === "master_toko") {
+      title = "Master Toko";
+    } else if (curPageName === "add_toko") {
+      title = "Tambah Toko";
+    } else if (curPageName === "edit_toko") {
+      title = "Edit Toko";
+    } else if (curPageName === "master_rute") {
+      title = "Master Rute";
+    } else if (curPageName === "add_rute") {
+      title = "Tambah Rute";
+    } else if (curPageName === "edit_rute") {
+      title = "Edit Rute";
+    } else if (curPageName === "master_rute_list") {
+      title = "List Rute";
+    } else if (curPageName === "add_rute_list") {
+      title = "Ubah Rute - Tambah Toko";
+      prevPage = `/rute_list_toko/${id}${qs}`;
+    } else if (curPageName === "master_edit_rute") {
+      title = "Master Edit Rute";
+    } else if (curPageName === "master_transaksi") {
+      title = "Master Transaksi";
+    } else if (curPageName === "add_transaksi_toko") {
+      title = "Transaksi Baru";
+      prevPage = `/rute_list_toko/${id}${qs}`;
+    } else if (curPageName === "add_transaksi_toko_nota") {
+      title = "Transaksi Baru";
+      prevPage = `/rute_list_toko/${id}${qs}`;
+    } else if (curPageName === "add_transaksi_list_barang") {
+      title = "Transaksi Baru<br/>Pilih Barang";
+      prevPage = `/checkout_transaksi/${id}${qs}`;
+      // if (searchParams.get('id_toko')) {
+      //   prevPage += `?id_toko=${searchParams.get('id_toko')}`;
+      // }
+    } else if (curPageName === "add_transaksi_detail_barang") {
+      title = "Transaksi Baru<br/>Detail Barang";
+    } else if (curPageName === "histori_transaksi_toko") {
+      title = "Histori Transaksi";
+    } else if (curPageName === "detail_histori_transaksi_toko") {
+      title = "Detail Histori Transaksi";
+    }
   }
+  // end if (curPageName !== "") 
   // console.log('title', title);
   // {console.log('pathname', window.location.pathname)}
   // {console.log('hash', window.location.hash)}

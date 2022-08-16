@@ -11,7 +11,7 @@ const RuteListToko = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams] = useSearchParams({});
 
-  const { id } = useParams();
+  const { id } = useParams(); // id rute
   console.log('rutelisttoko', id);
   // let myCart = localStorage.getItem('cartList');
   // console.log(new Date());
@@ -63,7 +63,7 @@ const RuteListToko = () => {
 
   // id = id rute
   // string = nama toko
-  const deleteTokoFromRute = async (id, string) => {
+  const deleteTokoFromRute = async (key_id, string) => {
     // console.log('delete from inforute', infoRute);
     // const hariRute = fn.ucase(fn.getNamaHari(infoRute.hari));
     const strConfirm = `Data [${string}] akan dihapus dari daftar Rute ${infoRute.nama_rute}. Lanjutkan?`;
@@ -71,7 +71,7 @@ const RuteListToko = () => {
       return false;
     }
 
-    const myurl = `${fn.getBaseUrl()}/Drute/${id}`;
+    const myurl = `${fn.getBaseUrl()}/Drute/${key_id}`;
     await fetch(myurl, {
       method: 'DELETE', 
       headers: {
@@ -81,8 +81,10 @@ const RuteListToko = () => {
       .then((response) => response.json())
       .then((res) => {
         // console.log('res delete drute', res);
+        const updatedList = dRute.filter(x => x.key_id !== key_id);
+        setDRute(updatedList);
         // setelah selesai, redirect ke hal.master rute
-        navigate(backURL);
+        // navigate(backURL);
       })
       .catch(err => console.log(err));
   }
@@ -101,11 +103,11 @@ const RuteListToko = () => {
             dRute.length > 0 ? <span>( 0/{parseInt(infoRute.jum_toko|0)} Toko)</span> : ""
           }
         </div>
-        <div>
+        {/* <div>
           <Link to={`/add_rute_list/${id}`}>
             <Button variant="primary">Tambah Toko</Button>
           </Link>
-        </div>
+        </div> */}
       </div>
       {
         isLoading 

@@ -8,19 +8,29 @@ import SearchBar from "./SearchBar";
 import DisplayAddRuteList from "./DisplayAddRuteList";
 
 const AddRuteList = () => {
-  const [toko, setToko] = useState([]);
+  const [listToko, setListToko] = useState([]);
+  const [currentToko, setCurrentToko] = useState([]);
   const [selectedToko, setSelectedToko] = useState([]);
   const [infoRute, setInfoRute] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams] = useSearchParams({});
 
+  const modeUrutan = searchParams.get('mode_urutan'); // before atau after
+
   const navigate = useNavigate();
   const location = useLocation();
   const { id } = useParams(); // id rute
   console.log('add rute list', id);
+  let qsArr = [];
+  for (const entry of searchParams.entries()) {
+    qsArr.push(`${entry[0]}=${entry[1]}`);
+  }
+  let qs = qsArr.join('&');
+  qs = qs ? `?${qs}` : '';
 
   useEffect(() => {
     getInfoRute();
+    getCurrentToko();
     getListToko();
   }, []);
 
@@ -52,19 +62,30 @@ const AddRuteList = () => {
     const response = await fetch(myurl);
     const result = await response.json();
     // console.log('get toko', result);
-    setToko(result.data);
+    setListToko(result.data);
 
     setIsLoading(false);
   };
 
-  const addSelectedToko = async (item) => {
-    console.log('curtoko', selectedToko);
-    console.log('additem', item);
+  const getCurrentToko = async() => {
+    let myurl = `${fn.getBaseUrl()}/toko/${searchParams.get('id_toko')}`;
+    console.log('get current toko url', myurl);
+    const response = await fetch(myurl);
+    const result = await response.json();
+    console.log('get current toko', result);
+    setCurrentToko(result);
+  };
+
+  const addSelectedToko = async (item, urutan) => {
+    // console.log('curtoko', selectedToko);
+    // console.log('additem', item);
     // setToko([...toko, item]);
 
     const newRuteToko = {
       id_rute: id,
       id_toko: item,
+      urutan: searchParams.get('urutan'),
+      mode_urutan: searchParams.get('mode_urutan'),
     }
     console.log('new toko', newRuteToko);
     const myurl = `${fn.getBaseUrl()}/Drute`;
@@ -91,23 +112,27 @@ const AddRuteList = () => {
 
   }
 
-  const saveRuteToko = async (e) => {
-    e.preventDefault();
+  // const saveRuteToko = async (e) => {
+  //   e.preventDefault();
 
-    console.log('save', toko);
-    // const barang = { nama, harga, stok };
-    // await fetch(`${global.config.base_url}/barang`, {
-    //   method: 'POST',
-    //   body: JSON.stringify(barang),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // });
+  //   // console.log('save', listToko);
+  //   // const barang = { nama, harga, stok };
+  //   // await fetch(`${global.config.base_url}/barang`, {
+  //   //   method: 'POST',
+  //   //   body: JSON.stringify(barang),
+  //   //   headers: {
+  //   //     'Content-Type': 'application/json'
+  //   //   }
+  //   // });
 
-    // // setelah selesai, redirect ke hal.master barang
-    // navigate("/master_barang");
-  };
+  //   // // setelah selesai, redirect ke hal.master barang
+  //   // navigate("/master_barang");
+  // };
 
+  const setPrevURL = () => {
+    localStorage.setItem('prev', location.pathname + location.search);
+  }
+  // console.log('location', location);
   const currentURL = location.pathname + location.search;
 
   return (
@@ -116,17 +141,35 @@ const AddRuteList = () => {
         <div className="me-2">
         <SearchBar onSearch={getListToko} keywordType="nama toko"/>
         </div>
-        <Link to={`/add_toko?back_url=${currentURL}`}>
+        <Link to={`/add_toko`} onClick={() => setPrevURL()}>
           <Button style={{ whiteSpace:"nowrap" }}>Toko Baru</Button>
         </Link>
       </div>
       <div className="mb-2 fs-6">
-        Pilih Toko utk ditambahkan ke rute <strong>{infoRute.nama_rute}</strong>
+        Pilih Toko utk ditambahkan ke rute <strong>{infoRute.nama_rute}</strong> 
+        <div>
+          di urutan ke: 
+          {
+            modeUrutan === 'before'
+            ? parseInt(searchParams.get('index')|0)+1
+            : parseInt(searchParams.get('index')|0)+2
+          }
+        </div>
+        <div>
+          {
+            searchParams.get('mode_urutan') == 'after' ? ' setelah ' : ' sebelum '
+          }
+          [<strong>
+            <Link to={`/view_toko/${currentToko.id}?id_rute=${id}`}>
+              {currentToko.nama}
+            </Link>
+          </strong>]
+        </div>
       </div>
       {isLoading 
         ? <Spinner animation="border" /> 
         : <DisplayAddRuteList 
-            toko={toko} 
+            listToko={listToko} 
             idRute={id}
             selectedToko={selectedToko} 
             onSelect={addSelectedToko} 

@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
 // import Text from "react-native";
 
-const DisplayAddRuteList = ({ listToko, idRute, selectedToko, onSelect }) => {
+const DisplayAddRuteList = ({ toko, idRute, selectedToko, onSelect }) => {
   const location = useLocation();
   console.log("display list toko", listToko, idRute);
   // console.log("selected toko", selectedToko);

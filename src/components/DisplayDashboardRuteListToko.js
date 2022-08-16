@@ -5,10 +5,10 @@ import Pagination from "./Pagination";
 import * as fn from "../MyFunctions";
 
 const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
-  // console.log('drute', dRute);
+  console.log('drute', dRute);
   // const [ruteHari, setRuteHari] = useState(dRute);
 
-  const { id } = useParams();
+  const { id } = useParams(); // id rute
   // console.log('id', id);
   const loginData = fn.getCurrentLogin();
 
@@ -32,14 +32,14 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
             <Table bordered>
               <thead>
                 <tr>
-                  <th>No.</th>
+                  <th className="ps-0">No.</th>
                   <th>Info Toko</th>
                 </tr>
               </thead>
               <tbody>
                 {currentItems.map((item, index) => (
                   <tr key={item.id}>
-                    <td>{index + 1}.</td>
+                    <td className="ps-0">{index + 1}.</td>
                     <td>
                       <div className="media">
                         <div className="media-left">
@@ -58,14 +58,14 @@ const DisplayDashboardRuteListToko = ({ dRute, onDelete }) => {
                             </div>
                             <div className="subtitle mb-0">
                               <DropdownButton id="dropdown-basic-button" title="Actions" size="sm">
-                                <Dropdown.Item className="link is-danger" onClick={() => onDelete(id, item.nama)}>
+                                <Dropdown.Item className="link is-danger" onClick={() => onDelete(item.key_id, item.nama)}>
                                   Hapus dari Rute
                                 </Dropdown.Item>
                                 <Dropdown.Divider />
-                                <Dropdown.Item as={Link} to="/">
+                                <Dropdown.Item as={Link} to={`/add_rute_list/${id}?id_toko=${item.id}&mode_urutan=before&urutan=${item.urutan}&index=${index}`}>
                                   Tambah Toko Sebelum Toko Ini
                                 </Dropdown.Item>
-                                <Dropdown.Item as={Link} to="/">
+                                <Dropdown.Item as={Link} to={`/add_rute_list/${id}?id_toko=${item.id}&mode_urutan=after&urutan=${parseInt(item.urutan)+1}&index=${index}`}>
                                   Tambah Toko Setelah Toko Ini
                                 </Dropdown.Item>
 

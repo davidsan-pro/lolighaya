@@ -1,10 +1,16 @@
-import { useState, useEffect } from "react";
-import { Button, Offcanvas, Table, Card, Figure } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Button, Offcanvas, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
+// import imgDefault from "../assets/img/nanas.jpg";
+import DzUploadBtn from "./DzUploadBtn";
 
 const Sidebar = () => {
   const [show, setShow] = useState(false);
+  const [profilePic, setProfilePic] = useState('../assets/img/nanas.jpg');
+  const [selectedFile, setSelectedFile] = useState('nanas.jpg');
+  const [isLoadingProfilePic, setIsLoadingProfilePic] = useState(false);
+  const [imageSource, setImageSource] = useState('file');
   // const [loginData, setLoginData] = useState({});
 
   const handleClose = () => setShow(false);
@@ -13,7 +19,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   let tmp = JSON.parse(localStorage.getItem('loginData') || '{}');
-  // console.log('sidebar tmp', tmp);
+  console.log('sidebar tmp', tmp);
   let loginData = tmp;
 
   // useEffect(() => {
@@ -33,32 +39,32 @@ const Sidebar = () => {
     navigate('/');
   }
 
+
   return (
     <>
       {/* {console.log('logindata', loginData)} */}
       <Button variant="primary" className="me-2 btn-lg" onClick={handleShow}>
         <FontAwesomeIcon icon="fa-solid fa-bars" />
       </Button>
-      <Offcanvas show={show} placement="end" scroll="true" style={{ maxWidth:'75%'}} onHide={() => setShow(false)}>
+      <Offcanvas 
+      show={show} 
+      placement="end" 
+      scroll="true" 
+      className="pe-2"
+      style={{ maxWidth:'75%'}} 
+      onHide={() => setShow(false)}
+      >
         <Offcanvas.Header>
           <Button onClick={handleClose}>
             <FontAwesomeIcon icon="fa-solid fa-times fa-2xl" />
           </Button>
-          <Offcanvas.Title>
-            <Figure>
-              <Figure.Image
-              width="200"
-              height="200"
-              alt="foto user"
-              src="../assets/img/nanas.jpg"
-              style={{ borderRadius: '50%' }}
-              />
-            </Figure>
-          </Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body>
+        <Offcanvas.Body className="pt-0">
           <Card className="is-fullwidth">
-            <Card.Img variant="top" src="../assets/img/nanas.jpg" />
+            <Card.Img variant="top" src={`../assets/img/${selectedFile}`} size="sm"/>
+            <div className="mt-2 align-center">
+              <DzUploadBtn />
+            </div>
             <Card.Body style={{ textAlign: 'end' }}>
               <Card.Title>{loginData.username}</Card.Title>
               <Card.Text>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import moment from "moment";
 import "moment/locale/id";
 import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { Button, Row, Col } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 // import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Sidebar from "./Sidebar";
@@ -147,8 +147,32 @@ const Header = () => {
 
   return (
     <>
-      <header className="fs-2 fw-bold pb-1 mb-2" style={{ backgroundColor: "royalblue", color: "#fff" }}>
-        <div className="is-flex is-justify-content-space-between">
+      <header className="is-flex is-align-items-baseline fs-2 fw-bold bgcolor-primary">
+        <Container className="pb-0 mt-2 mb-2 ps-0 pe-0">
+          <Row>
+            <Col>
+              {
+                // tombol Back hanya ditampilkan selain di hal.dashboard
+                !["/", "/dashboard"].includes(location.pathname) 
+                ? (
+                  <Button variant="primary" className="ms-2 btn-lg" onClick={() => gotoPrevPage()}>
+                    <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
+                  </Button>
+                ) 
+                : <Button style={{opacity:"0"}} className="btn-lg hidden">
+                    <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
+                  </Button>
+              }
+            </Col>
+            <Col className="border-radius-20 text-center">
+              <span>LoliGhaya</span>
+            </Col>
+            <Col className="align-right">
+              {loginData.id && !["/"].includes(location.pathname) ? <Sidebar /> : ''}
+            </Col>
+          </Row>
+        </Container>
+        {/* <div className="is-flex is-justify-content-space-between">
           <div>
             {
               // tombol Back hanya ditampilkan selain di hal.dashboard
@@ -169,7 +193,7 @@ const Header = () => {
           <div>
             {loginData.id && !["/"].includes(location.pathname) ? <Sidebar /> : ''}
           </div>
-        </div>
+        </div> */}
         {/* <Row className="is-flex is-align-items-center">
           <Col xs={4}>
             {

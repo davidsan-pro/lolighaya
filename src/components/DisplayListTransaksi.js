@@ -8,7 +8,7 @@ const DisplayListTransaksi = ({ transaksi, deleteTransaksi, handleClickRow }) =>
 
   let total = 0;
   for (let i=0; i<transaksi.length; i++) {
-    total += transaksi[i].nilai_transaksi;
+    total += parseInt(transaksi[i].nilai_transaksi);
   }
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,57 +23,65 @@ const DisplayListTransaksi = ({ transaksi, deleteTransaksi, handleClickRow }) =>
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <>
-      <div className="simple-table">
-        <Table bordered hover>
-          <thead>
-            <tr>
-              <th>Nama Toko</th>
-              <th>Tanggal</th>
-              <th>Username</th>
-              <th>Nilai Transaksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              currentItems.length > 0
-              ? (
-                currentItems.map((item, index) => (
-                  <tr key={item.id} className="link" onClick={() => handleClickRow(item.id)}>
-                    <td style={{wordBreak:'break-word'}}>{item.nama_toko}</td>
-                    <td style={{wordBreak:'break-word'}}>
-                      {item.created_at}
-                    </td>
-                    <td>{item.username}</td>
-                    <td className="align-right">
-                      Rp {fn.thousandSeparator(item.nilai_transaksi)}
-                    </td>
-                  </tr>
-                ))
-              )
-              : (
-                <tr>
-                  <td colSpan="4" className="text-center">
-                    Data transaksi masih kosong
-                  </td>
-                </tr>
-              )
-            }
-          </tbody>
-        </Table>
-      </div>
-
-      <div className="align-right">
-        <span className="me-2">Total: Rp</span>
-        <span className="fs-5 fw-bold">{fn.thousandSeparator(total)}</span>
-      </div>
-      <div className="align-right mb-3">{fn.thousandSeparator(transaksi.length)} transaksi</div>
-      
+    <div className="mb-3">
       {
-        // pagination hanya ditampilkan kalau ada datanya
-        transaksi.length > 0 
+        transaksi.length > 0
         ? (
           <>
+            <div className="table-container mb-0">
+              <Table bordered hover className="mb-1">
+                <thead>
+                  <tr>
+                    <th style={{width:"1%"}} className="ps-1">No</th>
+                    <th>Info Transaksi</th>
+                    <th>Nilai Transaksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    currentItems.length > 0
+                    ? (
+                      currentItems.map((item, index) => (
+                        <tr 
+                          key={item.id} 
+                          className="fs-6" 
+                          onClick={() => handleClickRow(item.id)}
+                        >
+                          <td style={{width:"1%"}} className="ps-1">{index+1}.</td>
+                          <td style={{wordBreak:'break-word'}} className="fs-6">
+                            <span>{fn.formatNoNota(item.id)}</span>
+                            <div className="fs-7">
+                              {fn.formatDate(new Date(item.created_at), 'datetime-std')}
+                              <br />
+                              {item.nama_toko}
+                            </div>
+                          </td>
+                          <td className="align-right">
+                            Rp {fn.thousandSeparator(item.nilai_transaksi)}
+                          </td>
+                        </tr>
+                      ))
+                    )
+                    : (
+                      <tr>
+                        <td colSpan="4" className="text-center">
+                          Data transaksi masih kosong
+                        </td>
+                      </tr>
+                    )
+                  }
+                </tbody>
+              </Table>
+            </div>
+      
+            <div className="align-right">
+              <span className="me-2">Total Nilai: Rp</span>
+              <span className="fs-5 fw-bold">{fn.thousandSeparator(total)}</span>
+            </div>
+            <div className="align-right mb-3">
+              dari {fn.thousandSeparator(transaksi.length)} transaksi
+            </div>
+
             <div className="mb-3">
               <Pagination 
               itemsPerPage={itemsPerPage} 
@@ -82,19 +90,13 @@ const DisplayListTransaksi = ({ transaksi, deleteTransaksi, handleClickRow }) =>
               curPageNumber={currentPage} 
               />
             </div>
-            <div className="d-grid">
-              <Button variant="primary" 
-              size="lg" 
-              onClick={() => fn.handleClickExportToExcel(transaksi, 'Histori Transaksi')}>
-                Export ke Excel
-              </Button>
-            </div>
+
           </>
         )
-        : ''
+        : <div className="fst-italic">Tidak ada data transaksi</div>
       }
 
-    </>
+    </div>
   );
 };
 

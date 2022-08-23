@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import DisplayListTransaksi from "./DisplayListTransaksi";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { Spinner, Button } from "react-bootstrap";
+import { Spinner, Button, Dropdown, DropdownButton, DropdownItem } from "react-bootstrap";
 import SearchBar from "./SearchBar";
 import * as fn from "../MyFunctions";
 
@@ -65,7 +65,8 @@ const MasterTransaksi = () => {
     setTransaksi(data);
     let total = 0;
     data.map((item) => {
-      total += item.nilai_transaksi;
+      item.no_nota = fn.formatNoNota(item.id);
+      total += parseInt(item.nilai_transaksi);
     });
     setNilaiTotal(total);
 
@@ -112,9 +113,19 @@ const MasterTransaksi = () => {
       <SearchBar onSearch={getTransaksi} keywordType="nama toko atau barang"/>
       <div className="is-flex is-justify-content-space-between mb-2">
         <strong className="fs-4 me-3">Histori Transaksi</strong>
-        <Link to="/dashboard">
-          <Button variant="primary">Transaksi Baru</Button>
-        </Link>
+        <DropdownButton id="dropdown-basic-button" title="Actions" size="sm">
+          <Dropdown.Item>
+            <Link className="link" to="/dashboard">Transaksi Baru</Link>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <label 
+              className="link" 
+              onClick={() => fn.handleClickExportToExcel(transaksi, 'histori_transaksi')}
+            >
+              Export to Excel
+            </label>
+          </Dropdown.Item>
+        </DropdownButton>
       </div>
       {
         isLoading 

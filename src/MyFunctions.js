@@ -152,6 +152,7 @@ export function handleClickExportToExcel(sourceData, dataCat='') {
   sourceData.map(item => {
     if (dataCat == 'histori_transaksi') {
       mydata.push({
+        'NO. NOTA': item.no_nota,
         'TANGGAL': item.updated_at,
         'NAMA TOKO': item.nama_toko,
         'USERNAME': item.username,

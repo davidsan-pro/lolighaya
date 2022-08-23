@@ -27,13 +27,6 @@ const EditUser = () => {
         'Content-Type': 'application/json'
       }
     });
-    // await axios.put(`${global.config.base_url}/users/${id}`, {
-    //   username: username,
-    //   password: password,
-    //   nama: nama,
-    //   email: email,
-    //   telepon: telepon,
-    // });
 
     navigate("/master_user");
   };

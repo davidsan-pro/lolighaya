@@ -86,7 +86,8 @@ const HistoriTransaksiToko = () => {
   };
 
   const handleClickRow = (idTransaksi) => {
-    let href = `/detail_histori_transaksi_toko/${idTransaksi}`;
+    let href = `/transaksi_detail/${idTransaksi}`;
+    // let href = `/detail_histori_transaksi_toko/${idTransaksi}`;
     // console.log("href", href);
     navigate(href);
   };

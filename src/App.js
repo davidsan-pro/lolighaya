@@ -62,7 +62,7 @@ const App = () => {
           <Route path="/add_transaksi_list_barang/:id" element={<AddTransaksiListBarang />} />
           <Route path="/add_transaksi_detail_barang/:id" element={<AddTransaksiDetailBarang />} />
           <Route path="/histori_transaksi_toko/:id" element={<HistoriTransaksiToko />} />
-          <Route path="/detail_histori_transaksi_toko/:id" element={<DetailHistoriTransaksiToko />} />
+          {/* <Route path="/detail_histori_transaksi_toko/:id" element={<DetailHistoriTransaksiToko />} /> */}
           <Route path="/master" element={<MenuDatabase />} />
           <Route path="/view_user/:id" element={<ViewUser />} />
           <Route path="/master_user" element={<MasterUser />} />

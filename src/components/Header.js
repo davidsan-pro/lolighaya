@@ -17,12 +17,12 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log('header location', location);
+  // console.log('header location', location);
   // const { id } = useParams();
   const id = location.pathname.split('/').pop();
   const idRute = searchParams.get('id_rute');
   const idToko = searchParams.get('id_toko');
-  console.log('header asd1', id, idRute);
+  // console.log('header asd1', id, idRute);
 
   let qsArr = [];
   for (const entry of searchParams.entries()) {
@@ -40,9 +40,9 @@ const Header = () => {
   // console.log("location", location);
   const pathurl = window.location.hash || window.location.pathname;
   const arrHash = pathurl.split('/');
-  let curPageName = arrHash.length > 0 ? arrHash[1] : '';
+  let curPageName = arrHash.length > 0 ? arrHash.pop() : '';
   curPageName = curPageName.split('?')[0];
-  // console.log('asd1', arrHash, curPageName);
+  // console.log('asd1', curPageName, arrHash.pop());
   let title = "";
   let prevPage = "";
   if (curPageName === "" || !window.location.hash) {
@@ -134,7 +134,7 @@ const Header = () => {
   // {console.log('hasharr', window.location.hash.split('/'))}
 
   const gotoPrevPage = () => {
-    console.log('backurl', searchParams.get('back_url'));
+    // console.log('backurl', searchParams.get('back_url'));
     let goto = -1;
     const backURL = searchParams.get('back_url');
     if (backURL) {

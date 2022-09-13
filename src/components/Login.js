@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Spinner, Button } from "react-bootstrap";
 import { useCookies } from "react-cookie";
 import * as fn from "../MyFunctions";
+import DzUploadBtn2 from "./DzUploadBtn2";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -131,6 +132,7 @@ const Login = () => {
             Forgot Password?
           </Button>
         </div>
+        {/* <DzUploadBtn2 /> */}
 
         <div className="errmsg">{message}</div>
       </form>

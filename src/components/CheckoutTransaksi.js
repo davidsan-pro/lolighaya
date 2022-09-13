@@ -3,8 +3,10 @@ import { useParams, useSearchParams, Link, useNavigate } from "react-router-dom"
 import { Spinner, Button, Card, Container, Row, Col } from "react-bootstrap";
 import * as fn from "../MyFunctions";
 import { useSelector, useDispatch } from 'react-redux';
+import bgNota from '../logo-002.png';
 
 const CheckoutTransaksi = () => {
+  // console.log('awal cartlist', localStorage.getItem('cartList'));
   const [isLoadingInfoToko, setIsLoadingInfoToko] = useState(false);
   const [isLoadingCartData, setIsLoadingCartData] = useState(false);
   const [isLoadingTrx, setIsLoadingTrx] = useState(false);
@@ -14,7 +16,7 @@ const CheckoutTransaksi = () => {
   const [nilaiTotal, setNilaiTotal] = useState(0);
 
   const kunjunganToko = useSelector(state => state.kunjunganToko);
-  console.log('kunjungan toko', kunjunganToko);
+  // console.log('kunjungan toko', kunjunganToko);
 
   const { id } = useParams(); // id rute
   const navigate = useNavigate();
@@ -22,7 +24,12 @@ const CheckoutTransaksi = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const idToko = searchParams.get("id_toko"); // id toko
   const idTrx = searchParams.get("id_trx"); // id transaksi (hanya ada saat mengedit trx lama)
-  console.log('id', id, idToko, idTrx);
+  // console.log('id', id, idToko, idTrx, parseInt(idTrx|0));
+
+  // kalo td klik Transaksi Baru maka localstorage cartList nya direset
+  if (parseInt(idTrx|0) === 0) {
+    localStorage.removeItem('cartList');
+  }
   let qsArr = [];
   for (const entry of searchParams.entries()) {
     qsArr.push(`${entry[0]}=${entry[1]}`);
@@ -34,11 +41,14 @@ const CheckoutTransaksi = () => {
   // }
   // console.log('querystring', qs);
 
-  // let localCart = JSON.parse(localStorage.getItem('cartList') || '[]');
+  let localCart = JSON.parse(localStorage.getItem('cartList') || '[]');
+  // console.log('localcart', localCart);
 
   useEffect(() => {
     getDataToko();
-    console.log('idtrx', idTrx, idToko, id);
+    // console.log('idtrx', idTrx, idToko, id);
+    // console.log('init', localStorage.getItem('cartList'));
+    // localStorage.setItem('cartList', localCart);
     getDataNota();
     // if (idTrx) {
     //   getDataNota();
@@ -49,7 +59,11 @@ const CheckoutTransaksi = () => {
 
   useEffect(() => {
     hitungTotal();
-    localStorage.setItem('cartList', JSON.stringify(cartItems));
+    // console.log('cartitems', cartItems);
+    if (cartItems.length > 0) {
+      // console.log('length', cartItems.length);
+      localStorage.setItem('cartList', JSON.stringify(cartItems));
+    }
   }, [cartItems]);
 
   const getDataCart = () => {
@@ -84,14 +98,18 @@ const CheckoutTransaksi = () => {
   }
 
   const getDataNota = async () => {
+    // console.log('getdatanota');
     setIsLoadingCartData(true);
     let qsArr = [];
-    qsArr.push(`qf[]=id_transaksi&qv[]=${idTrx}&qmode[]=exact`);
+    if (idTrx) {
+      qsArr.push(`qf[]=id_transaksi&qv[]=${idTrx}&qmode[]=exact`);
+    }
     let myurl = fn.prepURL('/Dtransaksi', qsArr);
     // let myurl = `${fn.getBaseUrl()}/Dtransaksi?qf[]=id_transaksi&qv[]=${idTrx}`;
-    console.log('getdatanota myurl', myurl, idTrx);
+    // console.log('getdatanota myurl', myurl, idTrx);
     const response = await fetch(myurl);
     const data = await response.json();
+    // console.log('getdatanota data', data);
     data.map(item => {
       item.nama = item.nama_barang;
       if (idTrx) {
@@ -100,8 +118,11 @@ const CheckoutTransaksi = () => {
       item.subtotal = item.laku * item.harga;
       // item.subtotal = (item.titip - item.sisa) * item.harga;
     });
-    console.log('getdatanota data', data);
-    setCartItems(data);
+    if (idTrx) {
+      setCartItems(data);
+    } else {
+      setCartItems(localCart);
+    }
     setIsLoadingCartData(false);
   }
 
@@ -233,6 +254,7 @@ const CheckoutTransaksi = () => {
           const namaToko = dataToko.nama.replaceAll(' ', '_');
           const targetName = `Lolighaya-${tanggal.replaceAll(':', '_')}-${noNota}-${namaToko}.jpg`;
           fn.saveElementAsImage("main_content", targetName);
+          setIsLoadingTrx(false);
 
           localStorage.removeItem('cartList');
           let phone = fn.ltrim(dataToko.telepon);
@@ -260,7 +282,6 @@ const CheckoutTransaksi = () => {
     <>
       <div className="container" id="main_content">
         <div className="mb-3 fs-5">
-          { console.log('asd', isLoadingInfoToko, dataToko) }
           {
             (() => {
               if (isLoadingInfoToko) {
@@ -295,8 +316,20 @@ const CheckoutTransaksi = () => {
                       </Col>
                       {
                         cartItems.length > 0
-                        ? (<Col>{fn.formatDate(new Date(cartItems[0].created_at))}</Col>)
-                        : (<Col>{fn.formatDate(new Date())}</Col>)
+                        ? (
+                          <Col>
+                            {fn.formatDate(new Date(cartItems[0].created_at), 'full-date')}
+                            <br />
+                            {fn.formatDate(new Date(cartItems[0].created_at), 'time')}
+                          </Col>
+                        )
+                        : (
+                          <Col>
+                            {fn.formatDate(new Date(), 'full-date')}
+                            <br />
+                            {fn.formatDate(new Date(), 'time')}
+                          </Col>
+                        )
                       }
                     </Row>
                   </Container>
@@ -320,7 +353,23 @@ const CheckoutTransaksi = () => {
                           <div>:</div>
                         </div>
                       </Col>
-                      <Col>{fn.formatDate(new Date())}</Col>
+                      {
+                        cartItems.length > 0
+                        ? (
+                          <Col>
+                            {fn.formatDate(new Date(cartItems[0].created_at), 'full-date')}
+                            <br />
+                            {fn.formatDate(new Date(cartItems[0].created_at), 'time')}
+                          </Col>
+                        )
+                        : (
+                          <Col>
+                            {fn.formatDate(null, 'full-date')}
+                            <br />
+                            {fn.formatDate(null, 'time')}
+                          </Col>
+                        )
+                      }
                     </Row>
                   </Container>
                 );
@@ -483,6 +532,8 @@ const CheckoutTransaksi = () => {
                 )
                 : ''
               }
+
+              <div class="bg-img-nota-container" style={{backgroundImage:`url(${bgNota})`}}></div>
           </>
         }
       </div>

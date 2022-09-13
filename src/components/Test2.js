@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import DzUploadBtn from './DzUploadBtn';
 
 const Test2 = () => {
   return (
-    <div><h2>Lorem ipsum dolor sit amet.</h2></div>
+    <div>
+      <h1><DzUploadBtn /></h1>
+    </div>
   )
 }
 

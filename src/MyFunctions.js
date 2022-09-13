@@ -143,8 +143,16 @@ export function formatDate(string=null, mode='full') {
     }
   }
   const myDate = string === null ? new Date() : new Date(string);
-  
-  return myDate.toLocaleDateString('id-ID', dateOptions).replaceAll('.', ':');
+
+  let result = myDate.toLocaleDateString('id-ID', dateOptions).replaceAll('.', ':');
+  // entah knp walaupun sdh pk dateOptions yg mode 'time' tp isinya masi ada bagian datenya
+  // jd hilangkan bagian date nya scr manual aja
+  if (mode === 'time') {
+    const arr = result.split(' ');
+    result = arr[arr.length-1];
+  }
+
+  return result;
 }
 
 export function handleClickExportToExcel(sourceData, dataCat='') {

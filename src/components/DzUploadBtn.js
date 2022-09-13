@@ -2,15 +2,27 @@ import { getDroppedOrSelectedFiles } from "html5-file-selector";
 import Dropzone from "react-dropzone-uploader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import * as fn from "../MyFunctions";
 
 const DzUploadBtn = ( props ) => {
   // console.log('props', props);
   const fontSize = props.size === 'sm' ? '14px' : '20px';
   const maxNumFile = parseInt(props.maxNumFile|0) > 0 ? props.maxNumFile : '1';
   const allowMultiple = parseInt(maxNumFile) > 1 ? 'multiple' : '';
+
+  const loginData = fn.getCurrentLogin();
+  console.log('logindata')
   
   const Input = ({ accept, onFiles, files, getFilesFromEvent }) => {
     const text = files.length > 0 ? "Add more files" : "Choose file";
+    if (files.length > 0) {
+      let myurl = fn.prepURL('/users');
+      let myData = {
+        user_id: loginData.id,
+        image: files[0].file,
+      }
+      console.log('fetch', myData, getFilesFromEvent);
+    }
 
     return (
       <label
@@ -50,9 +62,9 @@ const DzUploadBtn = ( props ) => {
     };
 
     const getFilesFromEvent = (e) => {
-      console.log("getfilesfromevent");
       return new Promise((resolve) => {
         getDroppedOrSelectedFiles(e).then((chosenFiles) => {
+          console.log("getfilesfromevent", chosenFiles);
           resolve(chosenFiles.map((f) => f.fileObject));
         });
       });

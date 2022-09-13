@@ -3,7 +3,7 @@ import { Button, Offcanvas, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 // import imgDefault from "../assets/img/nanas.jpg";
-import DzUploadBtn from "./DzUploadBtn";
+import DzUploadBtn2 from "./DzUploadBtn2";
 
 const Sidebar = () => {
   const [show, setShow] = useState(false);
@@ -19,7 +19,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   let tmp = JSON.parse(localStorage.getItem('loginData') || '{}');
-  console.log('sidebar tmp', tmp);
+  // console.log('sidebar tmp', tmp);
   let loginData = tmp;
 
   // useEffect(() => {
@@ -63,7 +63,7 @@ const Sidebar = () => {
           <Card className="is-fullwidth">
             <Card.Img variant="top" src={`../assets/img/${selectedFile}`} size="sm"/>
             <div className="mt-2 align-center">
-              <DzUploadBtn />
+              <DzUploadBtn2 module="user_profile_pic" />
             </div>
             <Card.Body style={{ textAlign: 'end' }}>
               <Card.Title>{loginData.username}</Card.Title>

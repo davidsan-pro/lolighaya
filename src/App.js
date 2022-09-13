@@ -35,6 +35,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AddTransaksiTokoListNota from "./components/AddTransaksiTokoListNota";
 import ForgotUserPassword from "./components/ForgotUserPassword";
 import TransaksiDetail from "./components/TransaksiDetail";
+import Test2 from "./components/Test2";
 
 const App = () => {
   const [showPrev, setShowPrev] = useState(false);
@@ -46,12 +47,13 @@ const App = () => {
       <div className="container hero is-fullheight">
         {/* <BarangList /> */}
         <Routes>
-          {/* <Route path="/asd" element={<Test2 />} />
-          {/* <Route path="/" element={<Login />} /> */}
+          {/* <Route path="/" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/test" element={<Test2 />} /> */}
           {/* <Route path="/pilih_hari" element={<PilihHari />} /> */}
           <Route path="/" element={<Login />} />
-          <Route path="/forgot_password" element={<ForgotUserPassword />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/forgot_password" element={<ForgotUserPassword />} />
           <Route path="/rute_list_toko/:id" element={<RuteListToko />} />
           <Route path="/rute_detail_toko/:id" element={<RuteDetailToko />} />
           <Route path="/checkout_transaksi/:id" element={<CheckoutTransaksi />} />

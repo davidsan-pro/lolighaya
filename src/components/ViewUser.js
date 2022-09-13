@@ -16,14 +16,19 @@ const ViewUser = () => {
   const getUser = async (query = "") => {
     setIsLoading(true);
 
-    let myurl = `${fn.getBaseUrl()}/user/${id}`;
+    // let myurl = `${fn.getBaseUrl()}/users/${id}`;
+    // if (query) {
+    //   myurl += `?q=${query}`;
+    // }
+    let myurl = fn.prepURL(`/users/${id}`);
+    let qsArr = [];
     if (query) {
-      myurl += `?q=${query}`;
+      qsArr.push(`q=${query}`);
     }
-    // console.log('view toko', myurl);
+    // console.log('getuser myurl', myurl);
     const response = await fetch(myurl);
     const data = await response.json();
-    // console.log('data', data);
+    // console.log('getuser data', data);
     setUser(data);
 
     setIsLoading(false);
@@ -41,11 +46,11 @@ const ViewUser = () => {
             </div>
             <div className="card-content">
               <div className="media mb-1">
-                <div className="media-left">
+                {/* <div className="media-left">
                   <figure className="image is-48x48">
                     <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
                   </figure>
-                </div>
+                </div> */}
                 <div className="media-content">
                   <p className="title fs-4">{user.username}</p>
                   <p className="subtitle is-6">{user.nama}</p>

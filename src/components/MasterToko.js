@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import DisplayListToko from "./DisplayListToko";
 import { Link } from "react-router-dom";
-import { Spinner, Button } from "react-bootstrap";
+import { Spinner, Button, Dropdown, DropdownButton, DropdownItem } from "react-bootstrap";
 import SearchBar from "./SearchBar";
 import * as fn from "../MyFunctions";
 
@@ -24,10 +24,10 @@ const MasterToko = () => {
       if (qsArr.length > 0) {
         myurl += '?' + qsArr.join('&');
       }
-      console.log('mastertoko gettoko', myurl);
+      // console.log('mastertoko gettoko', myurl);
       const response = await fetch(myurl);
       const result = await response.json();
-      console.log('mastertoko data', result);
+      // console.log('mastertoko data', result);
       setToko(result.data);
     } catch (e) {
       console.log(e);
@@ -69,16 +69,27 @@ const MasterToko = () => {
     <div>
       <SearchBar onSearch={getToko} keywordType="nama toko" />
       <div className="is-flex is-justify-content-space-between mb-2">
-        <div>
-          <strong className="is-size-4 me-3">Data Toko</strong>
-        </div>
-        <div>
-          <Link to="/add_toko">
-            <Button variant="primary">Tambah Baru</Button>
-          </Link>
-        </div>
+        <strong className="fs-4 me-3">Data Toko</strong>
+        <DropdownButton id="dropdown-basic-button" title="Menu">
+          <Dropdown.Item>
+            <Link className="link" to="/add_toko">Tambah Baru</Link>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <label 
+              className="link" 
+              onClick={() => fn.handleClickExportToExcel(toko, 'data_toko')}
+            >
+              Export to Excel
+            </label>
+          </Dropdown.Item>
+        </DropdownButton>
       </div>
-      {isLoading ? <Spinner animation="border" /> : <DisplayListToko toko={toko} onDelete={deleteToko} />}
+      {
+        isLoading 
+        ? <Spinner animation="border" /> 
+        : <DisplayListToko toko={toko} onDelete={deleteToko} />
+      }
+
     </div>
   );
 };

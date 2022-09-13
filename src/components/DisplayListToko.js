@@ -6,7 +6,7 @@ import * as fn from "../MyFunctions";
 // import Text from "react-native";
 
 const DisplayListToko = ({ toko, onDelete }) => {
-  console.log("display toko", toko, onDelete);
+  // console.log("display toko", toko, onDelete);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -21,78 +21,70 @@ const DisplayListToko = ({ toko, onDelete }) => {
 
   return (
     <>
-      <div className="table-container">
-        <Table className="table is-striped is-fullwidth">
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>Foto Toko</th>
-              <th>Info Toko</th>
-            </tr>
-          </thead>
-          <tbody className="">
-            {
-              // kalo jumlah datanya 1 atau lebih maka tampilkan dlm bentuk tabel
-              // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
-              currentItems.length > 0 
-              ? (
-                currentItems.map((item, index) => (
-                  <tr key={item.id}>
-                    <td>{indexOfFirstItem + index + 1}.</td>
-                    <td>
-                      <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image" />
-                    </td>
-                    <td>
-                      <div className="fs-5">
-                        <Link to={`/view_toko/${item.id}`} onDelete={onDelete}>{item.nama}xxx</Link>
-                      </div>
-                      <div>
-                        <small>{item.alamat}</small>
-                      </div>
-                      <div>
-                        <small>
-                          Kec.{item.kecamatan}, Kota {item.kota}
-                        </small>
-                      </div>
-                    </td>
+      {
+        toko.length > 0
+        ? (
+          <>
+            <div className="table-container">
+              <Table className="table is-striped is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Foto Toko</th>
+                    <th>Info Toko</th>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={3}>
-                    <em>Data masih kosong</em>
-                  </td>
-                </tr>
-              )
-            }
-          </tbody>
-        </Table>
+                </thead>
+                <tbody className="">
+                  {
+                    // kalo jumlah datanya 1 atau lebih maka tampilkan dlm bentuk tabel
+                    // tapi kalo datanya masih kosong maka tampilkan tulisan 'Data is empty'
+                    currentItems.length > 0 
+                    ? (
+                      currentItems.map((item, index) => (
+                        <tr key={item.id}>
+                          <td>{indexOfFirstItem + index + 1}.</td>
+                          <td>
+                            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image" />
+                          </td>
+                          <td>
+                            <div className="fs-5">
+                              <Link to={`/view_toko/${item.id}`} onDelete={onDelete}>{item.nama}</Link>
+                            </div>
+                            <div>
+                              <small>{item.alamat}</small>
+                            </div>
+                            <div>
+                              <small>
+                                Kec.{item.kecamatan}, Kota {item.kota}
+                              </small>
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan={3}>
+                          <em>Data masih kosong</em>
+                        </td>
+                      </tr>
+                    )
+                  }
+                </tbody>
+              </Table>
+            </div>
 
-        {
-          // pagination hanya ditampilkan kalau ada datanya
-          toko.length > 0 
-          ? (
-            <>
-              <div class="mb-3">
-                <Pagination 
-                itemsPerPage={itemsPerPage} 
-                totalItems={toko.length} 
-                paginate={paginate} 
-                curPageNumber={currentPage} 
-                />
-              </div>
-              <div className="d-grid">
-                <Button variant="primary" 
-                size="lg" 
-                onClick={() => fn.handleClickExportToExcel(toko, 'Data Toko')}>
-                  Export ke Excel
-                </Button>
-              </div>
-            </>
-          )
-          : ''
-        }
-      </div>
+            <Pagination 
+            itemsPerPage={itemsPerPage} 
+            totalItems={toko.length} 
+            paginate={paginate} 
+            curPageNumber={currentPage} 
+            />
+          </>
+        )
+        : (
+          <div className="fst-italic">Data user masih kosong</div>
+        )
+      }
     </>
   );
 };

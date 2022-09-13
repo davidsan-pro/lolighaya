@@ -28,7 +28,7 @@ const MasterBarang = () => {
       const data = await response.json();
       setBarang(data);
     } catch (e) {
-      console.log(e);
+      console.log('error', e);
     } finally {
       setIsLoading(false);
     }

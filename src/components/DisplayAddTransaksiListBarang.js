@@ -3,6 +3,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Pagination from "./Pagination";
 
 const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
+  // console.log('displayaddtransaksilistbarang', idToko, idRute);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
   
@@ -52,19 +53,30 @@ const DisplayAddTransaksiListBarang = ({ barang, idToko, idRute }) => {
     // }
 
     // kalau item tsb blm ada di localStorage 'cartList' maka tambahkan sbg item baru
-    const exist = arrCart.find((x) => x.id_barang === item.id && x.id_toko === idToko);
+    let exist = false;
+    arrCart.map(cek => {
+      // console.log('cek', cek, item, idToko);
+      if (cek.id === item.id && cek.id_toko === idToko) {
+        exist = true;
+      }
+    });
+    // const exist = arrCart.find((x) => x.id_barang === item.id && x.id_toko === idToko);
     // console.log('arrcart0', arrCart);
     // console.log(exist ? 'exist' : 'not exist');
     // return;
     if ( ! exist) {
+      // console.log('exist', item); 
+      // let tempItem = item;
+      // console.log('after', item);
+      // return;
       item.id_toko = idToko;
       item.titip = 0 
       item.sisa = 0 
       item.laku = 0
       item.subtotal = 0
       arrCart.push(item);
-      // console.log('arrcart1', arrCart);
       localStorage.setItem('cartList', JSON.stringify(arrCart));
+      // console.log('arrcart1', arrCart, localStorage.getItem);
 
       const href = `/checkout_transaksi/${idRute}${qs}`;
       // console.log('href', href);

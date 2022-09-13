@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Button, Spinner, Table } from "react-bootstrap";
 import * as html2canvas from "html2canvas";
 import * as fn from "../MyFunctions";
-import img from '../logo-002.png';
+import bgNota from '../logo-002.png';
 
 const TransaksiDetail = () => {
   const [dataToko, setDataToko] = useState({});
@@ -85,7 +85,7 @@ const TransaksiDetail = () => {
   const handleDownloadImage = async (e) => {
     const idElem = e.target.getAttribute('data-targetElem');
     const tanggal = fn.formatDate(new Date(), 'datetime-std');
-    console.log('tanggal', tanggal, tanggal.replaceAll(':', '_'));
+    // console.log('tanggal', tanggal, tanggal.replaceAll(':', '_'));
     const noNota = fn.formatNoNota(id);
     const namaToko = dataToko.nama_toko.replaceAll(' ', '_');
     const targetName = `Lolighaya-${tanggal.replaceAll(':', '_')}-${noNota}-${namaToko}.jpg`;
@@ -194,7 +194,7 @@ const TransaksiDetail = () => {
             </div>
           )
         }
-        <img src={img} />
+        <div class="bg-img-nota-container" style={{backgroundImage:`url(${bgNota})`}}></div>
       </div>
     </div>
   )

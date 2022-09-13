@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import DisplayListUser from "./DisplayListUser";
 import { Link } from "react-router-dom";
-import { Spinner, Button } from "react-bootstrap";
+import { Spinner, Button, Dropdown, DropdownButton, DropdownItem } from "react-bootstrap";
 import SearchBar from "./SearchBar";
 import * as fn from "../MyFunctions";
 
@@ -59,17 +59,27 @@ const MasterUser = () => {
   return (
     <div>
       <SearchBar onSearch={getUsers} keywordType="username" />
-      <div className="is-flex is-justify-content-space-between">
-        <div>
-          <strong className="is-size-4 me-3">Data User</strong>
-        </div>
-        <div>
-          <Link to="/add_user">
-            <Button variant="primary">Tambah Baru</Button>
-          </Link>
-        </div>
+      <div className="is-flex is-justify-content-space-between mb-2">
+        <strong className="fs-4 me-3">Data User</strong>
+        <DropdownButton id="dropdown-basic-button" title="Menu">
+          <Dropdown.Item>
+            <Link className="link" to="/add_user">Tambah Baru</Link>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <label 
+              className="link" 
+              onClick={() => fn.handleClickExportToExcel(users, 'data_user')}
+            >
+              Export to Excel
+            </label>
+          </Dropdown.Item>
+        </DropdownButton>
       </div>
-      {isLoading ? <Spinner animation="border" /> : <DisplayListUser users={users} onDelete={deleteUser} />}
+      {
+        isLoading 
+        ? <Spinner animation="border" /> 
+        : <DisplayListUser users={users} onDelete={deleteUser} />
+      }
     </div>
   );
 };

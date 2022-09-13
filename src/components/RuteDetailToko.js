@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useParams, useSearchParams, Link } from "react-router-dom";
-import { Table, Button, Spinner, Dropdown, DropdownButton, ButtonGroup, DropdownType } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { Button, Spinner, DropdownButton, ButtonGroup, DropdownType } from "react-bootstrap";
+import DisplayRuteDetailToko from "./DisplayRuteDetailToko";
 import * as fn from "../MyFunctions";
 
 const RuteDetailToko = ({ onDelete }) => {
@@ -96,7 +95,8 @@ const RuteDetailToko = ({ onDelete }) => {
             </Button>
           </div>
 
-          {
+          <DisplayRuteDetailToko data={nota} id={id} />
+          { /*
             nota.length > 0
             ? (
               <Table bordered className="is-fullwidth">
@@ -169,7 +169,7 @@ const RuteDetailToko = ({ onDelete }) => {
                 Belum ada data transaksi
               </div>
             )
-          }
+          */ }
         </>
 
       )}

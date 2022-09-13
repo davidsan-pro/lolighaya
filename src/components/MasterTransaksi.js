@@ -113,7 +113,7 @@ const MasterTransaksi = () => {
       <SearchBar onSearch={getTransaksi} keywordType="nama toko atau barang"/>
       <div className="is-flex is-justify-content-space-between mb-2">
         <strong className="fs-4 me-3">Histori Transaksi</strong>
-        <DropdownButton id="dropdown-basic-button" title="Actions" size="sm">
+        <DropdownButton id="dropdown-basic-button" title="Menu" size="sm">
           <Dropdown.Item>
             <Link className="link" to="/dashboard">Transaksi Baru</Link>
           </Dropdown.Item>
